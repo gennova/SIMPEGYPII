@@ -25,6 +25,7 @@ public class GolonganDaoImplemen implements GolonganDao {
 
     private Connection connection = null;
     private static final String sqlGelALlGolongan="select * from pangkatgolongan";
+    private static final String sqlInsertGolongan="insert into pangkatgolongan(golongan,pangkat) values (?,?)";
 
     public GolonganDaoImplemen(Connection c) {
         this.connection = c;
@@ -54,7 +55,17 @@ public class GolonganDaoImplemen implements GolonganDao {
 
     @Override
     public void insertGolongan(Golongan golongan) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PreparedStatement statement =null;
+        try {
+            statement = connection.prepareStatement(sqlInsertGolongan);
+            statement.setString(1, golongan.getGolongan());
+            statement.setString(2, golongan.getPangkat());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(GolonganDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @Override

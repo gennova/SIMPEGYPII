@@ -35,8 +35,8 @@ public class Golongan extends javax.swing.JFrame {
         TabelGolongan.setModel(golonganTableModel);
         TabelGolongan.setRowSorter(sorter);
         //TabelGolongan.setAutoResizeMode(0);
-        TabelGolongan.getColumnModel().getColumn(0).setPreferredWidth(5);
-        TabelGolongan.getColumnModel().getColumn(1).setPreferredWidth(5);
+        TabelGolongan.getColumnModel().getColumn(1).setPreferredWidth(300);
+        TabelGolongan.getColumnModel().getColumn(2).setPreferredWidth(450);
     }
 
     /**
@@ -106,6 +106,11 @@ public class Golongan extends javax.swing.JFrame {
         jButton3.setText("Update");
 
         jButton4.setText("Insert");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,8 +137,8 @@ public class Golongan extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
-                .addGap(1, 1, 1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -155,6 +160,12 @@ public class Golongan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        InsertGolongan golongan = new InsertGolongan();
+        golongan.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
