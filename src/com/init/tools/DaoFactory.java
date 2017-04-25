@@ -5,6 +5,8 @@
  */
 package com.init.tools;
 
+import com.init.cabang.CabangDao;
+import com.init.cabang.CabangDaoImplemen;
 import com.init.controller.GolonganDao;
 import com.init.controller.GolonganDaoImplemen;
 import com.init.controller.PegawaiDao;
@@ -25,30 +27,39 @@ import javax.swing.JOptionPane;
  * @author Tendy Developer
  */
 public class DaoFactory {
-    private static  Connection connection = null;
+
+    private static Connection connection = null;
     private static final String url = "jdbc:mysql://";
     static String user = "";
     static String password = "";
-    private static  Statement st = null;
-    private static PegawaiDao petugasDao;
+    private static Statement st = null;
+    private static CabangDao cabangDao;
     private static GolonganDao golonganDao;
-    
-    public static GolonganDao getGolonganDao(){
-        if (golonganDao==null) {
-            golonganDao= new GolonganDaoImplemen(getConnectionFix());
+    private static PegawaiDao pegawaiDao;
+
+    public static CabangDao getCabangDao() {
+        if (cabangDao == null) {
+            cabangDao = new CabangDaoImplemen(getConnectionFix());
+        }
+        return cabangDao;
+    }
+
+    public static GolonganDao getGolonganDao() {
+        if (golonganDao == null) {
+            golonganDao = new GolonganDaoImplemen(getConnectionFix());
         }
         return golonganDao;
     }
 
-    public static PegawaiDao getPetugasDao() {
-        if (petugasDao==null) {
-            petugasDao = new PegawaiDaoImplemen(getConnectionFix());
+    public static PegawaiDao getPegawaiDao() {
+        if (pegawaiDao == null) {
+            pegawaiDao = new PegawaiDaoImplemen(getConnectionFix());
         }
-        return petugasDao;
+        return pegawaiDao;
     }
-    
-    public static Connection getConnectionFix(){
-        if (connection==null) {
+
+    public static Connection getConnectionFix() {
+        if (connection == null) {
             Koneksi k = new Koneksi();
             try {
                 connection = k.bukaKoneksi();
@@ -58,7 +69,7 @@ public class DaoFactory {
         }
         return connection;
     }
-    
+
     public static Connection getConnection() {
         if (connection == null) {
             try {

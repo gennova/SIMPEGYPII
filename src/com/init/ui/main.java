@@ -5,6 +5,9 @@
  */
 package com.init.ui;
 
+import com.init.tools.DaoFactory;
+import java.util.List;
+
 /**
  *
  * @author amnesia
@@ -16,12 +19,9 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 4; j++) {
-                System.out.print(i);
-            }
-            System.out.println("");
-        }
+        DaoFactory.getConnectionFix();
+        List<com.init.cabang.Cabang> lists = DaoFactory.getCabangDao().getAllCabang();
+        System.out.println(lists.size());
     }
     
 }
