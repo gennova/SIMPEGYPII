@@ -14,6 +14,10 @@ import java.util.List;
 public interface CabangDao {
 
     public List<Cabang> getAllCabang();
+    
+    public Cabang getCabangByID(int id);
+    
+    public Cabang getCabangByKode(String kode);
 
     public void insertCabang(Cabang cabang);
 

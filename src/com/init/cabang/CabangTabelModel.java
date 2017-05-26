@@ -36,7 +36,7 @@ public class CabangTabelModel extends AbstractTableModel {
     public String getColumnName(int column) {
         switch (column) {
             case 0:
-                return "ID";
+                return "No";
             case 1:
                 return "Kode";
             case 2:
@@ -52,14 +52,11 @@ public class CabangTabelModel extends AbstractTableModel {
             case 0:
                 return rowIndex + 1;
             case 1:
-                return list.get(rowIndex).getIdCabang();
-            case 2:
                 return list.get(rowIndex).getKode();
-            case 3:
+            case 2:
                 return list.get(rowIndex).getNamacabang();
             default:
                 return 0;
         }
     }
-
 }

@@ -17,7 +17,7 @@ public class Cabang {
 
     public Cabang() {
     }
-    
+
     public Cabang(int idcabang, String kode, String namacabang) {
         this.idcabang = idcabang;
         this.kode = kode;
@@ -37,7 +37,7 @@ public class Cabang {
     }
 
     public String getKode() {
-        return this.namacabang;
+        return this.kode;
     }
 
     public void setNamacabang(String namacabang) {
