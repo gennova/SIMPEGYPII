@@ -7,10 +7,16 @@ package com.init.tools;
 
 import com.init.cabang.CabangDao;
 import com.init.cabang.CabangDaoImplemen;
-import com.init.controller.GolonganDao;
-import com.init.controller.GolonganDaoImplemen;
 import com.init.controller.PegawaiDao;
 import com.init.controller.PegawaiDaoImplemen;
+import com.init.golongan.GolonganDao;
+import com.init.golongan.GolonganDaoImplemen;
+import com.init.jabatan.JabatanDao;
+import com.init.jabatan.JabatanDaoImplemen;
+import com.init.pendidikanterakhir.PendidikanTerakhirDao;
+import com.init.pendidikanterakhir.PendidikanTerakhirDaoImplemen;
+import com.init.statuspegawai.PegawaiStatusDao;
+import com.init.statuspegawai.PegawaiStatusDaoImplemen;
 import com.init.unit.UnitDao;
 import com.init.unit.UnitDaoImplemen;
 import java.io.FileInputStream;
@@ -39,6 +45,30 @@ public class DaoFactory {
     private static GolonganDao golonganDao;
     private static PegawaiDao pegawaiDao;
     private static UnitDao unitDao;
+    private static PegawaiStatusDao pegawaiStatusDao;
+    private static JabatanDao jabatanDao;
+    private static PendidikanTerakhirDao pendidikanTerakhirDao;
+
+    public static PendidikanTerakhirDao getPendidikanTerakhirDao() {
+        if (pendidikanTerakhirDao == null) {
+            pendidikanTerakhirDao = new PendidikanTerakhirDaoImplemen(getConnectionFix());
+        }
+        return pendidikanTerakhirDao;
+    }
+
+    public static JabatanDao getJabatanDao() {
+        if (jabatanDao == null) {
+            jabatanDao = new JabatanDaoImplemen(getConnectionFix());
+        }
+        return jabatanDao;
+    }
+
+    public static PegawaiStatusDao getPegawaiStatusDao() {
+        if (pegawaiStatusDao == null) {
+            pegawaiStatusDao = new PegawaiStatusDaoImplemen(getConnectionFix());
+        }
+        return pegawaiStatusDao;
+    }
 
     public static UnitDao getUnitDao() {
         if (unitDao == null) {

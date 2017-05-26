@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/ui/Home.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/ui/UnitUI.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/unit/UnitTabelModel.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/unit/UnitDao.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/unit/UnitDaoImplemen.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/unit/Unit.java</file>
+        </group>
     </open-files>
 </project-private>
