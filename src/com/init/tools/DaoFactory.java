@@ -11,6 +11,8 @@ import com.init.controller.GolonganDao;
 import com.init.controller.GolonganDaoImplemen;
 import com.init.controller.PegawaiDao;
 import com.init.controller.PegawaiDaoImplemen;
+import com.init.unit.UnitDao;
+import com.init.unit.UnitDaoImplemen;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -36,6 +38,14 @@ public class DaoFactory {
     private static CabangDao cabangDao;
     private static GolonganDao golonganDao;
     private static PegawaiDao pegawaiDao;
+    private static UnitDao unitDao;
+
+    public static UnitDao getUnitDao() {
+        if (unitDao == null) {
+            unitDao = new UnitDaoImplemen(getConnectionFix());
+        }
+        return unitDao;
+    }
 
     public static CabangDao getCabangDao() {
         if (cabangDao == null) {

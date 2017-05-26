@@ -15,11 +15,11 @@ public interface UnitDao {
 
     public List<Unit> getAllUnit();
 
-    public Unit getUnitByID();
+    public Unit getUnitByID(int id);
 
-    public Unit getUnitByKode();
+    public Unit getUnitByKode(String kode);
 
-    public Unit getUnitByNama();
+    public Unit getUnitByNama(String nama);
 
     public void InsertUnit(Unit unit);
 

@@ -89,7 +89,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="99" red="0" type="rgb"/>
+          <Color blue="99" green="0" red="99" type="rgb"/>
         </Property>
       </Properties>
 
@@ -119,7 +119,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="DATA MASTER CABANG"/>
+            <Property name="text" type="java.lang.String" value="DATA MASTER UNIT"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -163,7 +163,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tabelcabang">
+        <Component class="javax.swing.JTable" name="tabelunit">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -175,7 +175,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelcabangMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabelunitMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
@@ -192,7 +192,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nama Cabang"/>
+        <Property name="text" type="java.lang.String" value="Nama Unit"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNama">
