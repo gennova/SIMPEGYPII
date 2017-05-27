@@ -5,16 +5,25 @@
  */
 package com.init.tools;
 
+import com.init.bidangkerja.BidangKerjaDao;
+import com.init.bidangkerja.BidangKerjaDaoImplemen;
 import com.init.cabang.CabangDao;
 import com.init.cabang.CabangDaoImplemen;
 import com.init.controller.PegawaiDao;
 import com.init.controller.PegawaiDaoImplemen;
 import com.init.golongan.GolonganDao;
 import com.init.golongan.GolonganDaoImplemen;
+import com.init.ijazah.IjazahAngkatDao;
+import com.init.ijazah.IjazahAngkatDaoImplemen;
 import com.init.jabatan.JabatanDao;
 import com.init.jabatan.JabatanDaoImplemen;
+import com.init.jenistugas.JenisTugas;
+import com.init.jenistugas.JenisTugasDao;
+import com.init.jenistugas.JenisTugasDaoImplemen;
 import com.init.pendidikanterakhir.PendidikanTerakhirDao;
 import com.init.pendidikanterakhir.PendidikanTerakhirDaoImplemen;
+import com.init.provinsi.ProvinsiDao;
+import com.init.provinsi.ProvinsiDaoImplemen;
 import com.init.statuspegawai.PegawaiStatusDao;
 import com.init.statuspegawai.PegawaiStatusDaoImplemen;
 import com.init.unit.UnitDao;
@@ -48,6 +57,38 @@ public class DaoFactory {
     private static PegawaiStatusDao pegawaiStatusDao;
     private static JabatanDao jabatanDao;
     private static PendidikanTerakhirDao pendidikanTerakhirDao;
+    private static IjazahAngkatDao ijazahAngkatDao;
+    private static BidangKerjaDao bidangKerjaDao;
+    private static JenisTugasDao jenisTugasDao;
+    private static ProvinsiDao provinsiDao;
+
+    public static ProvinsiDao getProvinsiDao() {
+        if (provinsiDao == null) {
+            provinsiDao = new ProvinsiDaoImplemen(getConnectionFix());
+        }
+        return provinsiDao;
+    }
+
+    public static JenisTugasDao getJenisTugasDao() {
+        if (jenisTugasDao == null) {
+            jenisTugasDao = new JenisTugasDaoImplemen(getConnectionFix());
+        }
+        return jenisTugasDao;
+    }
+
+    public static BidangKerjaDao getBidangKerjaDao() {
+        if (bidangKerjaDao == null) {
+            bidangKerjaDao = new BidangKerjaDaoImplemen(getConnectionFix());
+        }
+        return bidangKerjaDao;
+    }
+
+    public static IjazahAngkatDao getIjazahAngkatDao() {
+        if (ijazahAngkatDao == null) {
+            ijazahAngkatDao = new IjazahAngkatDaoImplemen(getConnectionFix());
+        }
+        return ijazahAngkatDao;
+    }
 
     public static PendidikanTerakhirDao getPendidikanTerakhirDao() {
         if (pendidikanTerakhirDao == null) {
