@@ -442,8 +442,8 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        BidangKerjaUI bidangKerjaUI = new BidangKerjaUI();
-        bidangKerjaUI= new BidangKerjaUI();
+        BidangKerjaUI b = new BidangKerjaUI();
+        b.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
