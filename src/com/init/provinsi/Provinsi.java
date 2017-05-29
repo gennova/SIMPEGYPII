@@ -12,7 +12,7 @@ package com.init.provinsi;
 public class Provinsi {
 
     private int id;
-    private String kode;
+    private int kode;
     private String namaprovinsi;
 
     public void setID(int id) {
@@ -23,11 +23,11 @@ public class Provinsi {
         return id;
     }
 
-    public void setKode(String kode) {
+    public void setKode(int kode) {
         this.kode = kode;
     }
 
-    public String getKode() {
+    public int getKode() {
         return kode;
     }
 

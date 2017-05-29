@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/rumah/RumahDao.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/tools/DaoFactory.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/pegawai/PegawaiDao.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/pegawai/PegawaiDaoImplemen.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/rumah/Rumah.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/rumah/RumahDaoImplemen.java</file>
+        </group>
     </open-files>
 </project-private>

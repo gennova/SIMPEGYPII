@@ -212,7 +212,7 @@ public class ProvinsiUI extends javax.swing.JFrame {
         String kodeprovinsi = txtNo.getText();
         String namaprovinsi = txtNama.getText();
         Provinsi provinsi = new Provinsi();
-        provinsi.setKode(kodeprovinsi);
+        provinsi.setKode(Integer.parseInt(kodeprovinsi));
         provinsi.setNamaProvinsi(namaprovinsi);
         DaoFactory.getProvinsiDao().InsertProvinsi(provinsi);
         showProvinsi();
@@ -230,7 +230,7 @@ public class ProvinsiUI extends javax.swing.JFrame {
                 provinsi = new Provinsi();
                 provinsi.setID(id);
                 provinsi.setNamaProvinsi(namaprovinsi);
-                provinsi.setKode(kodeprovinsi);
+                provinsi.setKode(Integer.parseInt(kodeprovinsi));
                 DaoFactory.getProvinsiDao().UpdateProvinsi(provinsi);
                 showProvinsi();
                 clearField();
@@ -244,7 +244,7 @@ public class ProvinsiUI extends javax.swing.JFrame {
         if (row>=0) {
             String kode = String.valueOf(tabelprovinsi.getValueAt(row, 1));
             Provinsi provinsi = DaoFactory.getProvinsiDao().getProvinsiByKode(kode);
-            txtNo.setText(provinsi.getKode());
+            txtNo.setText(String.valueOf(provinsi.getKode()));
             txtNama.setText(provinsi.getNamaProvinsi());
         }
     }//GEN-LAST:event_tabelprovinsiMouseClicked

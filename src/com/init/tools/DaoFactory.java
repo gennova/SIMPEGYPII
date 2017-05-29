@@ -9,21 +9,24 @@ import com.init.bidangkerja.BidangKerjaDao;
 import com.init.bidangkerja.BidangKerjaDaoImplemen;
 import com.init.cabang.CabangDao;
 import com.init.cabang.CabangDaoImplemen;
-import com.init.controller.PegawaiDao;
-import com.init.controller.PegawaiDaoImplemen;
 import com.init.golongan.GolonganDao;
 import com.init.golongan.GolonganDaoImplemen;
 import com.init.ijazah.IjazahAngkatDao;
 import com.init.ijazah.IjazahAngkatDaoImplemen;
 import com.init.jabatan.JabatanDao;
 import com.init.jabatan.JabatanDaoImplemen;
-import com.init.jenistugas.JenisTugas;
 import com.init.jenistugas.JenisTugasDao;
 import com.init.jenistugas.JenisTugasDaoImplemen;
+import com.init.kartu.KartuDao;
+import com.init.kartu.KartuDaoImplemen;
+import com.init.pegawai.PegawaiDao;
+import com.init.pegawai.PegawaiDaoImplemen;
 import com.init.pendidikanterakhir.PendidikanTerakhirDao;
 import com.init.pendidikanterakhir.PendidikanTerakhirDaoImplemen;
 import com.init.provinsi.ProvinsiDao;
 import com.init.provinsi.ProvinsiDaoImplemen;
+import com.init.rumah.RumahDao;
+import com.init.rumah.RumahDaoImplemen;
 import com.init.statuspegawai.PegawaiStatusDao;
 import com.init.statuspegawai.PegawaiStatusDaoImplemen;
 import com.init.unit.UnitDao;
@@ -61,6 +64,22 @@ public class DaoFactory {
     private static BidangKerjaDao bidangKerjaDao;
     private static JenisTugasDao jenisTugasDao;
     private static ProvinsiDao provinsiDao;
+    private static RumahDao rumahDao;
+    private static KartuDao kartuDao;
+
+    public static KartuDao getKartuDao() {
+        if (kartuDao == null) {
+            kartuDao = new KartuDaoImplemen(getConnectionFix());
+        }
+        return kartuDao;
+    }
+
+    public static RumahDao getRumahDao() {
+        if (rumahDao == null) {
+            rumahDao = new RumahDaoImplemen(getConnectionFix());
+        }
+        return rumahDao;
+    }
 
     public static ProvinsiDao getProvinsiDao() {
         if (provinsiDao == null) {

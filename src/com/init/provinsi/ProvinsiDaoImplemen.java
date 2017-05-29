@@ -24,9 +24,9 @@ public class ProvinsiDaoImplemen implements ProvinsiDao {
     private final Connection connection;
     private final String sqlGetAllProvinsi = "select * from provinsi";
     private final String sqlGetProvinsiByID = "select * from provinsi where id=?";
-    private final String sqlGetProvinsiByKode = "select * from provinsi where kodeprovinsi=?";
-    private final String sqlInsertProvinsi = "insert into provinsi(kodeprovinsi,namaprovinsi) values (?,?)";
-    private final String sqlUpdateProvinsi = "update provinsi set kodeprovinsi=?,namaprovinsi=? where id=?";
+    private final String sqlGetProvinsiByKode = "select * from provinsi where IDProvinsi=?";
+    private final String sqlInsertProvinsi = "insert into provinsi(IDProvinsi,Nama) values (?,?)";
+    private final String sqlUpdateProvinsi = "update provinsi set IDProvinsi=?,Nama=? where id=?";
     private final String sqlDeleteProvinsi = "delete from provinsi where id=?";
 
     public ProvinsiDaoImplemen(Connection connection) {
@@ -45,8 +45,8 @@ public class ProvinsiDaoImplemen implements ProvinsiDao {
             while (rs.next()) {
                 Provinsi p = new Provinsi();
                 p.setID(rs.getInt("id"));
-                p.setKode(rs.getString("kodeprovinsi"));
-                p.setNamaProvinsi(rs.getString("namaprovinsi"));
+                p.setKode(rs.getInt("IDProvinsi"));
+                p.setNamaProvinsi(rs.getString("Nama"));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -66,8 +66,8 @@ public class ProvinsiDaoImplemen implements ProvinsiDao {
             rs = ps.executeQuery();
             while (rs.next()) {
                 p.setID(rs.getInt("id"));
-                p.setKode(rs.getString("kodeprovinsi"));
-                p.setNamaProvinsi(rs.getString("namaprovinsi"));
+                p.setKode(rs.getInt("IDProvinsi"));
+                p.setNamaProvinsi(rs.getString("Nama"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProvinsiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,8 +86,8 @@ public class ProvinsiDaoImplemen implements ProvinsiDao {
             rs = ps.executeQuery();
             while (rs.next()) {
                 p.setID(rs.getInt("id"));
-                p.setKode(rs.getString("kodeprovinsi"));
-                p.setNamaProvinsi(rs.getString("namaprovinsi"));
+                p.setKode(rs.getInt("IDProvinsi"));
+                p.setNamaProvinsi(rs.getString("Nama"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProvinsiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,7 +100,7 @@ public class ProvinsiDaoImplemen implements ProvinsiDao {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(sqlInsertProvinsi);
-            ps.setString(1, provinsi.getKode());
+            ps.setInt(1, provinsi.getKode());
             ps.setString(2, provinsi.getNamaProvinsi());
             int status = ps.executeUpdate();
             if (status==1) {
@@ -116,7 +116,7 @@ public class ProvinsiDaoImplemen implements ProvinsiDao {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(sqlUpdateProvinsi);
-            ps.setString(1, provinsi.getKode());
+            ps.setInt(1, provinsi.getKode());
             ps.setString(2, provinsi.getNamaProvinsi());
             ps.setInt(3, provinsi.getID());
             ps.executeUpdate();
