@@ -10,6 +10,10 @@ import com.init.golonganpangkat.Pangkat;
 import com.init.pegawai.Pegawai;
 import com.init.pegawai.PegawaiTabelModelSimple;
 import com.init.tools.DaoFactory;
+import com.init.tools.Session;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -18,7 +22,13 @@ import javax.swing.table.TableRowSorter;
  */
 public class Pegawaiform extends javax.swing.JFrame {
 
-    private TableRowSorter rowSorter = null;
+    private TableRowSorter<TableModel> rowSorter = null;
+    private TableRowSorter<TableModel> rowSorterNUK = null;
+    private TableRowSorter<TableModel> rowSorterNAMA = null;
+    private TableRowSorter<TableModel> rowSorterWILAYAH = null;
+    private TableRowSorter<TableModel> rowSorterBIDANG = null;
+    private TableRowSorter<TableModel> rowSorterGOLONGAN = null;
+    private TableRowSorter<TableModel> rowSorterUNIT = null;
 
     /**
      * Creates new form Pegawaiform
@@ -34,48 +44,49 @@ public class Pegawaiform extends javax.swing.JFrame {
     private void showtabelpegawai() {
         PegawaiTabelModelSimple modelSimple = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerja());
         TabelPegawaiUtama.setModel(modelSimple);
-        rowSorter = new TableRowSorter(modelSimple);
-        TabelPegawaiUtama.setRowSorter(rowSorter);
+        rowSorterNUK = new TableRowSorter(modelSimple);
+        TabelPegawaiUtama.setRowSorter(rowSorterNUK);
         TabelPegawaiUtama.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtama.getColumnModel().getColumn(1).setPreferredWidth(500);
         TabelPegawaiUtama.getColumnModel().getColumn(2).setPreferredWidth(300);
-        
+        txtTotalRow.setText(String.valueOf(modelSimple.getRowCount()) + " data");
+
         PegawaiTabelModelSimple modelSimpleUrutNama = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerjaNama());
         TabelPegawaiUtamaNama.setModel(modelSimple);
-        rowSorter = new TableRowSorter(modelSimpleUrutNama);
-        TabelPegawaiUtamaNama.setRowSorter(rowSorter);
+        rowSorterNAMA = new TableRowSorter(modelSimpleUrutNama);
+        TabelPegawaiUtamaNama.setRowSorter(rowSorterNAMA);
         TabelPegawaiUtamaNama.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaNama.getColumnModel().getColumn(1).setPreferredWidth(500);
         TabelPegawaiUtamaNama.getColumnModel().getColumn(2).setPreferredWidth(300);
-        
+
         PegawaiTabelModelSimple modelSimpleUrutWilayah = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerjaWilayah());
         TabelPegawaiUtamaWilayah.setModel(modelSimpleUrutWilayah);
-        rowSorter = new TableRowSorter(modelSimpleUrutNama);
-        TabelPegawaiUtamaWilayah.setRowSorter(rowSorter);
+        rowSorterWILAYAH = new TableRowSorter(modelSimpleUrutNama);
+        TabelPegawaiUtamaWilayah.setRowSorter(rowSorterWILAYAH);
         TabelPegawaiUtamaWilayah.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaWilayah.getColumnModel().getColumn(1).setPreferredWidth(500);
         TabelPegawaiUtamaWilayah.getColumnModel().getColumn(2).setPreferredWidth(300);
-        
+
         PegawaiTabelModelSimple modelSimpleUrutBidangKerja = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerjaBidangKerja());
-        TabelPegawaiUtamaBidangKerja.setModel(modelSimpleUrutWilayah);
-        rowSorter = new TableRowSorter(modelSimpleUrutBidangKerja);
-        TabelPegawaiUtamaBidangKerja.setRowSorter(rowSorter);
+        TabelPegawaiUtamaBidangKerja.setModel(modelSimpleUrutBidangKerja);
+        rowSorterBIDANG = new TableRowSorter(modelSimpleUrutBidangKerja);
+        TabelPegawaiUtamaBidangKerja.setRowSorter(rowSorterBIDANG);
         TabelPegawaiUtamaBidangKerja.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaBidangKerja.getColumnModel().getColumn(1).setPreferredWidth(500);
         TabelPegawaiUtamaBidangKerja.getColumnModel().getColumn(2).setPreferredWidth(300);
-        
+
         PegawaiTabelModelSimple modelSimpleUrutBidangGolongan = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerjaGolongan());
         TabelPegawaiUtamaGolongan.setModel(modelSimpleUrutBidangGolongan);
-        rowSorter = new TableRowSorter(modelSimpleUrutBidangKerja);
-        TabelPegawaiUtamaGolongan.setRowSorter(rowSorter);
+        rowSorterGOLONGAN = new TableRowSorter(modelSimpleUrutBidangGolongan);
+        TabelPegawaiUtamaGolongan.setRowSorter(rowSorterGOLONGAN);
         TabelPegawaiUtamaGolongan.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaGolongan.getColumnModel().getColumn(1).setPreferredWidth(500);
         TabelPegawaiUtamaGolongan.getColumnModel().getColumn(2).setPreferredWidth(300);
-        
+
         PegawaiTabelModelSimple modelSimpleUrutBidangUnitKerja = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerjaUnitKerja());
         TabelPegawaiUtamaUnitKerja.setModel(modelSimpleUrutBidangUnitKerja);
-        rowSorter = new TableRowSorter(modelSimpleUrutBidangKerja);
-        TabelPegawaiUtamaUnitKerja.setRowSorter(rowSorter);
+        rowSorterUNIT = new TableRowSorter(modelSimpleUrutBidangUnitKerja);
+        TabelPegawaiUtamaUnitKerja.setRowSorter(rowSorterUNIT);
         TabelPegawaiUtamaUnitKerja.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaUnitKerja.getColumnModel().getColumn(1).setPreferredWidth(500);
         TabelPegawaiUtamaUnitKerja.getColumnModel().getColumn(2).setPreferredWidth(300);
@@ -103,22 +114,22 @@ public class Pegawaiform extends javax.swing.JFrame {
         TabelPegawaiUtamaNama = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        txtNUKUtama2 = new javax.swing.JTextField();
+        txtWilayahUtama = new javax.swing.JTextField();
         jScrollPane7 = new javax.swing.JScrollPane();
         TabelPegawaiUtamaWilayah = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtNUKUtama3 = new javax.swing.JTextField();
+        txtBidangKerjaUtama = new javax.swing.JTextField();
         jScrollPane8 = new javax.swing.JScrollPane();
         TabelPegawaiUtamaBidangKerja = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        txtNUKUtama4 = new javax.swing.JTextField();
+        txtGolonganUtama = new javax.swing.JTextField();
         jScrollPane9 = new javax.swing.JScrollPane();
         TabelPegawaiUtamaGolongan = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txtNUKUtama5 = new javax.swing.JTextField();
+        txtUnitKerjaUtama = new javax.swing.JTextField();
         jScrollPane10 = new javax.swing.JScrollPane();
         TabelPegawaiUtamaUnitKerja = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -126,7 +137,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        txtTotalRow = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -166,12 +177,23 @@ public class Pegawaiform extends javax.swing.JFrame {
         txtLabelJabatan = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Data Pokok  Pegawai");
         setResizable(false);
 
         jLabel1.setText("NUK");
+
+        txtNUKUtama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNUKUtamaKeyReleased(evt);
+            }
+        });
 
         TabelPegawaiUtama.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -223,6 +245,12 @@ public class Pegawaiform extends javax.swing.JFrame {
 
         jLabel4.setText("NAMA");
 
+        txtNamaUtama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNamaUtamaKeyReleased(evt);
+            }
+        });
+
         TabelPegawaiUtamaNama.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -273,6 +301,12 @@ public class Pegawaiform extends javax.swing.JFrame {
 
         jLabel5.setText("Wilayah");
 
+        txtWilayahUtama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtWilayahUtamaKeyReleased(evt);
+            }
+        });
+
         TabelPegawaiUtamaWilayah.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -304,7 +338,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNUKUtama2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtWilayahUtama, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -313,7 +347,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtNUKUtama2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtWilayahUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
@@ -322,6 +356,12 @@ public class Pegawaiform extends javax.swing.JFrame {
         jTabbedPane1.addTab("Wilayah", jPanel3);
 
         jLabel6.setText("Bidang Kerja");
+
+        txtBidangKerjaUtama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBidangKerjaUtamaKeyReleased(evt);
+            }
+        });
 
         TabelPegawaiUtamaBidangKerja.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -354,7 +394,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNUKUtama3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBidangKerjaUtama, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -363,7 +403,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtNUKUtama3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBidangKerjaUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
@@ -372,6 +412,12 @@ public class Pegawaiform extends javax.swing.JFrame {
         jTabbedPane1.addTab("Bidang Pekerjaan", jPanel4);
 
         jLabel7.setText("Golongan");
+
+        txtGolonganUtama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtGolonganUtamaKeyReleased(evt);
+            }
+        });
 
         TabelPegawaiUtamaGolongan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -404,7 +450,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNUKUtama4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtGolonganUtama, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
@@ -413,7 +459,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtNUKUtama4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtGolonganUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
@@ -422,6 +468,12 @@ public class Pegawaiform extends javax.swing.JFrame {
         jTabbedPane1.addTab("Golongan", jPanel5);
 
         jLabel8.setText("Unit Kerja");
+
+        txtUnitKerjaUtama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUnitKerjaUtamaKeyReleased(evt);
+            }
+        });
 
         TabelPegawaiUtamaUnitKerja.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -439,6 +491,11 @@ public class Pegawaiform extends javax.swing.JFrame {
                 TabelPegawaiUtamaUnitKerjaMouseClicked(evt);
             }
         });
+        TabelPegawaiUtamaUnitKerja.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TabelPegawaiUtamaUnitKerjaKeyReleased(evt);
+            }
+        });
         jScrollPane10.setViewportView(TabelPegawaiUtamaUnitKerja);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -454,7 +511,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNUKUtama5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUnitKerjaUtama, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel6Layout.setVerticalGroup(
@@ -463,7 +520,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtNUKUtama5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUnitKerjaUtama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
@@ -476,6 +533,11 @@ public class Pegawaiform extends javax.swing.JFrame {
         jButton2.setText("Delete");
 
         jButton3.setText("Update");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Insert");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -484,9 +546,9 @@ public class Pegawaiform extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Jumlah");
+        jLabel2.setText("Jumlah :");
 
-        jLabel3.setText("Rows");
+        txtTotalRow.setText("Rows");
 
         jButton5.setText("Riwayat Penataran");
 
@@ -517,17 +579,17 @@ public class Pegawaiform extends javax.swing.JFrame {
             .addGap(0, 114, Short.MAX_VALUE)
         );
 
-        txtLabelJenisKelamin.setText("jLabel4");
+        txtLabelJenisKelamin.setText("-");
 
-        txtLabelTempatLahir.setText("jLabel5");
+        txtLabelTempatLahir.setText("-");
 
-        txtLabelTglLahir.setText("jLabel6");
+        txtLabelTglLahir.setText("-");
 
-        txtAgamaLabel.setText("jLabel7");
+        txtAgamaLabel.setText("-");
 
-        txtKawinLabel.setText("jLabel8");
+        txtKawinLabel.setText("-");
 
-        txtStatusPegawaiLabel.setText("jLabel9");
+        txtStatusPegawaiLabel.setText("-");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -573,13 +635,13 @@ public class Pegawaiform extends javax.swing.JFrame {
 
         jLabel13.setText("MK Sebenarnya");
 
-        txtLabelPangkat.setText("jLabel19");
+        txtLabelPangkat.setText("-");
 
-        txtLabelGolongan.setText("jLabel20");
+        txtLabelGolongan.setText("-");
 
-        txtMKGolongan.setText("jLabel21");
+        txtMKGolongan.setText("-");
 
-        txtMKSebenarnya.setText("jLabel22");
+        txtMKSebenarnya.setText("-");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -598,7 +660,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                     .addComponent(txtLabelGolongan)
                     .addComponent(txtLabelPangkat)
                     .addComponent(txtMKSebenarnya))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -669,9 +731,9 @@ public class Pegawaiform extends javax.swing.JFrame {
 
         jLabel18.setText("Jabatan");
 
-        txtLabelWilayahTugas.setText("jLabel25");
+        txtLabelWilayahTugas.setText("-");
 
-        txtLabelUnitKerja.setText("jLabel26");
+        txtLabelUnitKerja.setText("-");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -688,7 +750,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtLabelUnitKerja)
                             .addComponent(txtLabelWilayahTugas))
-                        .addGap(0, 55, Short.MAX_VALUE))
+                        .addGap(0, 109, Short.MAX_VALUE))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -732,6 +794,55 @@ public class Pegawaiform extends javax.swing.JFrame {
             }
         });
 
+        jPanel13.setBackground(new java.awt.Color(102, 25, 72));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Developer : Atanasius Tendy || http://multisoftdeveloper.wordpress.com || atanasiustendy@hotmail.com || 085643221232 / 08112578800");
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Powered By Java - MySQL - Ireport for Jasper Report");
+
+        jLabel19.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("Sistem Informasi Pendataan Kepegawaian & Kenaikan Pangkat Pegawai YPII Pusat - V-2.0");
+
+        jLabel20.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("2017");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel20)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -741,8 +852,8 @@ public class Pegawaiform extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTotalRow, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -784,6 +895,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4});
@@ -798,7 +910,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
+                            .addComponent(txtTotalRow)
                             .addComponent(jLabel2))
                         .addGap(130, 130, 130)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -830,7 +942,8 @@ public class Pegawaiform extends javax.swing.JFrame {
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -1003,6 +1116,89 @@ public class Pegawaiform extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_TabelPegawaiUtamaUnitKerjaMouseClicked
 
+    private void txtNUKUtamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNUKUtamaKeyReleased
+        // TODO add your handling code here:
+        String text = txtNUKUtama.getText();
+        if (text.length() == 0) {
+            rowSorterNUK.setRowFilter(null);
+        } else {
+            System.out.println("y");
+            rowSorterNUK.setRowFilter(RowFilter.regexFilter(text));
+        }
+    }//GEN-LAST:event_txtNUKUtamaKeyReleased
+
+    private void txtNamaUtamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaUtamaKeyReleased
+        // TODO add your handling code here:
+        String text = txtNamaUtama.getText();
+        if (text.length() == 0) {
+            rowSorterNAMA.setRowFilter(null);
+        } else {
+            System.out.println("y");
+            rowSorterNAMA.setRowFilter(RowFilter.regexFilter(text));
+        }
+    }//GEN-LAST:event_txtNamaUtamaKeyReleased
+
+    private void txtWilayahUtamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtWilayahUtamaKeyReleased
+        // TODO add your handling code here:
+        String text = txtWilayahUtama.getText();
+        if (text.length() == 0) {
+            rowSorterWILAYAH.setRowFilter(null);
+        } else {
+            System.out.println("y");
+            rowSorterWILAYAH.setRowFilter(RowFilter.regexFilter(text));
+        }
+    }//GEN-LAST:event_txtWilayahUtamaKeyReleased
+
+    private void txtBidangKerjaUtamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBidangKerjaUtamaKeyReleased
+        // TODO add your handling code here:
+        String text = txtBidangKerjaUtama.getText();
+        if (text.length() == 0) {
+            rowSorterBIDANG.setRowFilter(null);
+        } else {
+            System.out.println("y");
+            rowSorterBIDANG.setRowFilter(RowFilter.regexFilter(text));
+        }
+    }//GEN-LAST:event_txtBidangKerjaUtamaKeyReleased
+
+    private void txtGolonganUtamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGolonganUtamaKeyReleased
+        // TODO add your handling code here:
+        String text = txtGolonganUtama.getText();
+        if (text.length() == 0) {
+            rowSorterGOLONGAN.setRowFilter(null);
+        } else {
+            System.out.println("y");
+            rowSorterGOLONGAN.setRowFilter(RowFilter.regexFilter(text));
+        }
+    }//GEN-LAST:event_txtGolonganUtamaKeyReleased
+
+    private void TabelPegawaiUtamaUnitKerjaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TabelPegawaiUtamaUnitKerjaKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_TabelPegawaiUtamaUnitKerjaKeyReleased
+
+    private void txtUnitKerjaUtamaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUnitKerjaUtamaKeyReleased
+        // TODO add your handling code here:
+        String text = txtUnitKerjaUtama.getText();
+        if (text.length() == 0) {
+            rowSorterUNIT.setRowFilter(null);
+        } else {
+            System.out.println("y");
+            rowSorterUNIT.setRowFilter(RowFilter.regexFilter(text));
+        }
+    }//GEN-LAST:event_txtUnitKerjaUtamaKeyReleased
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String nuk_utama_filled = txtNUKUtama.getText();
+        if (!nuk_utama_filled.equalsIgnoreCase("")) {
+            Session.setNUK(nuk_utama_filled);
+            Insertpegawai i = new Insertpegawai();
+            i.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan isikan NUK terlebih dahulu");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1068,7 +1264,9 @@ public class Pegawaiform extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
@@ -1077,10 +1275,12 @@ public class Pegawaiform extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1097,6 +1297,8 @@ public class Pegawaiform extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel txtAgamaLabel;
+    private javax.swing.JTextField txtBidangKerjaUtama;
+    private javax.swing.JTextField txtGolonganUtama;
     private javax.swing.JLabel txtKawinLabel;
     private javax.swing.JLabel txtLabelGolongan;
     private javax.swing.JTextField txtLabelJabatan;
@@ -1109,11 +1311,10 @@ public class Pegawaiform extends javax.swing.JFrame {
     private javax.swing.JLabel txtMKGolongan;
     private javax.swing.JLabel txtMKSebenarnya;
     private javax.swing.JTextField txtNUKUtama;
-    private javax.swing.JTextField txtNUKUtama2;
-    private javax.swing.JTextField txtNUKUtama3;
-    private javax.swing.JTextField txtNUKUtama4;
-    private javax.swing.JTextField txtNUKUtama5;
     private javax.swing.JTextField txtNamaUtama;
     private javax.swing.JLabel txtStatusPegawaiLabel;
+    private javax.swing.JLabel txtTotalRow;
+    private javax.swing.JTextField txtUnitKerjaUtama;
+    private javax.swing.JTextField txtWilayahUtama;
     // End of variables declaration//GEN-END:variables
 }

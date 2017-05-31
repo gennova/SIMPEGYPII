@@ -18,6 +18,8 @@ public interface IjazahAngkatDao {
     public IjazahAngkat getIjazahAngkatByID(int id);
 
     public IjazahAngkat getIjazahAngkatByKode(String kode);
+    
+    public IjazahAngkat getIjazahAngkatByNama(String nama);
 
     public void InsertIjazah(IjazahAngkat ijazahAngkat);
 

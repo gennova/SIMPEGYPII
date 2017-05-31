@@ -111,6 +111,27 @@ insert  into `cabang`(`id`,`kodecabang`,`namacabang`) values
 (3,'03','JAKARTA'),
 (4,'04','KALIMANTAN');
 
+/*Table structure for table `gajipegawai` */
+
+DROP TABLE IF EXISTS `gajipegawai`;
+
+CREATE TABLE `gajipegawai` (
+  `id` int(5) unsigned NOT NULL AUTO_INCREMENT,
+  `nuk` varchar(15) NOT NULL,
+  `gaji_pokok` double NOT NULL,
+  `tunjangan_suami_istri` double DEFAULT NULL,
+  `tunjangan_anak` double DEFAULT NULL,
+  `tunjangan_lain` double DEFAULT NULL,
+  `total_gaji` double DEFAULT NULL,
+  `tanggungan_orang` int(5) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `gajipegawai` */
+
+insert  into `gajipegawai`(`id`,`nuk`,`gaji_pokok`,`tunjangan_suami_istri`,`tunjangan_anak`,`tunjangan_lain`,`total_gaji`,`tanggungan_orang`) values 
+(1,'4000',1200000,250000,50000,10000,2500000,2);
+
 /*Table structure for table `golongan` */
 
 DROP TABLE IF EXISTS `golongan`;
@@ -1382,12 +1403,13 @@ CREATE TABLE `kartu` (
   `nokartunpwp` varchar(50) DEFAULT NULL COMMENT '9',
   `masaberlakunpwp` varchar(50) DEFAULT NULL COMMENT '9',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kartu` */
 
 insert  into `kartu`(`id`,`nuk`,`kartupegawai`,`nokartupegawai`,`masaberlakukartupegawai`,`kartusuamiistri`,`nokartusuamiistri`,`masaberlakukartusuamiistri`,`kartuaskes`,`nokartuaskes`,`masaberlakuaskes`,`kartubpjs`,`nokartubpjs`,`masaberlakubpjs`,`kartuyadapen`,`nokartuyadapen`,`masaberlakuyadapen`,`kartuktp`,`nokartuktp`,`masaberlakuktp`,`kartusim`,`nokartusim`,`masaberlakusim`,`kartupaspor`,`nokartupaspor`,`masaberlakupaspor`,`kartunpwp`,`nokartunpwp`,`masaberlakunpwp`) values 
-(1,'1000','Kartu Pegawai','','','Kartu Suami/Istri','','','Kartu Askes','','','Kartu BPJS','','','Kartu Yadapen','','','Kartu KTP','6213032805890002','Selamanya','Kartu SIM','','','Kartu Paspor','','','Kartu NPWP','','');
+(1,'1000','Kartu Pegawai','','','Kartu Suami/Istri','','','Kartu Askes','','','Kartu BPJS','','','Kartu Yadapen','','','Kartu KTP','6213032805890002','Selamanya','Kartu SIM','','','Kartu Paspor','','','Kartu NPWP','',''),
+(2,'3000','Kartu Pegawai','LV3000','2025','Kartu Suami/Istri','','','Kartu Askes','','','Kartu BPJS','','','Kartu Yadapen','','','Kartu KTP','','','Kartu SIM','','','Kartu Paspor','','','Kartu NPWP','','');
 
 /*Table structure for table `kecamatan` */
 
@@ -89584,12 +89606,15 @@ CREATE TABLE `pangkatpegawai` (
   `tahunkerjabenar` int(5) DEFAULT NULL COMMENT '12',
   `bulankerjabenar` int(5) DEFAULT NULL COMMENT '13',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pangkatpegawai` */
 
 insert  into `pangkatpegawai`(`id`,`nuk`,`idgolongan`,`tmt_golongan`,`nomor_sk`,`tanggal_sk`,`tmt_kgb`,`nomor_kgb`,`tanggal_kgb`,`tahunkerja`,`bulankerja`,`tahunkerjabenar`,`bulankerjabenar`) values 
-(1,'1000',2,'2017-05-31','SK10000','2017-05-31','2017-05-31','KGB10000','2017-05-31',0,0,0,0);
+(1,'1000',2,'2017-05-31','SK10000','2017-05-31','2017-05-31','KGB10000','2017-05-31',0,0,0,0),
+(2,'2000',2,'2017-05-31','SH2000','2017-05-31','2017-05-31','KGBSH2000','2017-05-31',1,0,1,1),
+(3,'3000',2,'2017-06-01','SKLaven3000','2017-06-28','2017-06-01','KGB3000','2017-06-17',0,0,0,0),
+(4,'4000',2,'2017-06-01','TAN4000','2017-06-01','2017-06-01','KGBErlin4000','2017-06-01',2,2,5,5);
 
 /*Table structure for table `pegawai` */
 
@@ -89612,12 +89637,15 @@ CREATE TABLE `pegawai` (
   `statuspegawai` varchar(50) DEFAULT NULL COMMENT '13',
   `filephoto` text COMMENT '14',
   PRIMARY KEY (`id`,`nuk`,`namapegawai`,`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pegawai` */
 
 insert  into `pegawai`(`id`,`nuk`,`gelardepan`,`namapegawai`,`gelarbelakang`,`alias`,`jeniskelamin`,`agama`,`tempatlahir`,`tanggallahir`,`statuspernikahan`,`jumlahanakseluruh`,`jumlahanakgaji`,`statuspegawai`,`filephoto`) values 
-(1,'1000','Dr','Atanasius Tendy','S.Kom','Tendy','Laki-laki','Katholik','Semarang','2017-05-31','KAWIN',0,0,'DPK','');
+(1,'1000','Dr','Atanasius Tendy','S.Kom','Tendy','Laki-laki','Katholik','Semarang','2017-05-31','KAWIN',0,0,'DPK',''),
+(2,'2000','Dr','Shelvy Budiyani','S.E','Shelvy','Perempuan','Protestasn','Semarang','2017-05-31','KAWIN',0,0,'DPK',''),
+(3,'3000','Prof','Lavenia Bernice','S.Si','Laven','Perempuan','Katholik','Jakarta','2017-06-01','JANDA',1,1,'TETAP',''),
+(4,'4000','Dr','Tan Erlina','S.Si','Erlina','Laki-laki','Katholik','Bali','2017-06-01','BELUM KAWIN',1,1,'TUGAS BELAJAR','');
 
 /*Table structure for table `pekerjaanjabatan` */
 
@@ -89636,12 +89664,36 @@ CREATE TABLE `pekerjaanjabatan` (
   `nama_jabatan` varchar(50) DEFAULT NULL,
   `masa_jabatan` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pekerjaanjabatan` */
 
 insert  into `pekerjaanjabatan`(`id`,`nuk`,`idbidangkerja`,`tmt_tanggal_pekerjaan`,`no_sk_pekerjaan`,`tgl_sk_pekerjaan`,`idcabang`,`idunit`,`idjabatan`,`nama_jabatan`,`masa_jabatan`) values 
-(1,'1000',3,'2017-05-31','SKKERJA1000','2017-05-31',1,2,1,'Guru',0);
+(1,'1000',3,'2017-05-31','SKKERJA1000','2017-05-31',1,2,1,'Guru',0),
+(2,'2000',1,'2017-05-31','SK2000','2017-05-31',1,1,1,'Guru',0),
+(3,'3000',1,'2017-06-01','SKLAVEN3000','2017-06-01',1,1,1,'Researcher',0),
+(4,'4000',1,'2017-06-01','SkErlin4000','2017-06-01',1,2,2,'Pendidik',5);
+
+/*Table structure for table `pendidikanpegawai` */
+
+DROP TABLE IF EXISTS `pendidikanpegawai`;
+
+CREATE TABLE `pendidikanpegawai` (
+  `id` int(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id_pegawai` int(5) NOT NULL,
+  `nuk` varchar(15) NOT NULL,
+  `id_ijazah_angkat` int(5) NOT NULL,
+  `tgl_ijazah_sk_angkat` date NOT NULL,
+  `id_pendidikan_akhir` int(5) NOT NULL,
+  `tgl_lulus_sk_pendidikan_akhir` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `pendidikanpegawai` */
+
+insert  into `pendidikanpegawai`(`id`,`id_pegawai`,`nuk`,`id_ijazah_angkat`,`tgl_ijazah_sk_angkat`,`id_pendidikan_akhir`,`tgl_lulus_sk_pendidikan_akhir`) values 
+(1,0,'3000',1,'2017-06-01',1,'2017-06-30'),
+(2,0,'4000',1,'2017-06-01',1,'2017-06-01');
 
 /*Table structure for table `pendidikanterakhir` */
 

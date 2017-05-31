@@ -63,7 +63,7 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
             ps.setInt(10, pekerjaan.getMasaJabatan());
             int status = ps.executeUpdate();
             if (status == 1) {
-                JOptionPane.showMessageDialog(null, "Berhasil menyimpan data pekerjaan");
+                System.out.println("Berhasil menyimpan data Pekerjaan Jabatan pegawai");
             }
         } catch (SQLException ex) {
             Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);

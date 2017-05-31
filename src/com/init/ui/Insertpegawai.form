@@ -821,13 +821,10 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel26" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="comboNamaJabatan" linkSize="18" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="comboNamaJabatan" linkSize="18" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButton15" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel32" min="-2" pref="152" max="-2" attributes="0"/>
@@ -1245,16 +1242,18 @@
                               </Group>
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField23" linkSize="20" max="32767" attributes="0"/>
-                                  <Component id="jTextField24" linkSize="20" max="32767" attributes="0"/>
-                                  <Component id="jTextField25" linkSize="20" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtTunjanganSuamiIstri" linkSize="20" max="32767" attributes="0"/>
+                                  <Component id="txtTunjanganAnak" linkSize="20" max="32767" attributes="0"/>
+                                  <Component id="txtTunjanganLain" linkSize="20" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtGajiPokok" linkSize="20" min="-2" pref="223" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jTextField27" linkSize="20" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="txtJumlahGaji" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtTanggunganOrang" linkSize="20" alignment="0" pref="35" max="32767" attributes="0"/>
+                                      </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel47" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jTextField22" linkSize="20" min="-2" pref="223" max="-2" attributes="0"/>
-                                  <Component id="jTextField26" min="-2" pref="89" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1270,32 +1269,32 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel41" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField22" linkSize="21" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="txtGajiPokok" linkSize="21" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel42" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField23" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTunjanganSuamiIstri" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel43" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField24" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTunjanganAnak" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField25" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTunjanganLain" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField26" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtJumlahGaji" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel45" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField27" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTanggunganOrang" linkSize="21" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="126" max="32767" attributes="0"/>
@@ -1317,7 +1316,16 @@
                 <Property name="text" type="java.lang.String" value="Gaji Pokok"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField22">
+            <Component class="javax.swing.JTextField" name="txtGajiPokok">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="0"/>
+              </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtGajiPokokFocusLost"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtGajiPokokKeyTyped"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtGajiPokokKeyReleased"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel42">
               <Properties>
@@ -1329,16 +1337,37 @@
                 <Property name="text" type="java.lang.String" value="Tunjangan Anak"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField23">
+            <Component class="javax.swing.JTextField" name="txtTunjanganSuamiIstri">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="0"/>
+              </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTunjanganSuamiIstriFocusLost"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField24">
+            <Component class="javax.swing.JTextField" name="txtTunjanganAnak">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="0"/>
+              </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTunjanganAnakFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel44">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tunjangan Lain-lain"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField25">
+            <Component class="javax.swing.JTextField" name="txtTunjanganLain">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="0"/>
+              </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTunjanganLainFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel45">
               <Properties>
@@ -1348,14 +1377,25 @@
                 <Property name="text" type="java.lang.String" value="Jumlah"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField26">
+            <Component class="javax.swing.JTextField" name="txtJumlahGaji">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+              </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtJumlahGajiFocusGained"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtJumlahGajiActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel46">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Tanggungan "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField27">
+            <Component class="javax.swing.JTextField" name="txtTanggunganOrang">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="0"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel47">
               <Properties>

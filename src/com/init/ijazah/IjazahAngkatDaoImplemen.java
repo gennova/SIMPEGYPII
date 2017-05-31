@@ -25,6 +25,7 @@ public class IjazahAngkatDaoImplemen implements IjazahAngkatDao {
     private final String sqlGetAllIjazahAngkat = "select * from ijazahangkat";
     private final String sqlGetIjazahByID = "select * from ijazahangkat where id=?";
     private final String sqlGetIjazahByKode = "select * from ijazahangkat where kodeijazah=?";
+    private final String sqlGetIjazahByNama = "select * from ijazahangkat where namaijazah=?";
     private final String sqlInsertIjazah = "insert into ijazahangkat (kodeijazah,namaijazah) values (?,?)";
     private final String sqlUpdateIjazah = "update ijazahangkat set kodeijazah=?,namaijazah=? where id=?";
     private final String sqlDeleteIjazahByID = "delete from ijazahangkat where id=?";
@@ -83,6 +84,26 @@ public class IjazahAngkatDaoImplemen implements IjazahAngkatDao {
         try {
             ps = connection.prepareStatement(sqlGetIjazahByKode);
             ps.setString(1, kode);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ij.setId(rs.getInt("id"));
+                ij.setKodeIjazahPengangkatan(rs.getString("kodeijazah"));
+                ij.setNamaIjazahPengangkatan(rs.getString("namaijazah"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(IjazahAngkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ij;
+    }
+
+    @Override
+    public IjazahAngkat getIjazahAngkatByNama(String nama) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        IjazahAngkat ij = new IjazahAngkat();
+        try {
+            ps = connection.prepareStatement(sqlGetIjazahByNama);
+            ps.setString(1, nama);
             rs = ps.executeQuery();
             while (rs.next()) {
                 ij.setId(rs.getInt("id"));

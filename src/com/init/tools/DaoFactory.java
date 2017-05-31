@@ -16,6 +16,8 @@ import com.init.bidangkerja.BidangKerjaDao;
 import com.init.bidangkerja.BidangKerjaDaoImplemen;
 import com.init.cabang.CabangDao;
 import com.init.cabang.CabangDaoImplemen;
+import com.init.gaji.Gaji_pegawai_dao;
+import com.init.gaji.Gaji_pegawai_dao_implemen;
 import com.init.golongan.GolonganDao;
 import com.init.golongan.GolonganDaoImplemen;
 import com.init.golonganpangkat.PangkatDao;
@@ -30,6 +32,8 @@ import com.init.kartu.KartuDao;
 import com.init.kartu.KartuDaoImplemen;
 import com.init.pegawai.PegawaiDao;
 import com.init.pegawai.PegawaiDaoImplemen;
+import com.init.pendidikan_pegawai.PendidikanPegawaiDao;
+import com.init.pendidikan_pegawai.PendidikanPegawaiDaoImplemen;
 import com.init.pendidikanterakhir.PendidikanTerakhirDao;
 import com.init.pendidikanterakhir.PendidikanTerakhirDaoImplemen;
 import com.init.provinsi.ProvinsiDao;
@@ -79,6 +83,22 @@ public class DaoFactory {
     private static AnggotaKeluargaDao anggotaKeluargaDao;
     private static PangkatDao pangkatDao;
     private static PekerjaanJabatanDao pekerjaanJabatanDao;
+    private static PendidikanPegawaiDao pendidikanPegawaiDao;
+    private static Gaji_pegawai_dao gaji_pegawai_dao;
+
+    public static Gaji_pegawai_dao getGaji_pegawai_dao() {
+        if (gaji_pegawai_dao == null) {
+            gaji_pegawai_dao = new Gaji_pegawai_dao_implemen(getConnectionFix());
+        }
+        return gaji_pegawai_dao;
+    }
+
+    public static PendidikanPegawaiDao getPendidikanPegawaiDao() {
+        if (pendidikanPegawaiDao == null) {
+            pendidikanPegawaiDao = new PendidikanPegawaiDaoImplemen(getConnectionFix());
+        }
+        return pendidikanPegawaiDao;
+    }
 
     public static PekerjaanJabatanDao getPekerjaanJabatanDao() {
         if (pekerjaanJabatanDao == null) {

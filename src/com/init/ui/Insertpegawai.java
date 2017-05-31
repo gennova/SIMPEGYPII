@@ -8,12 +8,14 @@ package com.init.ui;
 import code.init.pekerjaanjabatan.PekerjaanJabatan;
 import com.init.bidangkerja.BidangKerja;
 import com.init.cabang.Cabang;
+import com.init.gaji.Gaji_pegawai;
 import com.init.golongan.Golongan;
 import com.init.golonganpangkat.Pangkat;
 import com.init.ijazah.IjazahAngkat;
 import com.init.jabatan.Jabatan;
 import com.init.pegawai.Pegawai;
 import com.init.pegawai.PegawaiTabelModelSimple;
+import com.init.pendidikan_pegawai.PendidikanPegawai;
 import com.init.pendidikanterakhir.PendidikanTerakhir;
 import com.init.tools.DaoFactory;
 import com.init.tools.Session;
@@ -43,19 +45,30 @@ public class Insertpegawai extends javax.swing.JFrame {
     }
 
     private void initApp() {
-        tglLahirDate.setDate(GregorianCalendar.getInstance().getTime());
-        tmtGolonganDate.setDate(GregorianCalendar.getInstance().getTime());
-        nomorSKDate.setDate(GregorianCalendar.getInstance().getTime());
-        tmtKGBDate.setDate(GregorianCalendar.getInstance().getTime());
-        nomorKGBDate.setDate(GregorianCalendar.getInstance().getTime());
-        tmtPekerjaan.setDate(GregorianCalendar.getInstance().getTime());
-        tglSKJabatan.setDate(GregorianCalendar.getInstance().getTime());
-        tglLulusSKPengangkatan.setDate(GregorianCalendar.getInstance().getTime());
-        tglLulusSKPendidikanAkhir.setDate(GregorianCalendar.getInstance().getTime());
-        loadCombo();
+        if (Session.getNUK() != null) {
+            initUpdateApp();
+        } else {
+            tglLahirDate.setDate(GregorianCalendar.getInstance().getTime());
+            tmtGolonganDate.setDate(GregorianCalendar.getInstance().getTime());
+            nomorSKDate.setDate(GregorianCalendar.getInstance().getTime());
+            tmtKGBDate.setDate(GregorianCalendar.getInstance().getTime());
+            nomorKGBDate.setDate(GregorianCalendar.getInstance().getTime());
+            tmtPekerjaan.setDate(GregorianCalendar.getInstance().getTime());
+            tglSKJabatan.setDate(GregorianCalendar.getInstance().getTime());
+            tglLulusSKPengangkatan.setDate(GregorianCalendar.getInstance().getTime());
+            tglLulusSKPendidikanAkhir.setDate(GregorianCalendar.getInstance().getTime());
+            loadCombo();
+        }
     }
-    
-    
+
+    private void initUpdateApp() {
+        Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+        NUK_teks.setText(pegawai.getNUK());
+        gelarTeks.setText(pegawai.getGelarDepan());
+        tengahTeks.setText(pegawai.getNama());
+        gelarbelakangTeks.setText(pegawai.getGelarBelakang());
+        aliasTeks.setText(pegawai.getAlias());
+    }
 
     private void loadCombo() {
         List<Golongan> golongans = DaoFactory.getGolonganDao().getAllGolongans();
@@ -208,17 +221,17 @@ public class Insertpegawai extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
+        txtGajiPokok = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
+        txtTunjanganSuamiIstri = new javax.swing.JTextField();
+        txtTunjanganAnak = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
+        txtTunjanganLain = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
+        txtJumlahGaji = new javax.swing.JTextField();
         jLabel46 = new javax.swing.JLabel();
-        jTextField27 = new javax.swing.JTextField();
+        txtTanggunganOrang = new javax.swing.JTextField();
         jLabel47 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -709,11 +722,9 @@ public class Insertpegawai extends javax.swing.JFrame {
                                     .addComponent(comboWIlayahTugas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(comboUnitKerja, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(comboNamaJabatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(56, 56, 56)))
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboNamaJabatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton15)
                             .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -860,16 +871,71 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel41.setText("Gaji Pokok");
 
+        txtGajiPokok.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtGajiPokok.setText("0");
+        txtGajiPokok.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtGajiPokokFocusLost(evt);
+            }
+        });
+        txtGajiPokok.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGajiPokokKeyTyped(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtGajiPokokKeyReleased(evt);
+            }
+        });
+
         jLabel42.setText("Tunjangan Suami / Istri");
 
         jLabel43.setText("Tunjangan Anak");
 
+        txtTunjanganSuamiIstri.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTunjanganSuamiIstri.setText("0");
+        txtTunjanganSuamiIstri.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTunjanganSuamiIstriFocusLost(evt);
+            }
+        });
+
+        txtTunjanganAnak.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTunjanganAnak.setText("0");
+        txtTunjanganAnak.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTunjanganAnakFocusLost(evt);
+            }
+        });
+
         jLabel44.setText("Tunjangan Lain-lain");
+
+        txtTunjanganLain.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTunjanganLain.setText("0");
+        txtTunjanganLain.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTunjanganLainFocusLost(evt);
+            }
+        });
 
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel45.setText("Jumlah");
 
+        txtJumlahGaji.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtJumlahGaji.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtJumlahGajiFocusGained(evt);
+            }
+        });
+        txtJumlahGaji.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtJumlahGajiActionPerformed(evt);
+            }
+        });
+
         jLabel46.setText("Tanggungan ");
+
+        txtTanggunganOrang.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtTanggunganOrang.setText("0");
 
         jLabel47.setText("Orang");
 
@@ -894,19 +960,20 @@ public class Insertpegawai extends javax.swing.JFrame {
                             .addComponent(jLabel46))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField23)
-                            .addComponent(jTextField24)
-                            .addComponent(jTextField25)
+                            .addComponent(txtTunjanganSuamiIstri)
+                            .addComponent(txtTunjanganAnak)
+                            .addComponent(txtTunjanganLain)
+                            .addComponent(txtGajiPokok, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtJumlahGaji, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTanggunganOrang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel47))
-                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel47)))))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField22, jTextField23, jTextField24, jTextField25, jTextField27});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtGajiPokok, txtTanggunganOrang, txtTunjanganAnak, txtTunjanganLain, txtTunjanganSuamiIstri});
 
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -916,32 +983,32 @@ public class Insertpegawai extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel41)
-                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtGajiPokok, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel42)
-                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTunjanganSuamiIstri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel43)
-                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTunjanganAnak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel44)
-                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTunjanganLain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtJumlahGaji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel45))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel46)
-                    .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTanggunganOrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel47))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextField22, jTextField23, jTextField24, jTextField25, jTextField26, jTextField27});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtGajiPokok, txtJumlahGaji, txtTanggunganOrang, txtTunjanganAnak, txtTunjanganLain, txtTunjanganSuamiIstri});
 
         jTabbedPane1.addTab("E.Gaji", jPanel5);
 
@@ -1196,10 +1263,32 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pkj.setMasaJabatan(Integer.parseInt(txtMasaJabatan.getText()));
                 //ini end dari Pekerjaan Jabatan /tab Pekerjaan Jabatan//
                 //*********************************************************************//
-                //ini start data Pekerjaan Jabatan /tab Pekerjaan Jabatan//
+                //ini start data Pendidikan pegawai//
+                PendidikanPegawai pendidikanPegawai = new PendidikanPegawai();
+                pendidikanPegawai.setPegawai(p);
+                pendidikanPegawai.setIjazahAngkat(DaoFactory.getIjazahAngkatDao().getIjazahAngkatByNama(comboIjazahPengangkatan.getSelectedItem().toString()));
+                pendidikanPegawai.setTglLulusSKPengangkatan(sdf.format(tglLulusSKPengangkatan.getDate()));
+                pendidikanPegawai.setPendidikanTerakhir(DaoFactory.getPendidikanTerakhirDao().getPendidikanByNama(comboPendidikanAkhir.getSelectedItem().toString()));
+                pendidikanPegawai.setTglLulusSKPendidikanAkhir(sdf.format(tglLulusSKPendidikanAkhir.getDate()));
+                //ini end dari Pendidikan Pegawa//
+                //*********************************************************************//
+                //ini start data Gaji Pegawai//
+                Gaji_pegawai gaji_pegawai = new Gaji_pegawai();
+                gaji_pegawai.setPegawai(p);
+                gaji_pegawai.setGaji_pokok(Double.parseDouble(txtGajiPokok.getText()));
+                gaji_pegawai.setTunjangan_suami_istri(Double.parseDouble(txtTunjanganSuamiIstri.getText()));
+                gaji_pegawai.setTunjangan_anak(Double.parseDouble(txtTunjanganAnak.getText()));
+                gaji_pegawai.setTunjangan_lain(Double.parseDouble(txtTunjanganLain.getText()));
+                gaji_pegawai.setTotal_gaji(Double.parseDouble(txtJumlahGaji.getText()));
+                gaji_pegawai.setTanggungan_orang(Integer.parseInt(txtTanggunganOrang.getText()));
+                //ini end dari Gaji Pegawai//
+                //*********************************************************************//
+
                 DaoFactory.getPegawaiDao().InsertPegawai(p);
                 DaoFactory.getPangkatDao().InsertPangkatPegawai(pangkat);
                 DaoFactory.getPekerjaanJabatanDao().InsertPekerjaanJabatan(pkj);
+                DaoFactory.getPendidikanPegawaiDao().InsertPendidikanPegawai(pendidikanPegawai);
+                DaoFactory.getGaji_pegawai_dao().InsertGajiPegawai(gaji_pegawai);
                 Session.setPegawai(p);
             } else {
                 JOptionPane.showMessageDialog(null, "sudah ada");
@@ -1229,6 +1318,66 @@ public class Insertpegawai extends javax.swing.JFrame {
     private void txtTahunKerjaBenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTahunKerjaBenarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTahunKerjaBenarActionPerformed
+
+    private void txtGajiPokokKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGajiPokokKeyTyped
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtGajiPokokKeyTyped
+
+    private void txtGajiPokokKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGajiPokokKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtGajiPokokKeyReleased
+
+    private void txtJumlahGajiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJumlahGajiActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtJumlahGajiActionPerformed
+
+    private void txtJumlahGajiFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtJumlahGajiFocusGained
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtJumlahGajiFocusGained
+
+    private void txtGajiPokokFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtGajiPokokFocusLost
+        // TODO add your handling code here:
+        double pokok = Double.parseDouble(txtGajiPokok.getText());
+        double suamiistri = Double.parseDouble(txtTunjanganSuamiIstri.getText());
+        double t_anak = Double.parseDouble(txtTunjanganAnak.getText());
+        double t_lain = Double.parseDouble(txtTunjanganLain.getText());
+        double total = pokok + suamiistri + t_anak + t_lain;
+        txtJumlahGaji.setText(String.valueOf(total));
+    }//GEN-LAST:event_txtGajiPokokFocusLost
+
+    private void txtTunjanganSuamiIstriFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTunjanganSuamiIstriFocusLost
+        // TODO add your handling code here:
+        double pokok = Double.parseDouble(txtGajiPokok.getText());
+        double suamiistri = Double.parseDouble(txtTunjanganSuamiIstri.getText());
+        double t_anak = Double.parseDouble(txtTunjanganAnak.getText());
+        double t_lain = Double.parseDouble(txtTunjanganLain.getText());
+        double total = pokok + suamiistri + t_anak + t_lain;
+        txtJumlahGaji.setText(String.valueOf(total));
+    }//GEN-LAST:event_txtTunjanganSuamiIstriFocusLost
+
+    private void txtTunjanganAnakFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTunjanganAnakFocusLost
+        // TODO add your handling code here:
+        double pokok = Double.parseDouble(txtGajiPokok.getText());
+        double suamiistri = Double.parseDouble(txtTunjanganSuamiIstri.getText());
+        double t_anak = Double.parseDouble(txtTunjanganAnak.getText());
+        double t_lain = Double.parseDouble(txtTunjanganLain.getText());
+        double total = pokok + suamiistri + t_anak + t_lain;
+        txtJumlahGaji.setText(String.valueOf(total));
+    }//GEN-LAST:event_txtTunjanganAnakFocusLost
+
+    private void txtTunjanganLainFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTunjanganLainFocusLost
+        // TODO add your handling code here:
+        double pokok = Double.parseDouble(txtGajiPokok.getText());
+        double suamiistri = Double.parseDouble(txtTunjanganSuamiIstri.getText());
+        double t_anak = Double.parseDouble(txtTunjanganAnak.getText());
+        double t_lain = Double.parseDouble(txtTunjanganLain.getText());
+        double total = pokok + suamiistri + t_anak + t_lain;
+        txtJumlahGaji.setText(String.valueOf(total));
+    }//GEN-LAST:event_txtTunjanganLainFocusLost
 
     /**
      * @param args the command line arguments
@@ -1353,12 +1502,6 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField27;
     private javax.swing.ButtonGroup kelaminGroup;
     private javax.swing.JRadioButton lakiRadio;
     private com.toedter.calendar.JDateChooser nomorKGBDate;
@@ -1375,6 +1518,8 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JTextField txtAnakSeluruh;
     private javax.swing.JTextField txtBulanKerja;
     private javax.swing.JTextField txtBulanKerjaBenar;
+    private javax.swing.JTextField txtGajiPokok;
+    private javax.swing.JTextField txtJumlahGaji;
     private javax.swing.JTextField txtMasaJabatan;
     private javax.swing.JTextField txtNamaJabatan;
     private javax.swing.JTextField txtNomorKGB;
@@ -1383,6 +1528,10 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JLabel txtPangkat;
     private javax.swing.JTextField txtTahunKerja;
     private javax.swing.JTextField txtTahunKerjaBenar;
+    private javax.swing.JTextField txtTanggunganOrang;
     private javax.swing.JTextField txtTempatLahir;
+    private javax.swing.JTextField txtTunjanganAnak;
+    private javax.swing.JTextField txtTunjanganLain;
+    private javax.swing.JTextField txtTunjanganSuamiIstri;
     // End of variables declaration//GEN-END:variables
 }
