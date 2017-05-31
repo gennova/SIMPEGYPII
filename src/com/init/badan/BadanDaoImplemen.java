@@ -68,7 +68,8 @@ public class BadanDaoImplemen implements BadanDao {
         ResultSet rs = null;
         Badan badan = new Badan();
         try {
-            ps = connection.prepareStatement(sqlGetAllBadan);
+            ps = connection.prepareStatement(sqlGetBadanByNUK);
+            ps.setString(1, nuk);
             rs = ps.executeQuery();
             while (rs.next()) {
                 badan.setId(rs.getInt(rs.getInt("id")));

@@ -4,9 +4,15 @@
  */
 package com.init.tools;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Koneksi {
 
@@ -17,23 +23,43 @@ public class Koneksi {
     private Statement st = null;
 
     public Koneksi() {
+        FileInputStream fileInput = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-//            System.out.println("Driver ditemukan");
-            // TODO code application logic here
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                //            System.out.println("Driver ditemukan");
+                // TODO code application logic here
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            File file = new File("resource.xml");
+            Properties properties;
+            fileInput = new FileInputStream(file);
+            properties = new Properties();
+            properties.loadFromXML(fileInput);
+            //JOptionPane.showMessageDialog(null, "OKE EKSEKUSI DAB");
+            String db = properties.getProperty("db");
+            String host = properties.getProperty("host");
+            String username = properties.getProperty("username");
+            String passwordnya = properties.getProperty("password");
+            user = username;
+            password = passwordnya;
+            url = "jdbc:mysql://" + host + ":3306/" + db + "";
             koneksi = DriverManager.getConnection(url, user, password);
-            
-//            System.out.println("Koneksi OK");
             st = koneksi.createStatement();
-
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fileInput.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Koneksi.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-
     }
 
     public Connection bukaKoneksi() throws SQLException {
@@ -79,7 +105,8 @@ public class Koneksi {
     public void executeData(String sql) throws SQLException {
         st.execute(sql);
     }
+
+    public String getStatuc() throws SQLException {
+        return koneksi.getWarnings().toString();
+    }
 }
-        
-
-

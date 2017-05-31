@@ -97,7 +97,7 @@ public class JabatanDaoImplemen implements JabatanDao {
                 jabatan.setId(rs.getInt("id"));
                 jabatan.setKodejabatan(rs.getString("kodejabatan"));
                 jabatan.setNamajabatan(rs.getString("namajabatan"));
-                jabatan.setMasajabatan(rs.getInt("masajabaatn"));
+                jabatan.setMasajabatan(rs.getInt("masajabatan"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Terdapat Kesalahan, Ulangi Lagi / Restart \n"+ex.getMessage());
@@ -143,7 +143,7 @@ public class JabatanDaoImplemen implements JabatanDao {
                 jabatan.setId(rs.getInt("id"));
                 jabatan.setKodejabatan(rs.getString("kodejabatan"));
                 jabatan.setNamajabatan(rs.getString("namajabatan"));
-                jabatan.setMasajabatan(rs.getInt("masajabaatn"));
+                jabatan.setMasajabatan(rs.getInt("masajabatan"));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Terdapat Kesalahan, Ulangi Lagi / Restart \n"+ex.getMessage());

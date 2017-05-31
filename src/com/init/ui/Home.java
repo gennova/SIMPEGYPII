@@ -25,7 +25,7 @@ public class Home extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         //setResizable(false);
     }
-
+    // System write date;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -229,6 +229,11 @@ public class Home extends javax.swing.JFrame {
         jMenu2.add(jMenuItem7);
 
         jMenuItem8.setText("Ijazah Pengangkatan");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem8);
 
         jMenuItem9.setText("Bidang Pekerjaan");
@@ -451,6 +456,12 @@ public class Home extends javax.swing.JFrame {
         ProvinsiUI i = new ProvinsiUI();
         i.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        IjazahAngkatUI iaui = new IjazahAngkatUI();
+        iaui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments

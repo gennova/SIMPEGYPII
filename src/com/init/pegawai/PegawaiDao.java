@@ -26,6 +26,18 @@ public interface PegawaiDao {
     public String[] getAlamatRumahPegawai();
 
     public Rumah getRumahPegawaiByNUK(String nuk);
-    
+
     public boolean cekRumahByNUK(String nuk);
+
+    public List<Pegawai> getAllPegawaiAndBidangKerja();
+    
+    public List<Pegawai> getAllPegawaiAndBidangKerjaNama();
+    
+    public List<Pegawai> getAllPegawaiAndBidangKerjaWilayah();
+    
+    public List<Pegawai> getAllPegawaiAndBidangKerjaBidangKerja();
+    
+    public List<Pegawai> getAllPegawaiAndBidangKerjaGolongan();
+    
+    public List<Pegawai> getAllPegawaiAndBidangKerjaUnitKerja();
 }

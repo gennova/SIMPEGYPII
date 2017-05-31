@@ -1,0 +1,143 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package code.init.pekerjaanjabatan;
+
+import com.init.pegawai.Pegawai;
+import com.init.tools.DaoFactory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author amnesia
+ */
+public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
+
+    private final Connection connection;
+    private final String sqlGetPekerjaanJabatanByID = "select * from pekerjaanjabatan where id=?";
+    private final String sqlGetPekerjaanJabatanByNUK = "select * from pekerjaanjabatan where nuk=?";
+    private final String sqlInsertPekerjaanJabatan = "insert into pekerjaanjabatan(nuk,idbidangkerja,tmt_tanggal_pekerjaan,no_sk_pekerjaan,tgl_sk_pekerjaan,idcabang,idunit,idjabatan,nama_jabatan,masa_jabatan) values(?,?,?,?,?,?,?,?,?,?)";
+
+    public PekerjaanJabatanDaoImplemen(Connection connect) {
+        this.connection = connect;
+    }
+
+    @Override
+    public List<PekerjaanJabatan> getAllPekerjaanJabatan() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<PekerjaanJabatan> getAllPekerjaanJabatanByID(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<PekerjaanJabatan> getAllPekerjaanJabatanByNUK(Pegawai pegawai) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void InsertPekerjaanJabatan(PekerjaanJabatan pekerjaan) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(sqlInsertPekerjaanJabatan);
+            ps.setString(1, pekerjaan.getPegawai().getNUK());
+            ps.setInt(2, pekerjaan.getBk().getId());
+            ps.setString(3, pekerjaan.getTglTMTPekerjaan());
+            ps.setString(4, pekerjaan.getNomorSKPekerjaan());
+            ps.setString(5, pekerjaan.getTglSKPekerjaan());
+            ps.setInt(6, pekerjaan.getCabang().getIdCabang());
+            ps.setInt(7, pekerjaan.getUnit().getID());
+            ps.setInt(8, pekerjaan.getJabatan().getId());
+            ps.setString(9, pekerjaan.getNamaJabatan());
+            ps.setInt(10, pekerjaan.getMasaJabatan());
+            int status = ps.executeUpdate();
+            if (status == 1) {
+                JOptionPane.showMessageDialog(null, "Berhasil menyimpan data pekerjaan");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void UpdatePekerjaanJabatan(PekerjaanJabatan pekerjaan) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void DeletePekerjaanJabatanByID(PekerjaanJabatan pekerjaan) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PekerjaanJabatan getPekerjaanJabatanByID(int id) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        PekerjaanJabatan jabatan = null;
+        try {
+            ps = connection.prepareStatement(sqlGetPekerjaanJabatanByID);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                jabatan = new PekerjaanJabatan();
+                jabatan.setId(rs.getInt("id"));
+                jabatan.setBk(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
+                jabatan.setCabang(DaoFactory.getCabangDao().getCabangByID(rs.getInt("idcabang")));
+                jabatan.setJabatan(DaoFactory.getJabatanDao().getJabatanByID(rs.getInt("idjabatan")));
+                jabatan.setMasaJabatan(rs.getInt("masa_jabatan"));
+                jabatan.setNamaJabatan(rs.getString("nama_jabatan"));
+                jabatan.setNomorSKPekerjaan(rs.getString("no_sk_pekerjaan"));
+                jabatan.setPegawai(DaoFactory.getPegawaiDao().getPegawaiByNUK(rs.getString("nuk")));
+                jabatan.setTglSKPekerjaan(rs.getString("tgl_sk_pekerjaan"));
+                jabatan.setTglTMTPekerjaan(rs.getString("tmt_tanggal_pekerjaan"));
+                jabatan.setUnit(DaoFactory.getUnitDao().getUnitByID(rs.getInt("idunit")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jabatan;
+    }
+
+    @Override
+    public PekerjaanJabatan getPekerjaanJabatanByNUK(String nuk) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        PekerjaanJabatan jabatan = null;
+        try {
+            ps = connection.prepareStatement(sqlGetPekerjaanJabatanByNUK);
+            ps.setString(1, nuk);
+            rs = ps.executeQuery();
+            while (rs.next()) {                
+                jabatan = new PekerjaanJabatan();
+                jabatan.setId(rs.getInt("id"));
+                jabatan.setBk(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
+                jabatan.setCabang(DaoFactory.getCabangDao().getCabangByID(rs.getInt("idcabang")));
+                jabatan.setJabatan(DaoFactory.getJabatanDao().getJabatanByID(rs.getInt("idjabatan")));
+                jabatan.setMasaJabatan(rs.getInt("masa_jabatan"));
+                jabatan.setNamaJabatan(rs.getString("nama_jabatan"));
+                jabatan.setNomorSKPekerjaan(rs.getString("no_sk_pekerjaan"));
+                jabatan.setPegawai(DaoFactory.getPegawaiDao().getPegawaiByNUK(rs.getString("nuk")));
+                jabatan.setTglSKPekerjaan(rs.getString("tgl_sk_pekerjaan"));
+                jabatan.setTglTMTPekerjaan(rs.getString("tmt_tanggal_pekerjaan"));
+                jabatan.setUnit(DaoFactory.getUnitDao().getUnitByID(rs.getInt("idunit")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return jabatan;
+    }
+    
+    
+
+}

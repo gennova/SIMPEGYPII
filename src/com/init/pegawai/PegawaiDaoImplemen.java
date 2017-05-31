@@ -5,10 +5,12 @@
  */
 package com.init.pegawai;
 
+import com.init.tools.DaoFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +28,12 @@ public class PegawaiDaoImplemen implements PegawaiDao {
     private final String sqlInsertRumahPegawai = "insert into alamatrumahpegawai (nuk,alamat,telpon,hp) values (?,?,?,?)";
     private final String sqlUpdateRumahPegawai = "update alamatrumahpegawai set alamat=?,telpon=?,hp=? where nuk=?";
     private final String sqlGetRumahPegawaiByNUK = "select * from alamatrumahpegawai where nuk=?";
+    private final String sqlGetPegawaiWithBidangKerja = "SELECT * FROM pegawai JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN bidangkerja ON pekerjaanjabatan.idbidangkerja=bidangkerja.id order by pegawai.nuk asc";
+    private final String sqlGetPegawaiWithBidangKerjaNama = "SELECT * FROM pegawai JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN bidangkerja ON pekerjaanjabatan.idbidangkerja=bidangkerja.id order by pegawai.namapegawai asc";
+    private final String sqlGetPegawaiWithBidangKerjaWilayah = "SELECT * FROM pegawai JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN bidangkerja ON pekerjaanjabatan.idbidangkerja=bidangkerja.id JOIN cabang ON pekerjaanjabatan.idcabang=cabang. id ORDER BY cabang.namacabang ASC";
+    private final String sqlGetPegawaiWithBidangKerjaUrut = "SELECT * FROM pegawai JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN bidangkerja ON pekerjaanjabatan.idbidangkerja=bidangkerja.id JOIN cabang ON pekerjaanjabatan.idcabang=cabang. id ORDER BY bidangkerja.namabidangkerja ASC";
+    private final String sqlGetPegawaiWithBidangKerjaGolongan = "SELECT * FROM pegawai JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN bidangkerja ON pekerjaanjabatan.idbidangkerja=bidangkerja.id JOIN pangkatpegawai ON pegawai.nuk=pangkatpegawai.nuk JOIN golongan ON pangkatpegawai.idgolongan = golongan.id ORDER BY golongan.namagolongan ASC";
+    private final String sqlGetPegawaiWithBidangKerjaUnit = "SELECT * FROM pegawai JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN bidangkerja ON pekerjaanjabatan.idbidangkerja=bidangkerja.id  JOIN unit ON pekerjaanjabatan.idunit=unit.id ORDER BY unit.namaunit ASC";
 
     public PegawaiDaoImplemen(Connection connection) {
         this.connection = connection;
@@ -114,7 +122,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 ps.setString(4, hp);
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Data Rumah Berhasil Disimpan");
-            }else if(status==true){
+            } else if (status == true) {
                 ps = connection.prepareStatement(sqlUpdateRumahPegawai);
                 ps.setString(1, alamat);
                 ps.setString(2, telepon);
@@ -169,6 +177,138 @@ public class PegawaiDaoImplemen implements PegawaiDao {
             Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
         }
         return status;
+    }
+
+    @Override
+    public List<Pegawai> getAllPegawaiAndBidangKerja() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetPegawaiWithBidangKerja);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai pegawai = new Pegawai();
+                pegawai.setNUK(rs.getString("nuk"));
+                pegawai.setNama(rs.getString("namapegawai"));
+                pegawai.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
+                list.add(pegawai);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Pegawai> getAllPegawaiAndBidangKerjaNama() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetPegawaiWithBidangKerjaNama);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai pegawai = new Pegawai();
+                pegawai.setNUK(rs.getString("nuk"));
+                pegawai.setNama(rs.getString("namapegawai"));
+                pegawai.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
+                list.add(pegawai);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Pegawai> getAllPegawaiAndBidangKerjaWilayah() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetPegawaiWithBidangKerjaWilayah);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai pegawai = new Pegawai();
+                pegawai.setNUK(rs.getString("nuk"));
+                pegawai.setNama(rs.getString("namapegawai"));
+                pegawai.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
+                list.add(pegawai);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Pegawai> getAllPegawaiAndBidangKerjaBidangKerja() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetPegawaiWithBidangKerjaUrut);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai pegawai = new Pegawai();
+                pegawai.setNUK(rs.getString("nuk"));
+                pegawai.setNama(rs.getString("namapegawai"));
+                pegawai.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
+                list.add(pegawai);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Pegawai> getAllPegawaiAndBidangKerjaGolongan() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetPegawaiWithBidangKerjaGolongan);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai pegawai = new Pegawai();
+                pegawai.setNUK(rs.getString("nuk"));
+                pegawai.setNama(rs.getString("namapegawai"));
+                pegawai.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
+                list.add(pegawai);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Pegawai> getAllPegawaiAndBidangKerjaUnitKerja() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetPegawaiWithBidangKerjaUnit);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai pegawai = new Pegawai();
+                pegawai.setNUK(rs.getString("nuk"));
+                pegawai.setNama(rs.getString("namapegawai"));
+                pegawai.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
+                list.add(pegawai);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 
 }

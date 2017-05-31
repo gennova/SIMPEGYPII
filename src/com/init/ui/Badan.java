@@ -25,7 +25,7 @@ public class Badan extends javax.swing.JFrame {
     }
 
     private void initApp() {
-        com.init.badan.Badan badan = DaoFactory.getBadanDao().getDataBadanByNUK(Session.getNUK());
+        com.init.badan.Badan badan = DaoFactory.getBadanDao().getDataBadanByNUK(Session.getPegawai().getNUK());
         txtTinggi.setText(String.valueOf(badan.getTinggibadan()));
         txtBerat.setText(String.valueOf(badan.getBeratbadan()));
         txtWarnaKulit.setText(badan.getWarnakulit());
@@ -118,6 +118,11 @@ public class Badan extends javax.swing.JFrame {
         jLabel11.setText("Pekerjaan Lain");
 
         jButton2.setText("Close");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Save");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +301,11 @@ public class Badan extends javax.swing.JFrame {
         DaoFactory.getBadanDao().InsertDataBadanPegawai(badan);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -18,6 +18,8 @@ public interface CabangDao {
     public Cabang getCabangByID(int id);
     
     public Cabang getCabangByKode(String kode);
+    
+    public Cabang getCabangByNamaCabang(String namacabang);
 
     public void insertCabang(Cabang cabang);
 

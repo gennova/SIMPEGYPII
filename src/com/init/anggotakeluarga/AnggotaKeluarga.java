@@ -12,6 +12,8 @@ package com.init.anggotakeluarga;
 public class AnggotaKeluarga {
 
     private int id;
+    private String count;
+    private String nuk;
     private String nama;
     private String tanggallahir;
 
@@ -21,6 +23,14 @@ public class AnggotaKeluarga {
 
     public int getID() {
         return id;
+    }
+
+    public String getNuk() {
+        return nuk;
+    }
+
+    public void setNuk(String nuk) {
+        this.nuk = nuk;
     }
 
     public void setNama(String nama) {
@@ -38,4 +48,13 @@ public class AnggotaKeluarga {
     public String getTanggalLahir() {
         return tanggallahir;
     }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
+
 }

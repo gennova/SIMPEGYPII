@@ -5,6 +5,11 @@
  */
 package com.init.tools;
 
+import code.init.pekerjaanjabatan.PekerjaanJabatan;
+import code.init.pekerjaanjabatan.PekerjaanJabatanDao;
+import code.init.pekerjaanjabatan.PekerjaanJabatanDaoImplemen;
+import com.init.anggotakeluarga.AnggotaKeluargaDao;
+import com.init.anggotakeluarga.AnggotaKeluargaDaoImplemen;
 import com.init.badan.BadanDao;
 import com.init.badan.BadanDaoImplemen;
 import com.init.bidangkerja.BidangKerjaDao;
@@ -13,6 +18,8 @@ import com.init.cabang.CabangDao;
 import com.init.cabang.CabangDaoImplemen;
 import com.init.golongan.GolonganDao;
 import com.init.golongan.GolonganDaoImplemen;
+import com.init.golonganpangkat.PangkatDao;
+import com.init.golonganpangkat.PangkatDaoImplemen;
 import com.init.ijazah.IjazahAngkatDao;
 import com.init.ijazah.IjazahAngkatDaoImplemen;
 import com.init.jabatan.JabatanDao;
@@ -69,6 +76,30 @@ public class DaoFactory {
     private static RumahDao rumahDao;
     private static KartuDao kartuDao;
     private static BadanDao badanDao;
+    private static AnggotaKeluargaDao anggotaKeluargaDao;
+    private static PangkatDao pangkatDao;
+    private static PekerjaanJabatanDao pekerjaanJabatanDao;
+
+    public static PekerjaanJabatanDao getPekerjaanJabatanDao() {
+        if (pekerjaanJabatanDao == null) {
+            pekerjaanJabatanDao = new PekerjaanJabatanDaoImplemen(getConnectionFix());
+        }
+        return pekerjaanJabatanDao;
+    }
+
+    public static PangkatDao getPangkatDao() {
+        if (pangkatDao == null) {
+            pangkatDao = new PangkatDaoImplemen(getConnectionFix());
+        }
+        return pangkatDao;
+    }
+
+    public static AnggotaKeluargaDao getAnggotaKeluargaDao() {
+        if (anggotaKeluargaDao == null) {
+            anggotaKeluargaDao = new AnggotaKeluargaDaoImplemen(getConnectionFix());
+        }
+        return anggotaKeluargaDao;
+    }
 
     public static BadanDao getBadanDao() {
         if (badanDao == null) {
@@ -171,11 +202,7 @@ public class DaoFactory {
     public static Connection getConnectionFix() {
         if (connection == null) {
             Koneksi k = new Koneksi();
-            try {
-                connection = k.bukaKoneksi();
-            } catch (SQLException ex) {
-                Logger.getLogger(DaoFactory.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            connection = k.getKoneksi();
         }
         return connection;
     }
@@ -192,10 +219,10 @@ public class DaoFactory {
             try {
                 String urlFile = "";
                 String urlCOmplete = "";
-                in = new FileInputStream("DBConfiguration.xml");
+                in = new FileInputStream("resource.xml");
                 Properties p = new Properties();
                 p.loadFromXML(in);
-                urlFile = p.getProperty("HOST") + ":" + p.getProperty("PORT") + "/" + p.getProperty("DBNAME");
+                urlFile = p.getProperty("host") + ":" + p.getProperty("PORT") + "/" + p.getProperty("DBNAME");
                 urlCOmplete = url + urlFile;
                 System.out.println(urlCOmplete);
                 user = p.getProperty("USERNAME");

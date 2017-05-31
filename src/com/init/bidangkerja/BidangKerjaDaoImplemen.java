@@ -24,6 +24,7 @@ public class BidangKerjaDaoImplemen implements BidangKerjaDao {
     private final Connection connection;
     private final static String sqlGetAllBidangKerja = "select * from bidangkerja";
     private final static String sqlGetBidangKerjaByID = "select * from bidangkerja where id=?";
+    private final static String sqlGetBidangKerjaByNamaBidang = "select * from bidangkerja where namabidangkerja=?";
     private final static String sqlGetBidangKerjaByKode = "select * from bidangkerja where kodebidangkerja=?";
     private final static String sqlInsertBidangKerja = "insert into bidangkerja(kodebidangkerja,namabidangkerja) values (?,?)";
     private final static String sqlUpdateBidangKerja = "update bidangkerja set kodebidangkerja=?,namabidangkerja=? where id=?";
@@ -76,6 +77,26 @@ public class BidangKerjaDaoImplemen implements BidangKerjaDao {
     }
 
     @Override
+    public BidangKerja getBidangKerjaByNamaBidangKerja(String namabidangkerja) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        BidangKerja bk = new BidangKerja();
+        try {
+            ps = connection.prepareStatement(sqlGetBidangKerjaByNamaBidang);
+            ps.setString(1, namabidangkerja);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                bk.setId(rs.getInt("id"));
+                bk.setKode(rs.getString("kodebidangkerja"));
+                bk.setNamabidangkerja(rs.getString("namabidangkerja"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BidangKerjaDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bk;
+    }
+
+    @Override
     public BidangKerja getBidangkerjaByKode(String kode) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -97,13 +118,13 @@ public class BidangKerjaDaoImplemen implements BidangKerjaDao {
 
     @Override
     public void InsertBidangKerja(BidangKerja bidangKerja) {
-        PreparedStatement ps=null;
+        PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(sqlInsertBidangKerja);
             ps.setString(1, bidangKerja.getKode());
             ps.setString(2, bidangKerja.getNamabidangkerja());
             int status = ps.executeUpdate();
-            if (status==1) {
+            if (status == 1) {
                 JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
             }
         } catch (SQLException ex) {
@@ -113,7 +134,7 @@ public class BidangKerjaDaoImplemen implements BidangKerjaDao {
 
     @Override
     public void UpdateBidangKerja(BidangKerja bidangKerja) {
-        PreparedStatement ps=null;
+        PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(sqlUpdateBidangKerja);
             ps.setString(1, bidangKerja.getKode());
@@ -128,7 +149,7 @@ public class BidangKerjaDaoImplemen implements BidangKerjaDao {
 
     @Override
     public void DeleteBidangKerja(BidangKerja bidangKerja) {
-        PreparedStatement ps=null;
+        PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(sqlDeleteBidangKerja);
             ps.setInt(1, bidangKerja.getId());

@@ -18,6 +18,8 @@ public interface BidangKerjaDao {
     public BidangKerja getBidangKerjaByID(int id);
 
     public BidangKerja getBidangkerjaByKode(String kode);
+    
+    public BidangKerja getBidangKerjaByNamaBidangKerja(String namabidangkerja);
 
     public void InsertBidangKerja(BidangKerja bidangKerja);
 

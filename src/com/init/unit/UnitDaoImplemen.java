@@ -25,9 +25,10 @@ public class UnitDaoImplemen implements UnitDao {
     private final static String sqlGetAllUnit = "select * from unit";
     private final static String sqlGetUnitByID = "select * from unit where id=?";
     private final static String sqlGetUnitByKode = "select * from unit where kodeunit=?";
+    private final static String sqlGetUnitByNamaUnit = "select * from unit where namaunit=?";
     private final static String sqlInsertUnit = "insert into unit (kodeunit,namaunit) values(?,?)";
     private final static String sqlUpdateUnitByID = "update unit set kodeunit=?,namaunit=? where id=?";
-    private final static String sqlDeleteUnitByID ="delete from unit where id=?";
+    private final static String sqlDeleteUnitByID = "delete from unit where id=?";
 
     public UnitDaoImplemen(Connection connection) {
         this.connection = connection;
@@ -99,7 +100,23 @@ public class UnitDaoImplemen implements UnitDao {
 
     @Override
     public Unit getUnitByNama(String nama) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Unit unit = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement(sqlGetUnitByNamaUnit);
+            ps.setString(1, nama);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                unit = new Unit();
+                unit.setID(rs.getInt("id"));
+                unit.setKodeUnit(rs.getString("kodeunit"));
+                unit.setNamaUnit(rs.getString("namaunit"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UnitDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return unit;
     }
 
     @Override
@@ -122,14 +139,14 @@ public class UnitDaoImplemen implements UnitDao {
 
     @Override
     public void UpdateUnitByID(Unit unit) {
-        PreparedStatement ps=null;
+        PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(sqlUpdateUnitByID);
             ps.setString(1, unit.getKodeUnit());
             ps.setString(2, unit.getNamaUnit());
             ps.setInt(3, unit.getID());
             int i = ps.executeUpdate();
-            if (i==1) {
+            if (i == 1) {
                 JOptionPane.showMessageDialog(null, "Data Unit Berhasil Diupdate");
             }
         } catch (SQLException ex) {
@@ -139,12 +156,12 @@ public class UnitDaoImplemen implements UnitDao {
 
     @Override
     public void DeleteUnitByID(Unit unit) {
-        PreparedStatement ps=null;
+        PreparedStatement ps = null;
         try {
-            ps = connection.prepareStatement(sqlDeleteUnitByID);           
+            ps = connection.prepareStatement(sqlDeleteUnitByID);
             ps.setInt(1, unit.getID());
             int i = ps.executeUpdate();
-            if (i==1) {
+            if (i == 1) {
                 JOptionPane.showMessageDialog(null, "Data Unit Berhasil Dihapus");
             }
         } catch (SQLException ex) {

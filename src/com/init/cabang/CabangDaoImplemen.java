@@ -28,6 +28,7 @@ public class CabangDaoImplemen implements CabangDao {
     private final String sqlDeleteCabangByKode = "delete from cabang where kodecabang=?";
     private final String sqlGetAllCabang = "select * from cabang";
     private final String sqlGetCabangByID = "select * from cabang where id = ?";
+    private final String sqlGetCabangByNamaCabang = "select * from cabang where namacabang=?";
     private final String sqlGetCabangByKode = "select * from cabang where kodecabang = ?";
 
     public CabangDaoImplemen(Connection connection) {
@@ -53,6 +54,27 @@ public class CabangDaoImplemen implements CabangDao {
             Logger.getLogger(CabangDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cabangs;
+    }
+
+    @Override
+    public Cabang getCabangByNamaCabang(String namacabang) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Cabang cabang = null;
+        try {
+            ps = connection.prepareStatement(sqlGetCabangByNamaCabang);
+            ps.setString(1, namacabang);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                cabang = new Cabang();
+                cabang.setIdCabang(rs.getInt("id"));
+                cabang.setKode(rs.getString("kodecabang"));
+                cabang.setNamacabang(rs.getString("namacabang"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CabangDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cabang;
     }
 
     @Override
@@ -88,7 +110,8 @@ public class CabangDaoImplemen implements CabangDao {
     @Override
     public void deleteCabangByKode(String kode) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                PreparedStatement ps = null;        try {
+        PreparedStatement ps = null;
+        try {
             ps = connection.prepareStatement(sqlDeleteCabangByKode);
             ps.setString(1, kode);
             ps.executeUpdate();

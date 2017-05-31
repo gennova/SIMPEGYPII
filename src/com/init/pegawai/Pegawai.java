@@ -5,6 +5,10 @@
  */
 package com.init.pegawai;
 
+import code.init.pekerjaanjabatan.PekerjaanJabatan;
+import com.init.bidangkerja.BidangKerja;
+import com.init.golonganpangkat.Pangkat;
+
 /**
  *
  * @author Tendy Developer
@@ -28,6 +32,10 @@ public class Pegawai {
     private String StatusPegawai; //13
     private String TeksFilename; //14
     // akhir data umum
+    //****** data tambahan ******//
+    private Pangkat pangkat;
+    private PekerjaanJabatan pekerjaanJabatan;
+    private BidangKerja bidangKerja;
 
     public Pegawai() {
 
@@ -168,6 +176,30 @@ public class Pegawai {
 
     public void setTeksFilename(String TeksFilename) {
         this.TeksFilename = TeksFilename;
+    }
+
+    public Pangkat getPangkat() {
+        return pangkat;
+    }
+
+    public void setPangkat(Pangkat pangkat) {
+        this.pangkat = pangkat;
+    }
+
+    public PekerjaanJabatan getPekerjaanJabatan() {
+        return pekerjaanJabatan;
+    }
+
+    public void setPekerjaanJabatan(PekerjaanJabatan pekerjaanJabatan) {
+        this.pekerjaanJabatan = pekerjaanJabatan;
+    }
+
+    public BidangKerja getBidangKerja() {
+        return bidangKerja;
+    }
+
+    public void setBidangKerja(BidangKerja bidangKerja) {
+        this.bidangKerja = bidangKerja;
     }
 
 }
