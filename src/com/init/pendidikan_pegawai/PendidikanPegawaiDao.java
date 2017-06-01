@@ -15,7 +15,9 @@ public interface PendidikanPegawaiDao {
 
     public List<PendidikanPegawai> getAllPendidikanPegawai();
 
-    public PendidikanPegawai getPendidikanPegawaiByNUK();
+    public PendidikanPegawai getPendidikanPegawaiByNUK(String nuk);
 
     public void InsertPendidikanPegawai(PendidikanPegawai ppeg);
+
+    public boolean cekPendidikanPegawaiByNUK(String nuk);
 }

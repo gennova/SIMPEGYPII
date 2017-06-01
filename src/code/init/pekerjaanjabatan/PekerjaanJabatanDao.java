@@ -29,4 +29,6 @@ public interface PekerjaanJabatanDao {
     public void UpdatePekerjaanJabatan(PekerjaanJabatan pekerjaan);
 
     public void DeletePekerjaanJabatanByID(PekerjaanJabatan pekerjaan);
+    
+    public boolean cekPekerjaanJabatanByNUK(String nuk);
 }

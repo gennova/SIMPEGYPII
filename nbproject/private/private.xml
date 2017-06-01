@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/ui/Home.java</file>
             <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/ui/Insertpegawai.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/golonganpangkat/Pangkat.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/golonganpangkat/PangkatDao.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/ui/DataKeluarga.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/golonganpangkat/PangkatDaoImplemen.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/Code/Name/Flamboyan/SwingMakeOver/ButtonGradientColor.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/ui/Pegawaiform.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/gaji/Gaji_pegawai_dao_implemen.java</file>
         </group>
     </open-files>
 </project-private>

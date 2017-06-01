@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,6 +25,7 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
     private final String sqlGetPekerjaanJabatanByID = "select * from pekerjaanjabatan where id=?";
     private final String sqlGetPekerjaanJabatanByNUK = "select * from pekerjaanjabatan where nuk=?";
     private final String sqlInsertPekerjaanJabatan = "insert into pekerjaanjabatan(nuk,idbidangkerja,tmt_tanggal_pekerjaan,no_sk_pekerjaan,tgl_sk_pekerjaan,idcabang,idunit,idjabatan,nama_jabatan,masa_jabatan) values(?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlUpdatePekerjaanJabatan = "update pekerjaanjabatan set idbidangkerja=?,tmt_tanggal_pekerjaan=?,no_sk_pekerjaan=?,tgl_sk_pekerjaan=?,idcabang=?,idunit=?,idjabatan=?,nama_jabatan=?,masa_jabatan=? where nuk=?";
 
     public PekerjaanJabatanDaoImplemen(Connection connect) {
         this.connection = connect;
@@ -49,25 +49,49 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
     @Override
     public void InsertPekerjaanJabatan(PekerjaanJabatan pekerjaan) {
         PreparedStatement ps = null;
-        try {
-            ps = connection.prepareStatement(sqlInsertPekerjaanJabatan);
-            ps.setString(1, pekerjaan.getPegawai().getNUK());
-            ps.setInt(2, pekerjaan.getBk().getId());
-            ps.setString(3, pekerjaan.getTglTMTPekerjaan());
-            ps.setString(4, pekerjaan.getNomorSKPekerjaan());
-            ps.setString(5, pekerjaan.getTglSKPekerjaan());
-            ps.setInt(6, pekerjaan.getCabang().getIdCabang());
-            ps.setInt(7, pekerjaan.getUnit().getID());
-            ps.setInt(8, pekerjaan.getJabatan().getId());
-            ps.setString(9, pekerjaan.getNamaJabatan());
-            ps.setInt(10, pekerjaan.getMasaJabatan());
-            int status = ps.executeUpdate();
-            if (status == 1) {
-                System.out.println("Berhasil menyimpan data Pekerjaan Jabatan pegawai");
+        boolean statuspekerjaanjabatan = cekPekerjaanJabatanByNUK(pekerjaan.getPegawai().getNUK());
+        if (statuspekerjaanjabatan == false) {
+            try {
+                ps = connection.prepareStatement(sqlInsertPekerjaanJabatan);
+                ps.setString(1, pekerjaan.getPegawai().getNUK());
+                ps.setInt(2, pekerjaan.getBk().getId());
+                ps.setString(3, pekerjaan.getTglTMTPekerjaan());
+                ps.setString(4, pekerjaan.getNomorSKPekerjaan());
+                ps.setString(5, pekerjaan.getTglSKPekerjaan());
+                ps.setInt(6, pekerjaan.getCabang().getIdCabang());
+                ps.setInt(7, pekerjaan.getUnit().getID());
+                ps.setInt(8, pekerjaan.getJabatan().getId());
+                ps.setString(9, pekerjaan.getNamaJabatan());
+                ps.setInt(10, pekerjaan.getMasaJabatan());
+                int status = ps.executeUpdate();
+                if (status == 1) {
+                    System.out.println("Berhasil menyimpan data Pekerjaan Jabatan pegawai");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        } else if (statuspekerjaanjabatan == true) {
+            try {
+                ps = connection.prepareStatement(sqlUpdatePekerjaanJabatan);
+                ps.setInt(1, pekerjaan.getBk().getId());
+                ps.setString(2, pekerjaan.getTglTMTPekerjaan());
+                ps.setString(3, pekerjaan.getNomorSKPekerjaan());
+                ps.setString(4, pekerjaan.getTglSKPekerjaan());
+                ps.setInt(5, pekerjaan.getCabang().getIdCabang());
+                ps.setInt(6, pekerjaan.getUnit().getID());
+                ps.setInt(7, pekerjaan.getJabatan().getId());
+                ps.setString(8, pekerjaan.getNamaJabatan());
+                ps.setInt(9, pekerjaan.getMasaJabatan());
+                ps.setString(10, pekerjaan.getPegawai().getNUK());
+                int status = ps.executeUpdate();
+                if (status == 1) {
+                    System.out.println("Berhasil memperbaharui data Pekerjaan Jabatan pegawai karena data sudah ada");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
     }
 
     @Override
@@ -89,7 +113,7 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
             ps = connection.prepareStatement(sqlGetPekerjaanJabatanByID);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            while (rs.next()) {                
+            while (rs.next()) {
                 jabatan = new PekerjaanJabatan();
                 jabatan.setId(rs.getInt("id"));
                 jabatan.setBk(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
@@ -118,7 +142,7 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
             ps = connection.prepareStatement(sqlGetPekerjaanJabatanByNUK);
             ps.setString(1, nuk);
             rs = ps.executeQuery();
-            while (rs.next()) {                
+            while (rs.next()) {
                 jabatan = new PekerjaanJabatan();
                 jabatan.setId(rs.getInt("id"));
                 jabatan.setBk(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
@@ -137,7 +161,23 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
         }
         return jabatan;
     }
-    
-    
+
+    @Override
+    public boolean cekPekerjaanJabatanByNUK(String nuk) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean status = false;
+        try {
+            ps = connection.prepareStatement("select nuk from pekerjaanjabatan where nuk=?");
+            ps.setString(1, nuk);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                status = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
 
 }

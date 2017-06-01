@@ -29,6 +29,7 @@ public class PangkatDaoImplemen implements PangkatDao {
     private final String sqlGetAllPangkatPegawaiByIDGolongan = "select * from pangkatpegawai where idgolongan=?";
     private final String sqlGetAllPangkatPegawaiByNamaGolongan = "select * from pangkatpegawai join golongan on pangkatpegawai.idgolongan=golongan.id where where pangkatpegawai.idgolongan=?";
     private final String sqlInsertPangkatPegawai = "insert into pangkatpegawai (nuk,idgolongan,tmt_golongan,nomor_sk,tanggal_sk,tmt_kgb,nomor_kgb,tanggal_kgb,tahunkerja,bulankerja,tahunkerjabenar,bulankerjabenar) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlUpdatePangkatPegawai = "update pangkatpegawai set idgolongan=?,tmt_golongan=?,nomor_sk=?,tanggal_sk=?,tmt_kgb=?,nomor_kgb=?,tanggal_kgb=?,tahunkerja=?,bulankerja=?,tahunkerjabenar=?,bulankerjabenar=? where nuk=?";
 
     public PangkatDaoImplemen(Connection conn) {
         this.connection = conn;
@@ -234,28 +235,54 @@ public class PangkatDaoImplemen implements PangkatDao {
 
     @Override
     public void InsertPangkatPegawai(Pangkat pangkat) {
+        boolean statuspangkat = cekPangkatPegawai(pangkat.getPegawai().getNUK());
         PreparedStatement ps = null;
-        try {
-            ps = connection.prepareStatement(sqlInsertPangkatPegawai);
-            ps.setString(1, pangkat.getPegawai().getNUK());
-            ps.setInt(2, pangkat.getGolongan().getId());
-            ps.setString(3, pangkat.getTMTGolongan());
-            ps.setString(4, pangkat.getNomor_sk());
-            ps.setString(5, pangkat.getTanggal_sk());
-            ps.setString(6, pangkat.getTmt_kgb());
-            ps.setString(7, pangkat.getNomor_kgb());
-            ps.setString(8, pangkat.getTanggal_kgb());
-            ps.setInt(9, pangkat.getTahun_masa_kerja());
-            ps.setInt(10, pangkat.getBulan_masa_kerja());
-            ps.setInt(11, pangkat.getTahun_masa_kerja_sebenarnya());
-            ps.setInt(12, pangkat.getBulan_masa_kerja_sebenarnya());
-            int status = ps.executeUpdate();
-            if (status == 1) {
-                System.out.println("Data Pangkat pegawai berhasil Disimpan");
+        if (statuspangkat == false) {
+            try {
+                ps = connection.prepareStatement(sqlInsertPangkatPegawai);
+                ps.setString(1, pangkat.getPegawai().getNUK());
+                ps.setInt(2, pangkat.getGolongan().getId());
+                ps.setString(3, pangkat.getTMTGolongan());
+                ps.setString(4, pangkat.getNomor_sk());
+                ps.setString(5, pangkat.getTanggal_sk());
+                ps.setString(6, pangkat.getTmt_kgb());
+                ps.setString(7, pangkat.getNomor_kgb());
+                ps.setString(8, pangkat.getTanggal_kgb());
+                ps.setInt(9, pangkat.getTahun_masa_kerja());
+                ps.setInt(10, pangkat.getBulan_masa_kerja());
+                ps.setInt(11, pangkat.getTahun_masa_kerja_sebenarnya());
+                ps.setInt(12, pangkat.getBulan_masa_kerja_sebenarnya());
+                int status = ps.executeUpdate();
+                if (status == 1) {
+                    System.out.println("Data Pangkat pegawai berhasil Disimpan");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(PangkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(PangkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        } else if (statuspangkat == true) {
+            try {
+                ps = connection.prepareStatement(sqlUpdatePangkatPegawai);
+                ps.setInt(1, pangkat.getGolongan().getId());
+                ps.setString(2, pangkat.getTMTGolongan());
+                ps.setString(3, pangkat.getNomor_sk());
+                ps.setString(4, pangkat.getTanggal_sk());
+                ps.setString(5, pangkat.getTmt_kgb());
+                ps.setString(6, pangkat.getNomor_kgb());
+                ps.setString(7, pangkat.getTanggal_kgb());
+                ps.setInt(8, pangkat.getTahun_masa_kerja());
+                ps.setInt(9, pangkat.getBulan_masa_kerja());
+                ps.setInt(10, pangkat.getTahun_masa_kerja_sebenarnya());
+                ps.setInt(11, pangkat.getBulan_masa_kerja_sebenarnya());
+                ps.setString(12, pangkat.getPegawai().getNUK());
+                int status = ps.executeUpdate();
+                if (status == 1) {
+                    System.out.println("Data Pangkat pegawai berhasil diupdate karena ada nuk");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(PangkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
     }
 
     @Override
@@ -268,4 +295,20 @@ public class PangkatDaoImplemen implements PangkatDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public boolean cekPangkatPegawai(String nuk) {
+        boolean status = false;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = connection.prepareStatement("select nuk from pangkatpegawai");
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                status = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PangkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
+    }
 }
