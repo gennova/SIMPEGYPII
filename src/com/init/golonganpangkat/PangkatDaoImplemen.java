@@ -81,7 +81,7 @@ public class PangkatDaoImplemen implements PangkatDao {
                 pangkat.setId(rs.getInt("id"));
                 pangkat.setPegawai(DaoFactory.getPegawaiDao().getPegawaiByNUK(rs.getString("nuk")));
                 pangkat.setGolongan(DaoFactory.getGolonganDao().getGolonganByID(rs.getInt("idgolongan")));
-                pangkat.setTMTGolongan(sqlGetAllPangkatPegawai);
+                pangkat.setTMTGolongan(rs.getString("tmt_golongan"));
                 pangkat.setNomor_sk(rs.getString("nomor_sk"));
                 pangkat.setTanggal_sk(rs.getString("tanggal_sk"));
                 pangkat.setTmt_kgb(rs.getString("tmt_kgb"));

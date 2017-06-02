@@ -9,8 +9,12 @@ import com.init.anggotakeluarga.AnggotaKeluarga;
 import com.init.pegawai.Pegawai;
 import com.init.tools.DaoFactory;
 import com.init.tools.Session;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,10 +37,66 @@ public class DataKeluarga extends javax.swing.JFrame {
         TglLahir5.setDate(gc.getTime());
         TglLahir6.setDate(gc.getTime());
         TglLahir7.setDate(gc.getTime());
+        initApp();
     }
 
     private void initApp() {
-
+        String nuk = Session.getNUK();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        boolean status = DaoFactory.getAnggotaKeluargaDao().cekNuks_ada_atau_gak(nuk);
+        List<AnggotaKeluarga> list = DaoFactory.getAnggotaKeluargaDao().getAllAnggotaKeluargaByNUK(nuk);
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getCount().equalsIgnoreCase("1")) {
+                txtNama1.setText(list.get(i).getNama());
+                try {
+                    TglLahir1.setDate(sdf.parse(list.get(i).getTanggalLahir()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(DataKeluarga.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (list.get(i).getCount().equalsIgnoreCase("2")) {
+                txtNama2.setText(list.get(i).getNama());
+                try {
+                    TglLahir2.setDate(sdf.parse(list.get(i).getTanggalLahir()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(DataKeluarga.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (list.get(i).getCount().equalsIgnoreCase("3")) {
+                txtNama3.setText(list.get(i).getNama());
+                try {
+                    TglLahir3.setDate(sdf.parse(list.get(i).getTanggalLahir()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(DataKeluarga.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (list.get(i).getCount().equalsIgnoreCase("4")) {
+                txtNama4.setText(list.get(i).getNama());
+                try {
+                    TglLahir4.setDate(sdf.parse(list.get(i).getTanggalLahir()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(DataKeluarga.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (list.get(i).getCount().equalsIgnoreCase("5")) {
+                txtNama5.setText(list.get(i).getNama());
+                try {
+                    TglLahir5.setDate(sdf.parse(list.get(i).getTanggalLahir()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(DataKeluarga.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (list.get(i).getCount().equalsIgnoreCase("6")) {
+                txtNama6.setText(list.get(i).getNama());
+                try {
+                    TglLahir6.setDate(sdf.parse(list.get(i).getTanggalLahir()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(DataKeluarga.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (list.get(i).getCount().equalsIgnoreCase("7")) {
+                txtNama7.setText(list.get(i).getNama());
+                try {
+                    TglLahir7.setDate(sdf.parse(list.get(i).getTanggalLahir()));
+                } catch (ParseException ex) {
+                    Logger.getLogger(DataKeluarga.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     /**
@@ -270,8 +330,8 @@ public class DataKeluarga extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK("6000");
-        JOptionPane.showMessageDialog(null, "pegawai :" + pegawai.getNUK());
+        Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+        //JOptionPane.showMessageDialog(null, "pegawai :" + pegawai.getNUK());
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String namaanggota1 = txtNama1.getText();
         String tanggal1 = df.format(TglLahir1.getDate());

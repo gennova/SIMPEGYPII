@@ -24,6 +24,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
 
     private final Connection connection;
     private final String sqlInsertPegawai = "call spInsertPegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlUpdatePegawai = "call spUpdatePegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String sqlGetPegawaiByNUK = "select * from pegawai where nuk=?";
     private final String sqlInsertRumahPegawai = "insert into alamatrumahpegawai (nuk,alamat,telpon,hp) values (?,?,?,?)";
     private final String sqlUpdateRumahPegawai = "update alamatrumahpegawai set alamat=?,telpon=?,hp=? where nuk=?";
@@ -47,26 +48,53 @@ public class PegawaiDaoImplemen implements PegawaiDao {
     @Override
     public void InsertPegawai(Pegawai pegawai) {
         PreparedStatement ps = null;
-        try {
-            ps = connection.prepareStatement(sqlInsertPegawai);
-            ps.setString(1, pegawai.getNUK());
-            ps.setString(2, pegawai.getGelarDepan());
-            ps.setString(3, pegawai.getNama());
-            ps.setString(4, pegawai.getGelarBelakang());
-            ps.setString(5, pegawai.getAlias());
-            ps.setString(6, pegawai.getJK());
-            ps.setString(7, pegawai.getAgama());
-            ps.setString(8, pegawai.getTLahir());
-            ps.setString(9, pegawai.getTglLahir());
-            ps.setString(10, pegawai.getStatusPerkawinan());
-            ps.setInt(11, pegawai.getJumlahAnakSeluruh());
-            ps.setInt(12, pegawai.getJumlahAnakGaji());
-            ps.setString(13, pegawai.getStatusPegawai());
-            ps.setString(14, pegawai.getTeksFilename());
-            ps.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Data Pegawai Berhasil Ditambahkan");
-        } catch (SQLException ex) {
-            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        boolean cek_status_pegawai = CekPegawaiByNUK(pegawai.getNUK());
+        if (cek_status_pegawai == true) {
+            try {
+                ps = connection.prepareStatement(sqlUpdatePegawai);
+                ps.setString(1, pegawai.getNUK());
+                ps.setString(2, pegawai.getGelarDepan());
+                ps.setString(3, pegawai.getNama());
+                ps.setString(4, pegawai.getGelarBelakang());
+                ps.setString(5, pegawai.getAlias());
+                ps.setString(6, pegawai.getJK());
+                ps.setString(7, pegawai.getAgama());
+                ps.setString(8, pegawai.getTLahir());
+                ps.setString(9, pegawai.getTglLahir());
+                ps.setString(10, pegawai.getStatusPerkawinan());
+                ps.setInt(11, pegawai.getJumlahAnakSeluruh());
+                ps.setInt(12, pegawai.getJumlahAnakGaji());
+                ps.setString(13, pegawai.getStatusPegawai());
+                ps.setString(14, pegawai.getTeksFilename());
+                ps.executeUpdate();
+                //JOptionPane.showMessageDialog(null, "Data Pegawai Berhasil Diupdate Karna Sudah ada");
+                System.out.println("Data berhasil diupdate karena sudah ada");
+            } catch (SQLException ex) {
+                Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (cek_status_pegawai == false) {
+            try {
+                ps = connection.prepareStatement(sqlInsertPegawai);
+                ps.setString(1, pegawai.getNUK());
+                ps.setString(2, pegawai.getGelarDepan());
+                ps.setString(3, pegawai.getNama());
+                ps.setString(4, pegawai.getGelarBelakang());
+                ps.setString(5, pegawai.getAlias());
+                ps.setString(6, pegawai.getJK());
+                ps.setString(7, pegawai.getAgama());
+                ps.setString(8, pegawai.getTLahir());
+                ps.setString(9, pegawai.getTglLahir());
+                ps.setString(10, pegawai.getStatusPerkawinan());
+                ps.setInt(11, pegawai.getJumlahAnakSeluruh());
+                ps.setInt(12, pegawai.getJumlahAnakGaji());
+                ps.setString(13, pegawai.getStatusPegawai());
+                ps.setString(14, pegawai.getTeksFilename());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Data Pegawai Berhasil Ditambahkan");
+            } catch (SQLException ex) {
+                Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -309,6 +337,24 @@ public class PegawaiDaoImplemen implements PegawaiDao {
             Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+
+    @Override
+    public boolean CekPegawaiByNUK(String nuk) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean status = false;
+        try {
+            ps = connection.prepareStatement("select nuk from pegawai where nuk=?");
+            ps.setString(1, nuk);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                status = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return status;
     }
 
 }

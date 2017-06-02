@@ -30,14 +30,16 @@ public interface PegawaiDao {
     public boolean cekRumahByNUK(String nuk);
 
     public List<Pegawai> getAllPegawaiAndBidangKerja();
-    
+
     public List<Pegawai> getAllPegawaiAndBidangKerjaNama();
-    
+
     public List<Pegawai> getAllPegawaiAndBidangKerjaWilayah();
-    
+
     public List<Pegawai> getAllPegawaiAndBidangKerjaBidangKerja();
-    
+
     public List<Pegawai> getAllPegawaiAndBidangKerjaGolongan();
-    
+
     public List<Pegawai> getAllPegawaiAndBidangKerjaUnitKerja();
+
+    public boolean CekPegawaiByNUK(String nuk);
 }

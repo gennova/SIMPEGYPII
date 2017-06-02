@@ -14,4 +14,6 @@ public interface Gaji_pegawai_dao {
     public void InsertGajiPegawai(Gaji_pegawai gaji_pegawai);
 
     public boolean CekGajiPegawaiByNUK(String nuk);
+
+    public Gaji_pegawai getGajiPegawaiByNUK(String nuk);
 }

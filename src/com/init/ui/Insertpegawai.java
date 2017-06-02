@@ -21,9 +21,12 @@ import com.init.tools.DaoFactory;
 import com.init.tools.Session;
 import com.init.unit.Unit;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 
@@ -48,6 +51,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         if (Session.getNUK() != null) {
             initUpdateApp();
         } else {
+            loadCombo();
             tglLahirDate.setDate(GregorianCalendar.getInstance().getTime());
             tmtGolonganDate.setDate(GregorianCalendar.getInstance().getTime());
             nomorSKDate.setDate(GregorianCalendar.getInstance().getTime());
@@ -57,17 +61,107 @@ public class Insertpegawai extends javax.swing.JFrame {
             tglSKJabatan.setDate(GregorianCalendar.getInstance().getTime());
             tglLulusSKPengangkatan.setDate(GregorianCalendar.getInstance().getTime());
             tglLulusSKPendidikanAkhir.setDate(GregorianCalendar.getInstance().getTime());
-            loadCombo();
+
         }
     }
 
     private void initUpdateApp() {
+        loadCombo();
         Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         NUK_teks.setText(pegawai.getNUK());
         gelarTeks.setText(pegawai.getGelarDepan());
         tengahTeks.setText(pegawai.getNama());
         gelarbelakangTeks.setText(pegawai.getGelarBelakang());
         aliasTeks.setText(pegawai.getAlias());
+        String jenis_kelamin = pegawai.getJK();
+        if (jenis_kelamin.equalsIgnoreCase("laki-laki")) {
+            lakiRadio.setSelected(true);
+        } else {
+            ceweRadio.setSelected(true);
+        }
+        comboAgama.setSelectedItem(pegawai.getAgama());
+        txtTempatLahir.setText(pegawai.getTLahir());
+        try {
+            tglLahirDate.setDate(sdf.parse(pegawai.getTglLahir())); //parse
+        } catch (ParseException ex) {
+            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        comboKawin.setSelectedItem(pegawai.getStatusPerkawinan());
+        txtAnakSeluruh.setText(String.valueOf(pegawai.getJumlahAnakSeluruh()));
+        txtAnakGaji.setText(String.valueOf(pegawai.getJumlahAnakGaji()));
+        ComboSttPeg.setSelectedItem(pegawai.getStatusPegawai());
+        fotoTeks.setText(pegawai.getTeksFilename());
+        //********************************************************************************//
+        Pangkat pangkat = DaoFactory.getPangkatDao().getPangkatByNUK(Session.getNUK());
+        comboGolonganPangkat.setSelectedItem(pangkat.getGolongan().getNamagolongan());
+        try {
+            tmtGolonganDate.setDate(sdf.parse(pangkat.getTMTGolongan())); //parse
+        } catch (ParseException ex) {
+            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtNomorSK.setText(pangkat.getNomor_sk()); //parse
+        try {
+            nomorSKDate.setDate(sdf.parse(pangkat.getTanggal_sk())); //parse
+        } catch (ParseException ex) {
+            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            tmtKGBDate.setDate(sdf.parse(pangkat.getTmt_kgb())); //parse
+        } catch (ParseException ex) {
+            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtNomorKGB.setText(pangkat.getNomor_kgb());
+        try {
+            nomorKGBDate.setDate(sdf.parse(pangkat.getTanggal_kgb())); //parse
+        } catch (ParseException ex) {
+            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtTahunKerja.setText(String.valueOf(pangkat.getTahun_masa_kerja()));
+        txtBulanKerja.setText(String.valueOf(pangkat.getBulan_masa_kerja()));
+        txtTahunKerjaBenar.setText(String.valueOf(pangkat.getTahun_masa_kerja_sebenarnya()));
+        txtBulanKerjaBenar.setText(String.valueOf(pangkat.getBulan_masa_kerja_sebenarnya()));
+        //*************************************************************************************//
+        PekerjaanJabatan pj = DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(Session.getNUK());
+        comboBidangKerja.setSelectedItem(pj.getBk().getNamabidangkerja());
+        try {
+            tmtPekerjaan.setDate(sdf.parse(pj.getTglTMTPekerjaan())); //parse
+        } catch (ParseException ex) {
+            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtNomorSKJabatan.setText(pj.getNomorSKPekerjaan());
+        try {
+            tglSKJabatan.setDate(sdf.parse(pj.getTglSKPekerjaan())); //parse
+        } catch (ParseException ex) {
+            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        comboWIlayahTugas.setSelectedItem(pj.getCabang().getNamacabang());
+        comboUnitKerja.setSelectedItem(pj.getUnit().getNamaUnit());
+        comboNamaJabatan.setSelectedItem(pj.getBk().getNamabidangkerja());
+        txtNamaJabatan.setText(pj.getNamaJabatan());
+        txtMasaJabatan.setText(String.valueOf(pj.getMasaJabatan()));
+        //************************************************************************************//
+        PendidikanPegawai pendidikanPegawai = DaoFactory.getPendidikanPegawaiDao().getPendidikanPegawaiByNUK(Session.getNUK());
+        comboIjazahPengangkatan.setSelectedItem(pendidikanPegawai.getIjazahAngkat().getNamaIjazahPengangkatan());
+        try {
+            tglLulusSKPengangkatan.setDate(sdf.parse(pendidikanPegawai.getTglLulusSKPengangkatan())); //parser
+        } catch (ParseException ex) {
+            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        comboPendidikanAkhir.setSelectedItem(pendidikanPegawai.getPendidikanTerakhir().getNamapendidikanterakhir());
+        try {
+            tglLulusSKPendidikanAkhir.setDate(sdf.parse(pendidikanPegawai.getTglLulusSKPendidikanAkhir()));
+        } catch (ParseException ex) {
+            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //**********************************************************************************//
+        Gaji_pegawai gjp = DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(Session.getNUK());
+        txtGajiPokok.setText(String.valueOf(gjp.getGaji_pokok()));
+        txtTunjanganSuamiIstri.setText(String.valueOf(gjp.getTunjangan_suami_istri()));
+        txtTunjanganAnak.setText(String.valueOf(gjp.getTunjangan_anak()));
+        txtTunjanganLain.setText(String.valueOf(gjp.getTunjangan_lain()));
+        txtJumlahGaji.setText(String.valueOf(gjp.getTotal_gaji()));
+        txtTanggunganOrang.setText(String.valueOf(gjp.getTanggungan_orang()));
     }
 
     private void loadCombo() {
@@ -1292,6 +1386,109 @@ public class Insertpegawai extends javax.swing.JFrame {
                 Session.setPegawai(p);
             } else {
                 JOptionPane.showMessageDialog(null, "sudah ada");
+                Pegawai p = new Pegawai();
+                p.setNUK(NUK_teks.getText()); //1
+                String gelar, nama, gelarbelakang;
+                gelar = gelarTeks.getText();
+                nama = tengahTeks.getText();
+                String jumlahanakseluruh, jumlahanakgaji;
+                jumlahanakseluruh = txtAnakSeluruh.getText();
+                jumlahanakgaji = txtAnakGaji.getText();
+                String tempatlahir = txtTempatLahir.getText();
+                gelarbelakang = gelarbelakangTeks.getText();
+                p.setGelarDepan(gelar);//2
+                p.setNama(nama);//3
+                p.setGelarBelakang(gelarbelakang); //4
+                p.setAlias(aliasTeks.getText()); //5
+                if (lakiRadio.isSelected()) {
+                    p.setJK("Laki-laki"); //6
+                } else if (ceweRadio.isSelected()) {
+                    p.setJK("Perempuan"); //6
+                } else {
+                    p.setJK("Laki-laki"); //6
+                }
+                p.setAgama(comboAgama.getSelectedItem().toString()); //7
+                p.setTLahir(tempatlahir);//8
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String tanggal = df.format(tglLahirDate.getDate());
+                p.setTglLahir(tanggal); //9
+                p.setStatusPerkawinan(comboKawin.getSelectedItem().toString()); //10
+                p.setJumlahAnakSeluruh(Integer.parseInt(jumlahanakseluruh)); //11
+                p.setJumlahAnakGaji(Integer.parseInt(jumlahanakgaji)); //12
+                p.setStatusPegawai(ComboSttPeg.getSelectedItem().toString()); //13
+                p.setTeksFilename(fotoTeks.getText());
+                System.out.println("Cek Data hasilnya apa : " + p.getStatusPegawai());
+                //ini end dari data umum /tab umum//
+                //*********************************************************************//
+                //ini start data pangkat golonga /tab pangkat golongan//
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Golongan golongan = DaoFactory.getGolonganDao().getGolonganByNamaGolongan(comboGolonganPangkat.getSelectedItem().toString());
+                String Tmt_golongan = sdf.format(tmtGolonganDate.getDate());
+                String Nomor_sk = txtNomorSK.getText();
+                String Tgl_nomor_sk = sdf.format(nomorSKDate.getDate());
+                String Tgl_tmt_kgb = sdf.format(tmtKGBDate.getDate());
+                String Nomor_kgb = txtNomorKGB.getText();
+                String Tgl_nomor_kgb = sdf.format(nomorKGBDate.getDate());
+                int Tahun_kerja = Integer.parseInt(txtTahunKerja.getText());
+                int Bulan_kerja = Integer.parseInt(txtBulanKerja.getText());
+                int Tahun_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
+                int Bulan_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
+                Pangkat pangkat = new Pangkat();
+                pangkat.setPegawai(p);
+                pangkat.setGolongan(golongan);
+                pangkat.setTMTGolongan(Tmt_golongan);// tanggal tmt golongan
+                pangkat.setNomor_sk(Nomor_sk);
+                pangkat.setTanggal_sk(Tgl_nomor_sk);
+                pangkat.setTmt_kgb(Tgl_tmt_kgb);
+                pangkat.setNomor_kgb(Nomor_kgb);
+                pangkat.setTanggal_kgb(Tgl_nomor_kgb);
+                pangkat.setTahun_masa_kerja(Tahun_kerja);
+                pangkat.setBulan_masa_kerja(Bulan_kerja);
+                pangkat.setTahun_masa_kerja_sebenarnya(Tahun_kerja_benar);
+                pangkat.setBulan_masa_kerja_sebenarnya(Bulan_kerja_benar);
+                //ini end dari pangkat golongan /tab pangkat golongan//
+                //*********************************************************************//
+                //ini start data Pekerjaan Jabatan /tab Pekerjaan Jabatan//
+                PekerjaanJabatan pkj = new PekerjaanJabatan();
+                pkj.setPegawai(p);
+                pkj.setBk(DaoFactory.getBidangKerjaDao().getBidangKerjaByNamaBidangKerja(comboBidangKerja.getSelectedItem().toString()));
+                pkj.setTglTMTPekerjaan(sdf.format(tmtPekerjaan.getDate()));
+                pkj.setNomorSKPekerjaan(txtNomorSKJabatan.getText());
+                pkj.setTglSKPekerjaan(sdf.format(tglSKJabatan.getDate()));
+                pkj.setCabang(DaoFactory.getCabangDao().getCabangByNamaCabang(comboWIlayahTugas.getSelectedItem().toString()));
+                pkj.setUnit(DaoFactory.getUnitDao().getUnitByNama(comboUnitKerja.getSelectedItem().toString()));
+                pkj.setJabatan(DaoFactory.getJabatanDao().getJabatanByNama(comboNamaJabatan.getSelectedItem().toString()));
+                pkj.setNamaJabatan(txtNamaJabatan.getText());
+                pkj.setMasaJabatan(Integer.parseInt(txtMasaJabatan.getText()));
+                //ini end dari Pekerjaan Jabatan /tab Pekerjaan Jabatan//
+                //*********************************************************************//
+                //ini start data Pendidikan pegawai//
+                PendidikanPegawai pendidikanPegawai = new PendidikanPegawai();
+                pendidikanPegawai.setPegawai(p);
+                pendidikanPegawai.setIjazahAngkat(DaoFactory.getIjazahAngkatDao().getIjazahAngkatByNama(comboIjazahPengangkatan.getSelectedItem().toString()));
+                pendidikanPegawai.setTglLulusSKPengangkatan(sdf.format(tglLulusSKPengangkatan.getDate()));
+                pendidikanPegawai.setPendidikanTerakhir(DaoFactory.getPendidikanTerakhirDao().getPendidikanByNama(comboPendidikanAkhir.getSelectedItem().toString()));
+                pendidikanPegawai.setTglLulusSKPendidikanAkhir(sdf.format(tglLulusSKPendidikanAkhir.getDate()));
+                //ini end dari Pendidikan Pegawa//
+                //*********************************************************************//
+                //ini start data Gaji Pegawai//
+                Gaji_pegawai gaji_pegawai = new Gaji_pegawai();
+                gaji_pegawai.setPegawai(p);
+                gaji_pegawai.setGaji_pokok(Double.parseDouble(txtGajiPokok.getText()));
+                gaji_pegawai.setTunjangan_suami_istri(Double.parseDouble(txtTunjanganSuamiIstri.getText()));
+                gaji_pegawai.setTunjangan_anak(Double.parseDouble(txtTunjanganAnak.getText()));
+                gaji_pegawai.setTunjangan_lain(Double.parseDouble(txtTunjanganLain.getText()));
+                gaji_pegawai.setTotal_gaji(Double.parseDouble(txtJumlahGaji.getText()));
+                gaji_pegawai.setTanggungan_orang(Integer.parseInt(txtTanggunganOrang.getText()));
+                //ini end dari Gaji Pegawai//
+                //*********************************************************************//
+
+                DaoFactory.getPegawaiDao().InsertPegawai(p);
+                DaoFactory.getPangkatDao().InsertPangkatPegawai(pangkat);
+                DaoFactory.getPekerjaanJabatanDao().InsertPekerjaanJabatan(pkj);
+                DaoFactory.getPendidikanPegawaiDao().InsertPendidikanPegawai(pendidikanPegawai);
+                DaoFactory.getGaji_pegawai_dao().InsertGajiPegawai(gaji_pegawai);
+                Session.setPegawai(p);
             }
         }
     }//GEN-LAST:event_ButtonSaveActionPerformed

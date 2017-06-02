@@ -5,6 +5,7 @@
  */
 package com.init.gaji;
 
+import com.init.tools.DaoFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ public class Gaji_pegawai_dao_implemen implements Gaji_pegawai_dao {
     private final Connection connection;
     private final String sqlInsertGajiPegawai = "INSERT INTO gajipegawai(nuk,gaji_pokok,tunjangan_suami_istri,tunjangan_anak,tunjangan_lain,total_gaji,tanggungan_orang) VALUES (?,?,?,?,?,?,?)";
     private final String sqlUpdateGajiPegawai = "update gajipegawai set gaji_pokok=?,tunjangan_suami_istri=?,tunjangan_anak=?,tunjangan_lain=?,total_gaji=?,tanggungan_orang=? where nuk=?";
+    private final String sqlGetGajiPegawaiByNUK = "select * from gajipegawai where nuk=?";
 
     public Gaji_pegawai_dao_implemen(Connection connection) {
         this.connection = connection;
@@ -84,6 +86,31 @@ public class Gaji_pegawai_dao_implemen implements Gaji_pegawai_dao {
             Logger.getLogger(Gaji_pegawai_dao_implemen.class.getName()).log(Level.SEVERE, null, ex);
         }
         return status;
+    }
+
+    @Override
+    public Gaji_pegawai getGajiPegawaiByNUK(String nuk) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Gaji_pegawai g = null;
+        try {
+            ps = connection.prepareStatement(sqlGetGajiPegawaiByNUK);
+            ps.setString(1, nuk);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                g = new Gaji_pegawai();
+                g.setPegawai(DaoFactory.getPegawaiDao().getPegawaiByNUK(nuk));
+                g.setGaji_pokok(rs.getDouble("gaji_pokok"));
+                g.setTunjangan_suami_istri(rs.getDouble("tunjangan_suami_istri"));
+                g.setTunjangan_anak(rs.getDouble("tunjangan_anak"));
+                g.setTunjangan_lain(rs.getDouble("tunjangan_lain"));
+                g.setTotal_gaji(rs.getDouble("total_gaji"));
+                g.setTanggungan_orang(rs.getInt("tanggungan_orang"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Gaji_pegawai_dao_implemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return g;
     }
 
 }

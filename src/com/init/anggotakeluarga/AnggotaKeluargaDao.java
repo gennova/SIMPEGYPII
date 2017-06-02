@@ -15,11 +15,13 @@ public interface AnggotaKeluargaDao {
 
     public List<AnggotaKeluarga> getAllAnggotakeluarga();
 
-    public List<AnggotaKeluarga> getAllAnggotaKeluargaByNUK();
+    public List<AnggotaKeluarga> getAllAnggotaKeluargaByNUK(String nuk);
 
     public AnggotaKeluarga getAnggotaKeluargaByNUK(String nuk);
 
     public void InsertAnggotaKeluarga(AnggotaKeluarga anggotaKeluarga);
 
     public boolean cekNuks(String nuks, String nama, String count, String tanggal);
+
+    public boolean cekNuks_ada_atau_gak(String nuks);
 }
