@@ -301,7 +301,8 @@ public class PangkatDaoImplemen implements PangkatDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            ps = connection.prepareStatement("select nuk from pangkatpegawai");
+            ps = connection.prepareStatement("select nuk from pangkatpegawai where nuk=?");
+            ps.setString(1, nuk);
             rs = ps.executeQuery();
             if (rs.next()) {
                 status = true;

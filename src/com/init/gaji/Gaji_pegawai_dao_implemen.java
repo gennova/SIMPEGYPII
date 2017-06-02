@@ -49,7 +49,7 @@ public class Gaji_pegawai_dao_implemen implements Gaji_pegawai_dao {
             }
         } else if (statusgaji == true) {
             try {
-                ps = connection.prepareStatement(sqlUpdateGajiPegawai);                
+                ps = connection.prepareStatement(sqlUpdateGajiPegawai);
                 ps.setDouble(1, gaji_pegawai.getGaji_pokok());
                 ps.setDouble(2, gaji_pegawai.getTunjangan_suami_istri());
                 ps.setDouble(3, gaji_pegawai.getTunjangan_anak());
@@ -74,7 +74,7 @@ public class Gaji_pegawai_dao_implemen implements Gaji_pegawai_dao {
         ResultSet rs = null;
         boolean status = false;
         try {
-            ps = connection.prepareStatement("select nuk from pekerjaanjabatan");
+            ps = connection.prepareStatement("select nuk from gajipegawai where nuk=?");
             ps.setString(1, nuk);
             rs = ps.executeQuery();
             if (rs.next()) {
