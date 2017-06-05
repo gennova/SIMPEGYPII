@@ -5,6 +5,7 @@
  */
 package simpeg;
 
+import com.init.tools.PrintReport;
 
 /**
  *
@@ -17,8 +18,6 @@ public class SIMPEG {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Test");
-        
+        new PrintReport("./report/surat_pengangkatan.jasper", "nuknya", "2000");
     }
-    
 }

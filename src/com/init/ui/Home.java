@@ -5,6 +5,7 @@
  */
 package com.init.ui;
 
+import com.init.tools.PrintReport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -271,6 +272,11 @@ public class Home extends javax.swing.JFrame {
         jMenu8.setText("Surat Keputusan");
 
         jMenuItem13.setText("Pengangkatan Pegawai");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem13);
 
         jMenuItem14.setText("Pengangkatan Jabatan");
@@ -462,6 +468,12 @@ public class Home extends javax.swing.JFrame {
         IjazahAngkatUI iaui = new IjazahAngkatUI();
         iaui.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        CetakSKPegawai cskp = new CetakSKPegawai();
+        cskp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     /**
      * @param args the command line arguments

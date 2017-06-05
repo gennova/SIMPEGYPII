@@ -974,6 +974,15 @@ public class Pegawaiform extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
+
+        Session.setPegawai(null);
+        Session.setNUK("");
+        txtNUKUtama.setText("");
+        txtNamaUtama.setText("");
+        txtWilayahUtama.setText("");
+        txtBidangKerjaUtama.setText("");
+        txtGolonganUtama.setText("");
+        txtUnitKerjaUtama.setText("");
         showtabelpegawai();
     }//GEN-LAST:event_jButton13ActionPerformed
 

@@ -14,7 +14,6 @@ import com.init.golonganpangkat.Pangkat;
 import com.init.ijazah.IjazahAngkat;
 import com.init.jabatan.Jabatan;
 import com.init.pegawai.Pegawai;
-import com.init.pegawai.PegawaiTabelModelSimple;
 import com.init.pendidikan_pegawai.PendidikanPegawai;
 import com.init.pendidikanterakhir.PendidikanTerakhir;
 import com.init.tools.DaoFactory;
@@ -47,6 +46,35 @@ public class Insertpegawai extends javax.swing.JFrame {
         initApp();
     }
 
+    private void resetField() {
+        NUK_teks.setText("");
+        gelarTeks.setText("");
+        tengahTeks.setText("");
+        gelarbelakangTeks.setText("");
+        aliasTeks.setText("");
+        txtTempatLahir.setText("");
+        txtAnakSeluruh.setText("0");
+        txtAnakGaji.setText("0");
+        fotoTeks.setText("");
+        txtNomorSK.setText("");
+        txtNomorKGB.setText("");
+        txtTahunKerja.setText("0");
+        txtBulanKerja.setText("");
+        txtTahunKerjaBenar.setText("");
+        txtBulanKerjaBenar.setText("");
+        txtNomorSKJabatan.setText("");
+        txtNamaJabatan.setText("");
+        txtMasaJabatan.setText("0");
+        txtGajiPokok.setText("0");
+        txtTunjanganSuamiIstri.setText("0");
+        txtTunjanganAnak.setText("0");
+        txtTunjanganLain.setText("0");
+        txtJumlahGaji.setText("0");
+        txtTanggunganOrang.setText("");
+        loadCombo();
+        initUpdateApp();
+    }
+
     private void initApp() {
         if (Session.getNUK() != null) {
             initUpdateApp();
@@ -66,102 +94,105 @@ public class Insertpegawai extends javax.swing.JFrame {
     }
 
     private void initUpdateApp() {
-        loadCombo();
-        Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        NUK_teks.setText(pegawai.getNUK());
-        gelarTeks.setText(pegawai.getGelarDepan());
-        tengahTeks.setText(pegawai.getNama());
-        gelarbelakangTeks.setText(pegawai.getGelarBelakang());
-        aliasTeks.setText(pegawai.getAlias());
-        String jenis_kelamin = pegawai.getJK();
-        if (jenis_kelamin.equalsIgnoreCase("laki-laki")) {
-            lakiRadio.setSelected(true);
-        } else {
-            ceweRadio.setSelected(true);
+        if (Session.getNUK() != "") {
+
+            loadCombo();
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            NUK_teks.setText(pegawai.getNUK());
+            gelarTeks.setText(pegawai.getGelarDepan());
+            tengahTeks.setText(pegawai.getNama());
+            gelarbelakangTeks.setText(pegawai.getGelarBelakang());
+            aliasTeks.setText(pegawai.getAlias());
+            String jenis_kelamin = pegawai.getJK();
+            if (jenis_kelamin.equalsIgnoreCase("laki-laki")) {
+                lakiRadio.setSelected(true);
+            } else {
+                ceweRadio.setSelected(true);
+            }
+            comboAgama.setSelectedItem(pegawai.getAgama());
+            txtTempatLahir.setText(pegawai.getTLahir());
+            try {
+                tglLahirDate.setDate(sdf.parse(pegawai.getTglLahir())); //parse
+            } catch (ParseException ex) {
+                Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            comboKawin.setSelectedItem(pegawai.getStatusPerkawinan());
+            txtAnakSeluruh.setText(String.valueOf(pegawai.getJumlahAnakSeluruh()));
+            txtAnakGaji.setText(String.valueOf(pegawai.getJumlahAnakGaji()));
+            ComboSttPeg.setSelectedItem(pegawai.getStatusPegawai());
+            fotoTeks.setText(pegawai.getTeksFilename());
+            //********************************************************************************//
+            Pangkat pangkat = DaoFactory.getPangkatDao().getPangkatByNUK(Session.getNUK());
+            comboGolonganPangkat.setSelectedItem(pangkat.getGolongan().getNamagolongan());
+            try {
+                tmtGolonganDate.setDate(sdf.parse(pangkat.getTMTGolongan())); //parse
+            } catch (ParseException ex) {
+                Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            txtNomorSK.setText(pangkat.getNomor_sk()); //parse
+            try {
+                nomorSKDate.setDate(sdf.parse(pangkat.getTanggal_sk())); //parse
+            } catch (ParseException ex) {
+                Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                tmtKGBDate.setDate(sdf.parse(pangkat.getTmt_kgb())); //parse
+            } catch (ParseException ex) {
+                Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            txtNomorKGB.setText(pangkat.getNomor_kgb());
+            try {
+                nomorKGBDate.setDate(sdf.parse(pangkat.getTanggal_kgb())); //parse
+            } catch (ParseException ex) {
+                Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            txtTahunKerja.setText(String.valueOf(pangkat.getTahun_masa_kerja()));
+            txtBulanKerja.setText(String.valueOf(pangkat.getBulan_masa_kerja()));
+            txtTahunKerjaBenar.setText(String.valueOf(pangkat.getTahun_masa_kerja_sebenarnya()));
+            txtBulanKerjaBenar.setText(String.valueOf(pangkat.getBulan_masa_kerja_sebenarnya()));
+            //*************************************************************************************//
+            PekerjaanJabatan pj = DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(Session.getNUK());
+            comboBidangKerja.setSelectedItem(pj.getBk().getNamabidangkerja());
+            try {
+                tmtPekerjaan.setDate(sdf.parse(pj.getTglTMTPekerjaan())); //parse
+            } catch (ParseException ex) {
+                Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            txtNomorSKJabatan.setText(pj.getNomorSKPekerjaan());
+            try {
+                tglSKJabatan.setDate(sdf.parse(pj.getTglSKPekerjaan())); //parse
+            } catch (ParseException ex) {
+                Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            comboWIlayahTugas.setSelectedItem(pj.getCabang().getNamacabang());
+            comboUnitKerja.setSelectedItem(pj.getUnit().getNamaUnit());
+            comboNamaJabatan.setSelectedItem(pj.getBk().getNamabidangkerja());
+            txtNamaJabatan.setText(pj.getNamaJabatan());
+            txtMasaJabatan.setText(String.valueOf(pj.getMasaJabatan()));
+            //************************************************************************************//
+            PendidikanPegawai pendidikanPegawai = DaoFactory.getPendidikanPegawaiDao().getPendidikanPegawaiByNUK(Session.getNUK());
+            comboIjazahPengangkatan.setSelectedItem(pendidikanPegawai.getIjazahAngkat().getNamaIjazahPengangkatan());
+            try {
+                tglLulusSKPengangkatan.setDate(sdf.parse(pendidikanPegawai.getTglLulusSKPengangkatan())); //parser
+            } catch (ParseException ex) {
+                Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            comboPendidikanAkhir.setSelectedItem(pendidikanPegawai.getPendidikanTerakhir().getNamapendidikanterakhir());
+            try {
+                tglLulusSKPendidikanAkhir.setDate(sdf.parse(pendidikanPegawai.getTglLulusSKPendidikanAkhir()));
+            } catch (ParseException ex) {
+                Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //**********************************************************************************//
+            Gaji_pegawai gjp = DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(Session.getNUK());
+            txtGajiPokok.setText(String.valueOf(gjp.getGaji_pokok()));
+            txtTunjanganSuamiIstri.setText(String.valueOf(gjp.getTunjangan_suami_istri()));
+            txtTunjanganAnak.setText(String.valueOf(gjp.getTunjangan_anak()));
+            txtTunjanganLain.setText(String.valueOf(gjp.getTunjangan_lain()));
+            txtJumlahGaji.setText(String.valueOf(gjp.getTotal_gaji()));
+            txtTanggunganOrang.setText(String.valueOf(gjp.getTanggungan_orang()));
         }
-        comboAgama.setSelectedItem(pegawai.getAgama());
-        txtTempatLahir.setText(pegawai.getTLahir());
-        try {
-            tglLahirDate.setDate(sdf.parse(pegawai.getTglLahir())); //parse
-        } catch (ParseException ex) {
-            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        comboKawin.setSelectedItem(pegawai.getStatusPerkawinan());
-        txtAnakSeluruh.setText(String.valueOf(pegawai.getJumlahAnakSeluruh()));
-        txtAnakGaji.setText(String.valueOf(pegawai.getJumlahAnakGaji()));
-        ComboSttPeg.setSelectedItem(pegawai.getStatusPegawai());
-        fotoTeks.setText(pegawai.getTeksFilename());
-        //********************************************************************************//
-        Pangkat pangkat = DaoFactory.getPangkatDao().getPangkatByNUK(Session.getNUK());
-        comboGolonganPangkat.setSelectedItem(pangkat.getGolongan().getNamagolongan());
-        try {
-            tmtGolonganDate.setDate(sdf.parse(pangkat.getTMTGolongan())); //parse
-        } catch (ParseException ex) {
-            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        txtNomorSK.setText(pangkat.getNomor_sk()); //parse
-        try {
-            nomorSKDate.setDate(sdf.parse(pangkat.getTanggal_sk())); //parse
-        } catch (ParseException ex) {
-            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            tmtKGBDate.setDate(sdf.parse(pangkat.getTmt_kgb())); //parse
-        } catch (ParseException ex) {
-            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        txtNomorKGB.setText(pangkat.getNomor_kgb());
-        try {
-            nomorKGBDate.setDate(sdf.parse(pangkat.getTanggal_kgb())); //parse
-        } catch (ParseException ex) {
-            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        txtTahunKerja.setText(String.valueOf(pangkat.getTahun_masa_kerja()));
-        txtBulanKerja.setText(String.valueOf(pangkat.getBulan_masa_kerja()));
-        txtTahunKerjaBenar.setText(String.valueOf(pangkat.getTahun_masa_kerja_sebenarnya()));
-        txtBulanKerjaBenar.setText(String.valueOf(pangkat.getBulan_masa_kerja_sebenarnya()));
-        //*************************************************************************************//
-        PekerjaanJabatan pj = DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(Session.getNUK());
-        comboBidangKerja.setSelectedItem(pj.getBk().getNamabidangkerja());
-        try {
-            tmtPekerjaan.setDate(sdf.parse(pj.getTglTMTPekerjaan())); //parse
-        } catch (ParseException ex) {
-            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        txtNomorSKJabatan.setText(pj.getNomorSKPekerjaan());
-        try {
-            tglSKJabatan.setDate(sdf.parse(pj.getTglSKPekerjaan())); //parse
-        } catch (ParseException ex) {
-            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        comboWIlayahTugas.setSelectedItem(pj.getCabang().getNamacabang());
-        comboUnitKerja.setSelectedItem(pj.getUnit().getNamaUnit());
-        comboNamaJabatan.setSelectedItem(pj.getBk().getNamabidangkerja());
-        txtNamaJabatan.setText(pj.getNamaJabatan());
-        txtMasaJabatan.setText(String.valueOf(pj.getMasaJabatan()));
-        //************************************************************************************//
-        PendidikanPegawai pendidikanPegawai = DaoFactory.getPendidikanPegawaiDao().getPendidikanPegawaiByNUK(Session.getNUK());
-        comboIjazahPengangkatan.setSelectedItem(pendidikanPegawai.getIjazahAngkat().getNamaIjazahPengangkatan());
-        try {
-            tglLulusSKPengangkatan.setDate(sdf.parse(pendidikanPegawai.getTglLulusSKPengangkatan())); //parser
-        } catch (ParseException ex) {
-            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        comboPendidikanAkhir.setSelectedItem(pendidikanPegawai.getPendidikanTerakhir().getNamapendidikanterakhir());
-        try {
-            tglLulusSKPendidikanAkhir.setDate(sdf.parse(pendidikanPegawai.getTglLulusSKPendidikanAkhir()));
-        } catch (ParseException ex) {
-            Logger.getLogger(Insertpegawai.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //**********************************************************************************//
-        Gaji_pegawai gjp = DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(Session.getNUK());
-        txtGajiPokok.setText(String.valueOf(gjp.getGaji_pokok()));
-        txtTunjanganSuamiIstri.setText(String.valueOf(gjp.getTunjangan_suami_istri()));
-        txtTunjanganAnak.setText(String.valueOf(gjp.getTunjangan_anak()));
-        txtTunjanganLain.setText(String.valueOf(gjp.getTunjangan_lain()));
-        txtJumlahGaji.setText(String.valueOf(gjp.getTotal_gaji()));
-        txtTanggunganOrang.setText(String.valueOf(gjp.getTanggungan_orang()));
     }
 
     private void loadCombo() {
@@ -1152,6 +1183,11 @@ public class Insertpegawai extends javax.swing.JFrame {
         ButtonCancel.setText("CANCEL");
 
         jButton6.setText("CLEAR");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1592,6 +1628,13 @@ public class Insertpegawai extends javax.swing.JFrame {
         double total = pokok + suamiistri + t_anak + t_lain;
         txtJumlahGaji.setText(String.valueOf(total));
     }//GEN-LAST:event_txtTunjanganLainFocusLost
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        Session.setPegawai(null);
+        Session.setNUK("");
+        resetField();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
