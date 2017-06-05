@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/anggotakeluarga/AnggotaKeluargaDaoImplemen.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/pegawai/PegawaiDao.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/anggotakeluarga/AnggotaKeluargaDao.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/ui/Insertpegawai.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/ui/Pegawaiform.java</file>
-            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/ui/DataKeluarga.java</file>
+            <file>file:/home/amnesia/NetBeansProjects/SIMPEG/src/com/init/golonganpangkat/PangkatDaoImplemen.java</file>
         </group>
     </open-files>
 </project-private>

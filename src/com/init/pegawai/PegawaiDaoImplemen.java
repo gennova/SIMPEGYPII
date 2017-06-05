@@ -23,8 +23,8 @@ import javax.swing.JOptionPane;
 public class PegawaiDaoImplemen implements PegawaiDao {
 
     private final Connection connection;
-    private final String sqlInsertPegawai = "call spInsertPegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    private final String sqlUpdatePegawai = "call spUpdatePegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlInsertPegawai = "call spInsertPegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlUpdatePegawai = "call spUpdatePegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String sqlGetPegawaiByNUK = "select * from pegawai where nuk=?";
     private final String sqlInsertRumahPegawai = "insert into alamatrumahpegawai (nuk,alamat,telpon,hp) values (?,?,?,?)";
     private final String sqlUpdateRumahPegawai = "update alamatrumahpegawai set alamat=?,telpon=?,hp=? where nuk=?";
@@ -66,6 +66,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 ps.setInt(12, pegawai.getJumlahAnakGaji());
                 ps.setString(13, pegawai.getStatusPegawai());
                 ps.setString(14, pegawai.getTeksFilename());
+                ps.setString(15, pegawai.getTanggalLahirIndo());
                 ps.executeUpdate();
                 //JOptionPane.showMessageDialog(null, "Data Pegawai Berhasil Diupdate Karna Sudah ada");
                 System.out.println("Data berhasil diupdate karena sudah ada");
@@ -90,6 +91,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 ps.setInt(12, pegawai.getJumlahAnakGaji());
                 ps.setString(13, pegawai.getStatusPegawai());
                 ps.setString(14, pegawai.getTeksFilename());
+                ps.setString(15, pegawai.getTanggalLahirIndo());
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Data Pegawai Berhasil Ditambahkan");
             } catch (SQLException ex) {
@@ -124,6 +126,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setJumlahAnakGaji(rs.getInt("jumlahanakgaji"));
                 p.setStatusPegawai(rs.getString("statuspegawai"));
                 p.setTeksFilename(rs.getString("filephoto"));
+                p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);

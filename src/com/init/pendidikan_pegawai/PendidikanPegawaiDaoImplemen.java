@@ -22,8 +22,8 @@ public class PendidikanPegawaiDaoImplemen implements PendidikanPegawaiDao {
 
     private final Connection connection;
     private final String sqlGetPendidikanByNUK = "select * from pendidikanpegawai where nuk=?";
-    private final String sqlInsertPendidikanPegawai = "INSERT INTO pendidikanpegawai(id_pegawai,nuk,id_ijazah_angkat,tgl_ijazah_sk_angkat,id_pendidikan_akhir,tgl_lulus_sk_pendidikan_akhir) VALUES (?,?,?,?,?,?)";
-    private final String sqlUpdatePendidikanPegawai = "update pendidikanpegawai set id_ijazah_angkat=?,tgl_ijazah_sk_angkat=?,id_pendidikan_akhir=?,tgl_lulus_sk_pendidikan_akhir=? where nuk=?";
+    private final String sqlInsertPendidikanPegawai = "INSERT INTO pendidikanpegawai(id_pegawai,nuk,id_ijazah_angkat,tgl_ijazah_sk_angkat,id_pendidikan_akhir,tgl_lulus_sk_pendidikan_akhir,tgl_ijazah_sk_angkat_indo,tgl_lulus_sk_pendidikan_akhir_indo) VALUES (?,?,?,?,?,?,?,?)";
+    private final String sqlUpdatePendidikanPegawai = "update pendidikanpegawai set id_ijazah_angkat=?,tgl_ijazah_sk_angkat=?,id_pendidikan_akhir=?,tgl_lulus_sk_pendidikan_akhir=?,tgl_ijazah_sk_angkat_indo=?,tgl_lulus_sk_pendidikan_akhir_indo=? where nuk=?";
 
     public PendidikanPegawaiDaoImplemen(Connection conn) {
         this.connection = conn;
@@ -51,6 +51,8 @@ public class PendidikanPegawaiDaoImplemen implements PendidikanPegawaiDao {
                 pegawai.setPendidikanTerakhir(DaoFactory.getPendidikanTerakhirDao().getPendidikanByID(rs.getInt("id_pendidikan_akhir")));
                 pegawai.setTglLulusSKPengangkatan(rs.getString("tgl_ijazah_sk_angkat"));
                 pegawai.setTglLulusSKPendidikanAkhir(rs.getString("tgl_lulus_sk_pendidikan_akhir"));
+                pegawai.setTglLulusSKPengangkatan_indo(rs.getString("tgl_ijazah_sk_angkat_indo"));
+                pegawai.setTglLulusSKPendidikanAkhir_indo(rs.getString("tgl_lulus_sk_pendidikan_akhir_indo"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PendidikanPegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,6 +73,8 @@ public class PendidikanPegawaiDaoImplemen implements PendidikanPegawaiDao {
                 ps.setString(4, ppeg.getTglLulusSKPengangkatan());
                 ps.setInt(5, ppeg.getPendidikanTerakhir().getId());
                 ps.setString(6, ppeg.getTglLulusSKPendidikanAkhir());
+                ps.setString(7, ppeg.getTglLulusSKPengangkatan_indo());
+                ps.setString(8, ppeg.getTglLulusSKPendidikanAkhir_indo());
                 int status = ps.executeUpdate();
                 if (status == 1) {
                     System.out.println("Input data pendidikan pegawai sukses");
@@ -85,7 +89,9 @@ public class PendidikanPegawaiDaoImplemen implements PendidikanPegawaiDao {
                 ps.setString(2, ppeg.getTglLulusSKPengangkatan());
                 ps.setInt(3, ppeg.getPendidikanTerakhir().getId());
                 ps.setString(4, ppeg.getTglLulusSKPendidikanAkhir());
-                ps.setString(5, ppeg.getPegawai().getNUK());
+                ps.setString(5, ppeg.getTglLulusSKPengangkatan_indo());
+                ps.setString(6, ppeg.getTglLulusSKPendidikanAkhir_indo());
+                ps.setString(7, ppeg.getPegawai().getNUK());
                 int status = ps.executeUpdate();
                 if (status == 1) {
                     System.out.println("Update data pendidikan pegawai sukses karena data sudah ada");

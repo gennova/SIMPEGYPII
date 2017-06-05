@@ -21,8 +21,10 @@ public class PekerjaanJabatan {
     private Pegawai pegawai;
     private BidangKerja bk;
     private String tglTMTPekerjaan;
+    private String tglTMTPekerjaan_indo;
     private String nomorSKPekerjaan;
     private String tglSKPekerjaan;
+    private String tglSKPekerjaan_indo;
     private Cabang cabang;
     private Unit unit;
     private Jabatan jabatan;
@@ -115,6 +117,22 @@ public class PekerjaanJabatan {
 
     public void setMasaJabatan(int masaJabatan) {
         this.masaJabatan = masaJabatan;
+    }
+
+    public String getTglTMTPekerjaan_indo() {
+        return tglTMTPekerjaan_indo;
+    }
+
+    public void setTglTMTPekerjaan_indo(String tglTMTPekerjaan_indo) {
+        this.tglTMTPekerjaan_indo = tglTMTPekerjaan_indo;
+    }
+
+    public String getTglSKPekerjaan_indo() {
+        return tglSKPekerjaan_indo;
+    }
+
+    public void setTglSKPekerjaan_indo(String tglSKPekerjaan_indo) {
+        this.tglSKPekerjaan_indo = tglSKPekerjaan_indo;
     }
 
 }

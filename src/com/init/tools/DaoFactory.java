@@ -267,4 +267,40 @@ public class DaoFactory {
         }
         return connection;
     }
+
+    public static String FormatTanggalIndonesia(String formatsql) {
+        String tanggal = formatsql;
+        String removestrip = tanggal.replace("-", "");
+        String tahun = removestrip.substring(0, 4);
+        String bulan = removestrip.substring(4, 6);
+        String bulanindo = "";
+        String hari = removestrip.substring(6, 8);
+        if (bulan.equalsIgnoreCase("01")) {
+            bulanindo = "Januari";
+        } else if (bulan.equalsIgnoreCase("02")) {
+            bulanindo = "Februari";
+        } else if (bulan.equalsIgnoreCase("03")) {
+            bulanindo = "Maret";
+        } else if (bulan.equalsIgnoreCase("04")) {
+            bulanindo = "April";
+        } else if (bulan.equalsIgnoreCase("05")) {
+            bulanindo = "Mei";
+        } else if (bulan.equalsIgnoreCase("06")) {
+            bulanindo = "Juni";
+        } else if (bulan.equalsIgnoreCase("07")) {
+            bulanindo = "Juli";
+        } else if (bulan.equalsIgnoreCase("08")) {
+            bulanindo = "Agustus";
+        } else if (bulan.equalsIgnoreCase("09")) {
+            bulanindo = "September";
+        } else if (bulan.equalsIgnoreCase("10")) {
+            bulanindo = "Oktober";
+        } else if (bulan.equalsIgnoreCase("11")) {
+            bulanindo = "November";
+        } else if (bulan.equalsIgnoreCase("12")) {
+            bulanindo = "Desember";
+        }
+        String formatindofix = hari + " " + bulanindo + " " + tahun;
+        return formatindofix;
+    }
 }

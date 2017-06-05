@@ -28,8 +28,8 @@ public class PangkatDaoImplemen implements PangkatDao {
     private final String sqlGetAllPangkatPegawaiByID = "select * from pangkatpegawai where id=?";
     private final String sqlGetAllPangkatPegawaiByIDGolongan = "select * from pangkatpegawai where idgolongan=?";
     private final String sqlGetAllPangkatPegawaiByNamaGolongan = "select * from pangkatpegawai join golongan on pangkatpegawai.idgolongan=golongan.id where where pangkatpegawai.idgolongan=?";
-    private final String sqlInsertPangkatPegawai = "insert into pangkatpegawai (nuk,idgolongan,tmt_golongan,nomor_sk,tanggal_sk,tmt_kgb,nomor_kgb,tanggal_kgb,tahunkerja,bulankerja,tahunkerjabenar,bulankerjabenar) values (?,?,?,?,?,?,?,?,?,?,?,?)";
-    private final String sqlUpdatePangkatPegawai = "update pangkatpegawai set idgolongan=?,tmt_golongan=?,nomor_sk=?,tanggal_sk=?,tmt_kgb=?,nomor_kgb=?,tanggal_kgb=?,tahunkerja=?,bulankerja=?,tahunkerjabenar=?,bulankerjabenar=? where nuk=?";
+    private final String sqlInsertPangkatPegawai = "insert into pangkatpegawai (nuk,idgolongan,tmt_golongan,nomor_sk,tanggal_sk,tmt_kgb,nomor_kgb,tanggal_kgb,tahunkerja,bulankerja,tahunkerjabenar,bulankerjabenar,tmt_golongan_indo,tanggal_sk_indo,tmt_kgb_indo,tanggal_kgb_indo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlUpdatePangkatPegawai = "update pangkatpegawai set idgolongan=?,tmt_golongan=?,nomor_sk=?,tanggal_sk=?,tmt_kgb=?,nomor_kgb=?,tanggal_kgb=?,tahunkerja=?,bulankerja=?,tahunkerjabenar=?,bulankerjabenar=? ,tmt_golongan_indo=?,tanggal_sk_indo=?,tmt_kgb_indo=?,tanggal_kgb_indo=? where nuk=?";
 
     public PangkatDaoImplemen(Connection conn) {
         this.connection = conn;
@@ -59,6 +59,10 @@ public class PangkatDaoImplemen implements PangkatDao {
                 pangkat.setBulan_masa_kerja(rs.getInt("bulankerja"));
                 pangkat.setTahun_masa_kerja_sebenarnya(rs.getInt("tahunkerjabenar"));
                 pangkat.setBulan_masa_kerja_sebenarnya(rs.getInt("bulankerjabenar"));
+                pangkat.setTMTGolongan_indo(rs.getString("tmt_golongan_indo"));
+                pangkat.setTanggal_sk_indo(rs.getString("tanggal_sk_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tmt_kgb_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tanggal_kgb_indo"));
                 list.add(pangkat);
 
             }
@@ -91,7 +95,10 @@ public class PangkatDaoImplemen implements PangkatDao {
                 pangkat.setBulan_masa_kerja(rs.getInt("bulankerja"));
                 pangkat.setTahun_masa_kerja_sebenarnya(rs.getInt("tahunkerjabenar"));
                 pangkat.setBulan_masa_kerja_sebenarnya(rs.getInt("bulankerjabenar"));
-
+                pangkat.setTMTGolongan_indo(rs.getString("tmt_golongan_indo"));
+                pangkat.setTanggal_sk_indo(rs.getString("tanggal_sk_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tmt_kgb_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tanggal_kgb_indo"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PangkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
@@ -124,6 +131,10 @@ public class PangkatDaoImplemen implements PangkatDao {
                 pangkat.setBulan_masa_kerja(rs.getInt("bulankerja"));
                 pangkat.setTahun_masa_kerja_sebenarnya(rs.getInt("tahunkerjabenar"));
                 pangkat.setBulan_masa_kerja_sebenarnya(rs.getInt("bulankerjabenar"));
+                pangkat.setTMTGolongan_indo(rs.getString("tmt_golongan_indo"));
+                pangkat.setTanggal_sk_indo(rs.getString("tanggal_sk_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tmt_kgb_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tanggal_kgb_indo"));
                 list.add(pangkat);
             }
         } catch (SQLException ex) {
@@ -157,6 +168,10 @@ public class PangkatDaoImplemen implements PangkatDao {
                 pangkat.setBulan_masa_kerja(rs.getInt("bulankerja"));
                 pangkat.setTahun_masa_kerja_sebenarnya(rs.getInt("tahunkerjabenar"));
                 pangkat.setBulan_masa_kerja_sebenarnya(rs.getInt("bulankerjabenar"));
+                pangkat.setTMTGolongan_indo(rs.getString("tmt_golongan_indo"));
+                pangkat.setTanggal_sk_indo(rs.getString("tanggal_sk_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tmt_kgb_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tanggal_kgb_indo"));
                 list.add(pangkat);
 
             }
@@ -191,6 +206,10 @@ public class PangkatDaoImplemen implements PangkatDao {
                 pangkat.setBulan_masa_kerja(rs.getInt("bulankerja"));
                 pangkat.setTahun_masa_kerja_sebenarnya(rs.getInt("tahunkerjabenar"));
                 pangkat.setBulan_masa_kerja_sebenarnya(rs.getInt("bulankerjabenar"));
+                pangkat.setTMTGolongan_indo(rs.getString("tmt_golongan_indo"));
+                pangkat.setTanggal_sk_indo(rs.getString("tanggal_sk_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tmt_kgb_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tanggal_kgb_indo"));
                 list.add(pangkat);
 
             }
@@ -225,6 +244,10 @@ public class PangkatDaoImplemen implements PangkatDao {
                 pangkat.setBulan_masa_kerja(rs.getInt("bulankerja"));
                 pangkat.setTahun_masa_kerja_sebenarnya(rs.getInt("tahunkerjabenar"));
                 pangkat.setBulan_masa_kerja_sebenarnya(rs.getInt("bulankerjabenar"));
+                pangkat.setTMTGolongan_indo(rs.getString("tmt_golongan_indo"));
+                pangkat.setTanggal_sk_indo(rs.getString("tanggal_sk_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tmt_kgb_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tanggal_kgb_indo"));
                 list.add(pangkat);
             }
         } catch (SQLException ex) {
@@ -252,6 +275,10 @@ public class PangkatDaoImplemen implements PangkatDao {
                 ps.setInt(10, pangkat.getBulan_masa_kerja());
                 ps.setInt(11, pangkat.getTahun_masa_kerja_sebenarnya());
                 ps.setInt(12, pangkat.getBulan_masa_kerja_sebenarnya());
+                ps.setString(13, pangkat.getTMTGolongan_indo());
+                ps.setString(14, pangkat.getTanggal_sk_indo());
+                ps.setString(15, pangkat.getTmt_kgb_indo());
+                ps.setString(16, pangkat.getTanggal_kgb_indo());
                 int status = ps.executeUpdate();
                 if (status == 1) {
                     System.out.println("Data Pangkat pegawai berhasil Disimpan");
@@ -273,7 +300,11 @@ public class PangkatDaoImplemen implements PangkatDao {
                 ps.setInt(9, pangkat.getBulan_masa_kerja());
                 ps.setInt(10, pangkat.getTahun_masa_kerja_sebenarnya());
                 ps.setInt(11, pangkat.getBulan_masa_kerja_sebenarnya());
-                ps.setString(12, pangkat.getPegawai().getNUK());
+                ps.setString(12, pangkat.getTMTGolongan_indo());
+                ps.setString(13, pangkat.getTanggal_sk_indo());
+                ps.setString(14, pangkat.getTmt_kgb_indo());
+                ps.setString(15, pangkat.getTanggal_kgb_indo());
+                ps.setString(16, pangkat.getPegawai().getNUK());
                 int status = ps.executeUpdate();
                 if (status == 1) {
                     System.out.println("Data Pangkat pegawai berhasil diupdate karena ada nuk");

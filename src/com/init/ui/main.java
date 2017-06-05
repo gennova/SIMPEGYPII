@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author amnesia 
+ * @author amnesia
  */
 public class main {
 
@@ -19,9 +19,8 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        DaoFactory.getConnectionFix();
-        List<com.init.cabang.Cabang> lists = DaoFactory.getCabangDao().getAllCabang();
-        System.out.println(lists.size());
+        
+        System.out.println(DaoFactory.FormatTanggalIndonesia("2020-02-27"));
     }
-    
+
 }

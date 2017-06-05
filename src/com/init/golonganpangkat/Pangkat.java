@@ -17,12 +17,16 @@ public class Pangkat {
     private int id;
     private Pegawai pegawai;
     private Golongan golongan;
-    private String TMTGolongan;
+    private String TMTGolongan; // tanggal
+    private String TMTGolongan_indo; // tanggal
     private String nomor_sk;
-    private String tanggal_sk;
-    private String tmt_kgb;
+    private String tanggal_sk; //tanggal
+    private String tanggal_sk_indo; //tanggal
+    private String tmt_kgb; // tanggal
+    private String tmt_kgb_indo; //tanggal
     private String nomor_kgb;
-    private String tanggal_kgb;
+    private String tanggal_kgb; // tanggal
+    private String tanggal_kgb_indo; //tanggal
     private int tahun_masa_kerja;
     private int bulan_masa_kerja;
     private int tahun_masa_kerja_sebenarnya;
@@ -130,6 +134,38 @@ public class Pangkat {
 
     public void setBulan_masa_kerja_sebenarnya(int bulan_masa_kerja_sebenarnya) {
         this.bulan_masa_kerja_sebenarnya = bulan_masa_kerja_sebenarnya;
+    }
+
+    public String getTMTGolongan_indo() {
+        return TMTGolongan_indo;
+    }
+
+    public void setTMTGolongan_indo(String TMTGolongan_indo) {
+        this.TMTGolongan_indo = TMTGolongan_indo;
+    }
+
+    public String getTanggal_sk_indo() {
+        return tanggal_sk_indo;
+    }
+
+    public void setTanggal_sk_indo(String tanggal_sk_indo) {
+        this.tanggal_sk_indo = tanggal_sk_indo;
+    }
+
+    public String getTmt_kgb_indo() {
+        return tmt_kgb_indo;
+    }
+
+    public void setTmt_kgb_indo(String tmt_kgb_indo) {
+        this.tmt_kgb_indo = tmt_kgb_indo;
+    }
+
+    public String getTanggal_kgb_indo() {
+        return tanggal_kgb_indo;
+    }
+
+    public void setTanggal_kgb_indo(String tanggal_kgb_indo) {
+        this.tanggal_kgb_indo = tanggal_kgb_indo;
     }
 
 }

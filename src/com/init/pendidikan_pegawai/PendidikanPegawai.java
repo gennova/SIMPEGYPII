@@ -21,6 +21,8 @@ public class PendidikanPegawai {
     private String tglLulusSKPengangkatan;
     private PendidikanTerakhir pendidikanTerakhir;
     private String tglLulusSKPendidikanAkhir;
+    private String tglLulusSKPengangkatan_indo;
+    private String tglLulusSKPendidikanAkhir_indo;
 
     public int getId() {
         return id;
@@ -68,6 +70,22 @@ public class PendidikanPegawai {
 
     public void setTglLulusSKPendidikanAkhir(String tglLulusSKPendidikanAkhir) {
         this.tglLulusSKPendidikanAkhir = tglLulusSKPendidikanAkhir;
+    }
+
+    public String getTglLulusSKPengangkatan_indo() {
+        return tglLulusSKPengangkatan_indo;
+    }
+
+    public void setTglLulusSKPengangkatan_indo(String tglLulusSKPengangkatan_indo) {
+        this.tglLulusSKPengangkatan_indo = tglLulusSKPengangkatan_indo;
+    }
+
+    public String getTglLulusSKPendidikanAkhir_indo() {
+        return tglLulusSKPendidikanAkhir_indo;
+    }
+
+    public void setTglLulusSKPendidikanAkhir_indo(String tglLulusSKPendidikanAkhir_indo) {
+        this.tglLulusSKPendidikanAkhir_indo = tglLulusSKPendidikanAkhir_indo;
     }
 
 }

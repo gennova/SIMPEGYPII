@@ -1015,6 +1015,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         jLabel45.setText("Jumlah");
 
         txtJumlahGaji.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtJumlahGaji.setText("0");
         txtJumlahGaji.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtJumlahGajiFocusGained(evt);
@@ -1306,12 +1307,14 @@ public class Insertpegawai extends javax.swing.JFrame {
                 p.setTLahir(tempatlahir);//8
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String tanggal = df.format(tglLahirDate.getDate());
+                String tanggal_lahir_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
                 p.setTglLahir(tanggal); //9
                 p.setStatusPerkawinan(comboKawin.getSelectedItem().toString()); //10
                 p.setJumlahAnakSeluruh(Integer.parseInt(jumlahanakseluruh)); //11
                 p.setJumlahAnakGaji(Integer.parseInt(jumlahanakgaji)); //12
                 p.setStatusPegawai(ComboSttPeg.getSelectedItem().toString()); //13
-                p.setTeksFilename(fotoTeks.getText());
+                p.setTeksFilename(fotoTeks.getText()); // 14
+                p.setTanggalLahirIndo(tanggal_lahir_indo); //15
                 System.out.println("Cek Data hasilnya apa : " + p.getStatusPegawai());
                 //ini end dari data umum /tab umum//
                 //*********************************************************************//
@@ -1324,6 +1327,10 @@ public class Insertpegawai extends javax.swing.JFrame {
                 String Tgl_tmt_kgb = sdf.format(tmtKGBDate.getDate());
                 String Nomor_kgb = txtNomorKGB.getText();
                 String Tgl_nomor_kgb = sdf.format(nomorKGBDate.getDate());
+                String Tmt_golongan_indo = DaoFactory.FormatTanggalIndonesia(Tmt_golongan);
+                String Tgl_nomor_sk_indo = DaoFactory.FormatTanggalIndonesia(Tgl_nomor_sk);
+                String Tgl_tmt_kgb_indo = DaoFactory.FormatTanggalIndonesia(Tgl_tmt_kgb);
+                String Tgl_nomor_kgb_indo = DaoFactory.FormatTanggalIndonesia(Tgl_nomor_kgb);
                 int Tahun_kerja = Integer.parseInt(txtTahunKerja.getText());
                 int Bulan_kerja = Integer.parseInt(txtBulanKerja.getText());
                 int Tahun_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
@@ -1341,6 +1348,10 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pangkat.setBulan_masa_kerja(Bulan_kerja);
                 pangkat.setTahun_masa_kerja_sebenarnya(Tahun_kerja_benar);
                 pangkat.setBulan_masa_kerja_sebenarnya(Bulan_kerja_benar);
+                pangkat.setTMTGolongan_indo(Tmt_golongan_indo); // Tgl TMT Golongan Format INDO
+                pangkat.setTanggal_sk_indo(Tgl_nomor_sk_indo); //Tgl SK Format Indo
+                pangkat.setTmt_kgb_indo(Tgl_tmt_kgb_indo); // TMT KGB Format Indo
+                pangkat.setTanggal_kgb_indo(Tgl_nomor_kgb_indo); //Nomor KGB Format Indor
                 //ini end dari pangkat golongan /tab pangkat golongan//
                 //*********************************************************************//
                 //ini start data Pekerjaan Jabatan /tab Pekerjaan Jabatan//
@@ -1348,8 +1359,10 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pkj.setPegawai(p);
                 pkj.setBk(DaoFactory.getBidangKerjaDao().getBidangKerjaByNamaBidangKerja(comboBidangKerja.getSelectedItem().toString()));
                 pkj.setTglTMTPekerjaan(sdf.format(tmtPekerjaan.getDate()));
+                pkj.setTglTMTPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tmtPekerjaan.getDate()))); // Format Indo
                 pkj.setNomorSKPekerjaan(txtNomorSKJabatan.getText());
                 pkj.setTglSKPekerjaan(sdf.format(tglSKJabatan.getDate()));
+                pkj.setTglSKPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglSKJabatan.getDate())));
                 pkj.setCabang(DaoFactory.getCabangDao().getCabangByNamaCabang(comboWIlayahTugas.getSelectedItem().toString()));
                 pkj.setUnit(DaoFactory.getUnitDao().getUnitByNama(comboUnitKerja.getSelectedItem().toString()));
                 pkj.setJabatan(DaoFactory.getJabatanDao().getJabatanByNama(comboNamaJabatan.getSelectedItem().toString()));
@@ -1362,8 +1375,10 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pendidikanPegawai.setPegawai(p);
                 pendidikanPegawai.setIjazahAngkat(DaoFactory.getIjazahAngkatDao().getIjazahAngkatByNama(comboIjazahPengangkatan.getSelectedItem().toString()));
                 pendidikanPegawai.setTglLulusSKPengangkatan(sdf.format(tglLulusSKPengangkatan.getDate()));
+                pendidikanPegawai.setTglLulusSKPengangkatan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglLulusSKPengangkatan.getDate()))); // format indo
                 pendidikanPegawai.setPendidikanTerakhir(DaoFactory.getPendidikanTerakhirDao().getPendidikanByNama(comboPendidikanAkhir.getSelectedItem().toString()));
                 pendidikanPegawai.setTglLulusSKPendidikanAkhir(sdf.format(tglLulusSKPendidikanAkhir.getDate()));
+                pendidikanPegawai.setTglLulusSKPendidikanAkhir_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglLulusSKPendidikanAkhir.getDate()))); // format indo
                 //ini end dari Pendidikan Pegawa//
                 //*********************************************************************//
                 //ini start data Gaji Pegawai//
@@ -1385,7 +1400,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 DaoFactory.getGaji_pegawai_dao().InsertGajiPegawai(gaji_pegawai);
                 Session.setPegawai(p);
             } else {
-                JOptionPane.showMessageDialog(null, "sudah ada");
+                JOptionPane.showMessageDialog(null, "Data Berhasil diupdate");
                 Pegawai p = new Pegawai();
                 p.setNUK(NUK_teks.getText()); //1
                 String gelar, nama, gelarbelakang;
@@ -1411,12 +1426,14 @@ public class Insertpegawai extends javax.swing.JFrame {
                 p.setTLahir(tempatlahir);//8
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String tanggal = df.format(tglLahirDate.getDate());
+                String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
                 p.setTglLahir(tanggal); //9
                 p.setStatusPerkawinan(comboKawin.getSelectedItem().toString()); //10
                 p.setJumlahAnakSeluruh(Integer.parseInt(jumlahanakseluruh)); //11
                 p.setJumlahAnakGaji(Integer.parseInt(jumlahanakgaji)); //12
                 p.setStatusPegawai(ComboSttPeg.getSelectedItem().toString()); //13
-                p.setTeksFilename(fotoTeks.getText());
+                p.setTeksFilename(fotoTeks.getText()); // 14
+                p.setTanggalLahirIndo(tanggal_indo); // 15
                 System.out.println("Cek Data hasilnya apa : " + p.getStatusPegawai());
                 //ini end dari data umum /tab umum//
                 //*********************************************************************//

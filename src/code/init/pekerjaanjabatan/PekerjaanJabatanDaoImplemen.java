@@ -24,8 +24,8 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
     private final Connection connection;
     private final String sqlGetPekerjaanJabatanByID = "select * from pekerjaanjabatan where id=?";
     private final String sqlGetPekerjaanJabatanByNUK = "select * from pekerjaanjabatan where nuk=?";
-    private final String sqlInsertPekerjaanJabatan = "insert into pekerjaanjabatan(nuk,idbidangkerja,tmt_tanggal_pekerjaan,no_sk_pekerjaan,tgl_sk_pekerjaan,idcabang,idunit,idjabatan,nama_jabatan,masa_jabatan) values(?,?,?,?,?,?,?,?,?,?)";
-    private final String sqlUpdatePekerjaanJabatan = "update pekerjaanjabatan set idbidangkerja=?,tmt_tanggal_pekerjaan=?,no_sk_pekerjaan=?,tgl_sk_pekerjaan=?,idcabang=?,idunit=?,idjabatan=?,nama_jabatan=?,masa_jabatan=? where nuk=?";
+    private final String sqlInsertPekerjaanJabatan = "insert into pekerjaanjabatan(nuk,idbidangkerja,tmt_tanggal_pekerjaan,no_sk_pekerjaan,tgl_sk_pekerjaan,idcabang,idunit,idjabatan,nama_jabatan,masa_jabatan,tmt_tanggal_pekerjaan_indo,tgl_sk_pekerjaan_indo) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlUpdatePekerjaanJabatan = "update pekerjaanjabatan set idbidangkerja=?,tmt_tanggal_pekerjaan=?,no_sk_pekerjaan=?,tgl_sk_pekerjaan=?,idcabang=?,idunit=?,idjabatan=?,nama_jabatan=?,masa_jabatan=? ,tmt_tanggal_pekerjaan_indo=?,tgl_sk_pekerjaan_indo=? where nuk=?";
 
     public PekerjaanJabatanDaoImplemen(Connection connect) {
         this.connection = connect;
@@ -63,6 +63,8 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
                 ps.setInt(8, pekerjaan.getJabatan().getId());
                 ps.setString(9, pekerjaan.getNamaJabatan());
                 ps.setInt(10, pekerjaan.getMasaJabatan());
+                ps.setString(11, pekerjaan.getTglTMTPekerjaan_indo());
+                ps.setString(12, pekerjaan.getTglSKPekerjaan_indo());
                 int status = ps.executeUpdate();
                 if (status == 1) {
                     System.out.println("Berhasil menyimpan data Pekerjaan Jabatan pegawai");
@@ -82,7 +84,9 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
                 ps.setInt(7, pekerjaan.getJabatan().getId());
                 ps.setString(8, pekerjaan.getNamaJabatan());
                 ps.setInt(9, pekerjaan.getMasaJabatan());
-                ps.setString(10, pekerjaan.getPegawai().getNUK());
+                ps.setString(10, pekerjaan.getTglTMTPekerjaan_indo());
+                ps.setString(11, pekerjaan.getTglSKPekerjaan_indo());
+                ps.setString(12, pekerjaan.getPegawai().getNUK());
                 int status = ps.executeUpdate();
                 if (status == 1) {
                     System.out.println("Berhasil memperbaharui data Pekerjaan Jabatan pegawai karena data sudah ada");
@@ -126,6 +130,8 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
                 jabatan.setTglSKPekerjaan(rs.getString("tgl_sk_pekerjaan"));
                 jabatan.setTglTMTPekerjaan(rs.getString("tmt_tanggal_pekerjaan"));
                 jabatan.setUnit(DaoFactory.getUnitDao().getUnitByID(rs.getInt("idunit")));
+                jabatan.setTglTMTPekerjaan_indo(rs.getString("tmt_tanggal_pekerjaan_indo"));
+                jabatan.setTglSKPekerjaan_indo(rs.getString("tgl_sk_pekerjaan_indo"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,6 +161,8 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
                 jabatan.setTglSKPekerjaan(rs.getString("tgl_sk_pekerjaan"));
                 jabatan.setTglTMTPekerjaan(rs.getString("tmt_tanggal_pekerjaan"));
                 jabatan.setUnit(DaoFactory.getUnitDao().getUnitByID(rs.getInt("idunit")));
+                jabatan.setTglTMTPekerjaan_indo(rs.getString("tmt_tanggal_pekerjaan_indo"));
+                jabatan.setTglSKPekerjaan_indo(rs.getString("tgl_sk_pekerjaan_indo"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PekerjaanJabatanDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);

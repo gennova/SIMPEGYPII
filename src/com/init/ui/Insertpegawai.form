@@ -1380,6 +1380,7 @@
             <Component class="javax.swing.JTextField" name="txtJumlahGaji">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtJumlahGajiFocusGained"/>

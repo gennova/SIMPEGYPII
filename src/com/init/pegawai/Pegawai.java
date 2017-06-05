@@ -31,6 +31,7 @@ public class Pegawai {
     private int JumlahAnakGaji; //12
     private String StatusPegawai; //13
     private String TeksFilename; //14
+    private String TanggalLahirIndo; // 15
     // akhir data umum
     //****** data tambahan ******//
     private Pangkat pangkat;
@@ -200,6 +201,14 @@ public class Pegawai {
 
     public void setBidangKerja(BidangKerja bidangKerja) {
         this.bidangKerja = bidangKerja;
+    }
+
+    public String getTanggalLahirIndo() {
+        return TanggalLahirIndo;
+    }
+
+    public void setTanggalLahirIndo(String TanggalLahirIndo) {
+        this.TanggalLahirIndo = TanggalLahirIndo;
     }
 
 }
