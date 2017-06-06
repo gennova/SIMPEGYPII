@@ -1327,7 +1327,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         } else {
             Pegawai cekpegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(NUK_teks.getText());
             //System.out.println("cek pegawai " + cekpegawai.getNUK());
-            if (cekpegawai == null) {
+            if (cekpegawai == null) { // START INSERT DATA
                 Pegawai p = new Pegawai();
                 p.setNUK(NUK_teks.getText()); //1
                 String gelar, nama, gelarbelakang;
@@ -1408,7 +1408,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pkj.setTglTMTPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tmtPekerjaan.getDate()))); // Format Indo
                 pkj.setNomorSKPekerjaan(txtNomorSKJabatan.getText());
                 pkj.setTglSKPekerjaan(sdf.format(tglSKJabatan.getDate()));
-                pkj.setTglSKPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglSKJabatan.getDate())));
+                pkj.setTglSKPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglSKJabatan.getDate()))); // Format indo
                 pkj.setCabang(DaoFactory.getCabangDao().getCabangByNamaCabang(comboWIlayahTugas.getSelectedItem().toString()));
                 pkj.setUnit(DaoFactory.getUnitDao().getUnitByNama(comboUnitKerja.getSelectedItem().toString()));
                 pkj.setJabatan(DaoFactory.getJabatanDao().getJabatanByNama(comboNamaJabatan.getSelectedItem().toString()));
@@ -1445,7 +1445,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 DaoFactory.getPendidikanPegawaiDao().InsertPendidikanPegawai(pendidikanPegawai);
                 DaoFactory.getGaji_pegawai_dao().InsertGajiPegawai(gaji_pegawai);
                 Session.setPegawai(p);
-            } else {
+            } else { // START UPDATE DATA
                 JOptionPane.showMessageDialog(null, "Data Berhasil diupdate");
                 Pegawai p = new Pegawai();
                 p.setNUK(NUK_teks.getText()); //1
@@ -1496,6 +1496,10 @@ public class Insertpegawai extends javax.swing.JFrame {
                 int Bulan_kerja = Integer.parseInt(txtBulanKerja.getText());
                 int Tahun_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
                 int Bulan_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
+                String Tmt_golongan_indo = DaoFactory.FormatTanggalIndonesia(Tmt_golongan);
+                String Tgl_nomor_sk_indo = DaoFactory.FormatTanggalIndonesia(Tgl_nomor_sk);
+                String Tgl_tmt_kgb_indo = DaoFactory.FormatTanggalIndonesia(Tgl_tmt_kgb);
+                String Tgl_nomor_kgb_indo = DaoFactory.FormatTanggalIndonesia(Tgl_nomor_kgb);
                 Pangkat pangkat = new Pangkat();
                 pangkat.setPegawai(p);
                 pangkat.setGolongan(golongan);
@@ -1509,6 +1513,10 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pangkat.setBulan_masa_kerja(Bulan_kerja);
                 pangkat.setTahun_masa_kerja_sebenarnya(Tahun_kerja_benar);
                 pangkat.setBulan_masa_kerja_sebenarnya(Bulan_kerja_benar);
+                pangkat.setTMTGolongan_indo(Tmt_golongan_indo); // Tgl TMT Golongan Format INDO
+                pangkat.setTanggal_sk_indo(Tgl_nomor_sk_indo); //Tgl SK Format Indo
+                pangkat.setTmt_kgb_indo(Tgl_tmt_kgb_indo); // TMT KGB Format Indo
+                pangkat.setTanggal_kgb_indo(Tgl_nomor_kgb_indo); //Nomor KGB Format Indor
                 //ini end dari pangkat golongan /tab pangkat golongan//
                 //*********************************************************************//
                 //ini start data Pekerjaan Jabatan /tab Pekerjaan Jabatan//
@@ -1516,8 +1524,10 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pkj.setPegawai(p);
                 pkj.setBk(DaoFactory.getBidangKerjaDao().getBidangKerjaByNamaBidangKerja(comboBidangKerja.getSelectedItem().toString()));
                 pkj.setTglTMTPekerjaan(sdf.format(tmtPekerjaan.getDate()));
+                pkj.setTglTMTPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tmtPekerjaan.getDate()))); // Format Indo
                 pkj.setNomorSKPekerjaan(txtNomorSKJabatan.getText());
                 pkj.setTglSKPekerjaan(sdf.format(tglSKJabatan.getDate()));
+                pkj.setTglSKPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglSKJabatan.getDate()))); // Format indo
                 pkj.setCabang(DaoFactory.getCabangDao().getCabangByNamaCabang(comboWIlayahTugas.getSelectedItem().toString()));
                 pkj.setUnit(DaoFactory.getUnitDao().getUnitByNama(comboUnitKerja.getSelectedItem().toString()));
                 pkj.setJabatan(DaoFactory.getJabatanDao().getJabatanByNama(comboNamaJabatan.getSelectedItem().toString()));
@@ -1530,8 +1540,10 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pendidikanPegawai.setPegawai(p);
                 pendidikanPegawai.setIjazahAngkat(DaoFactory.getIjazahAngkatDao().getIjazahAngkatByNama(comboIjazahPengangkatan.getSelectedItem().toString()));
                 pendidikanPegawai.setTglLulusSKPengangkatan(sdf.format(tglLulusSKPengangkatan.getDate()));
+                pendidikanPegawai.setTglLulusSKPengangkatan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglLulusSKPengangkatan.getDate()))); // format indo
                 pendidikanPegawai.setPendidikanTerakhir(DaoFactory.getPendidikanTerakhirDao().getPendidikanByNama(comboPendidikanAkhir.getSelectedItem().toString()));
                 pendidikanPegawai.setTglLulusSKPendidikanAkhir(sdf.format(tglLulusSKPendidikanAkhir.getDate()));
+                pendidikanPegawai.setTglLulusSKPendidikanAkhir_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglLulusSKPendidikanAkhir.getDate()))); // format indo
                 //ini end dari Pendidikan Pegawa//
                 //*********************************************************************//
                 //ini start data Gaji Pegawai//
@@ -1666,7 +1678,7 @@ public class Insertpegawai extends javax.swing.JFrame {
             }
             ImageIcon imageIcon = new ImageIcon(file.getAbsolutePath());
             Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
             //displayPhotoTxt.setIcon(imageIcon);
             displayPhotoTxt.setIcon(new ImageIcon(newimg));
         }
