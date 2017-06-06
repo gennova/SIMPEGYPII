@@ -59,11 +59,17 @@ public class Home extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem41 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jSeparator6 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem38 = new javax.swing.JMenuItem();
+        jMenuItem39 = new javax.swing.JMenuItem();
+        jSeparator7 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem40 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -97,7 +103,7 @@ public class Home extends javax.swing.JFrame {
         jMenuItem37 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Aplikasi Kepegawaian Yayasan Penyelenggaraan Ilahi Indonesia Versi 1.0");
+        setTitle("Aplikasi Kepegawaian Yayasan Penyelenggaraan Ilahi Indonesia Versi 2017");
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 0));
@@ -110,7 +116,7 @@ public class Home extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(254, 254, 254));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("YPII KANTOR CABANG SEMARANG");
+        jLabel2.setText("YPII PUSAT SEMARANG");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -265,6 +271,9 @@ public class Home extends javax.swing.JFrame {
         jMenuItem12.setText("Tempat Lahir");
         jMenu2.add(jMenuItem12);
 
+        jMenuItem41.setText("ALAMAT KANTOR");
+        jMenu2.add(jMenuItem41);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Cetak");
@@ -284,6 +293,17 @@ public class Home extends javax.swing.JFrame {
 
         jMenuItem15.setText("Pemberhentian Pegawai");
         jMenu8.add(jMenuItem15);
+        jMenu8.add(jSeparator6);
+
+        jMenuItem38.setText("Kenaikan Pangkat");
+        jMenu8.add(jMenuItem38);
+
+        jMenuItem39.setText("Gaji Berkala");
+        jMenu8.add(jMenuItem39);
+        jMenu8.add(jSeparator7);
+
+        jMenuItem40.setText("Legalisasi SK");
+        jMenu8.add(jMenuItem40);
 
         jMenu3.add(jMenu8);
 
@@ -545,7 +565,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem35;
     private javax.swing.JMenuItem jMenuItem36;
     private javax.swing.JMenuItem jMenuItem37;
+    private javax.swing.JMenuItem jMenuItem38;
+    private javax.swing.JMenuItem jMenuItem39;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem40;
+    private javax.swing.JMenuItem jMenuItem41;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
@@ -558,6 +582,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
+    private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JPopupMenu.Separator jSeparator7;
     private Code.Name.Flamboyan.SwingMakeOver.PanelImage panelImage1;
     // End of variables declaration//GEN-END:variables
 }
