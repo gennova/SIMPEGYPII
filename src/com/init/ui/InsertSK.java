@@ -6,6 +6,8 @@
 package com.init.ui;
 
 import java.awt.HeadlessException;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -18,21 +20,43 @@ public class InsertSK extends javax.swing.JFrame {
 
     /**
      * Creates new form InsertSK
+     *
      * @param data
      */
-    
-    
-
     public InsertSK(String data) {
         initComponents();
+        setLocationRelativeTo(null);
         try {
             setEnable(data);
         } catch (Exception ex) {
             Logger.getLogger(InsertSK.class.getName()).log(Level.SEVERE, null, ex);
         }
+        initApp();
     }
-    
-    private void setEnable(String data) throws Exception{
+
+    private void initApp() {
+        Date date = GregorianCalendar.getInstance().getTime();
+        dt1.setDate(date);
+        dt2.setDate(date);
+        dt3.setDate(date);
+        dt4.setDate(date);
+        dt5.setDate(date);
+        dt6.setDate(date);
+        dt7.setDate(date);
+        dt8.setDate(date);
+        dt9.setDate(date);
+        tmt1.setDate(date);
+        tmt2.setDate(date);
+        tmt3.setDate(date);
+        tmt4.setDate(date);
+        tmt5.setDate(date);
+        tmt6.setDate(date);
+        tmt7.setDate(date);
+        tmt8.setDate(date);
+        tmt9.setDate(date);
+    }
+
+    private void setEnable(String data) throws Exception {
         if (data.equalsIgnoreCase("DPK")) {
             js1.setEnabled(true);
             tmt1.setEnabled(true);
@@ -70,7 +94,7 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
-        }else if (data.equalsIgnoreCase("TETAP")) {
+        } else if (data.equalsIgnoreCase("TETAP")) {
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -107,7 +131,7 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
-        }else if (data.equalsIgnoreCase("KONTRAK")) {
+        } else if (data.equalsIgnoreCase("KONTRAK")) {
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -144,7 +168,7 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
-        }else if (data.equalsIgnoreCase("TUGAS BELAJAR")) {
+        } else if (data.equalsIgnoreCase("TUGAS BELAJAR")) {
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -181,7 +205,7 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
-        }else if (data.equalsIgnoreCase("CUTI LT YAYASAN")) {
+        } else if (data.equalsIgnoreCase("CUTI LT YAYASAN")) {
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -218,7 +242,7 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
-        }else if (data.equalsIgnoreCase("PINDAH")) {
+        } else if (data.equalsIgnoreCase("PINDAH")) {
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -255,7 +279,7 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
-        }else if (data.equalsIgnoreCase("PENSIUN")) {
+        } else if (data.equalsIgnoreCase("PENSIUN")) {
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -292,7 +316,7 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
-        }else if (data.equalsIgnoreCase("BERHENTI")) {
+        } else if (data.equalsIgnoreCase("BERHENTI")) {
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -329,7 +353,7 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
-        }else if (data.equalsIgnoreCase("MENINGGAL")) {
+        } else if (data.equalsIgnoreCase("MENINGGAL")) {
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -368,7 +392,6 @@ public class InsertSK extends javax.swing.JFrame {
             dt9.setEnabled(true);
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -381,25 +404,19 @@ public class InsertSK extends javax.swing.JFrame {
 
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        tmt1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         sk1 = new javax.swing.JTextField();
         js1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         js2 = new javax.swing.JLabel();
-        tmt2 = new javax.swing.JTextField();
         sk2 = new javax.swing.JTextField();
         js3 = new javax.swing.JLabel();
-        tmt3 = new javax.swing.JTextField();
         sk3 = new javax.swing.JTextField();
         js4 = new javax.swing.JLabel();
-        tmt4 = new javax.swing.JTextField();
         sk4 = new javax.swing.JTextField();
         js8 = new javax.swing.JLabel();
-        tmt8 = new javax.swing.JTextField();
         sk8 = new javax.swing.JTextField();
         js9 = new javax.swing.JLabel();
-        tmt9 = new javax.swing.JTextField();
         sk9 = new javax.swing.JTextField();
         dt1 = new com.toedter.calendar.JDateChooser();
         dt2 = new com.toedter.calendar.JDateChooser();
@@ -409,17 +426,23 @@ public class InsertSK extends javax.swing.JFrame {
         dt9 = new com.toedter.calendar.JDateChooser();
         sk5 = new javax.swing.JTextField();
         js5 = new javax.swing.JLabel();
-        tmt5 = new javax.swing.JTextField();
         dt5 = new com.toedter.calendar.JDateChooser();
         sk6 = new javax.swing.JTextField();
         js6 = new javax.swing.JLabel();
-        tmt6 = new javax.swing.JTextField();
         dt6 = new com.toedter.calendar.JDateChooser();
         sk7 = new javax.swing.JTextField();
         js7 = new javax.swing.JLabel();
-        tmt7 = new javax.swing.JTextField();
         dt7 = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        tmt1 = new com.toedter.calendar.JDateChooser();
+        tmt2 = new com.toedter.calendar.JDateChooser();
+        tmt3 = new com.toedter.calendar.JDateChooser();
+        tmt4 = new com.toedter.calendar.JDateChooser();
+        tmt5 = new com.toedter.calendar.JDateChooser();
+        tmt6 = new com.toedter.calendar.JDateChooser();
+        tmt7 = new com.toedter.calendar.JDateChooser();
+        tmt8 = new com.toedter.calendar.JDateChooser();
+        tmt9 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SAVE SK");
@@ -463,69 +486,72 @@ public class InsertSK extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel10)
-                .addGap(57, 57, 57)
-                .addComponent(jLabel11)
-                .addGap(56, 56, 56)
-                .addComponent(jLabel12)
-                .addGap(213, 213, 213)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(101, 101, 101))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(js5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(js4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel10)
                     .addComponent(js1)
                     .addComponent(js2)
+                    .addComponent(js5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(js3)
-                    .addComponent(js8)
+                    .addComponent(js6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(js4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(js7)
-                    .addComponent(js9)
-                    .addComponent(js6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(tmt1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tmt2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tmt3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tmt4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tmt5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tmt6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tmt7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tmt8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tmt9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(sk1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sk2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sk3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sk4, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sk5, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sk6, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sk7, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sk8, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sk9, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                    .addComponent(js8)
+                    .addComponent(js9))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dt2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dt3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dt4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dt6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dt7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dt8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dt9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(dt1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel11)
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel12)
+                        .addGap(213, 213, 213)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(101, 101, 101))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(tmt1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tmt2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tmt3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tmt4, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tmt5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tmt6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tmt7, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tmt8, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tmt9, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(sk1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sk2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sk3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sk4, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sk5, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sk6, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sk7, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sk8, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sk9, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dt2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dt3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dt4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dt6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dt7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dt8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dt9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(dt1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -538,19 +564,19 @@ public class InsertSK extends javax.swing.JFrame {
                     .addComponent(tmt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sk1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(js2)
                     .addComponent(tmt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sk2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(js3)
                     .addComponent(tmt3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sk3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dt3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(js4)
                     .addComponent(tmt4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -562,33 +588,32 @@ public class InsertSK extends javax.swing.JFrame {
                     .addComponent(tmt5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sk5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dt5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(js6)
                     .addComponent(tmt6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sk6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dt6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(js7)
                     .addComponent(tmt7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sk7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dt7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(js8)
                     .addComponent(tmt8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sk8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dt8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(js9)
                     .addComponent(tmt9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sk9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dt9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton1))
         );
 
         pack();
@@ -662,14 +687,14 @@ public class InsertSK extends javax.swing.JFrame {
     private javax.swing.JTextField sk7;
     private javax.swing.JTextField sk8;
     private javax.swing.JTextField sk9;
-    private javax.swing.JTextField tmt1;
-    private javax.swing.JTextField tmt2;
-    private javax.swing.JTextField tmt3;
-    private javax.swing.JTextField tmt4;
-    private javax.swing.JTextField tmt5;
-    private javax.swing.JTextField tmt6;
-    private javax.swing.JTextField tmt7;
-    private javax.swing.JTextField tmt8;
-    private javax.swing.JTextField tmt9;
+    private com.toedter.calendar.JDateChooser tmt1;
+    private com.toedter.calendar.JDateChooser tmt2;
+    private com.toedter.calendar.JDateChooser tmt3;
+    private com.toedter.calendar.JDateChooser tmt4;
+    private com.toedter.calendar.JDateChooser tmt5;
+    private com.toedter.calendar.JDateChooser tmt6;
+    private com.toedter.calendar.JDateChooser tmt7;
+    private com.toedter.calendar.JDateChooser tmt8;
+    private com.toedter.calendar.JDateChooser tmt9;
     // End of variables declaration//GEN-END:variables
 }

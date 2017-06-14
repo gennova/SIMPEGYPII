@@ -132,6 +132,13 @@ public class Insertpegawai extends javax.swing.JFrame {
             txtAnakGaji.setText(String.valueOf(pegawai.getJumlahAnakGaji()));
             ComboSttPeg.setSelectedItem(pegawai.getStatusPegawai());
             fotoTeks.setText(pegawai.getTeksFilename());
+            //menampilkan fotonya bung
+            ImageIcon imageIcon = new ImageIcon("image/" + pegawai.getTeksFilename());
+            //System.out.println(pegawai.getTeksFilename());
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            //displayPhotoTxt.setIcon(imageIcon);
+            txtFotoDisplay.setIcon(new ImageIcon(newimg));
             //********************************************************************************//
             Pangkat pangkat = DaoFactory.getPangkatDao().getPangkatByNUK(Session.getNUK());
             comboGolonganPangkat.setSelectedItem(pangkat.getGolongan().getNamagolongan());
@@ -202,6 +209,7 @@ public class Insertpegawai extends javax.swing.JFrame {
             txtTunjanganLain.setText(String.valueOf(gjp.getTunjangan_lain()));
             txtJumlahGaji.setText(String.valueOf(gjp.getTotal_gaji()));
             txtTanggunganOrang.setText(String.valueOf(gjp.getTanggungan_orang()));
+
         }
     }
 
@@ -290,7 +298,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         txtAnakGaji = new javax.swing.JTextField();
         txtTempatLahir = new javax.swing.JTextField();
-        displayPhotoTxt = new javax.swing.JLabel();
+        txtFotoDisplay = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -385,6 +393,12 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 153));
 
+        NUK_teks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NUK_teksActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("NUK");
 
         jLabel2.setText("Nama");
@@ -444,8 +458,8 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         txtAnakGaji.setText("0");
 
-        displayPhotoTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        displayPhotoTxt.setText("Photo");
+        txtFotoDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtFotoDisplay.setText("Photo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -521,7 +535,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                                                 .addComponent(tglLahirDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
                                         .addGap(0, 28, Short.MAX_VALUE)))
                                 .addGap(4, 4, 4)
-                                .addComponent(displayPhotoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtFotoDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
 
@@ -559,7 +573,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(txtTempatLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(displayPhotoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFotoDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tglLahirDate, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
@@ -790,6 +804,11 @@ public class Insertpegawai extends javax.swing.JFrame {
         jLabel29.setText("Jabatan");
 
         jButton15.setText("SK Jabatan");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jLabel30.setText("Masa Jabatan");
 
@@ -1181,6 +1200,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         });
 
         jButton5.setText("J. Nama Foto");
+        jButton5.setEnabled(false);
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         ButtonSave.setText("SAVE");
@@ -1680,9 +1700,49 @@ public class Insertpegawai extends javax.swing.JFrame {
             Image image = imageIcon.getImage(); // transform it 
             Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
             //displayPhotoTxt.setIcon(imageIcon);
-            displayPhotoTxt.setIcon(new ImageIcon(newimg));
+            txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        String nuk = NUK_teks.getText();
+        if (nuk.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Data NUK Kosong, siliahkan dipilih/isi");
+        } else {
+            Pegawai p = new Pegawai();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            //ini start data Pekerjaan Jabatan /tab Pekerjaan Jabatan//
+            PekerjaanJabatan pkj = new PekerjaanJabatan();
+            pkj.setPegawai(p);
+            pkj.setBk(DaoFactory.getBidangKerjaDao().getBidangKerjaByNamaBidangKerja(comboBidangKerja.getSelectedItem().toString()));
+            pkj.setTglTMTPekerjaan(sdf.format(tmtPekerjaan.getDate()));
+            pkj.setTglTMTPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tmtPekerjaan.getDate()))); // Format Indo
+            pkj.setNomorSKPekerjaan(txtNomorSKJabatan.getText());
+            pkj.setTglSKPekerjaan(sdf.format(tglSKJabatan.getDate()));
+            pkj.setTglSKPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglSKJabatan.getDate()))); // Format indo
+            pkj.setCabang(DaoFactory.getCabangDao().getCabangByNamaCabang(comboWIlayahTugas.getSelectedItem().toString()));
+            pkj.setUnit(DaoFactory.getUnitDao().getUnitByNama(comboUnitKerja.getSelectedItem().toString()));
+            pkj.setJabatan(DaoFactory.getJabatanDao().getJabatanByNama(comboNamaJabatan.getSelectedItem().toString()));
+            pkj.setNamaJabatan(txtNamaJabatan.getText());
+            pkj.setMasaJabatan(Integer.parseInt(txtMasaJabatan.getText()));
+            //ini end dari Pekerjaan Jabatan /tab Pekerjaan Jabatan//
+            Session.setPekerjaanJabatan(pkj);
+            SK_JABATAN_UI sk_jabatan_ui = new SK_JABATAN_UI();
+            sk_jabatan_ui.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void NUK_teksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NUK_teksActionPerformed
+        // TODO add your handling code here:
+        String nuk = NUK_teks.getText();
+        Pegawai p = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuk);
+        if (p != null) {
+            Session.setNUK(nuk);
+            initUpdateApp();
+        }
+
+    }//GEN-LAST:event_NUK_teksActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1735,7 +1795,6 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboPendidikanAkhir;
     private javax.swing.JComboBox<String> comboUnitKerja;
     private javax.swing.JComboBox<String> comboWIlayahTugas;
-    private javax.swing.JLabel displayPhotoTxt;
     private javax.swing.JTextField fotoTeks;
     private javax.swing.JTextField gelarTeks;
     private javax.swing.JTextField gelarbelakangTeks;
@@ -1823,6 +1882,7 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JTextField txtAnakSeluruh;
     private javax.swing.JTextField txtBulanKerja;
     private javax.swing.JTextField txtBulanKerjaBenar;
+    private javax.swing.JLabel txtFotoDisplay;
     private javax.swing.JTextField txtGajiPokok;
     private javax.swing.JTextField txtJumlahGaji;
     private javax.swing.JTextField txtMasaJabatan;

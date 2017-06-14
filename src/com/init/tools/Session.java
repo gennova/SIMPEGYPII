@@ -5,6 +5,7 @@
  */
 package com.init.tools;
 
+import code.init.pekerjaanjabatan.PekerjaanJabatan;
 import com.init.pegawai.Pegawai;
 
 /**
@@ -15,6 +16,7 @@ public class Session {
 
     private static String NUK;
     private static Pegawai pegawai;
+    private static PekerjaanJabatan pekerjaanJabatan;
 
     public static String getNUK() {
         return NUK;
@@ -30,6 +32,14 @@ public class Session {
 
     public static void setPegawai(Pegawai pegawai) {
         Session.pegawai = pegawai;
+    }
+
+    public static PekerjaanJabatan getPekerjaanJabatan() {
+        return pekerjaanJabatan;
+    }
+
+    public static void setPekerjaanJabatan(PekerjaanJabatan pekerjaanJabatan) {
+        Session.pekerjaanJabatan = pekerjaanJabatan;
     }
 
 }

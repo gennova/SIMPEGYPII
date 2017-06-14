@@ -5,6 +5,8 @@
  */
 package com.init.tools;
 
+import code.ini.skjabatan.SK_jabatan_dao;
+import code.ini.skjabatan.SK_jabatan_dao_implemen;
 import code.init.pekerjaanjabatan.PekerjaanJabatan;
 import code.init.pekerjaanjabatan.PekerjaanJabatanDao;
 import code.init.pekerjaanjabatan.PekerjaanJabatanDaoImplemen;
@@ -85,6 +87,14 @@ public class DaoFactory {
     private static PekerjaanJabatanDao pekerjaanJabatanDao;
     private static PendidikanPegawaiDao pendidikanPegawaiDao;
     private static Gaji_pegawai_dao gaji_pegawai_dao;
+    private static SK_jabatan_dao sK_jabatan_dao;
+
+    public static SK_jabatan_dao getsK_jabatan_dao() {
+        if (sK_jabatan_dao == null) {
+            sK_jabatan_dao = new SK_jabatan_dao_implemen(getConnectionFix());
+        }
+        return sK_jabatan_dao;
+    }
 
     public static Gaji_pegawai_dao getGaji_pegawai_dao() {
         if (gaji_pegawai_dao == null) {
