@@ -1278,9 +1278,23 @@ public class Insertpegawai extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        String data = (String) ComboSttPeg.getItemAt(ComboSttPeg.getSelectedIndex());
-        InsertSK insertSK = new InsertSK(data);
-        insertSK.setVisible(true);
+        String nuks = NUK_teks.getText();
+        String nuk = NUK_teks.getText();
+        if (nuk.equalsIgnoreCase("")) {
+            JOptionPane.showMessageDialog(null, "Data NUK Kosong, siliahkan dipilih/isi");
+        } else {
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuks);
+            if (pegawai != null) {
+                Session.setNUK(nuk);
+                String data = (String) ComboSttPeg.getItemAt(ComboSttPeg.getSelectedIndex());
+                InsertSK insertSK = new InsertSK(data);
+                insertSK.setVisible(true);
+            }else {
+                JOptionPane.showMessageDialog(null, "Silahkan klik simpan terlebih dahulu");
+            }
+        }
+
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

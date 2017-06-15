@@ -124,8 +124,8 @@ CREATE TABLE `gajipegawai` (
 /*Data for the table `gajipegawai` */
 
 insert  into `gajipegawai`(`id`,`nuk`,`gaji_pokok`,`tunjangan_suami_istri`,`tunjangan_anak`,`tunjangan_lain`,`total_gaji`,`tanggungan_orang`) values 
-(1,'1000',1250000,0,0,0,1250000,0),
-(2,'2000',4500000,250000,0,0,4750000,2);
+(1,'1000',125000,0,0,0,125000,0),
+(2,'2000',1000000,0,0,0,1000000,0);
 
 /*Table structure for table `golongan` */
 
@@ -89622,8 +89622,8 @@ CREATE TABLE `pangkatpegawai` (
 /*Data for the table `pangkatpegawai` */
 
 insert  into `pangkatpegawai`(`id`,`nuk`,`idgolongan`,`tmt_golongan`,`nomor_sk`,`tanggal_sk`,`tmt_kgb`,`nomor_kgb`,`tanggal_kgb`,`tahunkerja`,`bulankerja`,`tahunkerjabenar`,`bulankerjabenar`,`tmt_golongan_indo`,`tanggal_sk_indo`,`tmt_kgb_indo`,`tanggal_kgb_indo`) values 
-(1,'1000',2,'2016-09-30','SKPHari','2017-11-20','2017-05-23','KGBHari','2017-10-16',4,4,4,4,'30 September 2016','20 November 2017','23 Mei 2017','16 Oktober 2017'),
-(2,'2000',2,'2015-10-21','','2012-09-12','1988-11-16','','1996-08-09',4,1,4,4,NULL,NULL,NULL,NULL);
+(1,'1000',2,'2014-09-18','SKNanik','2017-07-12','2017-05-15','KGBNanik','2017-12-17',1,1,1,1,'18 September 2014','12 Juli 2017','15 Mei 2017','17 Desember 2017'),
+(2,'2000',2,'2017-06-09','SKYUNI','2017-06-09','2017-06-09','KGB','2017-06-09',0,0,0,0,'09 Juni 2017','09 Juni 2017','09 Juni 2017','09 Juni 2017');
 
 /*Table structure for table `pegawai` */
 
@@ -89652,8 +89652,8 @@ CREATE TABLE `pegawai` (
 /*Data for the table `pegawai` */
 
 insert  into `pegawai`(`id`,`nuk`,`gelardepan`,`namapegawai`,`gelarbelakang`,`alias`,`jeniskelamin`,`agama`,`tempatlahir`,`tanggallahir`,`statuspernikahan`,`jumlahanakseluruh`,`jumlahanakgaji`,`statuspegawai`,`filephoto`,`tanggallahir_indo`) values 
-(1,'1000','Dr.','Hari Pawarta','M.Pd','Hari','Laki-laki','Katholik','Yogyakarta','2009-09-30','KAWIN',5,5,'TETAP','','30 September 2009'),
-(2,'2000','Dra.','Rita Triantari W.','M.Pd','Rita','Perempuan','Katholik','Semarang','2001-12-31','KAWIN',2,2,'DPK','','31 Desember 2001');
+(1,'1000','Dra','Henny Widyastuti','S.Pd, M.Pd','Henny','Perempuan','Budha','Sarapat','2011-10-05','KAWIN',2,2,'DPK','nanik.jpg','05 Oktober 2011'),
+(2,'2000','Dr','Yuniar DIah','S.Kom','Yuni','Perempuan','Protestasn','Semarang','2017-06-09','KAWIN',1,1,'KONTRAK','','09 Juni 2017');
 
 /*Table structure for table `pekerjaanjabatan` */
 
@@ -89679,8 +89679,8 @@ CREATE TABLE `pekerjaanjabatan` (
 /*Data for the table `pekerjaanjabatan` */
 
 insert  into `pekerjaanjabatan`(`id`,`nuk`,`idbidangkerja`,`tmt_tanggal_pekerjaan`,`no_sk_pekerjaan`,`tgl_sk_pekerjaan`,`idcabang`,`idunit`,`idjabatan`,`nama_jabatan`,`masa_jabatan`,`tmt_tanggal_pekerjaan_indo`,`tgl_sk_pekerjaan_indo`) values 
-(1,'1000',1,'2015-08-03','SKP1000','2017-11-14',1,1,1,'Guru',0,'03 Agustus 2015','14 November 2017'),
-(2,'2000',2,'2013-05-09','','2002-05-22',1,1,2,'',0,NULL,NULL);
+(1,'1000',2,'2009-11-14','SKHENNY','2029-02-05',1,1,1,'JABATANHENNY',2,'14 November 2009','05 Februari 2029'),
+(2,'2000',1,'2017-06-09','SKKerjaanYUNI','2017-06-09',1,1,1,'Guru',2,'09 Juni 2017','09 Juni 2017');
 
 /*Table structure for table `pendidikanpegawai` */
 
@@ -89702,8 +89702,8 @@ CREATE TABLE `pendidikanpegawai` (
 /*Data for the table `pendidikanpegawai` */
 
 insert  into `pendidikanpegawai`(`id`,`id_pegawai`,`nuk`,`id_ijazah_angkat`,`tgl_ijazah_sk_angkat`,`id_pendidikan_akhir`,`tgl_lulus_sk_pendidikan_akhir`,`tgl_ijazah_sk_angkat_indo`,`tgl_lulus_sk_pendidikan_akhir_indo`) values 
-(1,0,'1000',1,'2016-12-30',1,'2016-12-27','30 Desember 2016','27 Desember 2016'),
-(2,0,'2000',1,'2020-06-12',1,'2027-06-11',NULL,NULL);
+(1,0,'1000',1,'1999-05-21',1,'2005-08-16','21 Mei 1999','16 Agustus 2005'),
+(2,0,'2000',1,'2017-06-09',1,'2017-06-09','09 Juni 2017','09 Juni 2017');
 
 /*Table structure for table `pendidikanterakhir` */
 
@@ -89769,6 +89769,51 @@ insert  into `provinsi`(`id`,`IDProvinsi`,`Nama`) values
 (0,77085,'MALUKU UTARA'),
 (0,78203,'PAPUA'),
 (0,81877,'PAPUA BARAT');
+
+/*Table structure for table `sk_jabatan` */
+
+DROP TABLE IF EXISTS `sk_jabatan`;
+
+CREATE TABLE `sk_jabatan` (
+  `id` int(5) unsigned NOT NULL AUTO_INCREMENT,
+  `nuk` varchar(50) NOT NULL,
+  `id_jabatan` int(5) NOT NULL,
+  `id_pekerjaan_jabatan` int(5) NOT NULL,
+  `tmt` date NOT NULL,
+  `tmt_indo` varchar(50) NOT NULL,
+  `sk_jabatan` varchar(100) NOT NULL,
+  `tanggal` date NOT NULL,
+  `tanggalindo` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `sk_jabatan` */
+
+insert  into `sk_jabatan`(`id`,`nuk`,`id_jabatan`,`id_pekerjaan_jabatan`,`tmt`,`tmt_indo`,`sk_jabatan`,`tanggal`,`tanggalindo`) values 
+(5,'1000',1,1,'2017-06-28','28 Juni 2017','weksdalsd','2017-06-14','14 Juni 2017');
+
+/*Table structure for table `sk_status_pegawai` */
+
+DROP TABLE IF EXISTS `sk_status_pegawai`;
+
+CREATE TABLE `sk_status_pegawai` (
+  `id` int(5) unsigned NOT NULL AUTO_INCREMENT,
+  `kolom` int(2) NOT NULL,
+  `nuk` varchar(50) NOT NULL,
+  `jenis_sk` varchar(50) NOT NULL,
+  `tmt` date NOT NULL,
+  `tmt_indo` varchar(50) NOT NULL,
+  `nomor_sk` varchar(100) NOT NULL,
+  `tanggal` date NOT NULL,
+  `tanggalindo` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+/*Data for the table `sk_status_pegawai` */
+
+insert  into `sk_status_pegawai`(`id`,`kolom`,`nuk`,`jenis_sk`,`tmt`,`tmt_indo`,`nomor_sk`,`tanggal`,`tanggalindo`) values 
+(14,3,'2000','KONTRAK','2015-05-28','28 Mei 2015','9000008','2020-08-10','10 Agustus 2020'),
+(15,1,'1000','DPK','2016-03-19','19 Maret 2016','dpk coy edit','2020-07-24','24 Juli 2020');
 
 /*Table structure for table `skpegawai` */
 

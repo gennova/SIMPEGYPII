@@ -5,7 +5,11 @@
  */
 package com.init.ui;
 
-import java.awt.HeadlessException;
+import com.init.pegawai.Pegawai;
+import com.init.sk_pegawai.SK_Pegawai;
+import com.init.tools.DaoFactory;
+import com.init.tools.Session;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
@@ -18,6 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class InsertSK extends javax.swing.JFrame {
 
+    private int aktif_kolom = 0;
+
     /**
      * Creates new form InsertSK
      *
@@ -27,11 +33,12 @@ public class InsertSK extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         try {
+            initApp();
             setEnable(data);
         } catch (Exception ex) {
             Logger.getLogger(InsertSK.class.getName()).log(Level.SEVERE, null, ex);
         }
-        initApp();
+
     }
 
     private void initApp() {
@@ -58,6 +65,15 @@ public class InsertSK extends javax.swing.JFrame {
 
     private void setEnable(String data) throws Exception {
         if (data.equalsIgnoreCase("DPK")) {
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 1);
+            System.out.println("status dpk : " + status);
+            if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 1);
+                tmt1.setDate(sdf.parse(skp.getTmt()));
+                sk1.setText(skp.getNo_sk());
+                dt1.setDate(sdf.parse(skp.getTanggal()));
+            }
             js1.setEnabled(true);
             tmt1.setEnabled(true);
             sk1.setEnabled(true);
@@ -94,7 +110,17 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
+            aktif_kolom = 1;
         } else if (data.equalsIgnoreCase("TETAP")) {
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
+            System.out.println("status tetap : " + status);
+            if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 2);
+                tmt2.setDate(sdf.parse(skp.getTmt()));
+                sk2.setText(skp.getNo_sk());
+                dt2.setDate(sdf.parse(skp.getTanggal()));
+            }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -131,7 +157,17 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
+            aktif_kolom = 2;
         } else if (data.equalsIgnoreCase("KONTRAK")) {
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
+            System.out.println("status kontrak : " + status);
+            if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 3);
+                tmt3.setDate(sdf.parse(skp.getTmt()));
+                sk3.setText(skp.getNo_sk());
+                dt3.setDate(sdf.parse(skp.getTanggal()));
+            }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -168,7 +204,17 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
+            aktif_kolom = 3;
         } else if (data.equalsIgnoreCase("TUGAS BELAJAR")) {
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
+            System.out.println("status tgs belajar : " + status);
+            if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 4);
+                tmt4.setDate(sdf.parse(skp.getTmt()));
+                sk4.setText(skp.getNo_sk());
+                dt4.setDate(sdf.parse(skp.getTanggal()));
+            }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -205,7 +251,17 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
+            aktif_kolom = 4;
         } else if (data.equalsIgnoreCase("CUTI LT YAYASAN")) {
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
+            System.out.println("status cuti lty : " + status);
+            if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 5);
+                tmt5.setDate(sdf.parse(skp.getTmt()));
+                sk5.setText(skp.getNo_sk());
+                dt5.setDate(sdf.parse(skp.getTanggal()));
+            }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -242,7 +298,17 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
+            aktif_kolom = 5;
         } else if (data.equalsIgnoreCase("PINDAH")) {
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
+            System.out.println("status pindah : " + status);
+            if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 6);
+                tmt6.setDate(sdf.parse(skp.getTmt()));
+                sk6.setText(skp.getNo_sk());
+                dt6.setDate(sdf.parse(skp.getTanggal()));
+            }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -279,7 +345,17 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
+            aktif_kolom = 6;
         } else if (data.equalsIgnoreCase("PENSIUN")) {
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 7);
+            System.out.println("status pensiun : " + status);
+            if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 7);
+                tmt7.setDate(sdf.parse(skp.getTmt()));
+                sk7.setText(skp.getNo_sk());
+                dt7.setDate(sdf.parse(skp.getTanggal()));
+            }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -316,7 +392,18 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
+            aktif_kolom = 7;
         } else if (data.equalsIgnoreCase("BERHENTI")) {
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
+            System.out.println("status berhenti : " + status);
+            if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 8);
+                tmt8.setDate(sdf.parse(skp.getTmt()));
+                sk8.setText(skp.getNo_sk());
+                dt8.setDate(sdf.parse(skp.getTanggal()));
+            }
+
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -353,7 +440,17 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(false);
             sk9.setEnabled(false);
             dt9.setEnabled(false);
+            aktif_kolom = 8;
         } else if (data.equalsIgnoreCase("MENINGGAL")) {
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
+            System.out.println("status meninggal : " + status);
+            if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 9);
+                tmt9.setDate(sdf.parse(skp.getTmt()));
+                sk9.setText(skp.getNo_sk());
+                dt9.setDate(sdf.parse(skp.getTanggal()));
+            }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
             sk1.setEnabled(false);
@@ -390,6 +487,7 @@ public class InsertSK extends javax.swing.JFrame {
             tmt9.setEnabled(true);
             sk9.setEnabled(true);
             dt9.setEnabled(true);
+            aktif_kolom = 9;
         }
     }
 
@@ -446,6 +544,7 @@ public class InsertSK extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("SAVE SK");
+        setBackground(new java.awt.Color(0, 255, 255));
         setResizable(false);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -479,6 +578,11 @@ public class InsertSK extends javax.swing.JFrame {
         js7.setText("Pensiun ");
 
         jButton1.setText("SAVE");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -498,14 +602,6 @@ public class InsertSK extends javax.swing.JFrame {
                     .addComponent(js8)
                     .addComponent(js9))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel11)
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel12)
-                        .addGap(213, 213, 213)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(101, 101, 101))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,22 +627,29 @@ public class InsertSK extends javax.swing.JFrame {
                             .addComponent(sk6, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sk7, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sk8, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sk9, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
+                            .addComponent(sk9, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel11)
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel12)))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dt2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dt3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dt4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dt6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dt7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dt8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dt9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dt2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dt3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dt4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dt6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dt7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dt8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dt9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(dt1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dt1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -556,8 +659,8 @@ public class InsertSK extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
-                        .addComponent(jLabel12))
-                    .addComponent(jLabel14))
+                        .addComponent(jLabel12)
+                        .addComponent(jLabel14)))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(js1)
@@ -607,17 +710,201 @@ public class InsertSK extends javax.swing.JFrame {
                     .addComponent(sk8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dt8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(js9)
-                    .addComponent(tmt9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sk9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dt9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(js9)
+                            .addComponent(tmt9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sk9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(dt9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        if (aktif_kolom == 1) {
+            String tmt = sdf.format(tmt1.getDate());
+            String tmt_indo = DaoFactory.FormatTanggalIndonesia(tmt);
+            String no_sk = sk1.getText();
+            String tanggal = sdf.format(dt1.getDate());
+            String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            String statuspegawai = js1.getText();
+            SK_Pegawai skp = new SK_Pegawai();
+            skp.setKolom_kategori(aktif_kolom);
+            skp.setNuk(Session.getNUK());
+            skp.setPegawai(pegawai);
+            skp.setTmt(tmt);
+            skp.setTmt_indo(tmt_indo);
+            skp.setNo_sk(no_sk);
+            skp.setTanggal(tanggal);
+            skp.setTanggal_indo(tanggal_indo);
+            skp.setStatus_pegawai_str(statuspegawai);
+            DaoFactory.getK_Pegawai_Dao().InsertSKPegawai(skp);
+        } else if (aktif_kolom == 2) {
+            String tmt = sdf.format(tmt2.getDate());
+            String tmt_indo = DaoFactory.FormatTanggalIndonesia(tmt);
+            String no_sk = sk2.getText();
+            String tanggal = sdf.format(dt2.getDate());
+            String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            String statuspegawai = js2.getText();
+            SK_Pegawai skp = new SK_Pegawai();
+            skp.setKolom_kategori(aktif_kolom);
+            skp.setNuk(Session.getNUK());
+            skp.setPegawai(pegawai);
+            skp.setTmt(tmt);
+            skp.setTmt_indo(tmt_indo);
+            skp.setNo_sk(no_sk);
+            skp.setTanggal(tanggal);
+            skp.setTanggal_indo(tanggal_indo);
+            skp.setStatus_pegawai_str(statuspegawai);
+            DaoFactory.getK_Pegawai_Dao().InsertSKPegawai(skp);
+        } else if (aktif_kolom == 3) {
+            String tmt = sdf.format(tmt3.getDate());
+            String tmt_indo = DaoFactory.FormatTanggalIndonesia(tmt);
+            String no_sk = sk3.getText();
+            String tanggal = sdf.format(dt3.getDate());
+            String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            String statuspegawai = js3.getText();
+            SK_Pegawai skp = new SK_Pegawai();
+            skp.setKolom_kategori(aktif_kolom);
+            skp.setNuk(Session.getNUK());
+            skp.setPegawai(pegawai);
+            skp.setTmt(tmt);
+            skp.setTmt_indo(tmt_indo);
+            skp.setNo_sk(no_sk);
+            skp.setTanggal(tanggal);
+            skp.setTanggal_indo(tanggal_indo);
+            skp.setStatus_pegawai_str(statuspegawai);
+            DaoFactory.getK_Pegawai_Dao().InsertSKPegawai(skp);
+        } else if (aktif_kolom == 4) {
+            String tmt = sdf.format(tmt4.getDate());
+            String tmt_indo = DaoFactory.FormatTanggalIndonesia(tmt);
+            String no_sk = sk4.getText();
+            String tanggal = sdf.format(dt4.getDate());
+            String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            String statuspegawai = js4.getText();
+            SK_Pegawai skp = new SK_Pegawai();
+            skp.setKolom_kategori(aktif_kolom);
+            skp.setNuk(Session.getNUK());
+            skp.setPegawai(pegawai);
+            skp.setTmt(tmt);
+            skp.setTmt_indo(tmt_indo);
+            skp.setNo_sk(no_sk);
+            skp.setTanggal(tanggal);
+            skp.setTanggal_indo(tanggal_indo);
+            skp.setStatus_pegawai_str(statuspegawai);
+            DaoFactory.getK_Pegawai_Dao().InsertSKPegawai(skp);
+        } else if (aktif_kolom == 5) {
+            String tmt = sdf.format(tmt5.getDate());
+            String tmt_indo = DaoFactory.FormatTanggalIndonesia(tmt);
+            String no_sk = sk5.getText();
+            String tanggal = sdf.format(dt5.getDate());
+            String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            String statuspegawai = js5.getText();
+            SK_Pegawai skp = new SK_Pegawai();
+            skp.setKolom_kategori(aktif_kolom);
+            skp.setNuk(Session.getNUK());
+            skp.setPegawai(pegawai);
+            skp.setTmt(tmt);
+            skp.setTmt_indo(tmt_indo);
+            skp.setNo_sk(no_sk);
+            skp.setTanggal(tanggal);
+            skp.setTanggal_indo(tanggal_indo);
+            skp.setStatus_pegawai_str(statuspegawai);
+            DaoFactory.getK_Pegawai_Dao().InsertSKPegawai(skp);
+        } else if (aktif_kolom == 6) {
+            String tmt = sdf.format(tmt6.getDate());
+            String tmt_indo = DaoFactory.FormatTanggalIndonesia(tmt);
+            String no_sk = sk6.getText();
+            String tanggal = sdf.format(dt6.getDate());
+            String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            String statuspegawai = js6.getText();
+            SK_Pegawai skp = new SK_Pegawai();
+            skp.setKolom_kategori(aktif_kolom);
+            skp.setNuk(Session.getNUK());
+            skp.setPegawai(pegawai);
+            skp.setTmt(tmt);
+            skp.setTmt_indo(tmt_indo);
+            skp.setNo_sk(no_sk);
+            skp.setTanggal(tanggal);
+            skp.setTanggal_indo(tanggal_indo);
+            skp.setStatus_pegawai_str(statuspegawai);
+            DaoFactory.getK_Pegawai_Dao().InsertSKPegawai(skp);
+        } else if (aktif_kolom == 7) {
+            String tmt = sdf.format(tmt7.getDate());
+            String tmt_indo = DaoFactory.FormatTanggalIndonesia(tmt);
+            String no_sk = sk7.getText();
+            String tanggal = sdf.format(dt7.getDate());
+            String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            String statuspegawai = js7.getText();
+            SK_Pegawai skp = new SK_Pegawai();
+            skp.setKolom_kategori(aktif_kolom);
+            skp.setNuk(Session.getNUK());
+            skp.setPegawai(pegawai);
+            skp.setTmt(tmt);
+            skp.setTmt_indo(tmt_indo);
+            skp.setNo_sk(no_sk);
+            skp.setTanggal(tanggal);
+            skp.setTanggal_indo(tanggal_indo);
+            skp.setStatus_pegawai_str(statuspegawai);
+            DaoFactory.getK_Pegawai_Dao().InsertSKPegawai(skp);
+        } else if (aktif_kolom == 8) {
+            String tmt = sdf.format(tmt8.getDate());
+            String tmt_indo = DaoFactory.FormatTanggalIndonesia(tmt);
+            String no_sk = sk8.getText();
+            String tanggal = sdf.format(dt8.getDate());
+            String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            String statuspegawai = js8.getText();
+            SK_Pegawai skp = new SK_Pegawai();
+            skp.setKolom_kategori(aktif_kolom);
+            skp.setNuk(Session.getNUK());
+            skp.setPegawai(pegawai);
+            skp.setTmt(tmt);
+            skp.setTmt_indo(tmt_indo);
+            skp.setNo_sk(no_sk);
+            skp.setTanggal(tanggal);
+            skp.setTanggal_indo(tanggal_indo);
+            skp.setStatus_pegawai_str(statuspegawai);
+            DaoFactory.getK_Pegawai_Dao().InsertSKPegawai(skp);
+        } else if (aktif_kolom == 9) {
+            String tmt = sdf.format(tmt9.getDate());
+            String tmt_indo = DaoFactory.FormatTanggalIndonesia(tmt);
+            String no_sk = sk9.getText();
+            String tanggal = sdf.format(dt9.getDate());
+            String tanggal_indo = DaoFactory.FormatTanggalIndonesia(tanggal);
+            Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
+            String statuspegawai = js9.getText();
+            SK_Pegawai skp = new SK_Pegawai();
+            skp.setKolom_kategori(aktif_kolom);
+            skp.setNuk(Session.getNUK());
+            skp.setPegawai(pegawai);
+            skp.setTmt(tmt);
+            skp.setTmt_indo(tmt_indo);
+            skp.setNo_sk(no_sk);
+            skp.setTanggal(tanggal);
+            skp.setTanggal_indo(tanggal_indo);
+            skp.setStatus_pegawai_str(statuspegawai);
+            DaoFactory.getK_Pegawai_Dao().InsertSKPegawai(skp);
+        }
+        JOptionPane.showMessageDialog(null, "Ok Tersimpan");
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
