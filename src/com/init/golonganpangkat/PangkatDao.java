@@ -33,4 +33,6 @@ public interface PangkatDao {
     public void DeletePangkatPegawai(Pangkat pangkat);
     
     public boolean cekPangkatPegawai(String nuk);
+    
+    public void InsertNaikPangkat(int id);
 }

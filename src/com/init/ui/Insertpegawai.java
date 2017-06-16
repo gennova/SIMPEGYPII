@@ -100,7 +100,6 @@ public class Insertpegawai extends javax.swing.JFrame {
             tglSKJabatan.setDate(GregorianCalendar.getInstance().getTime());
             tglLulusSKPengangkatan.setDate(GregorianCalendar.getInstance().getTime());
             tglLulusSKPendidikanAkhir.setDate(GregorianCalendar.getInstance().getTime());
-
         }
     }
 
@@ -388,6 +387,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 0, 255));
         setForeground(new java.awt.Color(255, 51, 204));
+        setResizable(false);
 
         jTabbedPane1.setBackground(new java.awt.Color(102, 255, 102));
 
@@ -665,6 +665,11 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jButton7.setText("Kenaikan Pangkat");
         jButton7.setOpaque(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jLabel36.setFont(new java.awt.Font("Dialog", 2, 10)); // NOI18N
         jLabel36.setText("Tombol ini hanya digunakan untuk perubahan / kenaikan pangkat");
@@ -1289,7 +1294,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 String data = (String) ComboSttPeg.getItemAt(ComboSttPeg.getSelectedIndex());
                 InsertSK insertSK = new InsertSK(data);
                 insertSK.setVisible(true);
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Silahkan klik simpan terlebih dahulu");
             }
         }
@@ -1757,6 +1762,57 @@ public class Insertpegawai extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_NUK_teksActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        String nuk = NUK_teks.getText();
+        Pegawai p = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuk);
+        if (p != null) {
+            Session.setNUK(nuk);
+            Session.setPegawai(p);
+            //*********************************************************************//
+            //ini start data pangkat golonga /tab pangkat golongan//
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Golongan golongan = DaoFactory.getGolonganDao().getGolonganByNamaGolongan(comboGolonganPangkat.getSelectedItem().toString());
+            String Tmt_golongan = sdf.format(tmtGolonganDate.getDate());
+            String Nomor_sk = txtNomorSK.getText();
+            String Tgl_nomor_sk = sdf.format(nomorSKDate.getDate());
+            String Tgl_tmt_kgb = sdf.format(tmtKGBDate.getDate());
+            String Nomor_kgb = txtNomorKGB.getText();
+            String Tgl_nomor_kgb = sdf.format(nomorKGBDate.getDate());
+            String Tmt_golongan_indo = DaoFactory.FormatTanggalIndonesia(Tmt_golongan);
+            String Tgl_nomor_sk_indo = DaoFactory.FormatTanggalIndonesia(Tgl_nomor_sk);
+            String Tgl_tmt_kgb_indo = DaoFactory.FormatTanggalIndonesia(Tgl_tmt_kgb);
+            String Tgl_nomor_kgb_indo = DaoFactory.FormatTanggalIndonesia(Tgl_nomor_kgb);
+            int Tahun_kerja = Integer.parseInt(txtTahunKerja.getText());
+            int Bulan_kerja = Integer.parseInt(txtBulanKerja.getText());
+            int Tahun_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
+            int Bulan_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
+            Pangkat pangkat = new Pangkat();
+            pangkat.setPegawai(p);
+            pangkat.setGolongan(golongan);
+            pangkat.setTMTGolongan(Tmt_golongan);// tanggal tmt golongan
+            pangkat.setNomor_sk(Nomor_sk);
+            pangkat.setTanggal_sk(Tgl_nomor_sk);
+            pangkat.setTmt_kgb(Tgl_tmt_kgb);
+            pangkat.setNomor_kgb(Nomor_kgb);
+            pangkat.setTanggal_kgb(Tgl_nomor_kgb);
+            pangkat.setTahun_masa_kerja(Tahun_kerja);
+            pangkat.setBulan_masa_kerja(Bulan_kerja);
+            pangkat.setTahun_masa_kerja_sebenarnya(Tahun_kerja_benar);
+            pangkat.setBulan_masa_kerja_sebenarnya(Bulan_kerja_benar);
+            pangkat.setTMTGolongan_indo(Tmt_golongan_indo); // Tgl TMT Golongan Format INDO
+            pangkat.setTanggal_sk_indo(Tgl_nomor_sk_indo); //Tgl SK Format Indo
+            pangkat.setTmt_kgb_indo(Tgl_tmt_kgb_indo); // TMT KGB Format Indo
+            pangkat.setTanggal_kgb_indo(Tgl_nomor_kgb_indo); //Nomor KGB Format Indor
+            //ini end dari pangkat golongan /tab pangkat golongan//
+            //*********************************************************************//
+            Session.setPangkat(pangkat);
+            NaikPangkatUI i = new NaikPangkatUI();
+            i.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

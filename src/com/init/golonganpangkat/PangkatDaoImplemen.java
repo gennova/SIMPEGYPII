@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +31,7 @@ public class PangkatDaoImplemen implements PangkatDao {
     private final String sqlGetAllPangkatPegawaiByNamaGolongan = "select * from pangkatpegawai join golongan on pangkatpegawai.idgolongan=golongan.id where where pangkatpegawai.idgolongan=?";
     private final String sqlInsertPangkatPegawai = "insert into pangkatpegawai (nuk,idgolongan,tmt_golongan,nomor_sk,tanggal_sk,tmt_kgb,nomor_kgb,tanggal_kgb,tahunkerja,bulankerja,tahunkerjabenar,bulankerjabenar,tmt_golongan_indo,tanggal_sk_indo,tmt_kgb_indo,tanggal_kgb_indo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String sqlUpdatePangkatPegawai = "update pangkatpegawai set idgolongan=?,tmt_golongan=?,nomor_sk=?,tanggal_sk=?,tmt_kgb=?,nomor_kgb=?,tanggal_kgb=?,tahunkerja=?,bulankerja=?,tahunkerjabenar=?,bulankerjabenar=? ,tmt_golongan_indo=?,tanggal_sk_indo=?,tmt_kgb_indo=?,tanggal_kgb_indo=? where nuk=?";
+    private final String sqlInsertKenaikanPangkat = "call SPNaikPangkat(?)";
 
     public PangkatDaoImplemen(Connection conn) {
         this.connection = conn;
@@ -343,4 +345,20 @@ public class PangkatDaoImplemen implements PangkatDao {
         }
         return status;
     }
+
+    @Override
+    public void InsertNaikPangkat(int id) {
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sqlInsertKenaikanPangkat);
+            statement.setInt(1, id);
+            int status = statement.executeUpdate();
+            if (status == 0) {
+                JOptionPane.showMessageDialog(null, "Kenaikan pangkat sudah diupdate");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PangkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

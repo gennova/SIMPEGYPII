@@ -1022,6 +1022,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         if (row >= 0) {
             String nama_utama_selected = TabelPegawaiUtamaNama.getValueAt(row, 0).toString();
             txtNamaUtama.setText(nama_utama_selected);
+            txtNUKUtama.setText(nama_utama_selected); // lemparkan ke field panel 1 /tab 1
             Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nama_utama_selected);
             txtLabelJenisKelamin.setText(pegawai.getJK());
             txtLabelTempatLahir.setText(pegawai.getTLahir());
@@ -1038,6 +1039,13 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelWilayahTugas.setText(jabatan.getCabang().getNamacabang());
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
+            //menampilkan fotonya bung
+            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            //System.out.println(pegawai.getTeksFilename());
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            //displayPhotoTxt.setIcon(imageIcon);
+            txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
     }//GEN-LAST:event_TabelPegawaiUtamaNamaMouseClicked
 
@@ -1048,6 +1056,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         if (row >= 0) {
             String nuk_utama_selected = TabelPegawaiUtamaWilayah.getValueAt(row, 0).toString();
             txtNUKUtama.setText(nuk_utama_selected);
+            txtWilayahUtama.setText(nuk_utama_selected);
             Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuk_utama_selected);
             txtLabelJenisKelamin.setText(pegawai.getJK());
             txtLabelTempatLahir.setText(pegawai.getTLahir());
@@ -1064,6 +1073,13 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelWilayahTugas.setText(jabatan.getCabang().getNamacabang());
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
+            //menampilkan fotonya bung
+            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            //System.out.println(pegawai.getTeksFilename());
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            //displayPhotoTxt.setIcon(imageIcon);
+            txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
     }//GEN-LAST:event_TabelPegawaiUtamaWilayahMouseClicked
 
@@ -1074,6 +1090,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         if (row >= 0) {
             String nuk_utama_selected = TabelPegawaiUtamaBidangKerja.getValueAt(row, 0).toString();
             txtNUKUtama.setText(nuk_utama_selected);
+            txtBidangKerjaUtama.setText(nuk_utama_selected);
             Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuk_utama_selected);
             txtLabelJenisKelamin.setText(pegawai.getJK());
             txtLabelTempatLahir.setText(pegawai.getTLahir());
@@ -1090,6 +1107,13 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelWilayahTugas.setText(jabatan.getCabang().getNamacabang());
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
+            //menampilkan fotonya bung
+            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            //System.out.println(pegawai.getTeksFilename());
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            //displayPhotoTxt.setIcon(imageIcon);
+            txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
     }//GEN-LAST:event_TabelPegawaiUtamaBidangKerjaMouseClicked
 
@@ -1100,6 +1124,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         if (row >= 0) {
             String nuk_utama_selected = TabelPegawaiUtamaGolongan.getValueAt(row, 0).toString();
             txtNUKUtama.setText(nuk_utama_selected);
+            txtGolonganUtama.setText(nuk_utama_selected);
             Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuk_utama_selected);
             txtLabelJenisKelamin.setText(pegawai.getJK());
             txtLabelTempatLahir.setText(pegawai.getTLahir());
@@ -1116,6 +1141,13 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelWilayahTugas.setText(jabatan.getCabang().getNamacabang());
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
+            //menampilkan fotonya bung
+            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            //System.out.println(pegawai.getTeksFilename());
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            //displayPhotoTxt.setIcon(imageIcon);
+            txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
     }//GEN-LAST:event_TabelPegawaiUtamaGolonganMouseClicked
 
@@ -1126,6 +1158,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         if (row >= 0) {
             String nuk_utama_selected = TabelPegawaiUtamaUnitKerja.getValueAt(row, 0).toString();
             txtNUKUtama.setText(nuk_utama_selected);
+            txtUnitKerjaUtama.setText(nuk_utama_selected);
             Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuk_utama_selected);
             txtLabelJenisKelamin.setText(pegawai.getJK());
             txtLabelTempatLahir.setText(pegawai.getTLahir());
@@ -1142,6 +1175,13 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelWilayahTugas.setText(jabatan.getCabang().getNamacabang());
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
+            //menampilkan fotonya bung
+            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            //System.out.println(pegawai.getTeksFilename());
+            Image image = imageIcon.getImage(); // transform it 
+            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            //displayPhotoTxt.setIcon(imageIcon);
+            txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
     }//GEN-LAST:event_TabelPegawaiUtamaUnitKerjaMouseClicked
 
