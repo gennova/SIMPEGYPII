@@ -182,7 +182,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        RowayatJabatanButton = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
@@ -830,13 +830,23 @@ public class Pegawaiform extends javax.swing.JFrame {
 
         jButton6.setText("Riwayat Pendidikan");
 
-        jButton7.setText("Riwayat Jabatan");
+        RowayatJabatanButton.setText("Riwayat Jabatan");
+        RowayatJabatanButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RowayatJabatanButtonActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Riwayat Jenis Tgs.");
 
         jButton9.setText("Riwayat SK KGB");
 
         jButton8.setText("Riwayat SK KP");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -848,7 +858,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RowayatJabatanButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -887,7 +897,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton7)
+                            .addComponent(RowayatJabatanButton)
                             .addComponent(jButton6))
                         .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -900,7 +910,7 @@ public class Pegawaiform extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel14Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton10, jButton11, jButton12, jButton5, jButton6, jButton7, jButton8, jButton9});
+        jPanel14Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {RowayatJabatanButton, jButton10, jButton11, jButton12, jButton5, jButton6, jButton8, jButton9});
 
         jPanel14Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton13, jButton2, jButton3, jButton4});
 
@@ -1273,6 +1283,30 @@ public class Pegawaiform extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        String nuksnya = txtNUKUtama.getText();
+        Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuksnya);
+        if (pegawai!=null) {
+            Session.setNUK(pegawai.getNUK());
+            Session.setPegawai(pegawai);
+            RiwayarSKP_UI i= new RiwayarSKP_UI();
+            i.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void RowayatJabatanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RowayatJabatanButtonActionPerformed
+        // TODO add your handling code here:
+        String nuksnya = txtNUKUtama.getText();
+        Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuksnya);
+        if (pegawai!=null) {
+            Session.setNUK(pegawai.getNUK());
+            Session.setPegawai(pegawai);
+            RiwayatJabatanUI  ui = new RiwayatJabatanUI();
+            ui.setVisible(true);
+        }
+    }//GEN-LAST:event_RowayatJabatanButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1309,6 +1343,7 @@ public class Pegawaiform extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RowayatJabatanButton;
     private javax.swing.JTable TabelPegawaiUtama;
     private javax.swing.JTable TabelPegawaiUtamaBidangKerja;
     private javax.swing.JTable TabelPegawaiUtamaGolongan;
@@ -1325,7 +1360,6 @@ public class Pegawaiform extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;

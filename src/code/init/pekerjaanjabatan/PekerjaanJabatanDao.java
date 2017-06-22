@@ -31,4 +31,8 @@ public interface PekerjaanJabatanDao {
     public void DeletePekerjaanJabatanByID(PekerjaanJabatan pekerjaan);
     
     public boolean cekPekerjaanJabatanByNUK(String nuk);
+    
+    public void PergantianJabatanBaru(int id_pkj);
+    
+    public List<PekerjaanJabatan> getAllRiwayatJabatanByNUK(String nuk);
 }

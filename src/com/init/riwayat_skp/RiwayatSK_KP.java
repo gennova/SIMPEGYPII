@@ -5,6 +5,9 @@
  */
 package com.init.riwayat_skp;
 
+import com.init.golongan.Golongan;
+import com.init.pegawai.Pegawai;
+
 /**
  *
  * @author amnesia
@@ -29,6 +32,12 @@ public class RiwayatSK_KP {
     private String tmt_kgb_indo;
     private String tgl_kgb_indo;
     private String ruang;
+    private Pegawai pegawai;
+    private Golongan golongan;
+    private String keterangan;
+    private String track;
+    private int gaji;
+    private String gaji_str;
 
     public RiwayatSK_KP() {
     }
@@ -52,6 +61,7 @@ public class RiwayatSK_KP {
         this.tmt_kgb_indo = tmt_kgb_indo;
         this.tgl_kgb_indo = tgl_kgb_indo;
         this.ruang = ruang;
+
     }
 
     public int getId() {
@@ -196,6 +206,54 @@ public class RiwayatSK_KP {
 
     public void setRuang(String ruang) {
         this.ruang = ruang;
+    }
+
+    public Pegawai getPegawai() {
+        return pegawai;
+    }
+
+    public void setPegawai(Pegawai pegawai) {
+        this.pegawai = pegawai;
+    }
+
+    public Golongan getGolongan() {
+        return golongan;
+    }
+
+    public void setGolongan(Golongan golongan) {
+        this.golongan = golongan;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
+    }
+
+    public String getTrack() {
+        return track;
+    }
+
+    public void setTrack(String track) {
+        this.track = track;
+    }
+
+    public int getGaji() {
+        return gaji;
+    }
+
+    public void setGaji(int gaji) {
+        this.gaji = gaji;
+    }
+
+    public String getGaji_str() {
+        return gaji_str;
+    }
+
+    public void setGaji_str(String gaji_str) {
+        this.gaji_str = gaji_str;
     }
 
 }

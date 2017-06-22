@@ -35,4 +35,8 @@ public interface PangkatDao {
     public boolean cekPangkatPegawai(String nuk);
     
     public void InsertNaikPangkat(int id);
+    
+    public void UpdateDataRiwayatPangkatByID(Pangkat pangkat); // limited variable not all
+    
+    public Pangkat getRiwayatPangkatByNUK(String nuk,int id);
 }

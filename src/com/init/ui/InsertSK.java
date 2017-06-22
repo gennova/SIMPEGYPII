@@ -74,6 +74,78 @@ public class InsertSK extends javax.swing.JFrame {
                 sk1.setText(skp.getNo_sk());
                 dt1.setDate(sdf.parse(skp.getTanggal()));
             }
+            boolean status2 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
+            System.out.println("status tetap : " + status);
+            if (status2 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 2);
+                tmt2.setDate(sdf.parse(skp.getTmt()));
+                sk2.setText(skp.getNo_sk());
+                dt2.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status3 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
+            System.out.println("status kontrak : " + status);
+            if (status3 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 3);
+                tmt3.setDate(sdf.parse(skp.getTmt()));
+                sk3.setText(skp.getNo_sk());
+                dt3.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status4 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
+            System.out.println("status tgs blj : " + status);
+            if (status4 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 4);
+                tmt4.setDate(sdf.parse(skp.getTmt()));
+                sk4.setText(skp.getNo_sk());
+                dt4.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status5 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
+            System.out.println("status ctly : " + status);
+            if (status5 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 5);
+                tmt5.setDate(sdf.parse(skp.getTmt()));
+                sk5.setText(skp.getNo_sk());
+                dt5.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status6 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
+            System.out.println("status pindah : " + status);
+            if (status6 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 6);
+                tmt6.setDate(sdf.parse(skp.getTmt()));
+                sk6.setText(skp.getNo_sk());
+                dt6.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status7 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 7);
+            System.out.println("status pensiun : " + status);
+            if (status7 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 7);
+                tmt7.setDate(sdf.parse(skp.getTmt()));
+                sk7.setText(skp.getNo_sk());
+                dt7.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status8 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
+            System.out.println("status berhenti : " + status);
+            if (status8 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 8);
+                tmt8.setDate(sdf.parse(skp.getTmt()));
+                sk8.setText(skp.getNo_sk());
+                dt8.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status9 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
+            System.out.println("status meninggal : " + status);
+            if (status9 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 9);
+                tmt9.setDate(sdf.parse(skp.getTmt()));
+                sk9.setText(skp.getNo_sk());
+                dt9.setDate(sdf.parse(skp.getTanggal()));
+            }
             js1.setEnabled(true);
             tmt1.setEnabled(true);
             sk1.setEnabled(true);
@@ -112,14 +184,86 @@ public class InsertSK extends javax.swing.JFrame {
             dt9.setEnabled(false);
             aktif_kolom = 1;
         } else if (data.equalsIgnoreCase("TETAP")) {
-            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
-            System.out.println("status tetap : " + status);
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 1);
+            System.out.println("status dpk : " + status);
             if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 1);
+                tmt1.setDate(sdf.parse(skp.getTmt()));
+                sk1.setText(skp.getNo_sk());
+                dt1.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status2 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
+            System.out.println("status tetap : " + status);
+            if (status2 == true) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 2);
                 tmt2.setDate(sdf.parse(skp.getTmt()));
                 sk2.setText(skp.getNo_sk());
                 dt2.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status3 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
+            System.out.println("status kontrak : " + status);
+            if (status3 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 3);
+                tmt3.setDate(sdf.parse(skp.getTmt()));
+                sk3.setText(skp.getNo_sk());
+                dt3.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status4 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
+            System.out.println("status tgs blj : " + status);
+            if (status4 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 4);
+                tmt4.setDate(sdf.parse(skp.getTmt()));
+                sk4.setText(skp.getNo_sk());
+                dt4.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status5 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
+            System.out.println("status ctly : " + status);
+            if (status5 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 5);
+                tmt5.setDate(sdf.parse(skp.getTmt()));
+                sk5.setText(skp.getNo_sk());
+                dt5.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status6 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
+            System.out.println("status pindah : " + status);
+            if (status6 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 6);
+                tmt6.setDate(sdf.parse(skp.getTmt()));
+                sk6.setText(skp.getNo_sk());
+                dt6.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status7 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 7);
+            System.out.println("status pensiun : " + status);
+            if (status7 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 7);
+                tmt7.setDate(sdf.parse(skp.getTmt()));
+                sk7.setText(skp.getNo_sk());
+                dt7.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status8 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
+            System.out.println("status berhenti : " + status);
+            if (status8 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 8);
+                tmt8.setDate(sdf.parse(skp.getTmt()));
+                sk8.setText(skp.getNo_sk());
+                dt8.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status9 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
+            System.out.println("status meninggal : " + status);
+            if (status9 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 9);
+                tmt9.setDate(sdf.parse(skp.getTmt()));
+                sk9.setText(skp.getNo_sk());
+                dt9.setDate(sdf.parse(skp.getTanggal()));
             }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
@@ -159,14 +303,86 @@ public class InsertSK extends javax.swing.JFrame {
             dt9.setEnabled(false);
             aktif_kolom = 2;
         } else if (data.equalsIgnoreCase("KONTRAK")) {
-            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
-            System.out.println("status kontrak : " + status);
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 1);
+            System.out.println("status dpk : " + status);
             if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 1);
+                tmt1.setDate(sdf.parse(skp.getTmt()));
+                sk1.setText(skp.getNo_sk());
+                dt1.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status2 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
+            System.out.println("status tetap : " + status);
+            if (status2 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 2);
+                tmt2.setDate(sdf.parse(skp.getTmt()));
+                sk2.setText(skp.getNo_sk());
+                dt2.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status3 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
+            System.out.println("status kontrak : " + status);
+            if (status3 == true) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 3);
                 tmt3.setDate(sdf.parse(skp.getTmt()));
                 sk3.setText(skp.getNo_sk());
                 dt3.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status4 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
+            System.out.println("status tgs blj : " + status);
+            if (status4 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 4);
+                tmt4.setDate(sdf.parse(skp.getTmt()));
+                sk4.setText(skp.getNo_sk());
+                dt4.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status5 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
+            System.out.println("status ctly : " + status);
+            if (status5 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 5);
+                tmt5.setDate(sdf.parse(skp.getTmt()));
+                sk5.setText(skp.getNo_sk());
+                dt5.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status6 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
+            System.out.println("status pindah : " + status);
+            if (status6 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 6);
+                tmt6.setDate(sdf.parse(skp.getTmt()));
+                sk6.setText(skp.getNo_sk());
+                dt6.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status7 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 7);
+            System.out.println("status pensiun : " + status);
+            if (status7 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 7);
+                tmt7.setDate(sdf.parse(skp.getTmt()));
+                sk7.setText(skp.getNo_sk());
+                dt7.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status8 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
+            System.out.println("status berhenti : " + status);
+            if (status8 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 8);
+                tmt8.setDate(sdf.parse(skp.getTmt()));
+                sk8.setText(skp.getNo_sk());
+                dt8.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status9 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
+            System.out.println("status meninggal : " + status);
+            if (status9 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 9);
+                tmt9.setDate(sdf.parse(skp.getTmt()));
+                sk9.setText(skp.getNo_sk());
+                dt9.setDate(sdf.parse(skp.getTanggal()));
             }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
@@ -206,14 +422,86 @@ public class InsertSK extends javax.swing.JFrame {
             dt9.setEnabled(false);
             aktif_kolom = 3;
         } else if (data.equalsIgnoreCase("TUGAS BELAJAR")) {
-            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
-            System.out.println("status tgs belajar : " + status);
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 1);
+            System.out.println("status dpk : " + status);
             if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 1);
+                tmt1.setDate(sdf.parse(skp.getTmt()));
+                sk1.setText(skp.getNo_sk());
+                dt1.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status2 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
+            System.out.println("status tetap : " + status);
+            if (status2 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 2);
+                tmt2.setDate(sdf.parse(skp.getTmt()));
+                sk2.setText(skp.getNo_sk());
+                dt2.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status3 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
+            System.out.println("status kontrak : " + status);
+            if (status3 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 3);
+                tmt3.setDate(sdf.parse(skp.getTmt()));
+                sk3.setText(skp.getNo_sk());
+                dt3.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status4 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
+            System.out.println("status tgs blj : " + status);
+            if (status4 == true) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 4);
                 tmt4.setDate(sdf.parse(skp.getTmt()));
                 sk4.setText(skp.getNo_sk());
                 dt4.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status5 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
+            System.out.println("status ctly : " + status);
+            if (status5 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 5);
+                tmt5.setDate(sdf.parse(skp.getTmt()));
+                sk5.setText(skp.getNo_sk());
+                dt5.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status6 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
+            System.out.println("status pindah : " + status);
+            if (status6 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 6);
+                tmt6.setDate(sdf.parse(skp.getTmt()));
+                sk6.setText(skp.getNo_sk());
+                dt6.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status7 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 7);
+            System.out.println("status pensiun : " + status);
+            if (status7 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 7);
+                tmt7.setDate(sdf.parse(skp.getTmt()));
+                sk7.setText(skp.getNo_sk());
+                dt7.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status8 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
+            System.out.println("status berhenti : " + status);
+            if (status8 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 8);
+                tmt8.setDate(sdf.parse(skp.getTmt()));
+                sk8.setText(skp.getNo_sk());
+                dt8.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status9 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
+            System.out.println("status meninggal : " + status);
+            if (status9 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 9);
+                tmt9.setDate(sdf.parse(skp.getTmt()));
+                sk9.setText(skp.getNo_sk());
+                dt9.setDate(sdf.parse(skp.getTanggal()));
             }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
@@ -253,14 +541,86 @@ public class InsertSK extends javax.swing.JFrame {
             dt9.setEnabled(false);
             aktif_kolom = 4;
         } else if (data.equalsIgnoreCase("CUTI LT YAYASAN")) {
-            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
-            System.out.println("status cuti lty : " + status);
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 1);
+            System.out.println("status dpk : " + status);
             if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 1);
+                tmt1.setDate(sdf.parse(skp.getTmt()));
+                sk1.setText(skp.getNo_sk());
+                dt1.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status2 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
+            System.out.println("status tetap : " + status);
+            if (status2 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 2);
+                tmt2.setDate(sdf.parse(skp.getTmt()));
+                sk2.setText(skp.getNo_sk());
+                dt2.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status3 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
+            System.out.println("status kontrak : " + status);
+            if (status3 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 3);
+                tmt3.setDate(sdf.parse(skp.getTmt()));
+                sk3.setText(skp.getNo_sk());
+                dt3.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status4 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
+            System.out.println("status tgs blj : " + status);
+            if (status4 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 4);
+                tmt4.setDate(sdf.parse(skp.getTmt()));
+                sk4.setText(skp.getNo_sk());
+                dt4.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status5 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
+            System.out.println("status ctly : " + status);
+            if (status5 == true) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 5);
                 tmt5.setDate(sdf.parse(skp.getTmt()));
                 sk5.setText(skp.getNo_sk());
                 dt5.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status6 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
+            System.out.println("status pindah : " + status);
+            if (status6 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 6);
+                tmt6.setDate(sdf.parse(skp.getTmt()));
+                sk6.setText(skp.getNo_sk());
+                dt6.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status7 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 7);
+            System.out.println("status pensiun : " + status);
+            if (status7 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 7);
+                tmt7.setDate(sdf.parse(skp.getTmt()));
+                sk7.setText(skp.getNo_sk());
+                dt7.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status8 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
+            System.out.println("status berhenti : " + status);
+            if (status8 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 8);
+                tmt8.setDate(sdf.parse(skp.getTmt()));
+                sk8.setText(skp.getNo_sk());
+                dt8.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status9 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
+            System.out.println("status meninggal : " + status);
+            if (status9 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 9);
+                tmt9.setDate(sdf.parse(skp.getTmt()));
+                sk9.setText(skp.getNo_sk());
+                dt9.setDate(sdf.parse(skp.getTanggal()));
             }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
@@ -300,14 +660,86 @@ public class InsertSK extends javax.swing.JFrame {
             dt9.setEnabled(false);
             aktif_kolom = 5;
         } else if (data.equalsIgnoreCase("PINDAH")) {
-            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
-            System.out.println("status pindah : " + status);
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 1);
+            System.out.println("status dpk : " + status);
             if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 1);
+                tmt1.setDate(sdf.parse(skp.getTmt()));
+                sk1.setText(skp.getNo_sk());
+                dt1.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status2 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
+            System.out.println("status tetap : " + status);
+            if (status2 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 2);
+                tmt2.setDate(sdf.parse(skp.getTmt()));
+                sk2.setText(skp.getNo_sk());
+                dt2.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status3 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
+            System.out.println("status kontrak : " + status);
+            if (status3 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 3);
+                tmt3.setDate(sdf.parse(skp.getTmt()));
+                sk3.setText(skp.getNo_sk());
+                dt3.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status4 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
+            System.out.println("status tgs blj : " + status);
+            if (status4 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 4);
+                tmt4.setDate(sdf.parse(skp.getTmt()));
+                sk4.setText(skp.getNo_sk());
+                dt4.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status5 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
+            System.out.println("status ctly : " + status);
+            if (status5 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 5);
+                tmt5.setDate(sdf.parse(skp.getTmt()));
+                sk5.setText(skp.getNo_sk());
+                dt5.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status6 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
+            System.out.println("status pindah : " + status);
+            if (status6 == true) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 6);
                 tmt6.setDate(sdf.parse(skp.getTmt()));
                 sk6.setText(skp.getNo_sk());
                 dt6.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status7 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 7);
+            System.out.println("status pensiun : " + status);
+            if (status7 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 7);
+                tmt7.setDate(sdf.parse(skp.getTmt()));
+                sk7.setText(skp.getNo_sk());
+                dt7.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status8 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
+            System.out.println("status berhenti : " + status);
+            if (status8 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 8);
+                tmt8.setDate(sdf.parse(skp.getTmt()));
+                sk8.setText(skp.getNo_sk());
+                dt8.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status9 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
+            System.out.println("status meninggal : " + status);
+            if (status9 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 9);
+                tmt9.setDate(sdf.parse(skp.getTmt()));
+                sk9.setText(skp.getNo_sk());
+                dt9.setDate(sdf.parse(skp.getTanggal()));
             }
             js1.setEnabled(false);
             tmt1.setEnabled(false);
@@ -394,14 +826,86 @@ public class InsertSK extends javax.swing.JFrame {
             dt9.setEnabled(false);
             aktif_kolom = 7;
         } else if (data.equalsIgnoreCase("BERHENTI")) {
-            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
-            System.out.println("status berhenti : " + status);
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 1);
+            System.out.println("status dpk : " + status);
             if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 1);
+                tmt1.setDate(sdf.parse(skp.getTmt()));
+                sk1.setText(skp.getNo_sk());
+                dt1.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status2 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
+            System.out.println("status tetap : " + status);
+            if (status2 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 2);
+                tmt2.setDate(sdf.parse(skp.getTmt()));
+                sk2.setText(skp.getNo_sk());
+                dt2.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status3 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
+            System.out.println("status kontrak : " + status);
+            if (status3 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 3);
+                tmt3.setDate(sdf.parse(skp.getTmt()));
+                sk3.setText(skp.getNo_sk());
+                dt3.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status4 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
+            System.out.println("status tgs blj : " + status);
+            if (status4 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 4);
+                tmt4.setDate(sdf.parse(skp.getTmt()));
+                sk4.setText(skp.getNo_sk());
+                dt4.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status5 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
+            System.out.println("status ctly : " + status);
+            if (status5 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 5);
+                tmt5.setDate(sdf.parse(skp.getTmt()));
+                sk5.setText(skp.getNo_sk());
+                dt5.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status6 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
+            System.out.println("status pindah : " + status);
+            if (status6 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 6);
+                tmt6.setDate(sdf.parse(skp.getTmt()));
+                sk6.setText(skp.getNo_sk());
+                dt6.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status7 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 7);
+            System.out.println("status pensiun : " + status);
+            if (status7 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 7);
+                tmt7.setDate(sdf.parse(skp.getTmt()));
+                sk7.setText(skp.getNo_sk());
+                dt7.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status8 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
+            System.out.println("status berhenti : " + status);
+            if (status8 == true) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 8);
                 tmt8.setDate(sdf.parse(skp.getTmt()));
                 sk8.setText(skp.getNo_sk());
                 dt8.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status9 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
+            System.out.println("status meninggal : " + status);
+            if (status9 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 9);
+                tmt9.setDate(sdf.parse(skp.getTmt()));
+                sk9.setText(skp.getNo_sk());
+                dt9.setDate(sdf.parse(skp.getTanggal()));
             }
 
             js1.setEnabled(false);
@@ -442,9 +946,81 @@ public class InsertSK extends javax.swing.JFrame {
             dt9.setEnabled(false);
             aktif_kolom = 8;
         } else if (data.equalsIgnoreCase("MENINGGAL")) {
-            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
-            System.out.println("status meninggal : " + status);
+            boolean status = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 1);
+            System.out.println("status dpk : " + status);
             if (status == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 1);
+                tmt1.setDate(sdf.parse(skp.getTmt()));
+                sk1.setText(skp.getNo_sk());
+                dt1.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status2 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 2);
+            System.out.println("status tetap : " + status);
+            if (status2 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 2);
+                tmt2.setDate(sdf.parse(skp.getTmt()));
+                sk2.setText(skp.getNo_sk());
+                dt2.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status3 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 3);
+            System.out.println("status kontrak : " + status);
+            if (status3 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 3);
+                tmt3.setDate(sdf.parse(skp.getTmt()));
+                sk3.setText(skp.getNo_sk());
+                dt3.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status4 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 4);
+            System.out.println("status tgs blj : " + status);
+            if (status4 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 4);
+                tmt4.setDate(sdf.parse(skp.getTmt()));
+                sk4.setText(skp.getNo_sk());
+                dt4.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status5 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 5);
+            System.out.println("status ctly : " + status);
+            if (status5 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 5);
+                tmt5.setDate(sdf.parse(skp.getTmt()));
+                sk5.setText(skp.getNo_sk());
+                dt5.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status6 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 6);
+            System.out.println("status pindah : " + status);
+            if (status6 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 6);
+                tmt6.setDate(sdf.parse(skp.getTmt()));
+                sk6.setText(skp.getNo_sk());
+                dt6.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status7 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 7);
+            System.out.println("status pensiun : " + status);
+            if (status7 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 7);
+                tmt7.setDate(sdf.parse(skp.getTmt()));
+                sk7.setText(skp.getNo_sk());
+                dt7.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status8 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 8);
+            System.out.println("status berhenti : " + status);
+            if (status8 == true) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 8);
+                tmt8.setDate(sdf.parse(skp.getTmt()));
+                sk8.setText(skp.getNo_sk());
+                dt8.setDate(sdf.parse(skp.getTanggal()));
+            }
+            boolean status9 = DaoFactory.getK_Pegawai_Dao().cekStatusNUK(Session.getNUK(), 9);
+            System.out.println("status meninggal : " + status);
+            if (status9 == true) {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 SK_Pegawai skp = DaoFactory.getK_Pegawai_Dao().getSKPegawaiByNUK(Session.getNUK(), 9);
                 tmt9.setDate(sdf.parse(skp.getTmt()));

@@ -30,6 +30,8 @@ public class PekerjaanJabatan {
     private Jabatan jabatan;
     private String namaJabatan;
     private int masaJabatan;
+    private String tmt_awal; //atribut ini hanya untuk riwayat
+    private String tmt_akhir; // atribut ini hanya untuk riwayat
 
     public int getId() {
         return id;
@@ -133,6 +135,22 @@ public class PekerjaanJabatan {
 
     public void setTglSKPekerjaan_indo(String tglSKPekerjaan_indo) {
         this.tglSKPekerjaan_indo = tglSKPekerjaan_indo;
+    }
+
+    public String getTmt_awal() {
+        return tmt_awal;
+    }
+
+    public void setTmt_awal(String tmt_awal) {
+        this.tmt_awal = tmt_awal;
+    }
+
+    public String getTmt_akhir() {
+        return tmt_akhir;
+    }
+
+    public void setTmt_akhir(String tmt_akhir) {
+        this.tmt_akhir = tmt_akhir;
     }
 
 }

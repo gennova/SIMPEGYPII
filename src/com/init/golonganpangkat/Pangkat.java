@@ -31,6 +31,10 @@ public class Pangkat {
     private int bulan_masa_kerja;
     private int tahun_masa_kerja_sebenarnya;
     private int bulan_masa_kerja_sebenarnya;
+    //------------------riwayat-------------------
+    private int gaji;
+    private String gaji_str;
+    private String ruang;
 
     public int getId() {
         return id;
@@ -166,6 +170,30 @@ public class Pangkat {
 
     public void setTanggal_kgb_indo(String tanggal_kgb_indo) {
         this.tanggal_kgb_indo = tanggal_kgb_indo;
+    }
+
+    public int getGaji() {
+        return gaji;
+    }
+
+    public void setGaji(int gaji) {
+        this.gaji = gaji;
+    }
+
+    public String getGaji_str() {
+        return gaji_str;
+    }
+
+    public void setGaji_str(String gaji_str) {
+        this.gaji_str = gaji_str;
+    }
+
+    public String getRuang() {
+        return ruang;
+    }
+
+    public void setRuang(String ruang) {
+        this.ruang = ruang;
     }
 
 }

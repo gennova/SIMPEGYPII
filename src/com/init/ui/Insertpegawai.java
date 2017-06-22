@@ -407,11 +407,13 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         kelaminGroup.add(lakiRadio);
         lakiRadio.setText("Laki-laki");
+        lakiRadio.setOpaque(false);
 
         jLabel4.setText("JK");
 
         kelaminGroup.add(ceweRadio);
         ceweRadio.setText("Perempuan");
+        ceweRadio.setOpaque(false);
 
         jLabel5.setText("Agama");
 
@@ -447,6 +449,7 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel48.setText("Anak Seluruh");
 
+        txtAnakSeluruh.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtAnakSeluruh.setText("0");
         txtAnakSeluruh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -456,6 +459,7 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel49.setText("Anak Gaji");
 
+        txtAnakGaji.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtAnakGaji.setText("0");
 
         txtFotoDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -591,20 +595,17 @@ public class Insertpegawai extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel9))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(ComboSttPeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton9))))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(fotoTeks))))
+                                    .addComponent(jButton9)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fotoTeks)))
                     .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
@@ -631,16 +632,19 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel16.setText("Masa Kerja Golongan");
 
+        txtTahunKerja.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTahunKerja.setText("0");
 
         jLabel17.setText("Tahun");
 
+        txtBulanKerja.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtBulanKerja.setText("0");
 
         jLabel18.setText("Bulan");
 
         jLabel19.setText("Masa Kerja Sebenarnya");
 
+        txtTahunKerjaBenar.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTahunKerjaBenar.setText("0");
         txtTahunKerjaBenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -650,6 +654,7 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel20.setText("Tahun");
 
+        txtBulanKerjaBenar.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtBulanKerjaBenar.setText("0");
 
         jLabel21.setText("Bulan");
@@ -823,6 +828,7 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel33.setText("Nama Unit Kerja");
 
+        txtMasaJabatan.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtMasaJabatan.setText("0");
 
         jLabel34.setText("Tahun");
@@ -1620,6 +1626,33 @@ public class Insertpegawai extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        //*********************************************************************//
+        //ini start data Pekerjaan Jabatan /tab Pekerjaan Jabatan//
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        PekerjaanJabatan pkj = new PekerjaanJabatan();
+        Pegawai p = DaoFactory.getPegawaiDao().getPegawaiByNUK(NUK_teks.getText());
+        pkj.setPegawai(p);
+        pkj.setBk(DaoFactory.getBidangKerjaDao().getBidangKerjaByNamaBidangKerja(comboBidangKerja.getSelectedItem().toString()));
+        pkj.setTglTMTPekerjaan(sdf.format(tmtPekerjaan.getDate()));
+        pkj.setTglTMTPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tmtPekerjaan.getDate()))); // Format Indo
+        pkj.setNomorSKPekerjaan(txtNomorSKJabatan.getText());
+        pkj.setTglSKPekerjaan(sdf.format(tglSKJabatan.getDate()));
+        pkj.setTglSKPekerjaan_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(tglSKJabatan.getDate()))); // Format indo
+        pkj.setCabang(DaoFactory.getCabangDao().getCabangByNamaCabang(comboWIlayahTugas.getSelectedItem().toString()));
+        pkj.setUnit(DaoFactory.getUnitDao().getUnitByNama(comboUnitKerja.getSelectedItem().toString()));
+        pkj.setJabatan(DaoFactory.getJabatanDao().getJabatanByNama(comboNamaJabatan.getSelectedItem().toString()));
+        pkj.setNamaJabatan(txtNamaJabatan.getText());
+        pkj.setMasaJabatan(Integer.parseInt(txtMasaJabatan.getText()));
+        //ini end dari Pekerjaan Jabatan /tab Pekerjaan Jabatan//
+        //*********************************************************************//
+        if (p != null) {
+            Session.setPekerjaanJabatan(pkj);
+            NaikJabatanUI njui = new NaikJabatanUI();
+            njui.setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(this, "Data Pegawai Tidak Ditemukan/Cek Nuk", "Peringatan", 3);
+        }
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void txtAnakSeluruhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnakSeluruhActionPerformed

@@ -40,6 +40,9 @@ import com.init.pendidikanterakhir.PendidikanTerakhirDao;
 import com.init.pendidikanterakhir.PendidikanTerakhirDaoImplemen;
 import com.init.provinsi.ProvinsiDao;
 import com.init.provinsi.ProvinsiDaoImplemen;
+import com.init.riwayat_skp.RiwayatSK_KP;
+import com.init.riwayat_skp.RiwayatSK_KPDao;
+import com.init.riwayat_skp.RiwayatSK_KPDaoImplemen;
 import com.init.rumah.RumahDao;
 import com.init.rumah.RumahDaoImplemen;
 import com.init.sk_pegawai.SK_Pegawai_Dao;
@@ -91,15 +94,22 @@ public class DaoFactory {
     private static Gaji_pegawai_dao gaji_pegawai_dao;
     private static SK_jabatan_dao sK_jabatan_dao;
     private static SK_Pegawai_Dao k_Pegawai_Dao;
+    private static RiwayatSK_KPDao riwayatSK_KPDao;
+    
+
+    public static RiwayatSK_KPDao getRiwayatSK_KPDao() {
+        if (riwayatSK_KPDao == null) {
+            riwayatSK_KPDao = new RiwayatSK_KPDaoImplemen(getConnectionFix());
+        }
+        return riwayatSK_KPDao;
+    }
 
     public static SK_Pegawai_Dao getK_Pegawai_Dao() {
-        if (k_Pegawai_Dao==null) {
+        if (k_Pegawai_Dao == null) {
             k_Pegawai_Dao = new SK_Pegawai_DaoImplemen(getConnectionFix());
         }
         return k_Pegawai_Dao;
     }
-    
-    
 
     public static SK_jabatan_dao getsK_jabatan_dao() {
         if (sK_jabatan_dao == null) {
