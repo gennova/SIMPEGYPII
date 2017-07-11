@@ -232,6 +232,8 @@ public class PekerjaanJabatanDaoImplemen implements PekerjaanJabatanDao {
                 jabatan.setUnit(DaoFactory.getUnitDao().getUnitByID(rs.getInt("idunit")));
                 jabatan.setTglTMTPekerjaan_indo(rs.getString("tmt_tanggal_pekerjaan_indo"));
                 jabatan.setTglSKPekerjaan_indo(rs.getString("tgl_sk_pekerjaan_indo"));
+                jabatan.setTmt_awal(rs.getString("tmt_awal"));
+                jabatan.setTmt_akhir(rs.getString("tmt_akhir"));
                 lists.add(jabatan);
             }
         } catch (SQLException ex) {

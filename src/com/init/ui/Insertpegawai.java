@@ -30,6 +30,8 @@ import java.nio.file.StandardCopyOption;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
@@ -1222,6 +1224,11 @@ public class Insertpegawai extends javax.swing.JFrame {
         });
 
         ButtonCancel.setText("CANCEL");
+        ButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonCancelActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("CLEAR");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -1642,7 +1649,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         pkj.setUnit(DaoFactory.getUnitDao().getUnitByNama(comboUnitKerja.getSelectedItem().toString()));
         pkj.setJabatan(DaoFactory.getJabatanDao().getJabatanByNama(comboNamaJabatan.getSelectedItem().toString()));
         pkj.setNamaJabatan(txtNamaJabatan.getText());
-        pkj.setMasaJabatan(Integer.parseInt(txtMasaJabatan.getText()));
+        pkj.setMasaJabatan(Integer.parseInt(txtMasaJabatan.getText()));        
         //ini end dari Pekerjaan Jabatan /tab Pekerjaan Jabatan//
         //*********************************************************************//
         if (p != null) {
@@ -1846,6 +1853,11 @@ public class Insertpegawai extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_ButtonCancelActionPerformed
 
     /**
      * @param args the command line arguments

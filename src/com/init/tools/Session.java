@@ -8,6 +8,7 @@ package com.init.tools;
 import code.init.pekerjaanjabatan.PekerjaanJabatan;
 import com.init.golonganpangkat.Pangkat;
 import com.init.pegawai.Pegawai;
+import com.init.riwayat_jabatan.RiwayatJabatan;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Session {
     private static Pegawai pegawai;
     private static PekerjaanJabatan pekerjaanJabatan;
     private static Pangkat pangkat;
+    private static RiwayatJabatan riwayatJabatan;
 
     public static String getNUK() {
         return NUK;
@@ -50,6 +52,14 @@ public class Session {
 
     public static void setPangkat(Pangkat pangkat) {
         Session.pangkat = pangkat;
+    }
+
+    public static RiwayatJabatan getRiwayatJabatan() {
+        return riwayatJabatan;
+    }
+
+    public static void setRiwayatJabatan(RiwayatJabatan riwayatJabatan) {
+        Session.riwayatJabatan = riwayatJabatan;
     }
 
 }

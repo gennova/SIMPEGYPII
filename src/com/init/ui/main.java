@@ -6,6 +6,9 @@
 package com.init.ui;
 
 import com.init.tools.DaoFactory;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -19,8 +22,11 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        System.out.println(DaoFactory.FormatTanggalIndonesia("2020-02-27"));
+        Date d = new GregorianCalendar().getTime();
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.YEAR, 5);
+        System.out.println(c.getTime());
     }
 
 }
