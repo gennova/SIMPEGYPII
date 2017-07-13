@@ -20,8 +20,8 @@ import java.util.logging.Logger;
 public class Gaji_pegawai_dao_implemen implements Gaji_pegawai_dao {
 
     private final Connection connection;
-    private final String sqlInsertGajiPegawai = "INSERT INTO gajipegawai(nuk,gaji_pokok,tunjangan_suami_istri,tunjangan_anak,tunjangan_lain,total_gaji,tanggungan_orang) VALUES (?,?,?,?,?,?,?)";
-    private final String sqlUpdateGajiPegawai = "update gajipegawai set gaji_pokok=?,tunjangan_suami_istri=?,tunjangan_anak=?,tunjangan_lain=?,total_gaji=?,tanggungan_orang=? where nuk=?";
+    private final String sqlInsertGajiPegawai = "INSERT INTO gajipegawai(nuk,gaji_pokok,tunjangan_suami_istri,tunjangan_anak,tunjangan_lain,total_gaji,tanggungan_orang,kgb_berikutnya,kgb_yad,kgb_yad_indo) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlUpdateGajiPegawai = "update gajipegawai set gaji_pokok=?,tunjangan_suami_istri=?,tunjangan_anak=?,tunjangan_lain=?,total_gaji=?,tanggungan_orang=?,kgb_berikutnya=?,kgb_yad=?,kgb_yad_indo=? where nuk=?";
     private final String sqlGetGajiPegawaiByNUK = "select * from gajipegawai where nuk=?";
 
     public Gaji_pegawai_dao_implemen(Connection connection) {
@@ -42,6 +42,9 @@ public class Gaji_pegawai_dao_implemen implements Gaji_pegawai_dao {
                 ps.setDouble(5, gaji_pegawai.getTunjangan_lain());
                 ps.setDouble(6, gaji_pegawai.getTotal_gaji());
                 ps.setInt(7, gaji_pegawai.getTanggungan_orang());
+                ps.setInt(8, gaji_pegawai.getKgb_berikutnya());
+                ps.setString(9, gaji_pegawai.getKbg_yad_date());
+                ps.setString(10, gaji_pegawai.getKgb_yad_indo());
                 int status = ps.executeUpdate();
                 if (status == 1) {
                     System.out.println("Berhasil menyimpan data gaji pegawai");
@@ -58,7 +61,10 @@ public class Gaji_pegawai_dao_implemen implements Gaji_pegawai_dao {
                 ps.setDouble(4, gaji_pegawai.getTunjangan_lain());
                 ps.setDouble(5, gaji_pegawai.getTotal_gaji());
                 ps.setInt(6, gaji_pegawai.getTanggungan_orang());
-                ps.setString(7, gaji_pegawai.getPegawai().getNUK());
+                ps.setInt(7, gaji_pegawai.getKgb_berikutnya());
+                ps.setString(8, gaji_pegawai.getKbg_yad_date());
+                ps.setString(9, gaji_pegawai.getKgb_yad_indo());
+                ps.setString(10, gaji_pegawai.getPegawai().getNUK());
                 int status = ps.executeUpdate();
                 if (status == 1) {
                     System.out.println("Berhasil update data gaji pegawai karna ada");
@@ -106,6 +112,9 @@ public class Gaji_pegawai_dao_implemen implements Gaji_pegawai_dao {
                 g.setTunjangan_lain(rs.getDouble("tunjangan_lain"));
                 g.setTotal_gaji(rs.getDouble("total_gaji"));
                 g.setTanggungan_orang(rs.getInt("tanggungan_orang"));
+                g.setKgb_berikutnya(rs.getInt("kgb_berikutnya"));
+                g.setKbg_yad_date(rs.getString("kgb_yad"));
+                g.setKgb_yad_indo(rs.getString("kgb_yad_indo"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Gaji_pegawai_dao_implemen.class.getName()).log(Level.SEVERE, null, ex);

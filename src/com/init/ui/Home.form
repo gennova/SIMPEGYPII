@@ -148,6 +148,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pengangkatan Jabatan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem14ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
                   <Properties>
@@ -160,6 +163,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Kenaikan Pangkat"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem38ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem39">
                   <Properties>

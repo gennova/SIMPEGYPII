@@ -14,4 +14,10 @@ import java.util.List;
 public interface RiwayatSK_KPDao {
 
     public List<RiwayatSK_KP> getALlSK_KPByNUK(String nuk);
+    
+    public void InsertRiwayatSKPManual(RiwayatSK_KP riwayatSK_KP);
+    
+    public void DeleteRiwayatSKP_Manual(int id);
+    
+    public RiwayatSK_KP getRiwayatSKKP_LamaByNukLast(String nuk);
 }

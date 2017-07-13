@@ -289,6 +289,11 @@ public class Home extends javax.swing.JFrame {
         jMenu8.add(jMenuItem13);
 
         jMenuItem14.setText("Pengangkatan Jabatan");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem14);
 
         jMenuItem15.setText("Pemberhentian Pegawai");
@@ -296,6 +301,11 @@ public class Home extends javax.swing.JFrame {
         jMenu8.add(jSeparator6);
 
         jMenuItem38.setText("Kenaikan Pangkat");
+        jMenuItem38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem38ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem38);
 
         jMenuItem39.setText("Gaji Berkala");
@@ -494,6 +504,18 @@ public class Home extends javax.swing.JFrame {
         CetakSKPegawai cskp = new CetakSKPegawai();
         cskp.setVisible(true);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        CetakPengangkatanJabatanUI cpjui = new CetakPengangkatanJabatanUI();
+        cpjui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem38ActionPerformed
+        // TODO add your handling code here:
+        CetakSK_KenaikanPangkat cskkp = new CetakSK_KenaikanPangkat();
+        cskkp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem38ActionPerformed
 
     /**
      * @param args the command line arguments

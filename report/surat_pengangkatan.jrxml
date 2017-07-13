@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="surat_pengangkatan" language="groovy" pageWidth="595" pageHeight="842" columnWidth="562" leftMargin="20" rightMargin="13" topMargin="20" bottomMargin="20" uuid="51d9bbb5-59f5-4fac-bccb-d0af3bd219f2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="230"/>
+	<parameter name="nuknya" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select *,left(pendidikanpegawai.tgl_ijazah_sk_angkat,4) as tahunijazahangkat_nya, sk_status_pegawai.tmt_indo as sk_tetap_pegawai from pegawai join pekerjaanjabatan on
+pegawai.nuk=pekerjaanjabatan.nuk join pendidikanpegawai on
+pegawai.nuk=pendidikanpegawai.nuk join pendidikanterakhir on
+pendidikanpegawai.id_ijazah_angkat = pendidikanterakhir.id join unit on pekerjaanjabatan.idunit = unit.id join cabang on
+pekerjaanjabatan.idcabang = cabang.id join bidangkerja on
+pekerjaanjabatan.idbidangkerja=bidangkerja.id
+join sk_status_pegawai on pegawai.nuk = sk_status_pegawai.nuk
+join legalisasi where pegawai.nuk = $P{nuknya} and sk_status_pegawai.jenis_sk = "TETAP"]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nuk" class="java.lang.String">
+		<fieldDescription><![CDATA[1]]></fieldDescription>
+	</field>
+	<field name="gelardepan" class="java.lang.String">
+		<fieldDescription><![CDATA[2]]></fieldDescription>
+	</field>
+	<field name="namapegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[3]]></fieldDescription>
+	</field>
+	<field name="gelarbelakang" class="java.lang.String">
+		<fieldDescription><![CDATA[4]]></fieldDescription>
+	</field>
+	<field name="alias" class="java.lang.String">
+		<fieldDescription><![CDATA[5]]></fieldDescription>
+	</field>
+	<field name="jeniskelamin" class="java.lang.String">
+		<fieldDescription><![CDATA[6]]></fieldDescription>
+	</field>
+	<field name="agama" class="java.lang.String">
+		<fieldDescription><![CDATA[7]]></fieldDescription>
+	</field>
+	<field name="tempatlahir" class="java.lang.String">
+		<fieldDescription><![CDATA[8]]></fieldDescription>
+	</field>
+	<field name="tanggallahir" class="java.sql.Date">
+		<fieldDescription><![CDATA[9]]></fieldDescription>
+	</field>
+	<field name="statuspernikahan" class="java.lang.String">
+		<fieldDescription><![CDATA[10]]></fieldDescription>
+	</field>
+	<field name="jumlahanakseluruh" class="java.lang.Integer">
+		<fieldDescription><![CDATA[11]]></fieldDescription>
+	</field>
+	<field name="jumlahanakgaji" class="java.lang.Integer">
+		<fieldDescription><![CDATA[12]]></fieldDescription>
+	</field>
+	<field name="statuspegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[13]]></fieldDescription>
+	</field>
+	<field name="filephoto" class="java.lang.String">
+		<fieldDescription><![CDATA[14]]></fieldDescription>
+	</field>
+	<field name="tanggallahir_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[15]]></fieldDescription>
+	</field>
+	<field name="idbidangkerja" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tmt_tanggal_pekerjaan" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_sk_pekerjaan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_sk_pekerjaan" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idcabang" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idunit" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idjabatan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_jabatan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="masa_jabatan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tmt_tanggal_pekerjaan_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_sk_pekerjaan_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_pegawai" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_ijazah_angkat" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_ijazah_sk_angkat" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_pendidikan_akhir" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_lulus_sk_pendidikan_akhir" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_ijazah_sk_angkat_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_lulus_sk_pendidikan_akhir_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodependidikan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namapendidikan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodeunit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namaunit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodecabang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namacabang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodebidangkerja" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namabidangkerja" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kolom" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis_sk" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tmt" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tmt_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomor_sk" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggalindo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ketua" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sekretaris" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tahunijazahangkat_nya" class="java.lang.String"/>
+	<field name="sk_tetap_pegawai" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="748" splitType="Stretch">
+			<staticText>
+				<reportElement x="174" y="94" width="202" height="20" uuid="1ffeeec6-2e90-4634-8a9f-1ad736ce141e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[S U R A T  P E N G A N G K A T A N]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="95" y="117" width="341" height="20" uuid="b6d65b88-f45c-419d-a7c8-cfe0dbc3f996"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{no_sk_pekerjaan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="57" y="149" width="100" height="20" uuid="f6647c31-3714-498b-aaca-fd82478c0061"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Pengurus Yayasan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="172" width="100" height="20" uuid="5811541f-0644-4a53-af32-9fd17e1227f2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="196" width="100" height="20" uuid="a71e0394-60ef-4b93-8f20-40f2e5ab2211"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Membaca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="220" width="100" height="20" uuid="a7b53c9b-e0e2-429f-86b3-63397e2e62f2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Menimbang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="149" width="0" height="20" uuid="8437cfc4-f188-42f3-893b-85571f695cc5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="172" width="0" height="20" uuid="fbec86f9-65cc-4d3c-b88b-815205e02583"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="196" width="0" height="20" uuid="b6e92e56-2381-4bfc-b076-a148ec49b808"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="220" width="0" height="20" uuid="6e62c593-3c8c-4bba-b81b-eeae81bcf98f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="149" width="333" height="20" uuid="8f6f9242-d48c-48c4-b669-0d8ec8a8fde7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["PENYELENGGARAAN ILAHI INDONESIA"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="172" width="333" height="20" uuid="5b581590-f46c-4e95-b4fb-403cd8845f0c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Jl. Gang Pinggir 62 Semarang"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="202" y="196" width="333" height="20" uuid="58ad29cc-a681-4b79-89c7-d92a4f63da0b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="202" y="220" width="333" height="20" uuid="37962dc2-15b9-45f0-a294-b0f8780dc792"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="174" y="277" width="202" height="20" uuid="bee993be-8873-4201-964d-91f6c21799c4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[MEMUTUSKAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="309" width="0" height="20" uuid="e56ab4d3-8f31-4d47-b094-6244eb95a80c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="308" width="333" height="20" uuid="06bd59ec-6f70-4ee6-a929-21fd11fc4a08"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{gelardepan} + " " + $F{namapegawai} +" "+$F{gelarbelakang}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="184" y="357" width="0" height="20" uuid="0760d057-1089-4105-b2a3-9e05dc6c7574"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="379" width="100" height="20" uuid="58fd0144-421f-41a7-b7a6-e74b70f0dde0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Berijazah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="331" width="100" height="20" uuid="467f1c74-c0d1-44cc-bde3-fd89c3351d46"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NUK]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="331" width="333" height="20" uuid="ee797aa4-1e15-4eab-9a01-d3b30c6ef0e1"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nuk}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="184" y="333" width="0" height="20" uuid="af0296ab-a531-4df9-8656-4276729c27fb"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="355" width="100" height="20" uuid="61a1cb71-f129-4ff5-aecd-7861af48e45f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Lahir di]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="379" width="333" height="20" uuid="6682c8be-b6fd-4627-aff5-4a1b39e654c3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{namapendidikan}+" Tahun : "+$F{tahunijazahangkat_nya}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="57" y="308" width="117" height="20" uuid="a7c05789-2ab4-4333-8f3c-66db01fac8fd"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Mengangkat Saudara]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="355" width="333" height="20" uuid="7cd0491a-03fe-4965-bf7a-558f5b08c86e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tempatlahir} +" Tanggal : "+$F{tanggallahir_indo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="184" y="286" width="0" height="20" uuid="18b081d8-8ce1-4bc6-a008-0a181af3614a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="414" width="168" height="20" uuid="ba139534-45d9-4b87-9a8c-6f42eb47c873"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Yang bersangkutan diangkat dalam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="414" width="59" height="20" uuid="35b7c650-e9e6-4c87-9798-8f4aa1100cc7"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Dinas Tetap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="414" width="260" height="20" uuid="65c079a3-98ac-472f-8959-c8c70630618b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[pada Yayasan Penyelenggaraan Ilahi Indonesia]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="491" width="333" height="20" uuid="0fae7f2a-9f21-41f3-b742-f0d83483d4cb"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{namabidangkerja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="467" width="333" height="20" uuid="6777a4ac-7966-4307-9893-4922f9a3021e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{namaunit}+" di "+$F{namacabang}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="57" y="491" width="100" height="20" uuid="3620a50d-241d-456a-94f6-78e69d047aa0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Dengan tugas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="202" y="444" width="333" height="20" uuid="de59ec27-02e9-4799-b5e9-2a0e74d5fa35"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{sk_tetap_pegawai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="57" y="467" width="100" height="20" uuid="545f43fe-8d90-4e45-aa5c-b54d07745cf5"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Dan ditempatkan pada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="444" width="117" height="20" uuid="ac3219bf-d4b0-4490-bf96-67a13febeafd"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Terhitung mulai tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="445" width="0" height="20" uuid="e94743b7-cf2a-4c0c-9f75-2b3f23173b97"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="422" width="0" height="20" uuid="b774e20f-f969-4cac-a3a8-50359cc87dd9"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="469" width="0" height="20" uuid="ce370433-a22d-4fc1-a0f3-8446f78c0a61"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="522" width="447" height="46" uuid="14084901-3bb5-49ae-b1ed-ee28fda2a431"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle"/>
+				<text><![CDATA[Saudara yang namanya tersebut dalam surat pengangkatan ini ditetapkan jabatan dan gajinya seperti yang dinyatakan dalam Daftar Gaji Terlampir, dengan ketentuan bahwa segala sesuatunya akan diubah dan dipertimbangkan kembali, jika kemudian terdapat kesalahan dalam penetapan ini]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="586" width="200" height="20" uuid="9a0cd85e-a9df-488c-96c8-6e3a4787d613"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Semarang,"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="304" y="606" width="200" height="20" uuid="32e467ba-7b0f-4cae-ac2b-2a0369c61229"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PENGURUS YAYASAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="626" width="201" height="20" uuid="d9ae9b9d-ac3f-4a17-b1f9-5b284aafbf46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PENYELENGGARAAN ILAHI INDONESIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="606" width="143" height="20" uuid="8057cc4d-fd36-4f03-b834-1bfe1c922263"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[YANG DIANGKAT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="696" width="200" height="20" uuid="be564bdb-1320-48f9-afbc-4197f3f67c80"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ketua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="716" width="200" height="20" uuid="fc832e74-605d-4beb-ae8c-0392c24fdec6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["KETUA"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="59" y="696" width="143" height="20" uuid="f83052f1-e2e9-4eee-b6ea-c30f26e131a3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gelardepan} + " " + $F{namapegawai} +" "+$F{gelarbelakang}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="202" y="245" width="333" height="20" uuid="118c3d1e-41a7-4dfd-9b39-2d5cf4657678"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="57" y="245" width="100" height="20" uuid="ea742342-31dd-4a4b-af33-842b98746856"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Mengingat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="245" width="0" height="20" uuid="92ca3654-289b-4c95-8c30-bbc28eefea1e"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

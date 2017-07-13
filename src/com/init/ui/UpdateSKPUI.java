@@ -46,9 +46,12 @@ public class UpdateSKPUI extends javax.swing.JFrame {
     }
 
     private void initAPP() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Pegawai pegawai = Session.getPegawai();
-        txtNama.setText(pegawai.getNama());
+        if (pegawai != null) {
+            txtNama.setText(pegawai.getNama());
+        }
+
         Pangkat pangkat = Session.getPangkat();
         try {
             tmt_golongan_date.setDate(sdf.parse(pangkat.getTMTGolongan()));
@@ -95,6 +98,7 @@ public class UpdateSKPUI extends javax.swing.JFrame {
         txtGaji = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         UpdateRiwayat = new javax.swing.JButton();
+        txtNamaPangkat = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Update Riwayat SKP");
@@ -109,7 +113,13 @@ public class UpdateSKPUI extends javax.swing.JFrame {
 
         jLabel3.setText("Golongan");
 
+        tmt_golongan_combo.setEditable(true);
         tmt_golongan_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tmt_golongan_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tmt_golongan_comboActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("TMT Golongan");
 
@@ -135,6 +145,8 @@ public class UpdateSKPUI extends javax.swing.JFrame {
             }
         });
 
+        txtNamaPangkat.setText(".................................................");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -159,13 +171,16 @@ public class UpdateSKPUI extends javax.swing.JFrame {
                             .addComponent(tmt_golongan_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tgl_sk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRuang, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGaji, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRuang, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtGaji, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNamaPangkat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(UpdateRiwayat)
@@ -189,7 +204,8 @@ public class UpdateSKPUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel3)
-                            .addComponent(tmt_golongan_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tmt_golongan_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNamaPangkat))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel4)
@@ -258,8 +274,16 @@ public class UpdateSKPUI extends javax.swing.JFrame {
         pangkat_update.setRuang(txtRuang.getText());
         pangkat_update.setGaji_str(txtGaji.getText());
         DaoFactory.getPangkatDao().UpdateDataRiwayatPangkatByID(pangkat_update);
-        //this.dispose();
+        this.dispose();
     }//GEN-LAST:event_UpdateRiwayatActionPerformed
+
+    private void tmt_golongan_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tmt_golongan_comboActionPerformed
+        // TODO add your handling code here:
+        if (tmt_golongan_combo.getSelectedIndex() >= 0) {
+            txtNamaPangkat.setText(DaoFactory.getGolonganDao().getGolonganByNamaGolongan(tmt_golongan_combo.getSelectedItem().toString()).getPangkat());
+        }
+
+    }//GEN-LAST:event_tmt_golongan_comboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,6 +339,7 @@ public class UpdateSKPUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtGaji;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNama;
+    private javax.swing.JLabel txtNamaPangkat;
     private javax.swing.JTextField txtRuang;
     // End of variables declaration//GEN-END:variables
 }

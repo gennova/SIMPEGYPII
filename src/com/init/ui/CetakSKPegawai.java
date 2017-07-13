@@ -282,7 +282,7 @@ public class CetakSKPegawai extends javax.swing.JFrame {
         // TODO add your handling code here:
         HashMap hashMap = new HashMap();
         hashMap.put("nuknya", txtNUK.getText());
-        hashMap.put("berikunta", "1 Januari 2018");
+        hashMap.put("berikutnya", DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(txtNUK.getText()).getKgb_yad_indo());
         new PrintReport("./report/lampiran_sk_pengangkatan.jasper", hashMap);
     }//GEN-LAST:event_jButton1ActionPerformed
 

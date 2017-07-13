@@ -6,6 +6,7 @@
 package com.init.ui;
 
 import com.init.tools.DaoFactory;
+import com.init.tools.Rupiah;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -27,6 +28,7 @@ public class main {
         c.setTime(d);
         c.add(Calendar.YEAR, 5);
         System.out.println(c.getTime());
+        System.out.println(Rupiah.convert(194854789));
     }
 
 }

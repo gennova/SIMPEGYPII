@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pegawai" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="854967bf-ea3a-4445-97da-45f5d153e47b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from pegawai where nuk=1000]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nuk" class="java.lang.String">
+		<fieldDescription><![CDATA[1]]></fieldDescription>
+	</field>
+	<field name="gelardepan" class="java.lang.String">
+		<fieldDescription><![CDATA[2]]></fieldDescription>
+	</field>
+	<field name="namapegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[3]]></fieldDescription>
+	</field>
+	<field name="gelarbelakang" class="java.lang.String">
+		<fieldDescription><![CDATA[4]]></fieldDescription>
+	</field>
+	<field name="alias" class="java.lang.String">
+		<fieldDescription><![CDATA[5]]></fieldDescription>
+	</field>
+	<field name="jeniskelamin" class="java.lang.String">
+		<fieldDescription><![CDATA[6]]></fieldDescription>
+	</field>
+	<field name="agama" class="java.lang.String">
+		<fieldDescription><![CDATA[7]]></fieldDescription>
+	</field>
+	<field name="tempatlahir" class="java.lang.String">
+		<fieldDescription><![CDATA[8]]></fieldDescription>
+	</field>
+	<field name="tanggallahir" class="java.sql.Date">
+		<fieldDescription><![CDATA[9]]></fieldDescription>
+	</field>
+	<field name="statuspernikahan" class="java.lang.String">
+		<fieldDescription><![CDATA[10]]></fieldDescription>
+	</field>
+	<field name="jumlahanakseluruh" class="java.lang.Integer">
+		<fieldDescription><![CDATA[11]]></fieldDescription>
+	</field>
+	<field name="jumlahanakgaji" class="java.lang.Integer">
+		<fieldDescription><![CDATA[12]]></fieldDescription>
+	</field>
+	<field name="statuspegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[13]]></fieldDescription>
+	</field>
+	<field name="filephoto" class="java.lang.String">
+		<fieldDescription><![CDATA[14]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="321">
+			<staticText>
+				<reportElement x="108" y="125" width="361" height="15" uuid="530755bd-c917-420a-8ef1-dc67abe77519"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[YAYASAN PENYELENGGARAAN ILAHI INDONESIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="142" width="361" height="15" uuid="80e13389-0458-4a4e-a666-d229a061d57c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[MEMUTUSKAN BAHWA YANG BERTANDA TANGAN DIBAWAH INI :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="242" width="100" height="20" uuid="e4546748-64f4-47ac-b15a-c9311e1c9f5f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="275" y="242" width="212" height="20" uuid="cd149a08-d139-43f7-b5d8-ff9e7ad1617d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{namapegawai}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

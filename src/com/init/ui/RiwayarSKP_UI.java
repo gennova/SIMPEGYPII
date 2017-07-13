@@ -64,6 +64,7 @@ public class RiwayarSKP_UI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -142,6 +143,11 @@ public class RiwayarSKP_UI extends javax.swing.JFrame {
         });
 
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Update");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -151,6 +157,18 @@ public class RiwayarSKP_UI extends javax.swing.JFrame {
         });
 
         jButton4.setText("Insert");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Refresh / Reload");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,6 +181,8 @@ public class RiwayarSKP_UI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3)
@@ -186,7 +206,8 @@ public class RiwayarSKP_UI extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
@@ -219,6 +240,28 @@ public class RiwayarSKP_UI extends javax.swing.JFrame {
             txtKode.setText(id_golongan);
         }
     }//GEN-LAST:event_tabel_riwayatMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        InsertRiwayatSKP_UI irskpui = new InsertRiwayatSKP_UI();
+        irskpui.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        loadtable();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int kode = Integer.parseInt(txtKode.getText());
+        int opsi = JOptionPane.showConfirmDialog(null, "Anda yakin akan menghapus data ini?", "peringatan", 2, JOptionPane.OK_CANCEL_OPTION);
+        if (opsi == JOptionPane.OK_OPTION) {
+            DaoFactory.getRiwayatSK_KPDao().DeleteRiwayatSKP_Manual(kode);
+            loadtable();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,6 +303,7 @@ public class RiwayarSKP_UI extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

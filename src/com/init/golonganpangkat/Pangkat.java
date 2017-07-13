@@ -35,6 +35,9 @@ public class Pangkat {
     private int gaji;
     private String gaji_str;
     private String ruang;
+    //----------kenaikan yang akan datang --------------
+    private String naik_pangkat_yad;
+    private String naik_pangkat_yad_indo;
 
     public int getId() {
         return id;
@@ -194,6 +197,22 @@ public class Pangkat {
 
     public void setRuang(String ruang) {
         this.ruang = ruang;
+    }
+
+    public String getNaik_pangkat_yad() {
+        return naik_pangkat_yad;
+    }
+
+    public void setNaik_pangkat_yad(String naik_pangkat_yad) {
+        this.naik_pangkat_yad = naik_pangkat_yad;
+    }
+
+    public String getNaik_pangkat_yad_indo() {
+        return naik_pangkat_yad_indo;
+    }
+
+    public void setNaik_pangkat_yad_indo(String naik_pangkat_yad_indo) {
+        this.naik_pangkat_yad_indo = naik_pangkat_yad_indo;
     }
 
 }

@@ -21,6 +21,9 @@ public class Gaji_pegawai {
     private double tunjangan_lain;
     private double total_gaji;
     private int tanggungan_orang;
+    private int kgb_berikutnya;
+    private String kbg_yad_date;
+    private String kgb_yad_indo;
 
     public int getId() {
         return id;
@@ -84,6 +87,30 @@ public class Gaji_pegawai {
 
     public void setTanggungan_orang(int tanggungan_orang) {
         this.tanggungan_orang = tanggungan_orang;
+    }
+
+    public int getKgb_berikutnya() {
+        return kgb_berikutnya;
+    }
+
+    public void setKgb_berikutnya(int kgb_berikutnya) {
+        this.kgb_berikutnya = kgb_berikutnya;
+    }
+
+    public String getKbg_yad_date() {
+        return kbg_yad_date;
+    }
+
+    public void setKbg_yad_date(String kbg_yad_date) {
+        this.kbg_yad_date = kbg_yad_date;
+    }
+
+    public String getKgb_yad_indo() {
+        return kgb_yad_indo;
+    }
+
+    public void setKgb_yad_indo(String kgb_yad_indo) {
+        this.kgb_yad_indo = kgb_yad_indo;
     }
 
 }

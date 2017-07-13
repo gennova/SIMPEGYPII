@@ -31,6 +31,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -210,6 +211,7 @@ public class Insertpegawai extends javax.swing.JFrame {
             txtTunjanganLain.setText(String.valueOf(gjp.getTunjangan_lain()));
             txtJumlahGaji.setText(String.valueOf(gjp.getTotal_gaji()));
             txtTanggunganOrang.setText(String.valueOf(gjp.getTanggungan_orang()));
+            txtKGBBerikutnya.setText(String.valueOf(gjp.getKgb_berikutnya()));
 
         }
     }
@@ -377,6 +379,10 @@ public class Insertpegawai extends javax.swing.JFrame {
         jLabel46 = new javax.swing.JLabel();
         txtTanggunganOrang = new javax.swing.JTextField();
         jLabel47 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        txtKGBBerikutnya = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel53 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -1107,6 +1113,13 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel47.setText("Orang");
 
+        jLabel52.setText("KGB Berikutnya");
+
+        txtKGBBerikutnya.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtKGBBerikutnya.setText("2");
+
+        jLabel53.setText("Tahun yang akan datang");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1137,8 +1150,16 @@ public class Insertpegawai extends javax.swing.JFrame {
                                     .addComponent(txtJumlahGaji, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtTanggunganOrang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel47)))))
+                                .addComponent(jLabel47))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jLabel52)
+                        .addGap(28, 28, 28)
+                        .addComponent(txtKGBBerikutnya, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel53)))
                 .addContainerGap(77, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
         );
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtGajiPokok, txtTanggunganOrang, txtTunjanganAnak, txtTunjanganLain, txtTunjanganSuamiIstri});
@@ -1173,10 +1194,17 @@ public class Insertpegawai extends javax.swing.JFrame {
                     .addComponent(jLabel46)
                     .addComponent(txtTanggunganOrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel47))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52)
+                    .addComponent(txtKGBBerikutnya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel53))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtGajiPokok, txtJumlahGaji, txtTanggunganOrang, txtTunjanganAnak, txtTunjanganLain, txtTunjanganSuamiIstri});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtGajiPokok, txtJumlahGaji, txtKGBBerikutnya, txtTanggunganOrang, txtTunjanganAnak, txtTunjanganLain, txtTunjanganSuamiIstri});
 
         jTabbedPane1.addTab("E.Gaji", jPanel5);
 
@@ -1450,6 +1478,11 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pangkat.setTanggal_sk_indo(Tgl_nomor_sk_indo); //Tgl SK Format Indo
                 pangkat.setTmt_kgb_indo(Tgl_tmt_kgb_indo); // TMT KGB Format Indo
                 pangkat.setTanggal_kgb_indo(Tgl_nomor_kgb_indo); //Nomor KGB Format Indor
+                Calendar calendar = GregorianCalendar.getInstance();
+                calendar.setTime(nomorSKDate.getDate());
+                calendar.add(Calendar.YEAR, 2);
+                pangkat.setNaik_pangkat_yad(sdf.format(calendar.getTime()));
+                pangkat.setNaik_pangkat_yad_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(calendar.getTime())));
                 //ini end dari pangkat golongan /tab pangkat golongan//
                 //*********************************************************************//
                 //ini start data Pekerjaan Jabatan /tab Pekerjaan Jabatan//
@@ -1488,6 +1521,12 @@ public class Insertpegawai extends javax.swing.JFrame {
                 gaji_pegawai.setTunjangan_lain(Double.parseDouble(txtTunjanganLain.getText()));
                 gaji_pegawai.setTotal_gaji(Double.parseDouble(txtJumlahGaji.getText()));
                 gaji_pegawai.setTanggungan_orang(Integer.parseInt(txtTanggunganOrang.getText()));
+                gaji_pegawai.setKgb_berikutnya(Integer.parseInt(txtKGBBerikutnya.getText()));
+                Calendar c = GregorianCalendar.getInstance();
+                c.setTime(tmtKGBDate.getDate());
+                c.add(Calendar.YEAR, Integer.parseInt(txtKGBBerikutnya.getText()));
+                gaji_pegawai.setKbg_yad_date(sdf.format(c.getTime()));
+                gaji_pegawai.setKgb_yad_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(c.getTime())));
                 //ini end dari Gaji Pegawai//
                 //*********************************************************************//
 
@@ -1569,6 +1608,11 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pangkat.setTanggal_sk_indo(Tgl_nomor_sk_indo); //Tgl SK Format Indo
                 pangkat.setTmt_kgb_indo(Tgl_tmt_kgb_indo); // TMT KGB Format Indo
                 pangkat.setTanggal_kgb_indo(Tgl_nomor_kgb_indo); //Nomor KGB Format Indor
+                Calendar calendar = GregorianCalendar.getInstance();
+                calendar.setTime(nomorSKDate.getDate());
+                calendar.add(Calendar.YEAR, 2);
+                pangkat.setNaik_pangkat_yad(sdf.format(calendar.getTime()));
+                pangkat.setNaik_pangkat_yad_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(calendar.getTime())));
                 //ini end dari pangkat golongan /tab pangkat golongan//
                 //*********************************************************************//
                 //ini start data Pekerjaan Jabatan /tab Pekerjaan Jabatan//
@@ -1607,6 +1651,12 @@ public class Insertpegawai extends javax.swing.JFrame {
                 gaji_pegawai.setTunjangan_lain(Double.parseDouble(txtTunjanganLain.getText()));
                 gaji_pegawai.setTotal_gaji(Double.parseDouble(txtJumlahGaji.getText()));
                 gaji_pegawai.setTanggungan_orang(Integer.parseInt(txtTanggunganOrang.getText()));
+                gaji_pegawai.setKgb_berikutnya(Integer.parseInt(txtKGBBerikutnya.getText()));
+                Calendar c = GregorianCalendar.getInstance();
+                c.setTime(tmtKGBDate.getDate());
+                c.add(Calendar.YEAR, Integer.parseInt(txtKGBBerikutnya.getText()));
+                gaji_pegawai.setKbg_yad_date(sdf.format(c.getTime()));
+                gaji_pegawai.setKgb_yad_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(c.getTime())));
                 //ini end dari Gaji Pegawai//
                 //*********************************************************************//
 
@@ -1971,6 +2021,8 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1980,6 +2032,7 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.ButtonGroup kelaminGroup;
     private javax.swing.JRadioButton lakiRadio;
@@ -2000,6 +2053,7 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JLabel txtFotoDisplay;
     private javax.swing.JTextField txtGajiPokok;
     private javax.swing.JTextField txtJumlahGaji;
+    private javax.swing.JTextField txtKGBBerikutnya;
     private javax.swing.JTextField txtMasaJabatan;
     private javax.swing.JTextField txtNamaJabatan;
     private javax.swing.JTextField txtNomorKGB;

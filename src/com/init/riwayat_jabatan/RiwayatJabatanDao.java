@@ -18,6 +18,8 @@ public interface RiwayatJabatanDao {
     public List<RiwayatJabatan> getALlRiwayatJabatan();
 
     public RiwayatJabatan getRiwayatJabatanByID(int id);
+    
+    public RiwayatJabatan getRiwayatJabatanLastByNUK(String nuk);
 
     public void updateRiwayaJabatan(RiwayatJabatan riwayatJabatan);
 
