@@ -20,6 +20,8 @@ import com.init.cabang.CabangDao;
 import com.init.cabang.CabangDaoImplemen;
 import com.init.gaji.Gaji_pegawai_dao;
 import com.init.gaji.Gaji_pegawai_dao_implemen;
+import com.init.gaji.Riwayat_Gaji_pegawai_dao;
+import com.init.gaji.Riwayat_Gaji_pegawai_dao_implemen;
 import com.init.golongan.GolonganDao;
 import com.init.golongan.GolonganDaoImplemen;
 import com.init.golonganpangkat.PangkatDao;
@@ -32,6 +34,8 @@ import com.init.jenistugas.JenisTugasDao;
 import com.init.jenistugas.JenisTugasDaoImplemen;
 import com.init.kartu.KartuDao;
 import com.init.kartu.KartuDaoImplemen;
+import com.init.legalisasi.LegalisasiDao;
+import com.init.legalisasi.LegalisasiDaoImplemen;
 import com.init.pegawai.PegawaiDao;
 import com.init.pegawai.PegawaiDaoImplemen;
 import com.init.pendidikan_pegawai.PendidikanPegawaiDao;
@@ -42,7 +46,6 @@ import com.init.provinsi.ProvinsiDao;
 import com.init.provinsi.ProvinsiDaoImplemen;
 import com.init.riwayat_jabatan.RiwayatJabatanDao;
 import com.init.riwayat_jabatan.RiwayatJabatanDaoImplemen;
-import com.init.riwayat_skp.RiwayatSK_KP;
 import com.init.riwayat_skp.RiwayatSK_KPDao;
 import com.init.riwayat_skp.RiwayatSK_KPDaoImplemen;
 import com.init.rumah.RumahDao;
@@ -59,10 +62,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 
 /**
  *
@@ -98,6 +104,22 @@ public class DaoFactory {
     private static SK_Pegawai_Dao k_Pegawai_Dao;
     private static RiwayatSK_KPDao riwayatSK_KPDao;
     private static RiwayatJabatanDao riwayatJabatanDao;
+    private static Riwayat_Gaji_pegawai_dao riwayat_Gaji_pegawai_dao;
+    private static LegalisasiDao legalisasiDao;
+
+    public static LegalisasiDao getLegalisasiDao() {
+        if (legalisasiDao == null) {
+            legalisasiDao = new LegalisasiDaoImplemen(getConnectionFix());
+        }
+        return legalisasiDao;
+    }
+
+    public static Riwayat_Gaji_pegawai_dao getRiwayat_Gaji_pegawai_dao() {
+        if (riwayat_Gaji_pegawai_dao == null) {
+            riwayat_Gaji_pegawai_dao = new Riwayat_Gaji_pegawai_dao_implemen(getConnectionFix());
+        }
+        return riwayat_Gaji_pegawai_dao;
+    }
 
     public static RiwayatJabatanDao getRiwayatJabatanDao() {
         if (riwayatJabatanDao == null) {
@@ -343,5 +365,35 @@ public class DaoFactory {
         }
         String formatindofix = hari + " " + bulanindo + " " + tahun;
         return formatindofix;
+    }
+
+    public static String getFormatRupiahIndonesiaInt(int harga) {
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        kursIndonesia.applyPattern("#,#00");
+        return kursIndonesia.format(harga);
+    }
+
+    public static String getFormatRupiahIndonesiaDouble(double harga) {
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        return kursIndonesia.format(harga);
+    }
+
+    public static int ConvertDoubleToInt(Double value) {
+        double a = value;
+        int data = (int) a;
+        return data;
     }
 }

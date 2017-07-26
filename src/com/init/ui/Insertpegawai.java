@@ -9,6 +9,7 @@ import code.init.pekerjaanjabatan.PekerjaanJabatan;
 import com.init.bidangkerja.BidangKerja;
 import com.init.cabang.Cabang;
 import com.init.gaji.Gaji_pegawai;
+import com.init.gaji.RiwayatGajiPegawai;
 import com.init.golongan.Golongan;
 import com.init.golonganpangkat.Pangkat;
 import com.init.ijazah.IjazahAngkat;
@@ -383,6 +384,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         txtKGBBerikutnya = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel53 = new javax.swing.JLabel();
+        jButton11 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -1120,6 +1122,13 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel53.setText("Tahun yang akan datang");
 
+        jButton11.setText("Pindahkan gaji ke riwayat");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1155,14 +1164,17 @@ public class Insertpegawai extends javax.swing.JFrame {
                         .addGap(136, 136, 136)
                         .addComponent(jLabel52)
                         .addGap(28, 28, 28)
-                        .addComponent(txtKGBBerikutnya, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel53)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(txtKGBBerikutnya, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel53))
+                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(77, 77, 77))
             .addComponent(jSeparator1)
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtGajiPokok, txtTanggunganOrang, txtTunjanganAnak, txtTunjanganLain, txtTunjanganSuamiIstri});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton11, txtGajiPokok, txtTanggunganOrang, txtTunjanganAnak, txtTunjanganLain, txtTunjanganSuamiIstri});
 
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1201,10 +1213,12 @@ public class Insertpegawai extends javax.swing.JFrame {
                     .addComponent(jLabel52)
                     .addComponent(txtKGBBerikutnya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel53))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton11)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtGajiPokok, txtJumlahGaji, txtKGBBerikutnya, txtTanggunganOrang, txtTunjanganAnak, txtTunjanganLain, txtTunjanganSuamiIstri});
+        jPanel5Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton11, txtGajiPokok, txtJumlahGaji, txtKGBBerikutnya, txtTanggunganOrang, txtTunjanganAnak, txtTunjanganLain, txtTunjanganSuamiIstri});
 
         jTabbedPane1.addTab("E.Gaji", jPanel5);
 
@@ -1699,14 +1713,14 @@ public class Insertpegawai extends javax.swing.JFrame {
         pkj.setUnit(DaoFactory.getUnitDao().getUnitByNama(comboUnitKerja.getSelectedItem().toString()));
         pkj.setJabatan(DaoFactory.getJabatanDao().getJabatanByNama(comboNamaJabatan.getSelectedItem().toString()));
         pkj.setNamaJabatan(txtNamaJabatan.getText());
-        pkj.setMasaJabatan(Integer.parseInt(txtMasaJabatan.getText()));        
+        pkj.setMasaJabatan(Integer.parseInt(txtMasaJabatan.getText()));
         //ini end dari Pekerjaan Jabatan /tab Pekerjaan Jabatan//
         //*********************************************************************//
         if (p != null) {
             Session.setPekerjaanJabatan(pkj);
             NaikJabatanUI njui = new NaikJabatanUI();
             njui.setVisible(true);
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Data Pegawai Tidak Ditemukan/Cek Nuk", "Peringatan", 3);
         }
 
@@ -1909,6 +1923,43 @@ public class Insertpegawai extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ButtonCancelActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        int statusOpsi = JOptionPane.showConfirmDialog(null, "Yakin menambahkan data gaji ke riwayat gaji?", "KGB Gaji / Riwayat", JOptionPane.OK_CANCEL_OPTION);
+        if (statusOpsi == JOptionPane.OK_OPTION) {
+            //*********************************************************************//
+            //ini start data Gaji Pegawai//
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Pegawai p = DaoFactory.getPegawaiDao().getPegawaiByNUK(NUK_teks.getText());
+            Pangkat pangkat = DaoFactory.getPangkatDao().getPangkatByNUK(Session.getNUK());
+            PekerjaanJabatan pekerjaanJabatan = DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(Session.getNUK());
+            if (p != null) {
+                RiwayatGajiPegawai gaji_pegawai = new RiwayatGajiPegawai();
+                gaji_pegawai.setPegawai(p);
+                gaji_pegawai.setGaji_pokok(Double.parseDouble(txtGajiPokok.getText()));
+                gaji_pegawai.setTunjangan_suami_istri(Double.parseDouble(txtTunjanganSuamiIstri.getText()));
+                gaji_pegawai.setTunjangan_anak(Double.parseDouble(txtTunjanganAnak.getText()));
+                gaji_pegawai.setTunjangan_lain(Double.parseDouble(txtTunjanganLain.getText()));
+                gaji_pegawai.setTotal_gaji(Double.parseDouble(txtJumlahGaji.getText()));
+                gaji_pegawai.setTanggungan_orang(Integer.parseInt(txtTanggunganOrang.getText()));
+                gaji_pegawai.setKgb_berikutnya(Integer.parseInt(txtKGBBerikutnya.getText()));
+                gaji_pegawai.setPangkat(pangkat);
+                gaji_pegawai.setPekerjaanJabatan(pekerjaanJabatan);
+                Calendar c = GregorianCalendar.getInstance();
+                c.setTime(tmtKGBDate.getDate());
+                c.add(Calendar.YEAR, Integer.parseInt(txtKGBBerikutnya.getText()));
+                gaji_pegawai.setKbg_yad_date(sdf.format(c.getTime()));
+                gaji_pegawai.setKgb_yad_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(c.getTime())));
+                DaoFactory.getRiwayat_Gaji_pegawai_dao().InsertGajiPegawaiRiwayat(gaji_pegawai); // simpan riwayat
+                JOptionPane.showMessageDialog(null, "Data riwayat pegawai berhasil disimpan");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data pegawai tidak ditemukan");
+            }
+            //ini end dari Gaji Pegawai//
+            //*********************************************************************//
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1965,6 +2016,7 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JTextField gelarbelakangTeks;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

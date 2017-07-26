@@ -17,6 +17,7 @@ import com.init.tools.Rupiah;
 import java.awt.Image;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -343,11 +344,6 @@ public class CetakSK_KenaikanPangkat extends javax.swing.JFrame {
         RiwayatSK_KP skp_lama = DaoFactory.getRiwayatSK_KPDao().getRiwayatSKKP_LamaByNukLast(nuknya);
         //Data Pokok Pangkat Baru
         Pangkat pangkat_baru = DaoFactory.getPangkatDao().getPangkatByNUK(nuknya);
-        txtPangkatBaru.setText(pangkat_baru.getGolongan().getPangkat());
-        txtNamaJabatanBaru.setText(pj.getJabatan().getNamajabatan());
-        txtGolonganGajiBaru.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok());
-        txtTMT.setText(pj.getTglTMTPekerjaan_indo());
-
         HashMap hashMap = new HashMap();
         hashMap.put("nuknya", txtNuk.getText());
         hashMap.put("pangkatlama", skp_lama.getGolongan().getPangkat());
@@ -356,11 +352,12 @@ public class CetakSK_KenaikanPangkat extends javax.swing.JFrame {
         } else {
             hashMap.put("jabatanlama", pj_lama.getJabatan().getNamajabatan());
         }
-        hashMap.put("golonganlama", skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " - Rp. " + skp_lama.getGaji_str());
-        hashMap.put("terbilanglama", Rupiah.convert(Integer.parseInt(skp_lama.getGaji_str())));
+        hashMap.put("golonganlama", skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(skp_lama.getGaji_str())));
+        hashMap.put("golonganbaru", pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
+        hashMap.put("terbilanglama", Rupiah.convert(Integer.parseInt(skp_lama.getGaji_str()))+"Rupiah");
         double data = DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok();
         int news = (int) data;
-        hashMap.put("terbilangbaru", Rupiah.convert(news));
+        hashMap.put("terbilangbaru", Rupiah.convert(news)+"Rupiah");
         new PrintReport("./report/kenaikan_pangkat.jasper", hashMap);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -373,6 +370,9 @@ public class CetakSK_KenaikanPangkat extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nuknya = txtNuk.getText();
         Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuknya);
+        if (pegawai == null) {
+            JOptionPane.showMessageDialog(null, "Data nuk pegawai tidak ditemukan");
+        }
         txtNamaPegawai.setText(pegawai.getNama());
         txtLahir.setText(pegawai.getTLahir());
         PendidikanPegawai pendidikanPegawai = DaoFactory.getPendidikanPegawaiDao().getPendidikanPegawaiByNUK(nuknya);
@@ -390,20 +390,25 @@ public class CetakSK_KenaikanPangkat extends javax.swing.JFrame {
         //----------------------------------------------------------------------//
         //Data Pokok Pangkat Lama//
         RiwayatSK_KP skp_lama = DaoFactory.getRiwayatSK_KPDao().getRiwayatSKKP_LamaByNukLast(nuknya);
-        txtPangkatLama.setText(skp_lama.getGolongan().getPangkat());
-        if (pj_lama == null) {
-            txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
-            txtUnit.setText(pj.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
-        } else {
-            txtNamaJabatan.setText(pj_lama.getJabatan().getNamajabatan());
-            txtUnit.setText(pj_lama.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
+        if (skp_lama != null) {
+            txtPangkatLama.setText(skp_lama.getGolongan().getPangkat());
+            if (pj_lama == null) {
+                txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
+                txtUnit.setText(pj.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
+            } else {
+                txtNamaJabatan.setText(pj_lama.getJabatan().getNamajabatan());
+                txtUnit.setText(pj_lama.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
+            }
+            txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(skp_lama.getGaji_str())));
+        }else {
+            JOptionPane.showMessageDialog(null, "Pangkat lama tidak ada, silahkan proses naik pangkat dahulu sebelum cetak surat.");
         }
-        txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " - Rp. " + skp_lama.getGaji_str());
+
         //Data Pokok Pangkat Baru
         Pangkat pangkat_baru = DaoFactory.getPangkatDao().getPangkatByNUK(nuknya);
         txtPangkatBaru.setText(pangkat_baru.getGolongan().getPangkat());
         txtNamaJabatanBaru.setText(pj.getJabatan().getNamajabatan());
-        txtGolonganGajiBaru.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok());
+        txtGolonganGajiBaru.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
         txtTMT.setText(pj.getTglTMTPekerjaan_indo());
     }//GEN-LAST:event_txtNukActionPerformed
 

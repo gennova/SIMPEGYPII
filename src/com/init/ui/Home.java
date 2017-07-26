@@ -45,13 +45,14 @@ public class Home extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem42 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        GolonganItem = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -182,6 +183,14 @@ public class Home extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem42.setText("Legalisasi");
+        jMenuItem42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem42ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem42);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Kamus");
@@ -219,13 +228,13 @@ public class Home extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem5);
 
-        jMenuItem6.setText("Golongan");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        GolonganItem.setText("Golongan");
+        GolonganItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                GolonganItemActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(GolonganItem);
 
         jMenuItem7.setText("Pendidikan Terakhir");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -309,6 +318,11 @@ public class Home extends javax.swing.JFrame {
         jMenu8.add(jMenuItem38);
 
         jMenuItem39.setText("Gaji Berkala");
+        jMenuItem39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem39ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem39);
         jMenu8.add(jSeparator7);
 
@@ -445,11 +459,11 @@ public class Home extends javax.swing.JFrame {
         c.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void GolonganItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GolonganItemActionPerformed
         // TODO add your handling code here:
         GolonganUI g = new GolonganUI();
         g.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_GolonganItemActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
@@ -465,7 +479,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        GolonganUI jabatanUI = new GolonganUI();
+        JabatanUI jabatanUI = new JabatanUI();
         jabatanUI.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -517,6 +531,18 @@ public class Home extends javax.swing.JFrame {
         cskkp.setVisible(true);
     }//GEN-LAST:event_jMenuItem38ActionPerformed
 
+    private void jMenuItem39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem39ActionPerformed
+        // TODO add your handling code here:
+        CetakSK_KenaikanGajiBerkala cskkgb = new CetakSK_KenaikanGajiBerkala();
+        cskkgb.setVisible(true);
+    }//GEN-LAST:event_jMenuItem39ActionPerformed
+
+    private void jMenuItem42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem42ActionPerformed
+        // TODO add your handling code here:
+        Legalisasi legalisasi = new Legalisasi();
+        legalisasi.setVisible(true);
+    }//GEN-LAST:event_jMenuItem42ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -542,6 +568,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem GolonganItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -592,8 +619,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem40;
     private javax.swing.JMenuItem jMenuItem41;
+    private javax.swing.JMenuItem jMenuItem42;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;

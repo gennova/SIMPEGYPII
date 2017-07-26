@@ -840,6 +840,11 @@ public class Pegawaiform extends javax.swing.JFrame {
         jButton10.setText("Riwayat Jenis Tgs.");
 
         jButton9.setText("Riwayat SK KGB");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Riwayat SK KP");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -1306,6 +1311,12 @@ public class Pegawaiform extends javax.swing.JFrame {
             ui.setVisible(true);
         }
     }//GEN-LAST:event_RowayatJabatanButtonActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        Riwayat_KGB riwayat_KGB = new Riwayat_KGB();
+        riwayat_KGB.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments

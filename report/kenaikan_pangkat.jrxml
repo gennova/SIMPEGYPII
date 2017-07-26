@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kenaikan_pangkat" language="groovy" pageWidth="595" pageHeight="842" columnWidth="562" leftMargin="20" rightMargin="13" topMargin="20" bottomMargin="20" uuid="51d9bbb5-59f5-4fac-bccb-d0af3bd219f2">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="371"/>
+	<property name="ireport.x" value="70"/>
+	<property name="ireport.y" value="392"/>
 	<parameter name="nuknya" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -11,6 +11,7 @@
 	<parameter name="golonganlama" class="java.lang.String"/>
 	<parameter name="terbilanglama" class="java.lang.String"/>
 	<parameter name="terbilangbaru" class="java.lang.String"/>
+	<parameter name="golonganbaru" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select *,left(pendidikanpegawai.tgl_ijazah_sk_angkat,4) as tahunijazahangkat_nya from pegawai join pangkatpegawai on pegawai.nuk =pangkatpegawai.nuk join pekerjaanjabatan on
 pegawai.nuk=pekerjaanjabatan.nuk join pendidikanpegawai on
@@ -520,9 +521,9 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="203" y="488" width="224" height="20" uuid="f1f774e8-0ff2-4ca2-8dc2-9a767391c724"/>
+				<reportElement x="203" y="488" width="329" height="20" uuid="f1f774e8-0ff2-4ca2-8dc2-9a767391c724"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{namagolongan}+" - "+$F{tahunkerja}+" Rp."]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{golonganbaru}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="203" y="471" width="333" height="20" uuid="e66cfef3-99d6-4aa3-95c1-9a3875f52c87"/>
@@ -643,11 +644,6 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<reportElement x="85" y="779" width="447" height="20" uuid="ebe5c4e1-66c8-444e-b9a0-4c0a0b72c561"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["4. Arsip"]]></textFieldExpression>
-			</textField>
-			<textField pattern=" #,##0">
-				<reportElement x="260" y="488" width="274" height="20" uuid="5bc0d367-49c7-404a-b9ba-86bb8e7cce7f"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{gaji_pokok}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="250" y="584" width="141" height="20" uuid="48290e91-77eb-44fd-9c97-e7f2ab5da841"/>

@@ -21,6 +21,8 @@ public interface PangkatDao {
     public List<Pangkat> getAllPangkatByNUK(String nuk);
 
     public Pangkat getPangkatByNUK(String nuk);
+    
+    public Pangkat getPangkatByID(int id);
 
     public List<Pangkat> getAllPangkatByIDGolongan(Golongan golongan);
 

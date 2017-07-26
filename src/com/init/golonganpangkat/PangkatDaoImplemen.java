@@ -29,7 +29,7 @@ public class PangkatDaoImplemen implements PangkatDao {
     private final String sqlGetAllPangkatPegawaiByID = "select * from pangkatpegawai where id=?";
     private final String sqlGetAllPangkatPegawaiByIDGolongan = "select * from pangkatpegawai where idgolongan=?";
     private final String sqlGetAllPangkatPegawaiByNamaGolongan = "select * from pangkatpegawai join golongan on pangkatpegawai.idgolongan=golongan.id where where pangkatpegawai.idgolongan=?";
-    private final String sqlInsertPangkatPegawai = "insert into pangkatpegawai (nuk,idgolongan,tmt_golongan,nomor_sk,tanggal_sk,tmt_kgb,nomor_kgb,tanggal_kgb,tahunkerja,bulankerja,tahunkerjabenar,bulankerjabenar,tmt_golongan_indo,tanggal_sk_indo,tmt_kgb_indo,tanggal_kgb_indo,naik_pangkat_yad,naik_pangkat_yad_indo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlInsertPangkatPegawai = "insert into pangkatpegawai (nuk,idgolongan,tmt_golongan,nomor_sk,tanggal_sk,tmt_kgb,nomor_kgb,tanggal_kgb,tahunkerja,bulankerja,tahunkerjabenar,bulankerjabenar,tmt_golongan_indo,tanggal_sk_indo,tmt_kgb_indo,tanggal_kgb_indo,naik_pangkat_yad,naik_pangkay_yad_indo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String sqlUpdatePangkatPegawai = "update pangkatpegawai set idgolongan=?,tmt_golongan=?,nomor_sk=?,tanggal_sk=?,tmt_kgb=?,nomor_kgb=?,tanggal_kgb=?,tahunkerja=?,bulankerja=?,tahunkerjabenar=?,bulankerjabenar=? ,tmt_golongan_indo=?,tanggal_sk_indo=?,tmt_kgb_indo=?,tanggal_kgb_indo=?,naik_pangkat_yad=?,naik_pangkay_yad_indo=? where nuk=?";
     private final String sqlInsertKenaikanPangkat = "call SPNaikPangkat(?)";
     private final String sqlUpdateDaraRiwayatSKPByID = "UPDATE riwayat_skp SET idgolongan=?,tmt_golongan=?,tmt_golongan_indo=?,nomor_sk=?,tanggal_sk=?,tanggal_sk_indo=?,ruang=?,gaji=? WHERE nuk=? AND id =?";
@@ -424,6 +424,42 @@ public class PangkatDaoImplemen implements PangkatDao {
                 pangkat.setTanggal_sk(rs.getString("tanggal_sk"));
                 pangkat.setRuang(rs.getString("ruang"));
                 pangkat.setGaji_str(rs.getString("gaji"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PangkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pangkat;
+    }
+
+    @Override
+    public Pangkat getPangkatByID(int id) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Pangkat pangkat = new Pangkat();
+        try {
+            ps = connection.prepareStatement(sqlGetAllPangkatPegawaiByID);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                pangkat.setId(rs.getInt("id"));
+                pangkat.setPegawai(DaoFactory.getPegawaiDao().getPegawaiByNUK(rs.getString("nuk")));
+                pangkat.setGolongan(DaoFactory.getGolonganDao().getGolonganByID(rs.getInt("idgolongan")));
+                pangkat.setTMTGolongan(sqlGetAllPangkatPegawai);
+                pangkat.setNomor_sk(rs.getString("nomor_sk"));
+                pangkat.setTanggal_sk(rs.getString("tanggal_sk"));
+                pangkat.setTmt_kgb(rs.getString("tmt_kgb"));
+                pangkat.setNomor_kgb(rs.getString("nomor_kgb"));
+                pangkat.setTanggal_kgb(rs.getString("tanggal_kgb"));
+                pangkat.setTahun_masa_kerja(rs.getInt("tahunkerja"));
+                pangkat.setBulan_masa_kerja(rs.getInt("bulankerja"));
+                pangkat.setTahun_masa_kerja_sebenarnya(rs.getInt("tahunkerjabenar"));
+                pangkat.setBulan_masa_kerja_sebenarnya(rs.getInt("bulankerjabenar"));
+                pangkat.setTMTGolongan_indo(rs.getString("tmt_golongan_indo"));
+                pangkat.setTanggal_sk_indo(rs.getString("tanggal_sk_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tmt_kgb_indo"));
+                pangkat.setTmt_kgb_indo(rs.getString("tanggal_kgb_indo"));
+                pangkat.setNaik_pangkat_yad(rs.getString("naik_pangkat_yad"));
+                pangkat.setNaik_pangkat_yad_indo(rs.getString("naik_pangkay_yad_indo"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(PangkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
