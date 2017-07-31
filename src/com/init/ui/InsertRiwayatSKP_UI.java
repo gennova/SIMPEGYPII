@@ -97,6 +97,7 @@ public class InsertRiwayatSKP_UI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insert Riwayat SKP Manual");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 0));
 

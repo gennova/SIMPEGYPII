@@ -102,6 +102,7 @@ public class UpdateSKPUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Update Riwayat SKP");
+        setResizable(false);
 
         jLabel1.setText("Kode");
 

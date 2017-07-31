@@ -20,4 +20,6 @@ public interface Riwayat_Gaji_pegawai_dao {
     public RiwayatGajiPegawai getGajiPegawaiByNUKRiwayat(String nuk);
 
     public List<RiwayatGajiPegawai> getAllRiwayatGajiPegawai();
+    
+    public void InsertRiwayatGajiPegawaiManual(RiwayatGajiPegawai gajiPegawai);
 }

@@ -80,6 +80,7 @@ public class Badan extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Keterangan Badan");
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(102, 255, 51));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

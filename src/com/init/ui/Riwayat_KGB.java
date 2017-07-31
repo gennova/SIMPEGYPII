@@ -54,6 +54,7 @@ public class Riwayat_KGB extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Riwatat Kenaikan gaji Berkala");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 204));
 

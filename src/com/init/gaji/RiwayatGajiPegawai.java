@@ -6,7 +6,9 @@
 package com.init.gaji;
 
 import code.init.pekerjaanjabatan.PekerjaanJabatan;
+import com.init.golongan.Golongan;
 import com.init.golonganpangkat.Pangkat;
+import com.init.jabatan.Jabatan;
 import com.init.pegawai.Pegawai;
 
 /**
@@ -31,6 +33,8 @@ public class RiwayatGajiPegawai {
     private String tmt_lama;
     private String no_kgb;
     private String tanggal;
+    private Golongan golongan;
+    private Jabatan jabatan;
 
     public int getId() {
         return id;
@@ -158,6 +162,22 @@ public class RiwayatGajiPegawai {
 
     public void setTanggal(String tanggal) {
         this.tanggal = tanggal;
+    }
+
+    public Golongan getGolongan() {
+        return golongan;
+    }
+
+    public void setGolongan(Golongan golongan) {
+        this.golongan = golongan;
+    }
+
+    public Jabatan getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(Jabatan jabatan) {
+        this.jabatan = jabatan;
     }
 
 }

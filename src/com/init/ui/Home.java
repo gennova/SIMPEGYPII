@@ -334,6 +334,11 @@ public class Home extends javax.swing.JFrame {
         jMenu9.setText("Laporan");
 
         jMenuItem16.setText("Daftar Nama Pegawai per Cabang");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem16);
 
         jMenuItem17.setText("Daftar Kenaikan Pangkat dan Gaji Berkala");
@@ -542,6 +547,12 @@ public class Home extends javax.swing.JFrame {
         Legalisasi legalisasi = new Legalisasi();
         legalisasi.setVisible(true);
     }//GEN-LAST:event_jMenuItem42ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        DaftarPegawaiPerCabangUI dppcui = new DaftarPegawaiPerCabangUI();
+        dppcui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
      * @param args the command line arguments

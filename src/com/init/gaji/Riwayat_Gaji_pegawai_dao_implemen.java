@@ -171,4 +171,9 @@ public class Riwayat_Gaji_pegawai_dao_implemen implements Riwayat_Gaji_pegawai_d
         return list;
     }
 
+    @Override
+    public void InsertRiwayatGajiPegawaiManual(RiwayatGajiPegawai gajiPegawai) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

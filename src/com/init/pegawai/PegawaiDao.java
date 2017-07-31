@@ -14,6 +14,8 @@ import java.util.List;
 public interface PegawaiDao {
 
     public List<Pegawai> getAllPegawai();
+    
+    public List<Pegawai> getAllPegawaiByNamaCabang(String namagolongan);
 
     public void InsertPegawai(Pegawai pegawai);
 
