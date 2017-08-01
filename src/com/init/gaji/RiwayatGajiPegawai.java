@@ -35,6 +35,8 @@ public class RiwayatGajiPegawai {
     private String tanggal;
     private Golongan golongan;
     private Jabatan jabatan;
+    private int ruang;
+    private String keterangan;
 
     public int getId() {
         return id;
@@ -178,6 +180,22 @@ public class RiwayatGajiPegawai {
 
     public void setJabatan(Jabatan jabatan) {
         this.jabatan = jabatan;
+    }
+
+    public int getRuang() {
+        return ruang;
+    }
+
+    public void setRuang(int ruang) {
+        this.ruang = ruang;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
 
 }

@@ -7,6 +7,7 @@ package com.init.ui;
 
 import com.init.gaji.RiwayatGajiTabelModel;
 import com.init.tools.DaoFactory;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -98,10 +99,20 @@ public class Riwayat_KGB extends javax.swing.JFrame {
         });
 
         jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Update");
 
         jButton4.setText("Insert");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,6 +165,25 @@ public class Riwayat_KGB extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int row = riwayatgaji.getSelectedRow();
+        if (row>=0) {
+            int kode = Integer.parseInt(riwayatgaji.getValueAt(row, 0).toString());
+            DaoFactory.getRiwayat_Gaji_pegawai_dao().deleteRiwayatGajiPegawai(kode);
+            loadtable();
+        }else {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu baris dari tabel");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        InsertRiwayatGajiBerkalaUI berkalaUI = new InsertRiwayatGajiBerkalaUI();
+        berkalaUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

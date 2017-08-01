@@ -22,4 +22,6 @@ public interface Riwayat_Gaji_pegawai_dao {
     public List<RiwayatGajiPegawai> getAllRiwayatGajiPegawai();
     
     public void InsertRiwayatGajiPegawaiManual(RiwayatGajiPegawai gajiPegawai);
+    
+    public void deleteRiwayatGajiPegawai(int id);
 }

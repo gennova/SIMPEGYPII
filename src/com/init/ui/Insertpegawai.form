@@ -510,15 +510,10 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="txtPangkat" min="-2" pref="170" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="nomorSKDate" min="-2" pref="193" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="txtPangkat" min="-2" pref="170" max="-2" attributes="0"/>
+                                          <Component id="nomorSKDate" min="-2" pref="193" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -822,10 +817,8 @@
                                       <Component id="tglSKJabatan" min="-2" pref="177" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="txtNamaJabatan" linkSize="18" alignment="0" min="-2" pref="181" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="tmtPekerjaan" linkSize="22" alignment="0" pref="186" max="32767" attributes="0"/>
-                                      <Component id="comboBidangKerja" linkSize="22" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="tmtPekerjaan" linkSize="22" alignment="0" pref="186" max="32767" attributes="0"/>
+                                  <Component id="comboBidangKerja" linkSize="22" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>

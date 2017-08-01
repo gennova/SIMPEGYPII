@@ -100,11 +100,18 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
 
         jLabel5.setText("Unit Kerja");
 
+        txtNamaPegawai.setEditable(false);
+
+        txtLahir.setEditable(false);
+
+        txtIjazah.setEditable(false);
         txtIjazah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIjazahActionPerformed(evt);
             }
         });
+
+        txtUnit.setEditable(false);
 
         txtFoto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtFoto.setText("Photo");
@@ -177,15 +184,29 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
 
         jLabel9.setText("Golongan/Gaji");
 
+        txtPangkatLama.setEditable(false);
+
+        txtNamaJabatan.setEditable(false);
+
+        txtGolonganGajiLama.setEditable(false);
+
         jLabel10.setText("Jabatan");
 
         jLabel11.setText("Golongan/Gaji");
+
+        txtPangkatBaru.setEditable(false);
+
+        txtNamaJabatanBaru.setEditable(false);
+
+        txtGolonganGajiBaru.setEditable(false);
 
         jLabel12.setText("Pangkat");
 
         jLabel13.setText("LAMA");
 
         jLabel14.setText("BARU");
+
+        txtTMT.setEditable(false);
 
         jLabel15.setText("T.M.T");
 
@@ -420,10 +441,10 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             RiwayatGajiPegawai riwayatGajiPegawai = DaoFactory.getRiwayat_Gaji_pegawai_dao().getGajiPegawaiByNUKRiwayat(nuknya);
             if (riwayatGajiPegawai == null) {
                 System.out.println("Data riwayat gaji tidak ada");
-                txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(skp_lama.getGaji_str())));
+                txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(skp_lama.getGaji_str())));
             } else {
                 System.out.println("Data riwayat gaji ada");
-                txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
+                txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
             }
         } else {
             txtPangkatLama.setText(pangkat_baru.getGolongan().getPangkat());
@@ -440,10 +461,10 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             RiwayatGajiPegawai riwayatGajiPegawai = DaoFactory.getRiwayat_Gaji_pegawai_dao().getGajiPegawaiByNUKRiwayat(nuknya);
             if (riwayatGajiPegawai == null) {
                 System.out.println("Data riwayat gaji tidak ada");
-                txtGolonganGajiLama.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTmt_kgb_indo() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
+                txtGolonganGajiLama.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
             } else {
                 System.out.println("Data riwayat gaji ada");
-                txtGolonganGajiLama.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
+                txtGolonganGajiLama.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + riwayatGajiPegawai.getRuang() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
             }
         }
 
@@ -451,7 +472,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
         //Pangkat pangkat_baru = DaoFactory.getPangkatDao().getPangkatByNUK(nuknya);
         txtPangkatBaru.setText(pangkat_baru.getGolongan().getPangkat());
         txtNamaJabatanBaru.setText(pj.getJabatan().getNamajabatan());
-        txtGolonganGajiBaru.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
+        txtGolonganGajiBaru.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
         txtTMT.setText(pangkat_baru.getTanggal_kgb());
     }//GEN-LAST:event_txtNukActionPerformed
 

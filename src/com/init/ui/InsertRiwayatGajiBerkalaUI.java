@@ -5,11 +5,17 @@
  */
 package com.init.ui;
 
+import com.init.gaji.RiwayatGajiPegawai;
 import com.init.golongan.Golongan;
 import com.init.jabatan.Jabatan;
+import com.init.pegawai.Pegawai;
 import com.init.tools.DaoFactory;
+import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,6 +45,7 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
         }
         tglSKKgb.setDate(GregorianCalendar.getInstance().getTime());
         tmtKGBDate.setDate(GregorianCalendar.getInstance().getTime());
+
     }
 
     /**
@@ -53,19 +60,19 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
         panelGradientUpDownShape1 = new Code.Name.Flamboyan.SwingMakeOver.PanelGradientUpDownShape();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        txtNuk = new javax.swing.JTextField();
+        txtNamaPegawai = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         combopangkat = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtRuang = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtGaji = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         tmtKGBDate = new com.toedter.calendar.JDateChooser();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtNoSKKgb = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         tglSKKgb = new com.toedter.calendar.JDateChooser();
         jLabel11 = new javax.swing.JLabel();
@@ -97,7 +104,13 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
 
         jLabel2.setText("NUK");
 
-        jLabel3.setText("Nama Pegawai");
+        txtNuk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNukActionPerformed(evt);
+            }
+        });
+
+        txtNamaPegawai.setText("Nama Pegawai");
 
         jLabel4.setText("Pangkat / Golongan ");
 
@@ -132,6 +145,11 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("Simpan");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,11 +168,11 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNuk, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtNamaPegawai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRuang, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -164,9 +182,9 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
                     .addComponent(combojabatan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNoSKKgb, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tmtKGBDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(txtGaji, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,7 +197,7 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
             .addComponent(panelGradientUpDownShape1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {combopangkat, jTextField1, jTextField2});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {combopangkat, txtNuk, txtRuang});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,8 +205,8 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
                 .addComponent(panelGradientUpDownShape1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
+                    .addComponent(txtNuk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNamaPegawai)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -201,12 +219,12 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRuang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtGaji, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
@@ -214,7 +232,7 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNoSKKgb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)))
                     .addComponent(tglSKKgb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -242,6 +260,52 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtNukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNukActionPerformed
+        // TODO add your handling code here:
+        Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(txtNuk.getText());
+        if (pegawai != null) {
+            txtNamaPegawai.setText(pegawai.getNama());
+            txtNamaPegawai.setFont(new Font("Arial Bold", Font.BOLD, 14));
+        } else {
+            JOptionPane.showMessageDialog(null, "Data Pegawai Tidak Ditemukan");
+        }
+    }//GEN-LAST:event_txtNukActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(txtNuk.getText());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        if (pegawai != null) {
+            txtNamaPegawai.setText(pegawai.getNama());
+            Golongan golongan = DaoFactory.getGolonganDao().getGolonganByNamaGolongan(combopangkat.getSelectedItem().toString());
+            String ruang = txtRuang.getText();
+            Double gaji = Double.parseDouble(txtGaji.getText());
+            String tglTMTKgb = sdf.format(tmtKGBDate.getDate());
+            Calendar calendar = GregorianCalendar.getInstance();
+            calendar.setTime(tmtKGBDate.getDate());
+            calendar.add(Calendar.YEAR, Integer.parseInt(ruang));
+            String kgb_yad = sdf.format(calendar.getTime());
+            String kgb_yad_indo = DaoFactory.FormatTanggalIndonesia(kgb_yad);
+            String noSK = txtNoSKKgb.getText();
+            String tglNoSK = sdf.format(tglSKKgb.getDate());
+            Jabatan jabatan = DaoFactory.getJabatanDao().getJabatanByNama(combojabatan.getSelectedItem().toString());
+            RiwayatGajiPegawai rgp = new RiwayatGajiPegawai();
+            rgp.setPegawai(pegawai);
+            rgp.setGolongan(golongan);
+            rgp.setRuang(Integer.parseInt(ruang));
+            rgp.setGaji_pokok(gaji);
+            rgp.setTmt_lama(tglTMTKgb);
+            rgp.setNo_kgb(noSK);
+            rgp.setJabatan(jabatan);
+            rgp.setTanggal(tglNoSK);
+            rgp.setKbg_yad_date(kgb_yad);
+            rgp.setKgb_yad_indo(kgb_yad_indo);
+            DaoFactory.getRiwayat_Gaji_pegawai_dao().InsertRiwayatGajiPegawaiManual(rgp);
+            initApp();
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,20 +351,20 @@ public class InsertRiwayatGajiBerkalaUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private Code.Name.Flamboyan.SwingMakeOver.PanelGradientUpDownShape panelGradientUpDownShape1;
     private com.toedter.calendar.JDateChooser tglSKKgb;
     private com.toedter.calendar.JDateChooser tmtKGBDate;
+    private javax.swing.JTextField txtGaji;
     private javax.swing.JLabel txtNamaPangkat;
+    private javax.swing.JLabel txtNamaPegawai;
+    private javax.swing.JTextField txtNoSKKgb;
+    private javax.swing.JTextField txtNuk;
+    private javax.swing.JTextField txtRuang;
     // End of variables declaration//GEN-END:variables
 }

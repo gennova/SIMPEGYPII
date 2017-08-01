@@ -1953,6 +1953,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 gaji_pegawai.setKgb_berikutnya(Integer.parseInt(txtKGBBerikutnya.getText()));
                 gaji_pegawai.setPangkat(pangkat);
                 gaji_pegawai.setPekerjaanJabatan(pekerjaanJabatan);
+                gaji_pegawai.setRuang(Integer.parseInt(txtTahunKerja.getText()));
                 Calendar c = GregorianCalendar.getInstance();
                 c.setTime(tmtKGBDate.getDate());
                 c.add(Calendar.YEAR, Integer.parseInt(txtKGBBerikutnya.getText()));

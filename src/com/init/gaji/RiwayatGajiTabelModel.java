@@ -73,7 +73,7 @@ public class RiwayatGajiTabelModel extends AbstractTableModel {
             case (6):
                 return lists.get(rowIndex).getTanggal();
             case (7):
-                return "KP";
+                return lists.get(rowIndex).getKeterangan();
             default:
                 return null;
         }
