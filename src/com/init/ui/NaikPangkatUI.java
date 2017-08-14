@@ -12,6 +12,7 @@ import com.init.tools.DaoFactory;
 import com.init.tools.Session;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
@@ -583,10 +584,17 @@ public class NaikPangkatUI extends javax.swing.JFrame {
         pangkat.setTanggal_sk_indo(Tgl_nomor_sk_indo); //Tgl SK Format Indo
         pangkat.setTmt_kgb_indo(Tgl_tmt_kgb_indo); // TMT KGB Format Indo
         pangkat.setTanggal_kgb_indo(Tgl_nomor_kgb_indo); //Nomor KGB Format Indor
+        Calendar calendar = GregorianCalendar.getInstance();
+                calendar.setTime(nomorSKDateNew.getDate());
+                calendar.add(Calendar.YEAR, 2);
+                pangkat.setNaik_pangkat_yad(sdf.format(calendar.getTime()));
+                pangkat.setNaik_pangkat_yad_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(calendar.getTime())));
         //ini end dari pangkat golongan /tab pangkat golongan//
         //*********************************************************************//
         DaoFactory.getPangkatDao().InsertNaikPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(Session.getPegawai().getNUK()).getId());
         DaoFactory.getPangkatDao().InsertPangkatPegawai(pangkat);
+        Pangkat pangkat_terbarui = DaoFactory.getPangkatDao().getPangkatByNUK(p.getNUK());
+        DaoFactory.getPangkatDao().UpdateIDPangkatRiwayatGajiPegawai(pangkat_terbarui.getId(), p.getNUK());
         this.dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed

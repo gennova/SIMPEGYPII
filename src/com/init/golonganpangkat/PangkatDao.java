@@ -41,4 +41,6 @@ public interface PangkatDao {
     public void UpdateDataRiwayatPangkatByID(Pangkat pangkat); // limited variable not all
     
     public Pangkat getRiwayatPangkatByNUK(String nuk,int id);
+    
+    public void UpdateIDPangkatRiwayatGajiPegawai(int id_pangkat,String nuk);
 }

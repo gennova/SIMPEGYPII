@@ -5,6 +5,7 @@
  */
 package com.init.gaji;
 
+import com.init.golonganpangkat.Pangkat;
 import com.init.tools.DaoFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,8 +28,9 @@ public class Riwayat_Gaji_pegawai_dao_implemen implements Riwayat_Gaji_pegawai_d
     private final String sqlUpdateGajiPegawai = "update riwayat_gajipegawai set gaji_pokok=?,tunjangan_suami_istri=?,tunjangan_anak=?,tunjangan_lain=?,total_gaji=?,tanggungan_orang=?,kgb_berikutnya=?,kgb_yad=?,kgb_yad_indo=?,ruang=? where nuk=?";
     private final String sqlGetRiwayatGajiPegawaiByNUKLast = "select * from riwayat_gajipegawai where nuk=? and id=(select max(id) from riwayat_gajipegawai)";
     private final String sqlGetAllRiwayatGaji = "select * from riwayat_gajipegawai";
+    private final String sqlGetAllRiwayatGajiNuk = "select * from riwayat_gajipegawai where nuk=?";
     private final String sqlDeleteRiwayatGajiPegawai = "delete from riwayat_gajipegawai where id=?";
-    private final String sqlInsertRiwayatGajiManual = "insert into riwayat_gajipegawai (nuk,gaji_pokok,kgb_berikutnya,kgb_yad,kgb_yad_indo,idpangkat,idjabatan,tmt_lama,no_kgb_lama,tanggal,keterangan,ruang) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String sqlInsertRiwayatGajiManual = "insert into riwayat_gajipegawai (nuk,gaji_pokok,kgb_berikutnya,kgb_yad,kgb_yad_indo,idpangkat,idjabatan,tmt_lama,no_kgb_lama,tanggal,keterangan,ruang,idgolongan) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     public Riwayat_Gaji_pegawai_dao_implemen(Connection connection) {
         this.connection = connection;
@@ -135,6 +137,7 @@ public class Riwayat_Gaji_pegawai_dao_implemen implements Riwayat_Gaji_pegawai_d
                 g.setTanggal(rs.getString("tanggal"));
                 g.setRuang(rs.getInt("ruang"));
                 g.setKeterangan(rs.getString("keterangan"));
+                g.setGolongan(DaoFactory.getGolonganDao().getGolonganByID(rs.getInt("idgolongan")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Riwayat_Gaji_pegawai_dao_implemen.class.getName()).log(Level.SEVERE, null, ex);
@@ -185,18 +188,20 @@ public class Riwayat_Gaji_pegawai_dao_implemen implements Riwayat_Gaji_pegawai_d
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(sqlInsertRiwayatGajiManual);
+            Pangkat pangkat = DaoFactory.getPangkatDao().getPangkatByNUK(gajiPegawai.getPegawai().getNUK());
             ps.setString(1, gajiPegawai.getPegawai().getNUK());
             ps.setDouble(2, gajiPegawai.getGaji_pokok());
-            ps.setInt(3, gajiPegawai.getRuang());
+            ps.setInt(3, 2);
             ps.setString(4, gajiPegawai.getKbg_yad_date());
             ps.setString(5, gajiPegawai.getKgb_yad_indo());
-            ps.setInt(6, gajiPegawai.getGolongan().getId());
+            ps.setInt(6, pangkat.getId());
             ps.setInt(7, gajiPegawai.getJabatan().getId());
             ps.setString(8, gajiPegawai.getTmt_lama());
             ps.setString(9, gajiPegawai.getNo_kgb());
             ps.setString(10, gajiPegawai.getTanggal());
             ps.setString(11, "KGB");
             ps.setInt(12, gajiPegawai.getRuang());
+            ps.setInt(13, gajiPegawai.getGolongan().getId());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data riwayat KGB Berhasil dimasukkkan");
         } catch (SQLException ex) {
@@ -215,6 +220,46 @@ public class Riwayat_Gaji_pegawai_dao_implemen implements Riwayat_Gaji_pegawai_d
         } catch (SQLException ex) {
             Logger.getLogger(Riwayat_Gaji_pegawai_dao_implemen.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public List<RiwayatGajiPegawai> getAllRiwayatGajiPegawaiNuk(String nuk) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<RiwayatGajiPegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetAllRiwayatGajiNuk);
+            ps.setString(1, nuk);
+            rs = ps.executeQuery();
+            list = new ArrayList<RiwayatGajiPegawai>();
+            while (rs.next()) {
+                RiwayatGajiPegawai g = new RiwayatGajiPegawai();
+                g = new RiwayatGajiPegawai();
+                g.setId(rs.getInt("id"));
+                g.setPegawai(DaoFactory.getPegawaiDao().getPegawaiByNUK(rs.getString("nuk")));
+                g.setGaji_pokok(rs.getDouble("gaji_pokok"));
+                g.setTunjangan_suami_istri(rs.getDouble("tunjangan_suami_istri"));
+                g.setTunjangan_anak(rs.getDouble("tunjangan_anak"));
+                g.setTunjangan_lain(rs.getDouble("tunjangan_lain"));
+                g.setTotal_gaji(rs.getDouble("total_gaji"));
+                g.setTanggungan_orang(rs.getInt("tanggungan_orang"));
+                g.setKgb_berikutnya(rs.getInt("kgb_berikutnya"));
+                g.setKbg_yad_date(rs.getString("kgb_yad"));
+                g.setKgb_yad_indo(rs.getString("kgb_yad_indo"));
+                g.setPangkat(DaoFactory.getPangkatDao().getPangkatByID(rs.getInt("idpangkat")));
+                g.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByID(rs.getInt("idjabatan")));
+                g.setTmt_lama(rs.getString("tmt_lama"));
+                g.setNo_kgb(rs.getString("no_kgb_lama"));
+                g.setTanggal(rs.getString("tanggal"));
+                g.setRuang(rs.getInt("ruang"));
+                g.setKeterangan(rs.getString("keterangan"));
+                list.add(g);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Riwayat_Gaji_pegawai_dao_implemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+
     }
 
 }

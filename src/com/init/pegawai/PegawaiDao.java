@@ -16,6 +16,12 @@ public interface PegawaiDao {
     public List<Pegawai> getAllPegawai();
     
     public List<Pegawai> getAllPegawaiByNamaCabang(String namagolongan);
+    
+    public List<Pegawai> getAllPegawaiByNamaGolongan(String namagolongan);
+    
+    public List<Pegawai> getAllPegawaiByStatusPegawai(String statuspegawai);
+    
+    public List<Pegawai> getAllPegawaiByStatusPendidikan(String namapendidikan);
 
     public void InsertPegawai(Pegawai pegawai);
 

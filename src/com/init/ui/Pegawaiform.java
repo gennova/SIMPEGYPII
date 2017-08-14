@@ -44,6 +44,25 @@ public class Pegawaiform extends javax.swing.JFrame {
         showtabelpegawai();
     }
 
+    private void kosongkan_samping() {
+        txtFotoDisplay.setText("Photo");
+        txtLabelJenisKelamin.setText("");
+        txtLabelTempatLahir.setText("");
+        txtLabelTglLahir.setText("");
+        txtAgamaLabel.setText("");
+        txtKawinLabel.setText("");
+        txtStatusPegawaiLabel.setText("");
+        txtLabelPangkat.setText("");
+        txtLabelGolongan.setText("");
+        txtMKGolongan.setText("");
+        txtMKSebenarnya.setText("");        
+        txtLabelWilayahTugas.setText("");
+        txtLabelUnitKerja.setText("");
+        txtLabelJabatan.setText("");
+        txtJenjangPendidikan.setText("");
+        txtTglLulusPendidikanAkhir.setText("");
+    }
+
     private void showtabelpegawai() {
         PegawaiTabelModelSimple modelSimple = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerja());
         TabelPegawaiUtama.setModel(modelSimple);
@@ -1007,10 +1026,10 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtJenjangPendidikan.setText(pendidikanPegawai.getPendidikanTerakhir().getNamapendidikanterakhir());
             txtTglLulusPendidikanAkhir.setText(pendidikanPegawai.getTglLulusSKPendidikanAkhir());
             //menampilkan fotonya bung
-            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            ImageIcon imageIcon = new ImageIcon("image/" + pegawai.getTeksFilename());
             //System.out.println(pegawai.getTeksFilename());
             Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
             //displayPhotoTxt.setIcon(imageIcon);
             txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
@@ -1027,6 +1046,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         txtBidangKerjaUtama.setText("");
         txtGolonganUtama.setText("");
         txtUnitKerjaUtama.setText("");
+        kosongkan_samping();
         showtabelpegawai();
     }//GEN-LAST:event_jButton13ActionPerformed
 
@@ -1055,10 +1075,10 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
             //menampilkan fotonya bung
-            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            ImageIcon imageIcon = new ImageIcon("image/" + pegawai.getTeksFilename());
             //System.out.println(pegawai.getTeksFilename());
             Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
             //displayPhotoTxt.setIcon(imageIcon);
             txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
@@ -1089,10 +1109,10 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
             //menampilkan fotonya bung
-            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            ImageIcon imageIcon = new ImageIcon("image/" + pegawai.getTeksFilename());
             //System.out.println(pegawai.getTeksFilename());
             Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
             //displayPhotoTxt.setIcon(imageIcon);
             txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
@@ -1123,10 +1143,10 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
             //menampilkan fotonya bung
-            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            ImageIcon imageIcon = new ImageIcon("image/" + pegawai.getTeksFilename());
             //System.out.println(pegawai.getTeksFilename());
             Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
             //displayPhotoTxt.setIcon(imageIcon);
             txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
@@ -1157,10 +1177,10 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
             //menampilkan fotonya bung
-            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            ImageIcon imageIcon = new ImageIcon("image/" + pegawai.getTeksFilename());
             //System.out.println(pegawai.getTeksFilename());
             Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
             //displayPhotoTxt.setIcon(imageIcon);
             txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
@@ -1191,10 +1211,10 @@ public class Pegawaiform extends javax.swing.JFrame {
             txtLabelUnitKerja.setText(jabatan.getUnit().getNamaUnit());
             txtLabelJabatan.setText(jabatan.getJabatan().getNamajabatan());
             //menampilkan fotonya bung
-            ImageIcon imageIcon = new ImageIcon("image/"+pegawai.getTeksFilename());
+            ImageIcon imageIcon = new ImageIcon("image/" + pegawai.getTeksFilename());
             //System.out.println(pegawai.getTeksFilename());
             Image image = imageIcon.getImage(); // transform it 
-            Image newimg = image.getScaledInstance(120, 120,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
+            Image newimg = image.getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way 
             //displayPhotoTxt.setIcon(imageIcon);
             txtFotoDisplay.setIcon(new ImageIcon(newimg));
         }
@@ -1292,10 +1312,10 @@ public class Pegawaiform extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nuksnya = txtNUKUtama.getText();
         Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuksnya);
-        if (pegawai!=null) {
+        if (pegawai != null) {
             Session.setNUK(pegawai.getNUK());
             Session.setPegawai(pegawai);
-            RiwayarSKP_UI i= new RiwayarSKP_UI();
+            RiwayarSKP_UI i = new RiwayarSKP_UI();
             i.setVisible(true);
         }
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -1304,18 +1324,25 @@ public class Pegawaiform extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nuksnya = txtNUKUtama.getText();
         Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuksnya);
-        if (pegawai!=null) {
+        if (pegawai != null) {
             Session.setNUK(pegawai.getNUK());
             Session.setPegawai(pegawai);
-            RiwayatJabatanUI  ui = new RiwayatJabatanUI();
+            RiwayatJabatanUI ui = new RiwayatJabatanUI();
             ui.setVisible(true);
         }
     }//GEN-LAST:event_RowayatJabatanButtonActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        Riwayat_KGB riwayat_KGB = new Riwayat_KGB();
-        riwayat_KGB.setVisible(true);
+        String nuksnya = txtNUKUtama.getText();
+        Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuksnya);
+        if (pegawai != null) {
+            Session.setNUK(pegawai.getNUK());
+            Session.setPegawai(pegawai);
+            Riwayat_KGB riwayat_KGB = new Riwayat_KGB();
+            riwayat_KGB.setVisible(true);
+        }
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**

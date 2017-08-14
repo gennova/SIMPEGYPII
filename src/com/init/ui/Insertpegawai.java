@@ -187,7 +187,8 @@ public class Insertpegawai extends javax.swing.JFrame {
             }
             comboWIlayahTugas.setSelectedItem(pj.getCabang().getNamacabang());
             comboUnitKerja.setSelectedItem(pj.getUnit().getNamaUnit());
-            comboNamaJabatan.setSelectedItem(pj.getBk().getNamabidangkerja());
+            comboNamaJabatan.setSelectedItem(pj.getJabatan().getNamajabatan());
+            //JOptionPane.showMessageDialog(null,"ppppppppppppppppppppppp"+ pj.getJabatan().getNamajabatan());
             txtNamaJabatan.setText(pj.getNamaJabatan());
             txtMasaJabatan.setText(String.valueOf(pj.getMasaJabatan()));
             //************************************************************************************//
@@ -327,7 +328,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         comboGolonganPangkat = new javax.swing.JComboBox<>();
         txtPangkat = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        NaikPangkatButton = new javax.swing.JButton();
         jLabel36 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -427,7 +428,7 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel5.setText("Agama");
 
-        comboAgama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Katholik", "Protestasn", "Islam", "Hindu", "Budha", "Konghucu", "Lainnya" }));
+        comboAgama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Katolik", "Protestasn", "Islam", "Hindu", "Budha", "Konghucu", "Lainnya" }));
 
         jLabel6.setText("T.Lahir");
 
@@ -672,11 +673,11 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         txtPangkat.setText("Pangkat");
 
-        jButton7.setText("Kenaikan Pangkat");
-        jButton7.setOpaque(false);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        NaikPangkatButton.setText("Kenaikan Pangkat");
+        NaikPangkatButton.setOpaque(false);
+        NaikPangkatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                NaikPangkatButtonActionPerformed(evt);
             }
         });
 
@@ -713,12 +714,9 @@ public class Insertpegawai extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtPangkat, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(nomorSKDate, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtPangkat, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nomorSKDate, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(nomorKGBDate, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -727,7 +725,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel39)
                             .addComponent(jLabel36)
-                            .addComponent(jButton7)
+                            .addComponent(NaikPangkatButton)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtTahunKerja, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
@@ -793,7 +791,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(jLabel19))
                 .addGap(18, 18, 18)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NaikPangkatButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel36)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -896,9 +894,8 @@ public class Insertpegawai extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tglSKJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtNamaJabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tmtPekerjaan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addComponent(comboBidangKerja, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(tmtPekerjaan, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(comboBidangKerja, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1482,7 +1479,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 int Tahun_kerja = Integer.parseInt(txtTahunKerja.getText());
                 int Bulan_kerja = Integer.parseInt(txtBulanKerja.getText());
                 int Tahun_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
-                int Bulan_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
+                int Bulan_kerja_benar = Integer.parseInt(txtBulanKerjaBenar.getText());
                 Pangkat pangkat = new Pangkat();
                 pangkat.setPegawai(p);
                 pangkat.setGolongan(golongan);
@@ -1608,7 +1605,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 int Tahun_kerja = Integer.parseInt(txtTahunKerja.getText());
                 int Bulan_kerja = Integer.parseInt(txtBulanKerja.getText());
                 int Tahun_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
-                int Bulan_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
+                int Bulan_kerja_benar = Integer.parseInt(txtBulanKerjaBenar.getText());
                 String Tmt_golongan_indo = DaoFactory.FormatTanggalIndonesia(Tmt_golongan);
                 String Tgl_nomor_sk_indo = DaoFactory.FormatTanggalIndonesia(Tgl_nomor_sk);
                 String Tgl_tmt_kgb_indo = DaoFactory.FormatTanggalIndonesia(Tgl_tmt_kgb);
@@ -1875,7 +1872,7 @@ public class Insertpegawai extends javax.swing.JFrame {
 
     }//GEN-LAST:event_NUK_teksActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void NaikPangkatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NaikPangkatButtonActionPerformed
         // TODO add your handling code here:
         String nuk = NUK_teks.getText();
         Pegawai p = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuk);
@@ -1899,7 +1896,7 @@ public class Insertpegawai extends javax.swing.JFrame {
             int Tahun_kerja = Integer.parseInt(txtTahunKerja.getText());
             int Bulan_kerja = Integer.parseInt(txtBulanKerja.getText());
             int Tahun_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
-            int Bulan_kerja_benar = Integer.parseInt(txtTahunKerjaBenar.getText());
+            int Bulan_kerja_benar = Integer.parseInt(txtBulanKerjaBenar.getText());
             Pangkat pangkat = new Pangkat();
             pangkat.setPegawai(p);
             pangkat.setGolongan(golongan);
@@ -1924,7 +1921,7 @@ public class Insertpegawai extends javax.swing.JFrame {
             i.setVisible(true);
             this.dispose();
         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_NaikPangkatButtonActionPerformed
 
     private void ButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelActionPerformed
         // TODO add your handling code here:
@@ -2010,6 +2007,7 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JButton ButtonSave;
     private javax.swing.JComboBox ComboSttPeg;
     private javax.swing.JTextField NUK_teks;
+    private javax.swing.JButton NaikPangkatButton;
     private javax.swing.JTextField aliasTeks;
     private javax.swing.JRadioButton ceweRadio;
     private javax.swing.JComboBox comboAgama;
@@ -2033,7 +2031,6 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;

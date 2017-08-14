@@ -80,6 +80,10 @@ public class Home extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
+        jSeparator8 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem44 = new javax.swing.JMenuItem();
+        jMenuItem43 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
@@ -352,13 +356,38 @@ public class Home extends javax.swing.JFrame {
         jMenu9.add(jSeparator3);
 
         jMenuItem20.setText("Jumlah Pegawai Menurut Golongan");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem20);
 
         jMenuItem21.setText("Jumlah Pegawai Menurut Status Kepegawaian");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem21);
 
         jMenuItem22.setText("Jumlah Pegawai Menurut Pendidikan");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem22);
+        jMenu9.add(jSeparator8);
+
+        jMenuItem6.setText("Daftar Pegawai Aktif");
+        jMenu9.add(jMenuItem6);
+
+        jMenuItem44.setText("Daftar Pegawai Non Aktif/Berhenti");
+        jMenu9.add(jMenuItem44);
+
+        jMenuItem43.setText("Daftar Pegawai Pensiun");
+        jMenu9.add(jMenuItem43);
 
         jMenu3.add(jMenu9);
 
@@ -554,6 +583,24 @@ public class Home extends javax.swing.JFrame {
         dppcui.setVisible(true);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+        DaftarPegawaiPerGolongan dppg = new DaftarPegawaiPerGolongan();
+        dppg.setVisible(true);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        // TODO add your handling code here:
+        DaftarPegawaiPerStatusPegawai dppsp = new DaftarPegawaiPerStatusPegawai();
+        dppsp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        // TODO add your handling code here:
+        DaftarPegawaiPerPendidikanAkhir dpppa = new DaftarPegawaiPerPendidikanAkhir();
+        dpppa.setVisible(true);
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -631,7 +678,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem40;
     private javax.swing.JMenuItem jMenuItem41;
     private javax.swing.JMenuItem jMenuItem42;
+    private javax.swing.JMenuItem jMenuItem43;
+    private javax.swing.JMenuItem jMenuItem44;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
@@ -644,6 +694,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
+    private javax.swing.JPopupMenu.Separator jSeparator8;
     private Code.Name.Flamboyan.SwingMakeOver.PanelImage panelImage1;
     // End of variables declaration//GEN-END:variables
 }

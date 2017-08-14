@@ -7,6 +7,7 @@ package com.init.ui;
 
 import com.init.gaji.RiwayatGajiTabelModel;
 import com.init.tools.DaoFactory;
+import com.init.tools.Session;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableRowSorter;
 
@@ -27,7 +28,7 @@ public class Riwayat_KGB extends javax.swing.JFrame {
     }
     
     private void loadtable(){
-        RiwayatGajiTabelModel model = new RiwayatGajiTabelModel(DaoFactory.getRiwayat_Gaji_pegawai_dao().getAllRiwayatGajiPegawai());
+        RiwayatGajiTabelModel model = new RiwayatGajiTabelModel(DaoFactory.getRiwayat_Gaji_pegawai_dao().getAllRiwayatGajiPegawaiNuk(Session.getPegawai().getNUK()));
         riwayatgaji.setModel(model);
         riwayatgaji.getColumnModel().getColumn(0).setPreferredWidth(20);
         sorter.setModel(model);

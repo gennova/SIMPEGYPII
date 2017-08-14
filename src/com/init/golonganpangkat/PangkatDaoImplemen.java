@@ -467,4 +467,17 @@ public class PangkatDaoImplemen implements PangkatDao {
         return pangkat;
     }
 
+    @Override
+    public void UpdateIDPangkatRiwayatGajiPegawai(int id_pangkat,String nuk) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement("update riwayat_gajipegawai set idpangkat =? where nuk=?");
+            ps.setInt(1, id_pangkat);
+            ps.setString(2, nuk);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PangkatDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

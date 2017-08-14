@@ -63,7 +63,7 @@ public class RiwayatGajiTabelModel extends AbstractTableModel {
             case (1):
                 return lists.get(rowIndex).getPangkat().getGolongan().getNamagolongan();
             case (2):
-                return lists.get(rowIndex).getPangkat().getTahun_masa_kerja();
+                return lists.get(rowIndex).getRuang();
             case (3):
                 return "Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(lists.get(rowIndex).getGaji_pokok()));
             case (4):
@@ -78,5 +78,4 @@ public class RiwayatGajiTabelModel extends AbstractTableModel {
                 return null;
         }
     }
-
 }
