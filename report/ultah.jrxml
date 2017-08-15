@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ultah" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6a9e35e-d6d7-410c-9e6b-cc63ef4e2c3e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="bulan_awal" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="bulan_akhir" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tgl_awal" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tgl_akhir" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from pegawai join pekerjaanjabatan on pegawai.nuk=pekerjaanjabatan.nuk join unit on pekerjaanjabatan.idunit=unit.id
+join cabang on pekerjaanjabatan.idcabang=cabang.id where MONTH(tanggallahir) between $P{bulan_awal} and $P{bulan_akhir} and DAY(tanggallahir) between $P{tgl_awal} and $P{tgl_akhir}]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nuk" class="java.lang.String">
+		<fieldDescription><![CDATA[1]]></fieldDescription>
+	</field>
+	<field name="gelardepan" class="java.lang.String">
+		<fieldDescription><![CDATA[2]]></fieldDescription>
+	</field>
+	<field name="namapegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[3]]></fieldDescription>
+	</field>
+	<field name="gelarbelakang" class="java.lang.String">
+		<fieldDescription><![CDATA[4]]></fieldDescription>
+	</field>
+	<field name="alias" class="java.lang.String">
+		<fieldDescription><![CDATA[5]]></fieldDescription>
+	</field>
+	<field name="jeniskelamin" class="java.lang.String">
+		<fieldDescription><![CDATA[6]]></fieldDescription>
+	</field>
+	<field name="agama" class="java.lang.String">
+		<fieldDescription><![CDATA[7]]></fieldDescription>
+	</field>
+	<field name="tempatlahir" class="java.lang.String">
+		<fieldDescription><![CDATA[8]]></fieldDescription>
+	</field>
+	<field name="tanggallahir" class="java.sql.Date">
+		<fieldDescription><![CDATA[9]]></fieldDescription>
+	</field>
+	<field name="statuspernikahan" class="java.lang.String">
+		<fieldDescription><![CDATA[10]]></fieldDescription>
+	</field>
+	<field name="jumlahanakseluruh" class="java.lang.Integer">
+		<fieldDescription><![CDATA[11]]></fieldDescription>
+	</field>
+	<field name="jumlahanakgaji" class="java.lang.Integer">
+		<fieldDescription><![CDATA[12]]></fieldDescription>
+	</field>
+	<field name="statuspegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[13]]></fieldDescription>
+	</field>
+	<field name="filephoto" class="java.lang.String">
+		<fieldDescription><![CDATA[14]]></fieldDescription>
+	</field>
+	<field name="tanggallahir_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[15]]></fieldDescription>
+	</field>
+	<field name="idbidangkerja" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tmt_tanggal_pekerjaan" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_sk_pekerjaan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_sk_pekerjaan" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idcabang" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idunit" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idjabatan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_jabatan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="masa_jabatan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tmt_tanggal_pekerjaan_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_sk_pekerjaan_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodeunit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namaunit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodecabang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namacabang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="275" height="33" uuid="b3617feb-7710-4c2a-955b-8fca1743480e"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Ulang Tahun Pegawai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="17" y="46" width="338" height="22" uuid="2f5ccd84-6104-48a2-8922-cf8195478011"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Yayasan Penyelenggaraan Ilahi Indonesia]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="100" height="15" uuid="b06b78cf-aa3e-4565-b906-d8f726cdf752"/>
+				<text><![CDATA[Daftar Pegawai]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="8c7c268b-7da8-4af7-aa90-f3cdd717c19f"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="16" width="100" height="15" uuid="50951be8-7b67-4b16-a000-9df7807b73c7"/>
+				<text><![CDATA[Nama Pegawai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="182" y="15" width="100" height="15" uuid="4c9f9f7c-95b1-4ef6-bb9e-a3f3c7e7affa"/>
+				<text><![CDATA[Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="294" y="15" width="100" height="15" uuid="bd40ecb4-d816-46cd-ad65-90ab645f3b8a"/>
+				<text><![CDATA[Unit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="407" y="15" width="100" height="15" uuid="9b992f91-206b-450c-a32a-3c50451f6ab6"/>
+				<text><![CDATA[Cabang]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="87000ab9-d25e-473b-b0eb-18679e78f5ec"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="166" height="15" uuid="109b34eb-b37f-41a4-bc63-1980dd7d7bc3"/>
+				<textFieldExpression><![CDATA[$F{namapegawai}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="Detail" x="182" y="1" width="100" height="15" uuid="260a8fde-a216-46be-9810-9ee552db05ce"/>
+				<textFieldExpression><![CDATA[$F{tanggallahir}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="Detail" x="294" y="1" width="100" height="15" uuid="d615d7cd-bed1-45be-a744-af43cbde17dc"/>
+				<textFieldExpression><![CDATA[$F{namaunit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="Detail" x="407" y="1" width="100" height="15" uuid="4c92c851-97fa-444f-a3ca-5e718ded1743"/>
+				<textFieldExpression><![CDATA[$F{namacabang}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="59eeb401-ab94-46f2-a635-b0bad376c196"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="329cc0d2-5d8f-4f89-aa49-4a9d37b3231d"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="b296787e-08bf-4aa0-9dfd-58ab45ad63cb"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

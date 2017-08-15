@@ -29,6 +29,8 @@ public class PegawaiDaoImplemen implements PegawaiDao {
     private final String sqlGetAllPegawaiByNamaCabang = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id where cabang.namacabang=?";
     private final String sqlGetAllPegawaiByNamaGolongan = "select * from pegawai join pangkatpegawai on pegawai.nuk=pangkatpegawai.nuk join golongan on pangkatpegawai.idgolongan=golongan.id where golongan.namagolongan=?";
     private final String sqlGetAllPegawaiByStatusPegawai = "select * from pegawai where statuspegawai=?";
+    private final String sqlGetPegawaiUltahByDate = "SELECT * FROM pegawai WHERE MONTH(tanggallahir) BETWEEN ? AND ? AND DAY(tanggallahir) BETWEEN ? AND ?";
+    private final String sqlgetPegawaiUltahHariIni = "SELECT * FROM pegawai WHERE MONTH(tanggallahir)=MONTH(CURDATE()) AND DAY(tanggallahir)=DAY(CURDATE());";
     private final String sqlGetAllPegawaiByPendidikan = "select * from pegawai join pendidikanpegawai on pegawai.nuk=pendidikanpegawai.nuk join pendidikanterakhir on pendidikanpegawai.id_pendidikan_akhir=pendidikanterakhir.id where pendidikanterakhir.namapendidikan=?";
     private final String sqlGetPegawaiByNUK = "select * from pegawai where nuk=?";
     private final String sqlInsertRumahPegawai = "insert into alamatrumahpegawai (nuk,alamat,telpon,hp) values (?,?,?,?)";
@@ -521,12 +523,96 @@ public class PegawaiDaoImplemen implements PegawaiDao {
 
     @Override
     public List<Pegawai> getAllPegawaiByStatusPendidikan(String namapendidikan) {
-            PreparedStatement ps = null;
+        PreparedStatement ps = null;
         ResultSet rs = null;
         List<Pegawai> list = null;
         try {
             ps = connection.prepareStatement(sqlGetAllPegawaiByPendidikan);
             ps.setString(1, namapendidikan);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai p = new Pegawai();
+                p = new Pegawai();
+                p.setID(rs.getInt("id"));
+                p.setNUK(rs.getString("nuk"));
+                p.setGelarDepan(rs.getString("gelardepan"));
+                p.setNama(rs.getString("namapegawai"));
+                p.setGelarBelakang(rs.getString("gelarbelakang"));
+                p.setAlias(rs.getString("alias"));
+                p.setJK(rs.getString("jeniskelamin"));
+                p.setAgama(rs.getString("agama"));
+                p.setTLahir(rs.getString("tempatlahir"));
+                p.setTglLahir(rs.getString("tanggallahir"));
+                p.setStatusPerkawinan(rs.getString("statuspernikahan"));
+                p.setJumlahAnakSeluruh(rs.getInt("jumlahanakseluruh"));
+                p.setJumlahAnakGaji(rs.getInt("jumlahanakgaji"));
+                p.setStatusPegawai(rs.getString("statuspegawai"));
+                p.setTeksFilename(rs.getString("filephoto"));
+                p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
+                p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
+                p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Pegawai> getAllPegawaiUlangTahun(String tglAwal, String tglAkhir) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetPegawaiUltahByDate);
+            String tgl_awal[] = DaoFactory.getUlangTahunByDateMonth(tglAwal);
+            String tgl_akhir[] = DaoFactory.getUlangTahunByDateMonth(tglAkhir);
+            ps.setString(1, tgl_awal[1]);
+            ps.setString(2, tgl_akhir[1]);
+            ps.setString(3, tgl_awal[0]);
+            ps.setString(4, tgl_akhir[0]);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai p = new Pegawai();
+                p = new Pegawai();
+                p.setID(rs.getInt("id"));
+                p.setNUK(rs.getString("nuk"));
+                p.setGelarDepan(rs.getString("gelardepan"));
+                p.setNama(rs.getString("namapegawai"));
+                p.setGelarBelakang(rs.getString("gelarbelakang"));
+                p.setAlias(rs.getString("alias"));
+                p.setJK(rs.getString("jeniskelamin"));
+                p.setAgama(rs.getString("agama"));
+                p.setTLahir(rs.getString("tempatlahir"));
+                p.setTglLahir(rs.getString("tanggallahir"));
+                p.setStatusPerkawinan(rs.getString("statuspernikahan"));
+                p.setJumlahAnakSeluruh(rs.getInt("jumlahanakseluruh"));
+                p.setJumlahAnakGaji(rs.getInt("jumlahanakgaji"));
+                p.setStatusPegawai(rs.getString("statuspegawai"));
+                p.setTeksFilename(rs.getString("filephoto"));
+                p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
+                p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
+                p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    @Override
+    public List<Pegawai> getAllPegawaiUltahToday() {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlgetPegawaiUltahHariIni);
             rs = ps.executeQuery();
             list = new ArrayList<Pegawai>();
             while (rs.next()) {

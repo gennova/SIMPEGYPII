@@ -15,6 +15,8 @@ import com.init.tools.DaoFactory;
 import com.init.tools.PrintReport;
 import com.init.tools.Rupiah;
 import java.awt.Image;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -31,6 +33,14 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
     public CetakSK_Pemberhentian() {
         initComponents();
         setLocationRelativeTo(null);
+        initApp();
+    }
+    
+    private void initApp(){
+        GregorianCalendar gc = new GregorianCalendar();
+        tmtBerhentiDate.setDate(gc.getTime());
+        tanggalSuratBerhentiDate.setDate(gc.getTime());
+        
     }
 
     /**
@@ -71,7 +81,9 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         txtNomorSurat = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtTMTBerhenti = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        tmtBerhentiDate = new com.toedter.calendar.JDateChooser();
+        tanggalSuratBerhentiDate = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -203,6 +215,8 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
 
         jLabel7.setText("T.M.T Berhenti");
 
+        jLabel8.setText("Tanggal Surat");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -225,15 +239,25 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
                             .addComponent(txtPangkatBaru, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bidangkerja)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel21))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tmtBerhentiDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tanggalSuratBerhentiDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(txtAlasanBerhenti)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(403, 403, 403)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNomorSurat)
-                            .addComponent(txtTMTBerhenti, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)))
-                    .addComponent(txtAlasanBerhenti))
+                            .addComponent(bidangkerja, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -256,11 +280,13 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(txtGolonganGajiBaru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(txtTMTBerhenti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tmtBerhentiDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel15)
-                    .addComponent(txtTMT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTMT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(tanggalSuratBerhentiDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
@@ -403,6 +429,13 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String tmt_berhenti = sdf.format(tmtBerhentiDate.getDate());
+        System.out.println(tmt_berhenti);
+        String tmt_berhenti_indo = DaoFactory.FormatTanggalIndonesia(tmt_berhenti);
+        String tanggal_surat = sdf.format(tanggalSuratBerhentiDate.getDate());
+        String tanggal_surat_indo = DaoFactory.FormatTanggalIndonesia(tanggal_surat);
+        
         String nuknya = txtNuk.getText();
         Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(nuknya);
         PendidikanPegawai pendidikanPegawai = DaoFactory.getPendidikanPegawaiDao().getPendidikanPegawaiByNUK(nuknya);
@@ -415,15 +448,7 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
         Pangkat pangkat_baru = DaoFactory.getPangkatDao().getPangkatByNUK(nuknya);
         HashMap hashMap = new HashMap();
         hashMap.put("nuknya", txtNuk.getText());
-        hashMap.put("pangkatlama", skp_lama.getGolongan().getPangkat());
-        if (pj_lama == null) {
-            hashMap.put("jabatanlama", pj.getJabatan().getNamajabatan());
-        } else {
-            hashMap.put("jabatanlama", pj_lama.getJabatan().getNamajabatan());
-        }
-        hashMap.put("golonganlama", skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(skp_lama.getGaji_str())));
         hashMap.put("golonganbaru", pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
-        hashMap.put("terbilanglama", Rupiah.convert(Integer.parseInt(skp_lama.getGaji_str()))+" Rupiah");
         double data = DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok();
         int news = (int) data;
         hashMap.put("terbilangbaru", Rupiah.convert(news)+" Rupiah");
@@ -431,7 +456,11 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
         hashMap.put("tembusan2", txtTembusan2.getText());
         hashMap.put("tembusan3", txtTembusan3.getText());
         hashMap.put("tembusan4", txtTembusan4.getText());
-        new PrintReport("./report/kenaikan_pangkat_fix.jasper", hashMap);
+        hashMap.put("nomor_surat", txtNomorSurat.getText());
+        hashMap.put("alasan_berhenti", txtAlasanBerhenti.getText());
+        hashMap.put("tmt_berhenti", tmt_berhenti_indo);
+        hashMap.put("tglsrt",tanggal_surat_indo);
+        new PrintReport("./report/pemberhentian.jasper", hashMap);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -534,10 +563,13 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private com.toedter.calendar.JDateChooser tanggalSuratBerhentiDate;
+    private com.toedter.calendar.JDateChooser tmtBerhentiDate;
     private javax.swing.JTextField txtAlasanBerhenti;
     private javax.swing.JLabel txtFoto;
     private javax.swing.JTextField txtGolonganGajiBaru;
@@ -549,7 +581,6 @@ public class CetakSK_Pemberhentian extends javax.swing.JFrame {
     private javax.swing.JTextField txtNuk;
     private javax.swing.JTextField txtPangkatBaru;
     private javax.swing.JTextField txtTMT;
-    private javax.swing.JTextField txtTMTBerhenti;
     private javax.swing.JTextField txtTembusan1;
     private javax.swing.JTextField txtTembusan2;
     private javax.swing.JTextField txtTembusan3;

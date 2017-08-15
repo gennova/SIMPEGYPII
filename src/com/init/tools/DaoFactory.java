@@ -396,4 +396,25 @@ public class DaoFactory {
         int data = (int) a;
         return data;
     }
+
+    public static String[] getUlangTahunByDateMonth(String date) {
+        String data[] = new String[3];
+        String tanggal = date.substring(8);
+        String bulan = date.substring(5, 7);
+        String tahun = date.substring(0, 4);
+        data[0] = tanggal;
+        data[1] = bulan;
+        data[2] = tahun;
+        return data;
+    }
+
+    public static boolean statusUlangTahunByDate(String tanggallahir, String tanggalsekarang) {
+        boolean status = false;
+        String tgl_lahir[] = DaoFactory.getUlangTahunByDateMonth(tanggallahir);
+        String tgl_sekarang[] = DaoFactory.getUlangTahunByDateMonth(tanggalsekarang);
+        if (tgl_lahir[0].equalsIgnoreCase(tgl_sekarang[0]) && tgl_lahir[1].equalsIgnoreCase(tgl_sekarang[1])) {
+            status = true;
+        }
+        return status;
+    }
 }

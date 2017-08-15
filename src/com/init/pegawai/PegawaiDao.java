@@ -22,6 +22,10 @@ public interface PegawaiDao {
     public List<Pegawai> getAllPegawaiByStatusPegawai(String statuspegawai);
     
     public List<Pegawai> getAllPegawaiByStatusPendidikan(String namapendidikan);
+    
+    public List<Pegawai> getAllPegawaiUlangTahun(String tglAwal,String tglAkhir);
+    
+    public List<Pegawai> getAllPegawaiUltahToday();    
 
     public void InsertPegawai(Pegawai pegawai);
 
