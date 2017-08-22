@@ -91,7 +91,9 @@ public class Home extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
         jMenuItem40 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
+        jMenuItem47 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem46 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
@@ -103,6 +105,9 @@ public class Home extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem44 = new javax.swing.JMenuItem();
         jMenuItem43 = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
+        jMenuItem48 = new javax.swing.JMenuItem();
+        jMenuItem49 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
@@ -395,6 +400,14 @@ public class Home extends javax.swing.JFrame {
 
         jMenu9.setText("Laporan");
 
+        jMenuItem47.setText("Daftar Pegawai Keseluruhan");
+        jMenuItem47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem47ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem47);
+
         jMenuItem16.setText("Daftar Nama Pegawai per Cabang");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,6 +415,14 @@ public class Home extends javax.swing.JFrame {
             }
         });
         jMenu9.add(jMenuItem16);
+
+        jMenuItem46.setText("Daftar Nama Pegawai per Unit");
+        jMenuItem46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem46ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem46);
 
         jMenuItem17.setText("Daftar Kenaikan Pangkat dan Gaji Berkala");
         jMenu9.add(jMenuItem17);
@@ -450,6 +471,26 @@ public class Home extends javax.swing.JFrame {
         jMenu3.add(jMenu9);
 
         jMenuBar1.add(jMenu3);
+
+        jMenu11.setText("Laporan Pegawai");
+
+        jMenuItem48.setText("Daftar Pegawai Aktif");
+        jMenuItem48.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem48ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem48);
+
+        jMenuItem49.setText("Daftar Pegawai Per Cabang / Unit");
+        jMenuItem49.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem49ActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItem49);
+
+        jMenuBar1.add(jMenu11);
 
         jMenu4.setText("Utility");
 
@@ -671,6 +712,30 @@ public class Home extends javax.swing.JFrame {
         dput.setVisible(true);
     }//GEN-LAST:event_jMenuItem45ActionPerformed
 
+    private void jMenuItem46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem46ActionPerformed
+        // TODO add your handling code here:
+        DaftarPegawaiPerUnitUI1 perUnitUI1 = new DaftarPegawaiPerUnitUI1();
+        perUnitUI1.setVisible(true);
+    }//GEN-LAST:event_jMenuItem46ActionPerformed
+
+    private void jMenuItem47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem47ActionPerformed
+        // TODO add your handling code here:
+        DaftarPegawaiUI dpui = new DaftarPegawaiUI();
+        dpui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem47ActionPerformed
+
+    private void jMenuItem48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem48ActionPerformed
+        // TODO add your handling code here:
+        DaftarPegawaiAktifSajaUI aktifSajaUI = new DaftarPegawaiAktifSajaUI();
+        aktifSajaUI.setVisible(true);
+    }//GEN-LAST:event_jMenuItem48ActionPerformed
+
+    private void jMenuItem49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem49ActionPerformed
+        // TODO add your handling code here:
+        DaftarPegawaiAktifSajaFilterUI dpasfui = new DaftarPegawaiAktifSajaFilterUI();
+        dpasfui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem49ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -703,6 +768,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -752,6 +818,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem43;
     private javax.swing.JMenuItem jMenuItem44;
     private javax.swing.JMenuItem jMenuItem45;
+    private javax.swing.JMenuItem jMenuItem46;
+    private javax.swing.JMenuItem jMenuItem47;
+    private javax.swing.JMenuItem jMenuItem48;
+    private javax.swing.JMenuItem jMenuItem49;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;

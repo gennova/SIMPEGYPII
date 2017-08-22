@@ -26,7 +26,9 @@ public class PegawaiDaoImplemen implements PegawaiDao {
     private final String sqlInsertPegawai = "call spInsertPegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String sqlUpdatePegawai = "call spUpdatePegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String sqlGetAllPegawai = "select * from pegawai";
+    private final String sqlGetAllPegawaiByNamaUnit = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id join unit on pekerjaanjabatan.idunit =unit.id where unit.namaunit=?";
     private final String sqlGetAllPegawaiByNamaCabang = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id where cabang.namacabang=?";
+    private final String sqlGetAllPegawaiByNamaCabangAndUnit = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id where pekerjaanjabatan.idcabang=? and pekerjaanjabatan.idunit=? and pegawai.statuspegawai <> 'PINDAH' or 'PENSIUN' or 'BERHENTI' or 'MENINGGAL'";
     private final String sqlGetAllPegawaiByNamaGolongan = "select * from pegawai join pangkatpegawai on pegawai.nuk=pangkatpegawai.nuk join golongan on pangkatpegawai.idgolongan=golongan.id where golongan.namagolongan=?";
     private final String sqlGetAllPegawaiByStatusPegawai = "select * from pegawai where statuspegawai=?";
     private final String sqlGetPegawaiUltahByDate = "SELECT * FROM pegawai WHERE MONTH(tanggallahir) BETWEEN ? AND ? AND DAY(tanggallahir) BETWEEN ? AND ?";
@@ -442,6 +444,48 @@ public class PegawaiDaoImplemen implements PegawaiDao {
     }
 
     @Override
+    public List<Pegawai> getAllPegawaiByNamaUnit(String namaunit) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetAllPegawaiByNamaUnit);
+            ps.setString(1, namaunit);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai p = new Pegawai();
+                p = new Pegawai();
+                p.setID(rs.getInt("id"));
+                p.setNUK(rs.getString("nuk"));
+                p.setGelarDepan(rs.getString("gelardepan"));
+                p.setNama(rs.getString("namapegawai"));
+                p.setGelarBelakang(rs.getString("gelarbelakang"));
+                p.setAlias(rs.getString("alias"));
+                p.setJK(rs.getString("jeniskelamin"));
+                p.setAgama(rs.getString("agama"));
+                p.setTLahir(rs.getString("tempatlahir"));
+                p.setTglLahir(rs.getString("tanggallahir"));
+                p.setStatusPerkawinan(rs.getString("statuspernikahan"));
+                p.setJumlahAnakSeluruh(rs.getInt("jumlahanakseluruh"));
+                p.setJumlahAnakGaji(rs.getInt("jumlahanakgaji"));
+                p.setStatusPegawai(rs.getString("statuspegawai"));
+                p.setTeksFilename(rs.getString("filephoto"));
+                p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
+                p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
+                p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    
+
+    @Override
     public List<Pegawai> getAllPegawaiByNamaGolongan(String namagolongan) {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -644,5 +688,48 @@ public class PegawaiDaoImplemen implements PegawaiDao {
         }
         return list;
     }
+
+    @Override
+    public List<Pegawai> getAllPegawaiByNamaCabangAndUnit(String idcabang, String idunit) {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<Pegawai> list = null;
+        try {
+            ps = connection.prepareStatement(sqlGetAllPegawaiByNamaCabangAndUnit);
+            ps.setString(1, idcabang);
+            ps.setString(2, idunit);
+            rs = ps.executeQuery();
+            list = new ArrayList<Pegawai>();
+            while (rs.next()) {
+                Pegawai p = new Pegawai();
+                p = new Pegawai();
+                p.setID(rs.getInt("id"));
+                p.setNUK(rs.getString("nuk"));
+                p.setGelarDepan(rs.getString("gelardepan"));
+                p.setNama(rs.getString("namapegawai"));
+                p.setGelarBelakang(rs.getString("gelarbelakang"));
+                p.setAlias(rs.getString("alias"));
+                p.setJK(rs.getString("jeniskelamin"));
+                p.setAgama(rs.getString("agama"));
+                p.setTLahir(rs.getString("tempatlahir"));
+                p.setTglLahir(rs.getString("tanggallahir"));
+                p.setStatusPerkawinan(rs.getString("statuspernikahan"));
+                p.setJumlahAnakSeluruh(rs.getInt("jumlahanakseluruh"));
+                p.setJumlahAnakGaji(rs.getInt("jumlahanakgaji"));
+                p.setStatusPegawai(rs.getString("statuspegawai"));
+                p.setTeksFilename(rs.getString("filephoto"));
+                p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
+                p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
+                p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    
 
 }

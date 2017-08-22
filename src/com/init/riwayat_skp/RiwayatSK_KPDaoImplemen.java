@@ -25,7 +25,7 @@ public class RiwayatSK_KPDaoImplemen implements RiwayatSK_KPDao {
     private final Connection connection;
     private final String sqlGetAllSk_KP = "select * from riwayat_skp where nuk=?";
     private final String sqlInsertRiwayatSKP = "insert into riwayat_skp (nuk,idgolongan,tmt_golongan,nomor_sk,tanggal_sk,tmt_kgb,nomor_kgb,tanggal_kgb,tahunkerja,bulankerja,tahunkerjabenar,bulankerjabenar,tmt_golongan_indo,tanggal_sk_indo,tmt_kgb_indo,tanggal_kgb_indo,ruang,keterangan,gaji) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; // 19 parameter
-    private final String sqlGetRiwayatPangkatByNukLast = "select * from riwayat_skp where nuk=? and id=(select max(id) from riwayat_skp)";
+    private final String sqlGetRiwayatPangkatByNukLast = "select * from riwayat_skp where nuk=? and id=(select max(id) from riwayat_skp where nuk=?)";
 
     public RiwayatSK_KPDaoImplemen(Connection connection) {
         this.connection = connection;
@@ -124,6 +124,7 @@ public class RiwayatSK_KPDaoImplemen implements RiwayatSK_KPDao {
         try {
             ps = connection.prepareStatement(sqlGetRiwayatPangkatByNukLast);
             ps.setString(1, nuk);
+            ps.setString(2, nuk);
             rs = ps.executeQuery();
             if (rs.next()) {
                 pangkat = new RiwayatSK_KP();

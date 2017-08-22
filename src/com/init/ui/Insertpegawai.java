@@ -428,7 +428,7 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel5.setText("Agama");
 
-        comboAgama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Katolik", "Protestasn", "Islam", "Hindu", "Budha", "Konghucu", "Lainnya" }));
+        comboAgama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Katolik", "Protestan", "Islam", "Hindu", "Budha", "Konghucu", "Lainnya" }));
 
         jLabel6.setText("T.Lahir");
 

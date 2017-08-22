@@ -489,7 +489,7 @@ public class CetakSK_KenaikanPangkat extends javax.swing.JFrame {
         txtGolonganGajiBaru.setText(pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
         txtTMT.setText(pj.getTglTMTPekerjaan_indo());
         txtTembusan1.setText("1. Kepala "+pj.getUnit().getNamaUnit()+" di "+pj.getCabang().getNamacabang());
-        txtTembusan2.setText("2. Penanggung Jawab YPII Pusat");
+        txtTembusan2.setText("2. Penanggung Jawab YPII Kantor Cabang Semarang");
         txtTembusan3.setText("3. YADAPEN");
         txtTembusan4.setText("4. Arsip");
     }//GEN-LAST:event_txtNukActionPerformed

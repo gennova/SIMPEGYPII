@@ -552,7 +552,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
         txtTMT.setText(pangkat_baru.getTanggal_kgb());
         
         txtTembusan1.setText("1. Kepala "+pj.getUnit().getNamaUnit()+" di "+pj.getCabang().getNamacabang());
-        txtTembusan2.setText("2. Penanggung Jawab YPII Kantor Cabang "+pj.getUnit().getNamaUnit());
+        txtTembusan2.setText("2. Penanggung Jawab YPII Kantor Cabang Semarang");
         txtTembusan3.setText("3. Arsip");
         txtTembusan4.setText("4. ");
     }//GEN-LAST:event_txtNukActionPerformed

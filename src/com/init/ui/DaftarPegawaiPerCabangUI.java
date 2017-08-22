@@ -8,6 +8,7 @@ package com.init.ui;
 import com.init.cabang.Cabang;
 import com.init.pegawai.PegawaiTabelModelDetil;
 import com.init.tools.DaoFactory;
+import com.init.tools.PrintReport;
 import java.util.List;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -43,6 +44,10 @@ public class DaftarPegawaiPerCabangUI extends javax.swing.JFrame {
         rowSorter = new TableRowSorter(detil);
         tabelpegawai.setRowSorter(rowSorter);
         tabelpegawai.setModel(detil);
+        tabelpegawai.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tabelpegawai.getColumnModel().getColumn(1).setPreferredWidth(170);
+        tabelpegawai.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tabelpegawai.getColumnModel().getColumn(4).setPreferredWidth(170);
     }
 
     /**
@@ -116,6 +121,11 @@ public class DaftarPegawaiPerCabangUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("Print");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,6 +176,10 @@ public class DaftarPegawaiPerCabangUI extends javax.swing.JFrame {
             rowSorter = new TableRowSorter(detil);
             tabelpegawai.setRowSorter(rowSorter);
             tabelpegawai.setModel(detil);
+            tabelpegawai.getColumnModel().getColumn(0).setPreferredWidth(20);
+            tabelpegawai.getColumnModel().getColumn(1).setPreferredWidth(170);
+            tabelpegawai.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tabelpegawai.getColumnModel().getColumn(4).setPreferredWidth(170);
         }
 
     }//GEN-LAST:event_combocabangActionPerformed
@@ -174,6 +188,11 @@ public class DaftarPegawaiPerCabangUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new PrintReport("report/daftar_pegawai_cabang.jasper", "params",combocabang.getSelectedItem().toString());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

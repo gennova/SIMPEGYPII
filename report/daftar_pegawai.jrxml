@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="daftar_pegawai" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e5d3fc8e-fbfd-48eb-a686-75ecaec028ec">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT * FROM pegawai JOIN pangkatpegawai ON pegawai.nuk = pangkatpegawai.nuk JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk
+JOIN unit ON pekerjaanjabatan.idunit = unit.id JOIN golongan ON pangkatpegawai.idgolongan = golongan.id join gajipegawai on pegawai.nuk=gajipegawai.nuk join legalisasi]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nuk" class="java.lang.String">
+		<fieldDescription><![CDATA[1]]></fieldDescription>
+	</field>
+	<field name="gelardepan" class="java.lang.String">
+		<fieldDescription><![CDATA[2]]></fieldDescription>
+	</field>
+	<field name="namapegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[3]]></fieldDescription>
+	</field>
+	<field name="gelarbelakang" class="java.lang.String">
+		<fieldDescription><![CDATA[4]]></fieldDescription>
+	</field>
+	<field name="alias" class="java.lang.String">
+		<fieldDescription><![CDATA[5]]></fieldDescription>
+	</field>
+	<field name="jeniskelamin" class="java.lang.String">
+		<fieldDescription><![CDATA[6]]></fieldDescription>
+	</field>
+	<field name="agama" class="java.lang.String">
+		<fieldDescription><![CDATA[7]]></fieldDescription>
+	</field>
+	<field name="tempatlahir" class="java.lang.String">
+		<fieldDescription><![CDATA[8]]></fieldDescription>
+	</field>
+	<field name="tanggallahir" class="java.sql.Date">
+		<fieldDescription><![CDATA[9]]></fieldDescription>
+	</field>
+	<field name="statuspernikahan" class="java.lang.String">
+		<fieldDescription><![CDATA[10]]></fieldDescription>
+	</field>
+	<field name="jumlahanakseluruh" class="java.lang.Integer">
+		<fieldDescription><![CDATA[11]]></fieldDescription>
+	</field>
+	<field name="jumlahanakgaji" class="java.lang.Integer">
+		<fieldDescription><![CDATA[12]]></fieldDescription>
+	</field>
+	<field name="statuspegawai" class="java.lang.String">
+		<fieldDescription><![CDATA[13]]></fieldDescription>
+	</field>
+	<field name="filephoto" class="java.lang.String">
+		<fieldDescription><![CDATA[14]]></fieldDescription>
+	</field>
+	<field name="tanggallahir_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[15]]></fieldDescription>
+	</field>
+	<field name="img" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idgolongan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[3]]></fieldDescription>
+	</field>
+	<field name="tmt_golongan" class="java.sql.Date">
+		<fieldDescription><![CDATA[4]]></fieldDescription>
+	</field>
+	<field name="nomor_sk" class="java.lang.String">
+		<fieldDescription><![CDATA[5]]></fieldDescription>
+	</field>
+	<field name="tanggal_sk" class="java.sql.Date">
+		<fieldDescription><![CDATA[6]]></fieldDescription>
+	</field>
+	<field name="tmt_kgb" class="java.sql.Date">
+		<fieldDescription><![CDATA[7]]></fieldDescription>
+	</field>
+	<field name="nomor_kgb" class="java.lang.String">
+		<fieldDescription><![CDATA[8]]></fieldDescription>
+	</field>
+	<field name="tanggal_kgb" class="java.sql.Date">
+		<fieldDescription><![CDATA[9]]></fieldDescription>
+	</field>
+	<field name="tahunkerja" class="java.lang.Integer">
+		<fieldDescription><![CDATA[10]]></fieldDescription>
+	</field>
+	<field name="bulankerja" class="java.lang.Integer">
+		<fieldDescription><![CDATA[11]]></fieldDescription>
+	</field>
+	<field name="tahunkerjabenar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[12]]></fieldDescription>
+	</field>
+	<field name="bulankerjabenar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[13]]></fieldDescription>
+	</field>
+	<field name="tmt_golongan_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[14]]></fieldDescription>
+	</field>
+	<field name="tanggal_sk_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[15]]></fieldDescription>
+	</field>
+	<field name="tmt_kgb_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[16]]></fieldDescription>
+	</field>
+	<field name="tanggal_kgb_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[17]]></fieldDescription>
+	</field>
+	<field name="naik_pangkat_yad" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="naik_pangkay_yad_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idbidangkerja" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tmt_tanggal_pekerjaan" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_sk_pekerjaan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_sk_pekerjaan" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idcabang" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idunit" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idjabatan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_jabatan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="masa_jabatan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tmt_tanggal_pekerjaan_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_sk_pekerjaan_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodeunit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namaunit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodegolongan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="namagolongan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pangkat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gaji_pokok" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tunjangan_suami_istri" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tunjangan_anak" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tunjangan_lain" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_gaji" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggungan_orang" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kgb_berikutnya" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kgb_yad" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kgb_yad_indo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ketua" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sekretaris" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="15" width="552" height="20" uuid="608aa3a4-7ff2-414c-b399-7243d147ff0c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DAFTAR PEGAWAI]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="35" width="554" height="20" uuid="ce7bc6dd-aef6-466c-b3cd-c00dbd43b941"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="40" height="22" uuid="ea51c857-6b00-4f28-b362-1db31e8237f6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="0" width="165" height="22" uuid="2636c2c1-f171-42cb-b38b-380c1ed30efe"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="205" y="0" width="112" height="22" uuid="e5a7bc9f-0584-4465-b8c4-71d4e4f83d80"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="317" y="0" width="144" height="22" uuid="02a3d663-510c-47f1-b481-389292e1f51f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="461" y="0" width="94" height="22" uuid="aa2aeafb-dcde-45fd-b9dc-03342e42dd81"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="1" width="37" height="20" uuid="a11e2e16-4984-444d-959f-215c8569cc4a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NUK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="1" width="164" height="20" uuid="2a77a1e8-e944-4736-a45d-ea4d9fee6b2c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NAMA PEGAWAI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="1" width="110" height="20" uuid="51f5a28c-01bb-4064-8177-776e66c71579"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[UNIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="1" width="143" height="20" uuid="64d111ff-7779-482e-8085-645b4d23a21b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PANGKAT/GOLONGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="1" width="94" height="20" uuid="0bb82333-64fa-4d91-b5eb-23c6b99be307"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[GAJI]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="461" y="-1" width="94" height="22" uuid="bab315fa-6a43-46c5-88b1-d8a4e5b586a9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="-1" width="40" height="22" uuid="3e6d19ea-202d-4b97-9a5a-d20df058db90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="205" y="-1" width="112" height="22" uuid="b8655523-0b24-45df-8515-83a52bbafe74"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="-1" width="165" height="22" uuid="f28a3cad-c49f-4ed0-99a0-3b8fe5e383ca"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="317" y="-1" width="144" height="22" uuid="78a93cd7-4b86-42a0-8096-7777187791cd"/>
+			</rectangle>
+			<textField>
+				<reportElement x="3" y="0" width="35" height="20" uuid="382fd0d5-0b21-4029-bc4e-b1f47e4a4e77"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nuk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="0" width="162" height="20" uuid="50228fa3-2e96-411c-bfb1-bb6de75c100e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{gelardepan}+$F{namapegawai}+$F{gelarbelakang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="0" width="108" height="20" uuid="9950e676-df19-472d-ae2e-19a04742fe03"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{namaunit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="1" width="141" height="20" uuid="ee7673f1-ab60-4245-870b-4387b82daf16"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{namagolongan}+" "+$F{pangkat}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="464" y="0" width="91" height="20" uuid="644f2314-cfe1-41d4-ac58-149d2d6890a5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{gaji_pokok}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="517" y="34" width="38" height="20" uuid="1ab689b8-2550-430b-84f1-e4d0d48a2160"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Hlm. "+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

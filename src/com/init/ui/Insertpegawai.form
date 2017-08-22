@@ -345,7 +345,7 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="7">
                     <StringItem index="0" value="Katolik"/>
-                    <StringItem index="1" value="Protestasn"/>
+                    <StringItem index="1" value="Protestan"/>
                     <StringItem index="2" value="Islam"/>
                     <StringItem index="3" value="Hindu"/>
                     <StringItem index="4" value="Budha"/>

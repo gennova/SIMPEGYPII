@@ -159,11 +159,11 @@ join cabang on pekerjaanjabatan.idcabang=cabang.id where MONTH(tanggallahir) bet
 				<text><![CDATA[Tanggal Lahir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="294" y="15" width="100" height="15" uuid="bd40ecb4-d816-46cd-ad65-90ab645f3b8a"/>
+				<reportElement style="Column header" x="294" y="15" width="161" height="15" uuid="bd40ecb4-d816-46cd-ad65-90ab645f3b8a"/>
 				<text><![CDATA[Unit]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="407" y="15" width="100" height="15" uuid="9b992f91-206b-450c-a32a-3c50451f6ab6"/>
+				<reportElement style="Column header" x="455" y="15" width="100" height="15" uuid="9b992f91-206b-450c-a32a-3c50451f6ab6"/>
 				<text><![CDATA[Cabang]]></text>
 			</staticText>
 		</band>
@@ -178,18 +178,30 @@ join cabang on pekerjaanjabatan.idcabang=cabang.id where MONTH(tanggallahir) bet
 			</line>
 			<textField>
 				<reportElement style="Detail" x="0" y="0" width="166" height="15" uuid="109b34eb-b37f-41a4-bc63-1980dd7d7bc3"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{namapegawai}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement style="Detail" x="182" y="1" width="100" height="15" uuid="260a8fde-a216-46be-9810-9ee552db05ce"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{tanggallahir}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement style="Detail" x="294" y="1" width="100" height="15" uuid="d615d7cd-bed1-45be-a744-af43cbde17dc"/>
+				<reportElement style="Detail" x="294" y="1" width="161" height="15" uuid="d615d7cd-bed1-45be-a744-af43cbde17dc"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{namaunit}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement style="Detail" x="407" y="1" width="100" height="15" uuid="4c92c851-97fa-444f-a3ca-5e718ded1743"/>
+				<reportElement style="Detail" x="455" y="1" width="100" height="15" uuid="4c92c851-97fa-444f-a3ca-5e718ded1743"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{namacabang}]]></textFieldExpression>
 			</textField>
 		</band>

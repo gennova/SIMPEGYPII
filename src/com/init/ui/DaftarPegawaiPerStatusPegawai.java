@@ -35,6 +35,10 @@ public class DaftarPegawaiPerStatusPegawai extends javax.swing.JFrame {
         rowSorter = new TableRowSorter(detil);
         tabelpegawai.setRowSorter(rowSorter);
         tabelpegawai.setModel(detil);
+        tabelpegawai.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tabelpegawai.getColumnModel().getColumn(1).setPreferredWidth(170);
+        tabelpegawai.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tabelpegawai.getColumnModel().getColumn(4).setPreferredWidth(170);
     }
 
     /**
@@ -163,6 +167,10 @@ public class DaftarPegawaiPerStatusPegawai extends javax.swing.JFrame {
         rowSorter = new TableRowSorter(detil);
         tabelpegawai.setRowSorter(rowSorter);
         tabelpegawai.setModel(detil);
+        tabelpegawai.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tabelpegawai.getColumnModel().getColumn(1).setPreferredWidth(170);
+        tabelpegawai.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tabelpegawai.getColumnModel().getColumn(4).setPreferredWidth(170);
     }//GEN-LAST:event_ComboSttPegActionPerformed
 
     /**
