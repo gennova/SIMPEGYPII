@@ -29,7 +29,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
     private final String sqlGetAllPegawaiByNamaUnit = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id join unit on pekerjaanjabatan.idunit =unit.id where unit.namaunit=?";
     private final String sqlGetAllPegawaiByNamaCabang = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id where cabang.namacabang=?";
     private final String sqlGetAllPegawaiByNamaCabangAndUnit = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id where pekerjaanjabatan.idcabang=? and pekerjaanjabatan.idunit=? and pegawai.statuspegawai <> 'PINDAH' or 'PENSIUN' or 'BERHENTI' or 'MENINGGAL'";
-    private final String sqlGetAllPegawaiByNamaGolongan = "select * from pegawai join pangkatpegawai on pegawai.nuk=pangkatpegawai.nuk join golongan on pangkatpegawai.idgolongan=golongan.id where golongan.namagolongan=?";
+    private final String sqlGetAllPegawaiByNamaGolongan = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join pangkatpegawai on pegawai.nuk=pangkatpegawai.nuk join golongan on pangkatpegawai.idgolongan=golongan.id where golongan.namagolongan=?";
     private final String sqlGetAllPegawaiByStatusPegawai = "select * from pegawai where statuspegawai=?";
     private final String sqlGetPegawaiUltahByDate = "SELECT * FROM pegawai WHERE MONTH(tanggallahir) BETWEEN ? AND ? AND DAY(tanggallahir) BETWEEN ? AND ?";
     private final String sqlgetPegawaiUltahHariIni = "SELECT * FROM pegawai WHERE MONTH(tanggallahir)=MONTH(CURDATE()) AND DAY(tanggallahir)=DAY(CURDATE());";
@@ -44,6 +44,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
     private final String sqlGetPegawaiWithBidangKerjaUrut = "SELECT * FROM pegawai JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN bidangkerja ON pekerjaanjabatan.idbidangkerja=bidangkerja.id JOIN cabang ON pekerjaanjabatan.idcabang=cabang. id ORDER BY bidangkerja.namabidangkerja ASC";
     private final String sqlGetPegawaiWithBidangKerjaGolongan = "SELECT * FROM pegawai JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN bidangkerja ON pekerjaanjabatan.idbidangkerja=bidangkerja.id JOIN pangkatpegawai ON pegawai.nuk=pangkatpegawai.nuk JOIN golongan ON pangkatpegawai.idgolongan = golongan.id ORDER BY golongan.namagolongan ASC";
     private final String sqlGetPegawaiWithBidangKerjaUnit = "SELECT * FROM pegawai JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN bidangkerja ON pekerjaanjabatan.idbidangkerja=bidangkerja.id  JOIN unit ON pekerjaanjabatan.idunit=unit.id ORDER BY unit.namaunit ASC";
+    private final String sqlDeletePegawai = "call spDeletePegawai(?)";
 
     public PegawaiDaoImplemen(Connection connection) {
         this.connection = connection;
@@ -79,7 +80,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
                 p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
                 p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
-                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -434,7 +435,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
                 p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
                 p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
-                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -474,7 +475,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
                 p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
                 p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
-                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -482,8 +483,6 @@ public class PegawaiDaoImplemen implements PegawaiDao {
         }
         return list;
     }
-    
-    
 
     @Override
     public List<Pegawai> getAllPegawaiByNamaGolongan(String namagolongan) {
@@ -516,7 +515,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
                 p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
                 p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
-                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -556,7 +555,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
                 p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
                 p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
-                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -596,7 +595,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
                 p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
                 p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
-                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -641,7 +640,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
                 p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
                 p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
-                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -680,7 +679,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
                 p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
                 p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
-                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -721,7 +720,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
                 p.setTanggalLahirIndo(rs.getString("tanggallahir_indo"));
                 p.setPangkat(DaoFactory.getPangkatDao().getPangkatByNUK(rs.getString("nuk")));
                 p.setPekerjaanJabatan(DaoFactory.getPekerjaanJabatanDao().getPekerjaanJabatanByNUK(rs.getString("nuk")));
-                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangkerjaByKode(rs.getString("nuk")));
+                p.setBidangKerja(DaoFactory.getBidangKerjaDao().getBidangKerjaByID(rs.getInt("idbidangkerja")));
                 list.add(p);
             }
         } catch (SQLException ex) {
@@ -729,7 +728,18 @@ public class PegawaiDaoImplemen implements PegawaiDao {
         }
         return list;
     }
-    
-    
+
+    @Override
+    public void obliviate_pegawai(String nuk) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(sqlDeletePegawai);
+            ps.setString(1, nuk);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+        } catch (SQLException ex) {
+            Logger.getLogger(PegawaiDaoImplemen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

@@ -58,4 +58,6 @@ public interface PegawaiDao {
     public List<Pegawai> getAllPegawaiAndBidangKerjaUnitKerja();
 
     public boolean CekPegawaiByNUK(String nuk);
+    
+    public void obliviate_pegawai(String nuk);
 }

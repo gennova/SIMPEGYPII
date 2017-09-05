@@ -520,7 +520,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
                 txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(skp_lama.getGaji_str())));
             } else {
                 System.out.println("Data riwayat gaji ada");
-                txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
+                txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + riwayatGajiPegawai.getRuang() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
             }
         } else {
             txtPangkatLama.setText(pangkat_baru.getGolongan().getPangkat());

@@ -26,7 +26,7 @@ public class Riwayat_Gaji_pegawai_dao_implemen implements Riwayat_Gaji_pegawai_d
     private final Connection connection;
     private final String sqlInsertGajiPegawai = "INSERT INTO riwayat_gajipegawai(nuk,gaji_pokok,tunjangan_suami_istri,tunjangan_anak,tunjangan_lain,total_gaji,tanggungan_orang,kgb_berikutnya,kgb_yad,kgb_yad_indo,idpangkat,idjabatan,tmt_lama,no_kgb_lama,tanggal,ruang) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String sqlUpdateGajiPegawai = "update riwayat_gajipegawai set gaji_pokok=?,tunjangan_suami_istri=?,tunjangan_anak=?,tunjangan_lain=?,total_gaji=?,tanggungan_orang=?,kgb_berikutnya=?,kgb_yad=?,kgb_yad_indo=?,ruang=? where nuk=?";
-    private final String sqlGetRiwayatGajiPegawaiByNUKLast = "select * from riwayat_gajipegawai where nuk=? and id=(select max(id) from riwayat_gajipegawai)";
+    private final String sqlGetRiwayatGajiPegawaiByNUKLast = "select * from riwayat_gajipegawai where nuk=? and id=(select max(id) from riwayat_gajipegawai where nuk=?)";
     private final String sqlGetAllRiwayatGaji = "select * from riwayat_gajipegawai";
     private final String sqlGetAllRiwayatGajiNuk = "select * from riwayat_gajipegawai where nuk=?";
     private final String sqlDeleteRiwayatGajiPegawai = "delete from riwayat_gajipegawai where id=?";
@@ -117,6 +117,7 @@ public class Riwayat_Gaji_pegawai_dao_implemen implements Riwayat_Gaji_pegawai_d
         try {
             ps = connection.prepareStatement(sqlGetRiwayatGajiPegawaiByNUKLast);
             ps.setString(1, nuk);
+            ps.setString(2, nuk);
             rs = ps.executeQuery();
             while (rs.next()) {
                 g = new RiwayatGajiPegawai();

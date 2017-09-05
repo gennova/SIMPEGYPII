@@ -31,9 +31,7 @@ import java.nio.file.StandardCopyOption;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
@@ -59,6 +57,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         initApp();
+        initUpdateApp();
     }
 
     public void resetField() {
@@ -92,8 +91,11 @@ public class Insertpegawai extends javax.swing.JFrame {
 
     private void initApp() {
         if (Session.getNUK() != null) {
+            System.out.println("Start form insert");
             initUpdateApp();
+            loadCombo();
         } else {
+            System.out.println("Start form update");
             loadCombo();
             tglLahirDate.setDate(GregorianCalendar.getInstance().getTime());
             tmtGolonganDate.setDate(GregorianCalendar.getInstance().getTime());
