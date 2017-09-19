@@ -5,6 +5,7 @@
  */
 package com.init.ui;
 
+import com.init.gaji.RiwayatGajiPegawai;
 import com.init.tools.DaoFactory;
 import com.init.tools.Rupiah;
 import java.text.DecimalFormat;
@@ -35,6 +36,9 @@ public class main {
         System.out.println(DaoFactory.getFormatRupiahIndonesiaInt(9823910));
         
         System.out.println(DaoFactory.ConvertDoubleToInt(9.90));
+        
+        RiwayatGajiPegawai riwayatGajiPegawai = DaoFactory.getRiwayat_Gaji_pegawai_dao().getGajiPegawaiByNUKRiwayat("0501");
+        System.out.println(riwayatGajiPegawai.getGolongan().getNamagolongan());
     }
 
 }

@@ -248,7 +248,7 @@ public class Pegawaiform extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Data Pokok  Pegawai");
-        setResizable(false);
+        setAlwaysOnTop(true);
 
         jLabel1.setText("NUK");
 

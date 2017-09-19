@@ -32,7 +32,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
     private final String sqlGetAllPegawaiByNamaGolongan = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join pangkatpegawai on pegawai.nuk=pangkatpegawai.nuk join golongan on pangkatpegawai.idgolongan=golongan.id where golongan.namagolongan=?";
     private final String sqlGetAllPegawaiByStatusPegawai = "select * from pegawai where statuspegawai=?";
     private final String sqlGetPegawaiUltahByDate = "SELECT * FROM pegawai WHERE MONTH(tanggallahir) BETWEEN ? AND ? AND DAY(tanggallahir) BETWEEN ? AND ?";
-    private final String sqlgetPegawaiUltahHariIni = "SELECT * FROM pegawai WHERE MONTH(tanggallahir)=MONTH(CURDATE()) AND DAY(tanggallahir)=DAY(CURDATE());";
+    private final String sqlgetPegawaiUltahHariIni = "SELECT * FROM pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk WHERE MONTH(pegawai.tanggallahir)=MONTH(CURDATE()) AND DAY(pegawai.tanggallahir)=DAY(CURDATE());";
     private final String sqlGetAllPegawaiByPendidikan = "select * from pegawai join pendidikanpegawai on pegawai.nuk=pendidikanpegawai.nuk join pendidikanterakhir on pendidikanpegawai.id_pendidikan_akhir=pendidikanterakhir.id where pendidikanterakhir.namapendidikan=?";
     private final String sqlGetPegawaiByNUK = "select * from pegawai where nuk=?";
     private final String sqlInsertRumahPegawai = "insert into alamatrumahpegawai (nuk,alamat,telpon,hp) values (?,?,?,?)";

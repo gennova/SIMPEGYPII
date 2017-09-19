@@ -404,7 +404,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ButtonCetakRiwayatGaji)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonCetakRiwayatGaji, jButton2});
@@ -417,7 +417,9 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -442,18 +444,30 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
         HashMap hashMap = new HashMap();
         hashMap.put("nuknya", txtNuk.getText());
         if (skp_lama != null) {
-            hashMap.put("pangkatlama", skp_lama.getGolongan().getPangkat());
-            hashMap.put("golonganlama", skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(skp_lama.getGaji_str())));
+            hashMap.put("pangkatlama", pangkat_baru.getGolongan().getPangkat());
+            hashMap.put("golonganlama", pangkat_baru.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(skp_lama.getGaji_str())));
             hashMap.put("terbilanglama", Rupiah.convert(Integer.parseInt(skp_lama.getGaji_str())) + " Rupiah");
+            RiwayatGajiPegawai riwayatGajiPegawai = DaoFactory.getRiwayat_Gaji_pegawai_dao().getGajiPegawaiByNUKRiwayat(nuknya);
+            if (riwayatGajiPegawai != null) {
+                hashMap.put("golonganlama", pangkat_baru.getGolongan().getNamagolongan() + " - " + riwayatGajiPegawai.getRuang() + " Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
+                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())) + "Rupiah");
+                System.out.println("cetak riwayat gaji ada");
+            } else {
+                hashMap.put("golonganlama", pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
+                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
+                System.out.println("cetak riwayat gaji tdk ada");
+            }
         } else {
             hashMap.put("pangkatlama", pangkat_baru.getGolongan().getPangkat());
             RiwayatGajiPegawai riwayatGajiPegawai = DaoFactory.getRiwayat_Gaji_pegawai_dao().getGajiPegawaiByNUKRiwayat(nuknya);
             if (riwayatGajiPegawai != null) {
-                hashMap.put("golonganlama", riwayatGajiPegawai.getGolongan().getNamagolongan() + " - " + riwayatGajiPegawai.getRuang() + " Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
+                hashMap.put("golonganlama", pangkat_baru.getGolongan().getNamagolongan() + " - " + riwayatGajiPegawai.getRuang() + " Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
                 hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())) + "Rupiah");
+                System.out.println("cetak riwayat gaji ada");
             } else {
                 hashMap.put("golonganlama", pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
                 hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
+                System.out.println("cetak riwayat gaji tdk ada");
             }
         }
         if (pj_lama == null) {
@@ -503,7 +517,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
         //Data Pokok Pangkat Lama//
         RiwayatSK_KP skp_lama = DaoFactory.getRiwayatSK_KPDao().getRiwayatSKKP_LamaByNukLast(nuknya);
         if (skp_lama != null) {
-            txtPangkatLama.setText(skp_lama.getGolongan().getPangkat());
+            txtPangkatLama.setText(pangkat_baru.getGolongan().getPangkat());
             System.out.println("Data riwayat skp ada");
             if (pj_lama == null) {
                 txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
@@ -520,7 +534,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
                 txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + skp_lama.getTahun_kerja() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(skp_lama.getGaji_str())));
             } else {
                 System.out.println("Data riwayat gaji ada");
-                txtGolonganGajiLama.setText(skp_lama.getGolongan().getNamagolongan() + " - " + riwayatGajiPegawai.getRuang() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
+                txtGolonganGajiLama.setText(pangkat_baru.getGolongan().getNamagolongan()+ " - " + riwayatGajiPegawai.getRuang() + " Th - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
             }
         } else {
             txtPangkatLama.setText(pangkat_baru.getGolongan().getPangkat());
@@ -552,7 +566,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
         txtTMT.setText(pangkat_baru.getTanggal_kgb());
         
         txtTembusan1.setText("1. Kepala "+pj.getUnit().getNamaUnit()+" di "+pj.getCabang().getNamacabang());
-        txtTembusan2.setText("2. Penanggung Jawab YPII Kantor Cabang Semarang");
+        txtTembusan2.setText("2. Penanggung Jawab YPII Kantor Cabang "+pj.getCabang().getNamacabang());
         txtTembusan3.setText("3. Arsip");
         txtTembusan4.setText("4. ");
     }//GEN-LAST:event_txtNukActionPerformed
