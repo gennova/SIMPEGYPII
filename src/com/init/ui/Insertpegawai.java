@@ -110,7 +110,8 @@ public class Insertpegawai extends javax.swing.JFrame {
     }
 
     private void initUpdateApp() {
-        if (Session.getNUK() != "") {
+        System.out.println(Session.getNUK());
+        if (Session.getNUK()!=null) {
             loadCombo();
             Pegawai pegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(Session.getNUK());
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -216,7 +217,6 @@ public class Insertpegawai extends javax.swing.JFrame {
             txtJumlahGaji.setText(String.valueOf(gjp.getTotal_gaji()));
             txtTanggunganOrang.setText(String.valueOf(gjp.getTanggungan_orang()));
             txtKGBBerikutnya.setText(String.valueOf(gjp.getKgb_berikutnya()));
-
         }
     }
 

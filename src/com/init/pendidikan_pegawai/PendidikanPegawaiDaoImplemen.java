@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class PendidikanPegawaiDaoImplemen implements PendidikanPegawaiDao {
 
     private final Connection connection;
-    private final String sqlGetPendidikanByNUK = "select * from pendidikanpegawai where nuk=?";
+    private final String sqlGetPendidikanByNUK = "select * from pendidikanpegawai where nuk=? ";
     private final String sqlInsertPendidikanPegawai = "INSERT INTO pendidikanpegawai(id_pegawai,nuk,id_ijazah_angkat,tgl_ijazah_sk_angkat,id_pendidikan_akhir,tgl_lulus_sk_pendidikan_akhir,tgl_ijazah_sk_angkat_indo,tgl_lulus_sk_pendidikan_akhir_indo) VALUES (?,?,?,?,?,?,?,?)";
     private final String sqlUpdatePendidikanPegawai = "update pendidikanpegawai set id_ijazah_angkat=?,tgl_ijazah_sk_angkat=?,id_pendidikan_akhir=?,tgl_lulus_sk_pendidikan_akhir=?,tgl_ijazah_sk_angkat_indo=?,tgl_lulus_sk_pendidikan_akhir_indo=? where nuk=?";
 

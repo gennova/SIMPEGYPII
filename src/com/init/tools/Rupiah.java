@@ -92,7 +92,12 @@ public class Rupiah {
             res.append("nol");
         }
         replace("Satu Ratus", "Seratus", res);
-        replace("Satu Ribu", "Seribu", res);
+        //System.out.println(res.toString().length());
+        //System.out.println("res length"+res.length());
+        if (res.length()==10) {            
+            replace("Satu Ribu", "Seribu", res);
+        }
+        
         return res.toString();
     }
 

@@ -16,7 +16,8 @@ public class NewMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println(DaoFactory.statusUlangTahunByDate("1963-03-10", "1963-03-19"));
+        System.out.println(Rupiah.convert(3521000));
+        System.out.println(Rupiah.convert(7650001));
     }
     
 }
