@@ -113,29 +113,9 @@ public class SK_jabatan_dao_implemen implements SK_jabatan_dao {
     @Override
     public void InsertSK_Jabatan(Pegawai pegawai, SK_jabatan sk) {
         SK_jabatan skj = DaoFactory.getsK_jabatan_dao().getSKJabatanByNUK(pegawai.getNUK());
-        System.out.println("skj"+skj.getNuk());
-        if (skj != null) {
-            System.out.println("start update sk");
-            try {
-                PreparedStatement statement;
-                statement = connection.prepareStatement(sqlUpdateSK_JabatanByNUK);
-                statement.setInt(1, sk.getId_jabatan());
-                statement.setInt(2, sk.getId_pekerjaan_jabatan());
-                statement.setString(3, sk.getTmt());
-                statement.setString(4, sk.getTmt_indo());
-                statement.setString(5, sk.getNo_sk());
-                statement.setString(6, sk.getTanggal());
-                statement.setString(7, sk.getTanggal_indo());
-                statement.setString(8, pegawai.getNUK());
-                int status = statement.executeUpdate();
-                if (status == 1) {
-                    System.out.println("Data SK Jabatan Kolom 2 Saved Update");
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(SK_jabatan_dao_implemen.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
+        System.out.println("ISI SKJNYA " + skj.getId());
+        if (skj.getId() == 0) {
+            System.out.println("SKJ TIDAK ADA");
             System.out.println("start insert sk");
             PreparedStatement statement;
             try {
@@ -155,7 +135,12 @@ public class SK_jabatan_dao_implemen implements SK_jabatan_dao {
             } catch (SQLException ex) {
                 Logger.getLogger(SK_jabatan_dao_implemen.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else {
+            System.out.println("SKJ ADA");
+            System.out.println("start update sk");
+            UpdateSK_Jabatan(pegawai, sk);
         }
+
     }
 
     @Override
