@@ -471,7 +471,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             }
         }
         if (pj_lama == null) {
-            hashMap.put("jabatanlama", pj.getJabatan().getNamajabatan());
+            hashMap.put("jabatanlama","-");
         } else {
             hashMap.put("jabatanlama", pj_lama.getJabatan().getNamajabatan());
         }
@@ -502,7 +502,8 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             txtLahir.setText(pegawai.getTLahir());
             PendidikanPegawai pendidikanPegawai = DaoFactory.getPendidikanPegawaiDao().getPendidikanPegawaiByNUK(nuknya);
             String tahunlulus = pendidikanPegawai.getTglLulusSKPendidikanAkhir();
-            txtIjazah.setText(pendidikanPegawai.getIjazahAngkat().getNamaIjazahPengangkatan() + " Tahun " + tahunlulus.substring(0, 4));
+            txtIjazah.setText(pendidikanPegawai.getPendidikanTerakhir().getNamapendidikanterakhir()
+                    + " Tahun " + tahunlulus.substring(0, 4));
             ImageIcon imageIcon = new ImageIcon("image/" + pegawai.getTeksFilename());
             System.out.println(pegawai.getTeksFilename());
             Image image = imageIcon.getImage(); // transform it 
@@ -520,7 +521,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             txtPangkatLama.setText(pangkat_baru.getGolongan().getPangkat());
             System.out.println("Data riwayat skp ada");
             if (pj_lama == null) {
-                txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
+                txtNamaJabatan.setText(pj_lama.getJabatan().getNamajabatan());
                 System.out.println("Data riwayat jabatan tidak ada");
                 txtUnit.setText(pj.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
             } else {
@@ -541,7 +542,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             System.out.println("Data riwayat skp tidak ada");
             if (pj_lama == null) {
                 System.out.println("Data riwayat jabatan tidak ada");
-                txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
+                txtNamaJabatan.setText("-");
                 txtUnit.setText(pj.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
             } else {
                 System.out.println("Data riwayat jabatan ada");
