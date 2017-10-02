@@ -521,7 +521,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             txtPangkatLama.setText(pangkat_baru.getGolongan().getPangkat());
             System.out.println("Data riwayat skp ada");
             if (pj_lama == null) {
-                txtNamaJabatan.setText(pj_lama.getJabatan().getNamajabatan());
+                txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
                 System.out.println("Data riwayat jabatan tidak ada");
                 txtUnit.setText(pj.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
             } else {

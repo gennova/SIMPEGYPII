@@ -994,6 +994,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNamaJabatan">
+              <BindingProperties>
+                <BindingProperty name="text" source="comboNamaJabatan" sourcePath="${selectedItem}" target="txtNamaJabatan" targetPath="text" updateStrategy="0" immediately="false">
+                  <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+                </BindingProperty>
+              </BindingProperties>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboBidangKerja">
               <Properties>

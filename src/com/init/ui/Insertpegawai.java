@@ -5,6 +5,7 @@
  */
 package com.init.ui;
 
+import code.ini.skjabatan.SK_jabatan;
 import code.init.pekerjaanjabatan.PekerjaanJabatan;
 import com.init.bidangkerja.BidangKerja;
 import com.init.cabang.Cabang;
@@ -91,11 +92,11 @@ public class Insertpegawai extends javax.swing.JFrame {
 
     private void initApp() {
         if (Session.getNUK() != null) {
-            System.out.println("Start form insert");
+            System.out.println("Start form update");
             initUpdateApp();
             loadCombo();
         } else {
-            System.out.println("Start form update");
+            System.out.println("Start form insert");
             loadCombo();
             tglLahirDate.setDate(GregorianCalendar.getInstance().getTime());
             tmtGolonganDate.setDate(GregorianCalendar.getInstance().getTime());
@@ -192,7 +193,13 @@ public class Insertpegawai extends javax.swing.JFrame {
             comboUnitKerja.setSelectedItem(pj.getUnit().getNamaUnit());
             comboNamaJabatan.setSelectedItem(pj.getJabatan().getNamajabatan());
             //JOptionPane.showMessageDialog(null,"ppppppppppppppppppppppp"+ pj.getJabatan().getNamajabatan());
-            txtNamaJabatan.setText(pj.getNamaJabatan());
+            SK_jabatan sK_jabatan = DaoFactory.getsK_jabatan_dao().getSKJabatanByNUK(Session.getNUK());
+            String nuk_sk = sK_jabatan.getNuk();
+            if (nuk_sk == null) {
+                txtNamaJabatan.setText("Nama Jabatan Tidak tersedia, Klik SK Jabatan, klik save");
+            }else if (!"".equals(sK_jabatan.getJabatan().getNamajabatan())){
+                txtNamaJabatan.setText(sK_jabatan.getJabatan().getNamajabatan());
+            }            
             txtMasaJabatan.setText(String.valueOf(pj.getMasaJabatan()));
             //************************************************************************************//
             PendidikanPegawai pendidikanPegawai = DaoFactory.getPendidikanPegawaiDao().getPendidikanPegawaiByNUK(Session.getNUK());
@@ -272,6 +279,7 @@ public class Insertpegawai extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         kelaminGroup = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -841,6 +849,9 @@ public class Insertpegawai extends javax.swing.JFrame {
 
         jLabel34.setText("Tahun");
 
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, comboNamaJabatan, org.jdesktop.beansbinding.ELProperty.create("${selectedItem}"), txtNamaJabatan, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         comboBidangKerja.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboWIlayahTugas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -1339,6 +1350,8 @@ public class Insertpegawai extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton3, jButton4, jButton5});
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {ButtonSave, jButton6});
+
+        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -2128,5 +2141,6 @@ public class Insertpegawai extends javax.swing.JFrame {
     private javax.swing.JTextField txtTunjanganAnak;
     private javax.swing.JTextField txtTunjanganLain;
     private javax.swing.JTextField txtTunjanganSuamiIstri;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
