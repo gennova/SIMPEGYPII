@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pemberhentian" language="groovy" pageWidth="595" pageHeight="842" columnWidth="568" leftMargin="14" rightMargin="13" topMargin="14" bottomMargin="14" uuid="51d9bbb5-59f5-4fac-bccb-d0af3bd219f2">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="750"/>
+	<property name="ireport.y" value="788"/>
 	<parameter name="nuknya" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -79,6 +79,9 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 	</field>
 	<field name="tanggallahir_indo" class="java.lang.String">
 		<fieldDescription><![CDATA[15]]></fieldDescription>
+	</field>
+	<field name="img" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="idgolongan" class="java.lang.Integer">
 		<fieldDescription><![CDATA[3]]></fieldDescription>
@@ -281,6 +284,9 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 	<field name="sekretaris" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="jabatan_legalisasi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="tahunijazahangkat_nya" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -404,7 +410,7 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" isBold="false" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["KETUA"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{jabatan_legalisasi}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="57" y="269" width="100" height="19" uuid="e00e038d-fd62-4a99-961a-3bce818b16b9"/>

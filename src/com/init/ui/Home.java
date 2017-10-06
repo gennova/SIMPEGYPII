@@ -15,6 +15,8 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.TableRowSorter;
+import simpeg.About;
+import simpeg.EasterEgg;
 
 /**
  *
@@ -130,6 +132,8 @@ public class Home extends javax.swing.JFrame {
         jMenuItem35 = new javax.swing.JMenuItem();
         jMenuItem36 = new javax.swing.JMenuItem();
         jMenuItem37 = new javax.swing.JMenuItem();
+        jMenuItem50 = new javax.swing.JMenuItem();
+        jMenuItem51 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Kepegawaian Yayasan Penyelenggaraan Ilahi Indonesia Versi 2017");
@@ -549,6 +553,11 @@ public class Home extends javax.swing.JFrame {
         jMenu7.setText("Help");
 
         jMenuItem35.setText("Contents");
+        jMenuItem35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem35ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem35);
 
         jMenuItem36.setText("Search for Help On");
@@ -556,6 +565,22 @@ public class Home extends javax.swing.JFrame {
 
         jMenuItem37.setText("How to Use Help");
         jMenu7.add(jMenuItem37);
+
+        jMenuItem50.setText("Easter Eggs");
+        jMenuItem50.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem50ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem50);
+
+        jMenuItem51.setText("About");
+        jMenuItem51.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem51ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem51);
 
         jMenuBar1.add(jMenu7);
 
@@ -736,6 +761,22 @@ public class Home extends javax.swing.JFrame {
         dpasfui.setVisible(true);
     }//GEN-LAST:event_jMenuItem49ActionPerformed
 
+    private void jMenuItem35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem35ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem35ActionPerformed
+
+    private void jMenuItem50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem50ActionPerformed
+        // TODO add your handling code here:
+        EasterEgg egg = new EasterEgg();
+        egg.setVisible(true);
+    }//GEN-LAST:event_jMenuItem50ActionPerformed
+
+    private void jMenuItem51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem51ActionPerformed
+        // TODO add your handling code here:
+        About about = new About();
+        about.setVisible(true);
+    }//GEN-LAST:event_jMenuItem51ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -823,6 +864,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem48;
     private javax.swing.JMenuItem jMenuItem49;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem50;
+    private javax.swing.JMenuItem jMenuItem51;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

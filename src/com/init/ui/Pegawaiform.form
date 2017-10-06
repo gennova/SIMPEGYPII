@@ -1090,7 +1090,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Developer : Atanasius Tendy || http://multisoftdeveloper.wordpress.com || atanasiustendy@hotmail.com || 085643221232 / 08112578800"/>
+            <Property name="text" type="java.lang.String" value="Developer : Atanasius Tendy || http://www.tendydeveloper.com || atanasiustendy@hotmail.com || 085643221232 / 08112578800"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="surat_pengangkatan_jabatan" language="groovy" pageWidth="595" pageHeight="842" columnWidth="562" leftMargin="20" rightMargin="13" topMargin="20" bottomMargin="20" uuid="51d9bbb5-59f5-4fac-bccb-d0af3bd219f2">
-	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="54"/>
+	<property name="ireport.y" value="460"/>
 	<parameter name="nuknya" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -63,6 +63,9 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 	</field>
 	<field name="tanggallahir_indo" class="java.lang.String">
 		<fieldDescription><![CDATA[15]]></fieldDescription>
+	</field>
+	<field name="img" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="idbidangkerja" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -176,6 +179,9 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="sekretaris" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jabatan_legalisasi" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tahunijazahangkat_nya" class="java.lang.String"/>
@@ -394,7 +400,7 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="false" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["KETUA"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{jabatan_legalisasi}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="59" y="720" width="143" height="20" uuid="f83052f1-e2e9-4eee-b6ea-c30f26e131a3"/>

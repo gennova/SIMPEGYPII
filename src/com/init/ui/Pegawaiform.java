@@ -14,6 +14,7 @@ import com.init.pegawai.PegawaiTabelModelSimple;
 import com.init.pendidikan_pegawai.PendidikanPegawai;
 import com.init.tools.DaoFactory;
 import com.init.tools.Session;
+import com.init.tools.StripedRowTableCellRenderer;
 import com.init.unit.Unit;
 import java.awt.Image;
 import java.util.List;
@@ -100,6 +101,7 @@ public class Pegawaiform extends javax.swing.JFrame {
     private void showtabelpegawai() {
         PegawaiTabelModelSimple modelSimple = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerja());
         TabelPegawaiUtama.setModel(modelSimple);
+        TabelPegawaiUtama.setDefaultRenderer(Object.class, new StripedRowTableCellRenderer());
         rowSorterNUK = new TableRowSorter(modelSimple);
         TabelPegawaiUtama.setRowSorter(rowSorterNUK);
         TabelPegawaiUtama.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -110,6 +112,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         PegawaiTabelModelSimple modelSimpleUrutNama = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerjaNama());
         TabelPegawaiUtamaNama.setModel(modelSimpleUrutNama);
         rowSorterNAMA = new TableRowSorter(modelSimpleUrutNama);
+        TabelPegawaiUtamaNama.setDefaultRenderer(Object.class, new StripedRowTableCellRenderer());
         TabelPegawaiUtamaNama.setRowSorter(rowSorterNAMA);
         TabelPegawaiUtamaNama.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaNama.getColumnModel().getColumn(1).setPreferredWidth(500);
@@ -118,6 +121,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         PegawaiTabelModelSimple modelSimpleUrutWilayah = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerjaWilayah());
         TabelPegawaiUtamaWilayah.setModel(modelSimpleUrutWilayah);
         rowSorterWILAYAH = new TableRowSorter(modelSimpleUrutNama);
+        TabelPegawaiUtamaWilayah.setDefaultRenderer(Object.class, new StripedRowTableCellRenderer());
         TabelPegawaiUtamaWilayah.setRowSorter(rowSorterWILAYAH);
         TabelPegawaiUtamaWilayah.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaWilayah.getColumnModel().getColumn(1).setPreferredWidth(500);
@@ -127,6 +131,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         TabelPegawaiUtamaBidangKerja.setModel(modelSimpleUrutBidangKerja);
         rowSorterBIDANG = new TableRowSorter(modelSimpleUrutBidangKerja);
         TabelPegawaiUtamaBidangKerja.setRowSorter(rowSorterBIDANG);
+        TabelPegawaiUtamaBidangKerja.setDefaultRenderer(Object.class, new StripedRowTableCellRenderer());
         TabelPegawaiUtamaBidangKerja.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaBidangKerja.getColumnModel().getColumn(1).setPreferredWidth(500);
         TabelPegawaiUtamaBidangKerja.getColumnModel().getColumn(2).setPreferredWidth(300);
@@ -135,6 +140,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         TabelPegawaiUtamaGolongan.setModel(modelSimpleUrutBidangGolongan);
         rowSorterGOLONGAN = new TableRowSorter(modelSimpleUrutBidangGolongan);
         TabelPegawaiUtamaGolongan.setRowSorter(rowSorterGOLONGAN);
+        TabelPegawaiUtamaGolongan.setDefaultRenderer(Object.class, new StripedRowTableCellRenderer());
         TabelPegawaiUtamaGolongan.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaGolongan.getColumnModel().getColumn(1).setPreferredWidth(500);
         TabelPegawaiUtamaGolongan.getColumnModel().getColumn(2).setPreferredWidth(300);
@@ -142,6 +148,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         PegawaiTabelModelSimple modelSimpleUrutBidangUnitKerja = new PegawaiTabelModelSimple(DaoFactory.getPegawaiDao().getAllPegawaiAndBidangKerjaUnitKerja());
         TabelPegawaiUtamaUnitKerja.setModel(modelSimpleUrutBidangUnitKerja);
         rowSorterUNIT = new TableRowSorter(modelSimpleUrutBidangUnitKerja);
+        TabelPegawaiUtamaUnitKerja.setDefaultRenderer(Object.class, new StripedRowTableCellRenderer());
         TabelPegawaiUtamaUnitKerja.setRowSorter(rowSorterUNIT);
         TabelPegawaiUtamaUnitKerja.getColumnModel().getColumn(0).setPreferredWidth(100);
         TabelPegawaiUtamaUnitKerja.getColumnModel().getColumn(1).setPreferredWidth(500);
@@ -858,7 +865,7 @@ public class Pegawaiform extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Developer : Atanasius Tendy || http://multisoftdeveloper.wordpress.com || atanasiustendy@hotmail.com || 085643221232 / 08112578800");
+        jLabel3.setText("Developer : Atanasius Tendy || http://www.tendydeveloper.com || atanasiustendy@hotmail.com || 085643221232 / 08112578800");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));

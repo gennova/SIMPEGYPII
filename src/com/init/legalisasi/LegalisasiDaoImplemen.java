@@ -21,7 +21,7 @@ public class LegalisasiDaoImplemen implements LegalisasiDao {
 
     private final Connection connection;
     private final String sqlGetLegalisasi = "select * from legalisasi";
-    private final String sqlUpdateLegalisasi = "update legalisasi set ketua=?,sekretaris=?";
+    private final String sqlUpdateLegalisasi = "update legalisasi set ketua=?,sekretaris=?,jabatan_legalisasi=?";
 
     public LegalisasiDaoImplemen(Connection c) {
         this.connection = c;
@@ -40,6 +40,7 @@ public class LegalisasiDaoImplemen implements LegalisasiDao {
                 legalisasi.setId(rs.getInt("id"));
                 legalisasi.setKetua(rs.getString("ketua"));
                 legalisasi.setSekretaris(rs.getString("sekretaris"));
+                legalisasi.setJabatan(rs.getString("jabatan_legalisasi"));
             }
 
         } catch (SQLException ex) {
@@ -55,6 +56,7 @@ public class LegalisasiDaoImplemen implements LegalisasiDao {
             ps = connection.prepareStatement(sqlUpdateLegalisasi);
             ps.setString(1, legalisasi.getKetua());
             ps.setString(2, legalisasi.getSekretaris());
+            ps.setString(3, legalisasi.getJabatan());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Update legalisasi berhasil");
         } catch (SQLException ex) {

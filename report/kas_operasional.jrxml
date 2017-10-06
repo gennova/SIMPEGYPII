@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kas_operasional" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="41a36b66-482c-4d8d-8c2e-65c5e8a91263">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="270"/>
+	<property name="ireport.y" value="34"/>
+	<parameter name="tgl_awal" class="java.lang.String"/>
+	<parameter name="tgl_akhir" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select *, @s:=0, @k:=IF(jeniskas='Keluar',total,0) as Kredit, @d:=IF(jeniskas='Masuk',total,0) as Debit,@s:=@s+@d-@k as Saldo from kasdetail where tanggal between $P{tgl_awal} and $P{tgl_akhir} order by tanggal asc ]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodekas" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodekasmanual" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tanggal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jeniskas" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="uraian" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kodeakun" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="@s:=0" class="java.lang.Long"/>
+	<field name="Kredit" class="java.lang.Long"/>
+	<field name="Debit" class="java.lang.Long"/>
+	<field name="Saldo" class="java.lang.Double"/>
+	<variable name="kredit" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Kredit}]]></variableExpression>
+	</variable>
+	<variable name="debit" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Debit}]]></variableExpression>
+	</variable>
+	<variable name="saldo" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Saldo}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="29" width="555" height="20" uuid="b35c60e1-cf95-47e1-8849-9051da343b5e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN KAS OPERASIONAL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="2" width="28" height="20" uuid="b34fe3b1-c843-499e-9050-71b293ec78a7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="29" y="2" width="57" height="20" uuid="c8be6fd1-9f2c-4845-a810-3aaefab70637"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="86" y="2" width="72" height="20" uuid="6fba6203-e66d-46cb-bc8c-13c146c945d8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="158" y="2" width="210" height="20" uuid="4bdf67b6-a903-420c-9448-d785df071b32"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="368" y="2" width="61" height="20" uuid="b5302955-9582-4e64-9817-9fee393ddec7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="429" y="2" width="59" height="20" uuid="aa70334e-f638-46a2-90cd-c016e9d9e601"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="488" y="2" width="67" height="20" uuid="a2cbd12d-fe09-4fb7-9bfb-589355e83407"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="2" width="21" height="20" uuid="641c7f74-f607-454d-9e79-a0b68f609f2e"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="2" width="38" height="20" uuid="12c78b6d-b30a-4b74-a1de-f85823d637c4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Kode]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="2" width="42" height="20" uuid="6375a6b7-7025-41e8-9eac-9b1f03ee2fc7"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="2" width="37" height="20" uuid="dc8cf5e0-f4e9-488f-ad2a-14e708575abb"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Uraian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="2" width="32" height="20" uuid="e9bcbdde-0b90-4a8b-b470-0ec0c753c2d4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Debit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="2" width="39" height="20" uuid="986da7df-5e0a-43e8-a4c6-ffe6eeb0bcc1"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Kredit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="2" width="34" height="20" uuid="f877d41c-db9c-415a-8e94-52949f7f8355"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="-1" width="28" height="20" uuid="fbb4a553-693c-406d-a3ae-9e49e0186594"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="29" y="-1" width="57" height="20" uuid="256d28b0-ce3e-4aad-b6d2-fed18f0b5eb1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="86" y="-1" width="72" height="20" uuid="9f729c9f-aee7-4ce2-bdf8-6eaba7601a6e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="158" y="-1" width="210" height="20" uuid="467a038f-cf1a-4a78-aa16-5b7dfa9402f0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="368" y="-1" width="61" height="20" uuid="3b31ed64-8fdb-4231-8e68-6b3e76cc8c67"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="429" y="-1" width="59" height="20" uuid="288590f1-51c8-4557-8f03-b5d0e3cd2030"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="488" y="-1" width="67" height="20" uuid="0376ca7b-608b-4a41-9279-169dcec6b674"/>
+			</rectangle>
+			<textField>
+				<reportElement x="4" y="0" width="21" height="19" uuid="d8af0b93-73e8-4a76-b1d5-5c0546aedb2e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="32" y="0" width="54" height="19" uuid="ddcab495-1c1f-4e12-b388-b4a802ee4a7a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{kodekas}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="88" y="0" width="69" height="19" uuid="bb518ed8-50b1-4043-aaaf-de5b62c3a34e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="0" width="206" height="19" uuid="334744ee-1b11-4731-b569-6ebf7275295f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{uraian}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="370" y="0" width="59" height="19" uuid="121e5ac9-745e-4b83-badc-56c7c337e400"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Debit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="490" y="-1" width="65" height="19" uuid="15cd8323-5d6d-4125-854e-fa620862d9b4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Saldo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="431" y="0" width="57" height="19" uuid="9d8a7e37-8c94-4e29-aabc-2469298cd86f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Kredit}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<rectangle>
+				<reportElement x="488" y="-1" width="67" height="20" uuid="71c72471-7edc-4cc8-88a0-25eb3990a583"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="429" y="-1" width="59" height="20" uuid="d7f9d5fb-e644-4b8e-bdd5-d40d726f2f30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="368" y="-1" width="61" height="20" uuid="c49ce379-a945-4304-af51-ade192299d4c"/>
+			</rectangle>
+			<textField pattern="Rp #,##0">
+				<reportElement x="431" y="-2" width="56" height="20" uuid="91293de5-40d3-472a-8b6a-d79e0179a0c8"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{kredit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="370" y="-2" width="58" height="20" uuid="6ed6526c-4db0-4543-a5b8-d28be67dbbb1"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{debit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="Rp #,##0">
+				<reportElement x="491" y="-2" width="65" height="20" uuid="4ac3b4eb-c3d9-4ef4-85ad-8f67f333e5bd"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{saldo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="321" y="0" width="47" height="20" uuid="bbb2a5df-9aa5-45d3-b6c3-0f4f3400ca5d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

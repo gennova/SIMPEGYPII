@@ -14,6 +14,7 @@ public class Legalisasi {
     private int id;
     private String ketua;
     private String sekretaris;
+    private String jabatan;
 
     public int getId() {
         return id;
@@ -37,6 +38,14 @@ public class Legalisasi {
 
     public void setSekretaris(String sekretaris) {
         this.sekretaris = sekretaris;
+    }
+
+    public String getJabatan() {
+        return jabatan;
+    }
+
+    public void setJabatan(String jabatan) {
+        this.jabatan = jabatan;
     }
 
 }

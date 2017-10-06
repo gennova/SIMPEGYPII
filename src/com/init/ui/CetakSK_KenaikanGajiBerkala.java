@@ -450,11 +450,11 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             RiwayatGajiPegawai riwayatGajiPegawai = DaoFactory.getRiwayat_Gaji_pegawai_dao().getGajiPegawaiByNUKRiwayat(nuknya);
             if (riwayatGajiPegawai != null) {
                 hashMap.put("golonganlama", pangkat_baru.getGolongan().getNamagolongan() + " - " + riwayatGajiPegawai.getRuang() + " Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
-                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())) + "Rupiah");
+                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())) + " Rupiah");
                 System.out.println("cetak riwayat gaji ada");
             } else {
                 hashMap.put("golonganlama", pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
-                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
+                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())) + " Rupiah");
                 System.out.println("cetak riwayat gaji tdk ada");
             }
         } else {
@@ -462,11 +462,11 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             RiwayatGajiPegawai riwayatGajiPegawai = DaoFactory.getRiwayat_Gaji_pegawai_dao().getGajiPegawaiByNUKRiwayat(nuknya);
             if (riwayatGajiPegawai != null) {
                 hashMap.put("golonganlama", pangkat_baru.getGolongan().getNamagolongan() + " - " + riwayatGajiPegawai.getRuang() + " Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())));
-                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())) + "Rupiah");
+                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(riwayatGajiPegawai.getGaji_pokok())) + " Rupiah");
                 System.out.println("cetak riwayat gaji ada");
             } else {
                 hashMap.put("golonganlama", pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
-                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
+                hashMap.put("terbilanglama", Rupiah.convert(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())) + " Rupiah");
                 System.out.println("cetak riwayat gaji tdk ada");
             }
         }

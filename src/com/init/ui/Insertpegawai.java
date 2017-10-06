@@ -1514,7 +1514,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pangkat.setTanggal_kgb_indo(Tgl_nomor_kgb_indo); //Nomor KGB Format Indor
                 Calendar calendar = GregorianCalendar.getInstance();
                 calendar.setTime(nomorSKDate.getDate());
-                calendar.add(Calendar.YEAR, 2);
+                calendar.add(Calendar.YEAR, 4);
                 pangkat.setNaik_pangkat_yad(sdf.format(calendar.getTime()));
                 pangkat.setNaik_pangkat_yad_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(calendar.getTime())));
                 //ini end dari pangkat golongan /tab pangkat golongan//
@@ -1644,7 +1644,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 pangkat.setTanggal_kgb_indo(Tgl_nomor_kgb_indo); //Nomor KGB Format Indor
                 Calendar calendar = GregorianCalendar.getInstance();
                 calendar.setTime(nomorSKDate.getDate());
-                calendar.add(Calendar.YEAR, 2);
+                calendar.add(Calendar.YEAR, 4);
                 pangkat.setNaik_pangkat_yad(sdf.format(calendar.getTime()));
                 pangkat.setNaik_pangkat_yad_indo(DaoFactory.FormatTanggalIndonesia(sdf.format(calendar.getTime())));
                 //ini end dari pangkat golongan /tab pangkat golongan//

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kenaikan_gaji_berkala" language="groovy" pageWidth="595" pageHeight="842" columnWidth="568" leftMargin="14" rightMargin="13" topMargin="14" bottomMargin="14" uuid="51d9bbb5-59f5-4fac-bccb-d0af3bd219f2">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="491"/>
 	<parameter name="nuknya" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -17,10 +17,10 @@
 	<parameter name="tembusan3" class="java.lang.String"/>
 	<parameter name="tembusan4" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select *,left(pendidikanpegawai.tgl_ijazah_sk_angkat,4) as tahunijazahangkat_nya from pegawai join pangkatpegawai on pegawai.nuk =pangkatpegawai.nuk join pekerjaanjabatan on
+		<![CDATA[select *,left(pendidikanpegawai.tgl_lulus_sk_pendidikan_akhir,4) as tahunijazahakhir_nya from pegawai join pangkatpegawai on pegawai.nuk =pangkatpegawai.nuk join pekerjaanjabatan on
 pegawai.nuk=pekerjaanjabatan.nuk join pendidikanpegawai on
 pegawai.nuk=pendidikanpegawai.nuk join pendidikanterakhir on
-pendidikanpegawai.id_ijazah_angkat = pendidikanterakhir.id join unit on pekerjaanjabatan.idunit = unit.id join cabang on
+pendidikanpegawai.id_pendidikan_akhir = pendidikanterakhir.id join unit on pekerjaanjabatan.idunit = unit.id join cabang on
 pekerjaanjabatan.idcabang = cabang.id join bidangkerja on
 pekerjaanjabatan.idbidangkerja=bidangkerja.id join sk_jabatan
 on pekerjaanjabatan.id = sk_jabatan.id_pekerjaan_jabatan left outer join jabatan on sk_jabatan.id_jabatan = jabatan.id
@@ -75,6 +75,9 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 	</field>
 	<field name="tanggallahir_indo" class="java.lang.String">
 		<fieldDescription><![CDATA[15]]></fieldDescription>
+	</field>
+	<field name="img" class="java.lang.Object">
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="idgolongan" class="java.lang.Integer">
 		<fieldDescription><![CDATA[3]]></fieldDescription>
@@ -277,7 +280,10 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 	<field name="sekretaris" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="tahunijazahangkat_nya" class="java.lang.String"/>
+	<field name="jabatan_legalisasi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tahunijazahakhir_nya" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -333,7 +339,7 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="274" y="269" width="333" height="19" uuid="06bd59ec-6f70-4ee6-a929-21fd11fc4a08"/>
+				<reportElement x="274" y="269" width="294" height="19" uuid="06bd59ec-6f70-4ee6-a929-21fd11fc4a08"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
@@ -361,7 +367,7 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[NUK]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="274" y="285" width="333" height="19" uuid="ee797aa4-1e15-4eab-9a01-d3b30c6ef0e1"/>
+				<reportElement x="274" y="285" width="294" height="19" uuid="ee797aa4-1e15-4eab-9a01-d3b30c6ef0e1"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
@@ -382,21 +388,21 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[Tempat/Tgl. Lahir]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="274" y="301" width="333" height="19" uuid="6682c8be-b6fd-4627-aff5-4a1b39e654c3"/>
+				<reportElement x="274" y="301" width="294" height="19" uuid="6682c8be-b6fd-4627-aff5-4a1b39e654c3"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{namapendidikan}+" Tahun : "+$F{tahunijazahangkat_nya}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{namapendidikan}+" Tahun : "+$F{tahunijazahakhir_nya}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="274" y="317" width="333" height="19" uuid="7cd0491a-03fe-4965-bf7a-558f5b08c86e"/>
+				<reportElement x="274" y="317" width="293" height="19" uuid="7cd0491a-03fe-4965-bf7a-558f5b08c86e"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tempatlahir} +" Tanggal : "+$F{tanggallahir_indo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="274" y="333" width="333" height="19" uuid="0fae7f2a-9f21-41f3-b742-f0d83483d4cb"/>
+				<reportElement x="274" y="333" width="293" height="19" uuid="0fae7f2a-9f21-41f3-b742-f0d83483d4cb"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
@@ -428,7 +434,7 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" isBold="false" isItalic="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["KETUA"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{jabatan_legalisasi}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="59" y="714" width="473" height="19" uuid="f83052f1-e2e9-4eee-b6ea-c30f26e131a3"/>
@@ -508,14 +514,14 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[Golongan/Ruang/Gaji]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="275" y="393" width="333" height="19" uuid="18b4d0f6-7ded-4ffd-90c5-7828c7f92943"/>
+				<reportElement x="275" y="393" width="293" height="19" uuid="18b4d0f6-7ded-4ffd-90c5-7828c7f92943"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{jabatanlama}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="275" y="409" width="333" height="19" uuid="bcc246a7-52df-4064-bdef-1362cb6736b5"/>
+				<reportElement x="275" y="409" width="293" height="19" uuid="bcc246a7-52df-4064-bdef-1362cb6736b5"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
@@ -536,7 +542,7 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[Pangkat]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="275" y="377" width="333" height="19" uuid="6e2fed4f-1d71-416b-b70c-4185d6348eb3"/>
+				<reportElement x="275" y="377" width="293" height="19" uuid="6e2fed4f-1d71-416b-b70c-4185d6348eb3"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
@@ -557,9 +563,9 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="275" y="425" width="333" height="19" uuid="af417bfb-a221-42c2-803f-646f74f49931"/>
+				<reportElement x="275" y="425" width="305" height="19" uuid="af417bfb-a221-42c2-803f-646f74f49931"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{terbilanglama}]]></textFieldExpression>
 			</textField>
@@ -578,14 +584,14 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="275" y="516" width="333" height="19" uuid="59835ba0-9530-430a-a2a3-8533389454f9"/>
+				<reportElement x="275" y="516" width="305" height="19" uuid="59835ba0-9530-430a-a2a3-8533389454f9"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial"/>
+					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{terbilangbaru}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="275" y="467" width="333" height="19" uuid="12acfa99-cd6b-4e3e-9a0b-c65a0e725703"/>
+				<reportElement x="275" y="467" width="293" height="19" uuid="12acfa99-cd6b-4e3e-9a0b-c65a0e725703"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
@@ -606,14 +612,14 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="275" y="500" width="332" height="19" uuid="f1f774e8-0ff2-4ca2-8dc2-9a767391c724"/>
+				<reportElement x="275" y="500" width="292" height="19" uuid="f1f774e8-0ff2-4ca2-8dc2-9a767391c724"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{golonganbaru}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="275" y="483" width="333" height="19" uuid="e66cfef3-99d6-4aa3-95c1-9a3875f52c87"/>
+				<reportElement x="275" y="483" width="293" height="19" uuid="e66cfef3-99d6-4aa3-95c1-9a3875f52c87"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
@@ -655,11 +661,11 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="317" y="535" width="288" height="19" uuid="a8268b03-4edd-45c3-be24-bd60483872eb"/>
+				<reportElement x="317" y="535" width="248" height="19" uuid="a8268b03-4edd-45c3-be24-bd60483872eb"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tmt_golongan_indo}+" adalah "+$F{tahunkerja}+" tahun "+$F{bulankerja}+" bulan"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tmt_kgb_indo}+" adalah "+$F{tahunkerja}+" tahun "+$F{bulankerja}+" bulan"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="131" y="551" width="170" height="19" uuid="1b3413a4-6876-4d21-b96a-c771516daa50"/>
@@ -676,11 +682,11 @@ join legalisasi where pegawai.nuk = $P{nuknya}]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="317" y="551" width="288" height="19" uuid="e6996b4d-9972-48a9-86bc-0fa6c9307ad6"/>
+				<reportElement x="317" y="551" width="248" height="19" uuid="e6996b4d-9972-48a9-86bc-0fa6c9307ad6"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tmt_golongan_indo}+" adalah "+$F{tahunkerjabenar}+" tahun "+$F{bulankerjabenar}+" bulan"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tmt_kgb_indo}+" adalah "+$F{tahunkerjabenar}+" tahun "+$F{bulankerjabenar}+" bulan"]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="59" y="568" width="291" height="19" uuid="b5ab32ce-0d4b-4fc4-97e1-e52706704037"/>
