@@ -26,12 +26,13 @@ public class PegawaiDaoImplemen implements PegawaiDao {
     private final String sqlInsertPegawai = "call spInsertPegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String sqlUpdatePegawai = "call spUpdatePegawaiUmum(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private final String sqlGetAllPegawai = "select * from pegawai";
+    private final String sqlGetAllPegawaiJabatan = "select * from pegawai  join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk";
     private final String sqlGetAllPegawaiByNamaUnit = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id join unit on pekerjaanjabatan.idunit =unit.id where unit.namaunit=?";
     private final String sqlGetAllPegawaiByNamaCabang = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id where cabang.namacabang=?";
     private final String sqlGetAllPegawaiByNamaCabangAndUnit = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join cabang on pekerjaanjabatan.idcabang=cabang.id where pekerjaanjabatan.idcabang=? and pekerjaanjabatan.idunit=? and pegawai.statuspegawai <> 'PINDAH' or 'PENSIUN' or 'BERHENTI' or 'MENINGGAL'";
     private final String sqlGetAllPegawaiByNamaGolongan = "select * from pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk join pangkatpegawai on pegawai.nuk=pangkatpegawai.nuk join golongan on pangkatpegawai.idgolongan=golongan.id where golongan.namagolongan=?";
     private final String sqlGetAllPegawaiByStatusPegawai = "select * from pegawai where statuspegawai=?";
-    private final String sqlGetPegawaiUltahByDate = "SELECT * FROM pegawai WHERE MONTH(tanggallahir) BETWEEN ? AND ? AND DAY(tanggallahir) BETWEEN ? AND ?";
+    private final String sqlGetPegawaiUltahByDate = "SELECT * FROM pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk WHERE MONTH(pegawai.tanggallahir) BETWEEN ? AND ? AND DAY(pegawai.tanggallahir) BETWEEN ? AND ?";
     private final String sqlgetPegawaiUltahHariIni = "SELECT * FROM pegawai join pekerjaanjabatan on pegawai.nuk = pekerjaanjabatan.nuk WHERE MONTH(pegawai.tanggallahir)=MONTH(CURDATE()) AND DAY(pegawai.tanggallahir)=DAY(CURDATE());";
     private final String sqlGetAllPegawaiByPendidikan = "select * from pegawai join pendidikanpegawai on pegawai.nuk=pendidikanpegawai.nuk join pendidikanterakhir on pendidikanpegawai.id_pendidikan_akhir=pendidikanterakhir.id where pendidikanterakhir.namapendidikan=?";
     private final String sqlGetPegawaiByNUK = "select * from pegawai where nuk=?";
@@ -56,7 +57,7 @@ public class PegawaiDaoImplemen implements PegawaiDao {
         ResultSet rs = null;
         List<Pegawai> list = null;
         try {
-            ps = connection.prepareStatement(sqlGetAllPegawai);
+            ps = connection.prepareStatement(sqlGetAllPegawaiJabatan);
             rs = ps.executeQuery();
             list = new ArrayList<Pegawai>();
             while (rs.next()) {

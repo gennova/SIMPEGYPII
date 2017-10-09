@@ -41,6 +41,8 @@ public class Home extends javax.swing.JFrame {
         System.out.println(ultah.size());
         PegawaiTabelModelUltahSimple ptmus = new PegawaiTabelModelUltahSimple(ultah);
         jTable1.setModel(ptmus);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(180);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
     }
 
     // System write date;
@@ -199,8 +201,8 @@ public class Home extends javax.swing.JFrame {
             .addGroup(panelImage1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelImage1Layout.setVerticalGroup(
