@@ -139,6 +139,7 @@ public class Riwayat_Gaji_pegawai_dao_implemen implements Riwayat_Gaji_pegawai_d
                 g.setRuang(rs.getInt("ruang"));
                 g.setKeterangan(rs.getString("keterangan"));
                 g.setGolongan(DaoFactory.getGolonganDao().getGolonganByID(rs.getInt("idgolongan")));
+                g.setGaji_pokok_str(rs.getString("gaji_pokok"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Riwayat_Gaji_pegawai_dao_implemen.class.getName()).log(Level.SEVERE, null, ex);

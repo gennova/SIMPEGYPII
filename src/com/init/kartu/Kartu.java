@@ -51,6 +51,10 @@ public class Kartu {
     private String KartuNPWP;
     private String NoKartuNPWP;
     private String MasaBerlakuKartuNPWP;
+    //--------------------------------------- 9
+    private String KartuBPJSTenagaKerja;
+    private String NoKartuBPJSTenagaKerja;
+    private String MasaBerlakuKartuBPJSTNGKerja;
 
     public int getId() {
         return id;
@@ -282,6 +286,30 @@ public class Kartu {
 
     public void setMasaBerlakuKartuNPWP(String MasaBerlakuKartuNPWP) {
         this.MasaBerlakuKartuNPWP = MasaBerlakuKartuNPWP;
+    }
+
+    public String getKartuBPJSTenagaKerja() {
+        return KartuBPJSTenagaKerja;
+    }
+
+    public void setKartuBPJSTenagaKerja(String KartuBPJSTenagaKerja) {
+        this.KartuBPJSTenagaKerja = KartuBPJSTenagaKerja;
+    }
+
+    public String getNoKartuBPJSTenagaKerja() {
+        return NoKartuBPJSTenagaKerja;
+    }
+
+    public void setNoKartuBPJSTenagaKerja(String NoKartuBPJSTenagaKerja) {
+        this.NoKartuBPJSTenagaKerja = NoKartuBPJSTenagaKerja;
+    }
+
+    public String getMasaBerlakuKartuBPJSTNGKerja() {
+        return MasaBerlakuKartuBPJSTNGKerja;
+    }
+
+    public void setMasaBerlakuKartuBPJSTNGKerja(String MasaBerlakuKartuBPJSTNGKerja) {
+        this.MasaBerlakuKartuBPJSTNGKerja = MasaBerlakuKartuBPJSTNGKerja;
     }
 
 }

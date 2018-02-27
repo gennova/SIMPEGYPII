@@ -26,7 +26,7 @@ public class RiwayatJabatanDaoImplemen implements RiwayatJabatanDao {
     private final static String sqlInsertRiwayatPekerjaanManual = "insert into riwayat_jabatan (nuk,idbidangkerja,tmt_tanggal_pekerjaan,no_sk_pekerjaan,tgl_sk_pekerjaan,idcabang,idunit,idjabatan,nama_jabatan,masa_jabatan,tmt_tanggal_pekerjaan_indo,tgl_sk_pekerjaan_indo,tmt_awal,tmt_akhir) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static String sqlDeleteRiwayatJabatabByID = "delete from riwayat_jabatan where id=?";
     private static String sqlGetRiwayatByID = "select * from riwayat_jabatan where id=?";
-    private static String sqlGetRiwayatByNUKLast = "select * from riwayat_jabatan where nuk=? and id = (select max(id) from riwayat_jabatan)";
+    private static String sqlGetRiwayatByNUKLast = "select * from riwayat_jabatan where nuk=? and id = (select max(id) from riwayat_jabatan where nuk=?)";
     private final static String sqlUpdateRiwayatPekerjaanManual = "update riwayat_jabatan set nuk=?,idbidangkerja=?,tmt_tanggal_pekerjaan=?,no_sk_pekerjaan=?,tgl_sk_pekerjaan=?,idcabang=?,idunit=?,idjabatan=?,nama_jabatan=?,masa_jabatan=?,tmt_tanggal_pekerjaan_indo=?,tgl_sk_pekerjaan_indo=?,tmt_awal=?,tmt_akhir=? where id=?";
 
     public RiwayatJabatanDaoImplemen(Connection conn) {
@@ -145,6 +145,7 @@ public class RiwayatJabatanDaoImplemen implements RiwayatJabatanDao {
         try {
             ps = connection.prepareStatement(sqlGetRiwayatByNUKLast);
             ps.setString(1, nuk);
+            ps.setString(2, nuk);
             rs = ps.executeQuery();
             while (rs.next()) {
                 jabatan = new RiwayatJabatan();

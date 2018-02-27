@@ -37,6 +37,7 @@ public class RiwayatGajiPegawai {
     private Jabatan jabatan;
     private int ruang;
     private String keterangan;
+    private String gaji_pokok_str;
 
     public int getId() {
         return id;
@@ -196,6 +197,14 @@ public class RiwayatGajiPegawai {
 
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
+    }
+
+    public String getGaji_pokok_str() {
+        return gaji_pokok_str;
+    }
+
+    public void setGaji_pokok_str(String gaji_pokok_str) {
+        this.gaji_pokok_str = gaji_pokok_str;
     }
 
 }

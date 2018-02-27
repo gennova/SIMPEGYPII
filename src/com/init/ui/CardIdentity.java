@@ -81,6 +81,8 @@ public class CardIdentity extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtBPJSTenagaKerja = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         txtBerlakuKartuPegawai = new javax.swing.JTextField();
         txtBerlakuKartuIstriSuami = new javax.swing.JTextField();
@@ -92,6 +94,7 @@ public class CardIdentity extends javax.swing.JFrame {
         txtBerlakuPaspor = new javax.swing.JTextField();
         txtBerlakuNPWP = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        txtBerlakuBPJSTenagaKerja = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -155,6 +158,8 @@ public class CardIdentity extends javax.swing.JFrame {
 
         jLabel13.setText("Nomor");
 
+        jLabel15.setText("10. BPJS Tenaga Kerja");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -162,10 +167,6 @@ public class CardIdentity extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNPWP))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -197,7 +198,15 @@ public class CardIdentity extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtKartuSuamiIstri)
-                            .addComponent(txtKartuPegawai))))
+                            .addComponent(txtKartuPegawai)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBPJSTenagaKerja)
+                            .addComponent(txtNPWP))))
                 .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
@@ -251,7 +260,11 @@ public class CardIdentity extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNPWP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)))
+                            .addComponent(jLabel12))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBPJSTenagaKerja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15)))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -288,7 +301,8 @@ public class CardIdentity extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel14)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtBerlakuBPJSTenagaKerja, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -314,7 +328,9 @@ public class CardIdentity extends javax.swing.JFrame {
                 .addComponent(txtBerlakuPaspor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBerlakuNPWP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtBerlakuBPJSTenagaKerja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton1.setText("Close");
@@ -424,6 +440,9 @@ public class CardIdentity extends javax.swing.JFrame {
         String kartunpwp = "Kartu NPWP";
         String nokartunpwp = txtNPWP.getText();
         String masaberlakunpwp = txtBerlakuNPWP.getText();
+        String kartubpjstngkerja ="Kartu BPJS Ketenagakerjaan";
+        String nokartubpjstngkerja = txtBPJSTenagaKerja.getText();
+        String masaberlakukartubpjstngkerja = txtBerlakuBPJSTenagaKerja.getText();
         Kartu kartu = new Kartu();
         kartu.setPegawai(pegawai);
         kartu.setKartuPegawai(kartupegawai);
@@ -453,7 +472,11 @@ public class CardIdentity extends javax.swing.JFrame {
         kartu.setKartuNPWP(kartunpwp);
         kartu.setNoKartuNPWP(nokartunpwp);
         kartu.setMasaBerlakuKartuNPWP(masaberlakunpwp);
+        kartu.setKartuBPJSTenagaKerja(kartubpjstngkerja);
+        kartu.setNoKartuBPJSTenagaKerja(nokartubpjstngkerja);
+        kartu.setMasaBerlakuKartuBPJSTNGKerja(masaberlakukartubpjstngkerja);
         DaoFactory.getKartuDao().InsertKartuWithNUK(kartu);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -505,6 +528,7 @@ public class CardIdentity extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -517,7 +541,9 @@ public class CardIdentity extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JTextField txtBPJSTenagaKerja;
     private javax.swing.JTextField txtBerlakuBPJS;
+    private javax.swing.JTextField txtBerlakuBPJSTenagaKerja;
     private javax.swing.JTextField txtBerlakuKTP;
     private javax.swing.JTextField txtBerlakuKartuAskes;
     private javax.swing.JTextField txtBerlakuKartuIstriSuami;

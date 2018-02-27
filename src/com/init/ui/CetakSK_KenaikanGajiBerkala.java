@@ -521,7 +521,16 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             txtPangkatLama.setText(pangkat_baru.getGolongan().getPangkat());
             System.out.println("Data riwayat skp ada");
             if (pj_lama == null) {
-                txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
+                RiwayatJabatan rjp = DaoFactory.getRiwayatJabatanDao().getRiwayatJabatanLastByNUK(nuknya);
+                if (rjp==null) {
+                    System.out.println("Data riwayat jabatan tidak ada");
+                    //txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
+                    txtNamaJabatan.setText("-");
+                }else {
+                    System.out.println("Data riwayat jabatan ada");
+                    txtNamaJabatan.setText(rjp.getNamaJabatan());
+                } 
+                //txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
                 System.out.println("Data riwayat jabatan tidak ada");
                 txtUnit.setText(pj.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
             } else {
@@ -541,8 +550,15 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
             txtPangkatLama.setText(pangkat_baru.getGolongan().getPangkat());
             System.out.println("Data riwayat skp tidak ada");
             if (pj_lama == null) {
-                System.out.println("Data riwayat jabatan tidak ada");
-                txtNamaJabatan.setText("-");
+                RiwayatJabatan rjp = DaoFactory.getRiwayatJabatanDao().getRiwayatJabatanLastByNUK(nuknya);
+                if (rjp==null) {
+                    System.out.println("Data riwayat jabatan tidak ada");
+                    //System.out.println(rjp.getNamaJabatan());
+                    txtNamaJabatan.setText("-");
+                }else {
+                    System.out.println("Data riwayat jabatan ada");
+                    txtNamaJabatan.setText(rjp.getNamaJabatan());
+                }                
                 txtUnit.setText(pj.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
             } else {
                 System.out.println("Data riwayat jabatan ada");
