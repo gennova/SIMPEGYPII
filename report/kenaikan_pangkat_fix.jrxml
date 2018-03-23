@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="kenaikan_pangkat_fix" language="groovy" pageWidth="595" pageHeight="842" columnWidth="568" leftMargin="14" rightMargin="13" topMargin="14" bottomMargin="14" uuid="51d9bbb5-59f5-4fac-bccb-d0af3bd219f2">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="491"/>
+	<property name="ireport.y" value="113"/>
 	<parameter name="nuknya" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -20,7 +20,7 @@
 		<![CDATA[SELECT *,LEFT(pendidikanpegawai.tgl_lulus_sk_pendidikan_akhir,4) AS tahunijazahlulus_nya FROM pegawai JOIN pangkatpegawai ON pegawai.nuk =pangkatpegawai.nuk
 JOIN pekerjaanjabatan ON pegawai.nuk=pekerjaanjabatan.nuk JOIN pendidikanpegawai ON
 pegawai.nuk=pendidikanpegawai.nuk JOIN pendidikanterakhir ON
-pendidikanpegawai.id_ijazah_angkat = pendidikanterakhir.id JOIN unit ON pekerjaanjabatan.idunit = unit.id JOIN cabang ON
+pendidikanpegawai.id_pendidikan_akhir = pendidikanterakhir.id JOIN unit ON pekerjaanjabatan.idunit = unit.id JOIN cabang ON
 pekerjaanjabatan.idcabang = cabang.id JOIN bidangkerja ON
 pekerjaanjabatan.idbidangkerja=bidangkerja.id JOIN sk_jabatan
 ON pekerjaanjabatan.idjabatan = sk_jabatan.id_jabatan LEFT OUTER JOIN jabatan ON sk_jabatan.id_jabatan = jabatan.id
@@ -322,7 +322,7 @@ JOIN legalisasi WHERE pegawai.nuk = $P{nuknya} LIMIT 1]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["TANGGAL : "+$F{tanggal_kgb_indo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["TANGGAL : "+$F{tmt_golongan_indo}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="174" y="157" width="202" height="19" uuid="bee993be-8873-4201-964d-91f6c21799c4"/>
@@ -790,7 +790,7 @@ JOIN legalisasi WHERE pegawai.nuk = $P{nuknya} LIMIT 1]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tanggal_kgb_indo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tmt_golongan_indo}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="FillFrame">
 				<reportElement x="59" y="275" width="57" height="66" uuid="56ab7dcb-482b-4957-9783-f6968378e7b6"/>

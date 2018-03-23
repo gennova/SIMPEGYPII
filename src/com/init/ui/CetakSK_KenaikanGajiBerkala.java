@@ -475,6 +475,7 @@ public class CetakSK_KenaikanGajiBerkala extends javax.swing.JFrame {
         } else {
             hashMap.put("jabatanlama", pj_lama.getJabatan().getNamajabatan());
         }
+        hashMap.put("jabatanbaru", pj.getJabatan().getNamajabatan());
         hashMap.put("golonganbaru", pangkat_baru.getGolongan().getNamagolongan() + " - " + pangkat_baru.getTahun_masa_kerja() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(DaoFactory.ConvertDoubleToInt(DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok())));
         double data = DaoFactory.getGaji_pegawai_dao().getGajiPegawaiByNUK(nuknya).getGaji_pokok();
         int news = (int) data;
