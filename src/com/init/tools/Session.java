@@ -21,6 +21,15 @@ public class Session {
     private static PekerjaanJabatan pekerjaanJabatan;
     private static Pangkat pangkat;
     private static RiwayatJabatan riwayatJabatan;
+    private static int RiwayatGajiID;
+
+    public static int getRiwayatGajiID() {
+        return RiwayatGajiID;
+    }
+
+    public static void setRiwayatGajiID(int RiwayatGajiID) {
+        Session.RiwayatGajiID = RiwayatGajiID;
+    }
 
     public static String getNUK() {
         return NUK;

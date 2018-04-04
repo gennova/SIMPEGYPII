@@ -16,6 +16,7 @@ import javax.swing.table.TableRowSorter;
  * @author amnesia
  */
 public class Riwayat_KGB extends javax.swing.JFrame {
+
     private TableRowSorter sorter = new TableRowSorter();
 
     /**
@@ -26,13 +27,13 @@ public class Riwayat_KGB extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         loadtable();
     }
-    
-    private void loadtable(){
+
+    private void loadtable() {
         RiwayatGajiTabelModel model = new RiwayatGajiTabelModel(DaoFactory.getRiwayat_Gaji_pegawai_dao().getAllRiwayatGajiPegawaiNuk(Session.getPegawai().getNUK()));
         riwayatgaji.setModel(model);
         riwayatgaji.getColumnModel().getColumn(0).setPreferredWidth(20);
         sorter.setModel(model);
-        
+
     }
 
     /**
@@ -107,6 +108,11 @@ public class Riwayat_KGB extends javax.swing.JFrame {
         });
 
         jButton3.setText("Update");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Insert");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -170,11 +176,11 @@ public class Riwayat_KGB extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int row = riwayatgaji.getSelectedRow();
-        if (row>=0) {
+        if (row >= 0) {
             int kode = Integer.parseInt(riwayatgaji.getValueAt(row, 0).toString());
             DaoFactory.getRiwayat_Gaji_pegawai_dao().deleteRiwayatGajiPegawai(kode);
             loadtable();
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu baris dari tabel");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -185,6 +191,20 @@ public class Riwayat_KGB extends javax.swing.JFrame {
         berkalaUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("NUK Session" + Session.getNUK());
+        int koderiwayat_update = 0;
+        int row = riwayatgaji.getSelectedRow();
+        if (row > -1) {
+            koderiwayat_update = Integer.parseInt(riwayatgaji.getValueAt(row, 0).toString());
+        }
+        Session.setRiwayatGajiID(koderiwayat_update);
+        System.out.println("ID KGB Modifikasi akan" + Session.getRiwayatGajiID());
+        UpdataeRiwayatGajiBerkalaUI urgbui = new UpdataeRiwayatGajiBerkalaUI();
+        urgbui.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

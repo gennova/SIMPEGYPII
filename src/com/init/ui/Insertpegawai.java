@@ -1987,6 +1987,7 @@ public class Insertpegawai extends javax.swing.JFrame {
                 gaji_pegawai.setPangkat(pangkat);
                 gaji_pegawai.setPekerjaanJabatan(pekerjaanJabatan);
                 gaji_pegawai.setRuang(Integer.parseInt(txtTahunKerja.getText()));
+                gaji_pegawai.setGolongan(DaoFactory.getPangkatDao().getPangkatByNUK(p.getNUK()).getGolongan());
                 Calendar c = GregorianCalendar.getInstance();
                 c.setTime(tmtKGBDate.getDate());
                 c.add(Calendar.YEAR, Integer.parseInt(txtKGBBerikutnya.getText()));

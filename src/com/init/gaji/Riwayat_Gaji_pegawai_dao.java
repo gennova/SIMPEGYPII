@@ -18,12 +18,16 @@ public interface Riwayat_Gaji_pegawai_dao {
     public boolean CekGajiPegawaiByNUKRiwayat(String nuk);
 
     public RiwayatGajiPegawai getGajiPegawaiByNUKRiwayat(String nuk);
+    
+    public RiwayatGajiPegawai getGajiPegawaiByID(int id);
 
     public List<RiwayatGajiPegawai> getAllRiwayatGajiPegawai();
     
     public List<RiwayatGajiPegawai> getAllRiwayatGajiPegawaiNuk(String nuk);
     
     public void InsertRiwayatGajiPegawaiManual(RiwayatGajiPegawai gajiPegawai);
+    
+    public void UpdateRiwayatGajiPegawaiManual(RiwayatGajiPegawai gajiPegawai);
     
     public void deleteRiwayatGajiPegawai(int id);
 }
