@@ -42,7 +42,7 @@ public class BadanDaoImplemen implements BadanDao {
             badans = new ArrayList<Badan>();
             while (rs.next()) {
                 Badan badan = new Badan();
-                badan.setId(rs.getInt(rs.getInt("id")));
+                badan.setId(rs.getInt("id"));
                 badan.setNuk(rs.getString("nuk"));
                 badan.setTinggibadan(rs.getDouble("tinggi"));
                 badan.setBeratbadan(rs.getDouble("berat"));
@@ -72,7 +72,7 @@ public class BadanDaoImplemen implements BadanDao {
             ps.setString(1, nuk);
             rs = ps.executeQuery();
             while (rs.next()) {
-                badan.setId(rs.getInt(rs.getInt("id")));
+                badan.setId(rs.getInt("id"));
                 badan.setNuk(rs.getString("nuk"));
                 badan.setTinggibadan(rs.getDouble("tinggi"));
                 badan.setBeratbadan(rs.getDouble("berat"));

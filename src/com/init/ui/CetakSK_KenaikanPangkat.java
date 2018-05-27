@@ -479,14 +479,16 @@ public class CetakSK_KenaikanPangkat extends javax.swing.JFrame {
                 System.out.println(b.getGaji_pokok());
                 txtPangkatLama.setText(b.getGolongan().getPangkat());
                 if (pj_lama == null) {
-                    txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());
+                    System.out.println("PJ LAMA TIDAK ADA");
+                    txtNamaJabatan.setText(pj.getJabatan().getNamajabatan()); // kalau gak ada, ambil yang sekarang
                     txtUnit.setText(pj.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
                 } else {
+                    System.out.println("PJ LAMA  ADA");
                     txtNamaJabatan.setText(pj_lama.getJabatan().getNamajabatan());
                     txtUnit.setText(pj_lama.getUnit().getNamaUnit() + " di " + pj.getCabang().getNamacabang());
                 }
                 txtGolonganGajiLama.setText(b.getGolongan().getNamagolongan() + " - " + b.getRuang() + " - Rp. " + DaoFactory.getFormatRupiahIndonesiaInt(Integer.parseInt(String.valueOf(b.getGaji_pokok_str()))));
-            } else {
+            } else { // Tidak ada riwayat gaji
                 txtPangkatLama.setText(skp_lama.getGolongan().getPangkat());
                 if (pj_lama == null) {
                     txtNamaJabatan.setText(pj.getJabatan().getNamajabatan());

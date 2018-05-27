@@ -40,7 +40,7 @@ public class Badan extends javax.swing.JFrame {
         txtPekerjaanLain.setText(badan.getPekerjaanlain());
         txtJenisRambut.setText(badan.getJenisrambut());
         txtBentukMuka.setText(badan.getBentukmuka());
-        ComboDarah.setSelectedIndex(1);
+        //ComboDarah.setSelectedIndex(1);
     }
 
     /**
