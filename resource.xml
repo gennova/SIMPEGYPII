@@ -3,7 +3,7 @@
 <properties>
 <comment>host settings</comment>
 <entry key="db">simpeg</entry>
-<entry key="password"></entry>
+<entry key="password">solider33</entry>
 <entry key="host">localhost</entry>
-<entry key="username">root</entry>
+<entry key="username">simpeg</entry>
 </properties>

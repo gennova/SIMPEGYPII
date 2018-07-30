@@ -139,7 +139,8 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplikasi Kepegawaian Yayasan Penyelenggaraan Ilahi Indonesia Versi 2017");
-        setResizable(false);
+        setLocationByPlatform(true);
+        setMaximumSize(null);
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 0));
 

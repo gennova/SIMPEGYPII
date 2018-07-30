@@ -45,6 +45,8 @@ public class CardIdentity extends javax.swing.JFrame {
         txtBerlakuPaspor.setText(kartu.getMasaBerlakuKartuPaspor());
         txtNPWP.setText(kartu.getNoKartuNPWP());
         txtBerlakuNPWP.setText(kartu.getMasaBerlakuKartuNPWP());
+        txtBPJSTenagaKerja.setText(kartu.getNoKartuBPJSTenagaKerja());
+        txtBerlakuBPJSTenagaKerja.setText(kartu.getMasaBerlakuKartuBPJSTNGKerja());
     }
 
     /**

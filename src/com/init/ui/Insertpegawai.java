@@ -1433,7 +1433,7 @@ public class Insertpegawai extends javax.swing.JFrame {
         } else {
             Pegawai cekpegawai = DaoFactory.getPegawaiDao().getPegawaiByNUK(NUK_teks.getText());
             Session.setPegawai(cekpegawai);
-            JOptionPane.showMessageDialog(null, "Data Pegawai :" + cekpegawai.getNama());
+            //JOptionPane.showMessageDialog(null, "Data Pegawai :" + cekpegawai.getNama());
             Badan b = new Badan();
             b.setVisible(true);
         }
